@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import { useCollection } from "@/context/DataContext";
 import ServicesHero from "@/components/Services/ServicesHero/ServicesHero";
 import ServicesOption from "@/components/Services/ServicesOption/ServicesOption";
-import PricingTable from "@/components/MainPage/PricingTable";
 import ServicesCTA from "@/components/Services/ServicesCTA";
 
 export default function ServicesPage() {
@@ -15,8 +14,7 @@ export default function ServicesPage() {
       </Helmet>
       <main className="w-full flex flex-col justify-center items-center bg-transparent">
         <ServicesHero />
-        <PricingTable data={pricing} />
-        <ServicesOption />
+        <ServicesOption data={pricing} />
         <ServicesCTA />
       </main>
     </>
