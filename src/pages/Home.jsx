@@ -31,9 +31,9 @@ export default function Home() {
       <PricingTable data={pricing} />
 
       {/* Projects carousel */}
-      <section className="relative w-full bg-white-MainPage lg:pt-[12vw] pt-[35vw] lg:pb-[3vw] pb-[8vw] overflow-hidden">
-        <div className="absolute inset-0 z-10 flex items-start justify-center lg:pt-[4vw] pt-[10vw] pointer-events-none">
-          <div className="text-center lg:px-[10vw] px-[5.581vw] bg-white/80 lg:py-[1.5vw] py-[3vw] lg:px-[3vw] px-[5vw] rounded-xl backdrop-blur-sm">
+      <section className="relative w-full bg-white-MainPage lg:py-[5vw] py-[15vw] overflow-hidden">
+        <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+          <div className="text-center bg-white/90 lg:py-[2.5vw] py-[5vw] lg:px-[4vw] px-[8vw] rounded-xl shadow-[0_0.5vw_2vw_rgba(0,0,0,0.08)] backdrop-blur-md">
             <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0893D4] via-[#44C4D9] to-[#159E8D]">
               Our Creations
             </p>
