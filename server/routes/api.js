@@ -18,6 +18,7 @@ const collections = [
   "redirects",
   "about-us",
   "templates",
+  "team",
 ];
 
 function readData(name) {

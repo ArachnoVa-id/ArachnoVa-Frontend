@@ -13,6 +13,7 @@ const navItems = [
   { to: "/admin/about-us", label: "About Us", icon: "👥" },
   { to: "/admin/navigation", label: "Navigation", icon: "🧭" },
   { to: "/admin/redirects", label: "Redirects", icon: "🔀" },
+  { to: "/admin/team", label: "Team", icon: "👥" },
 ];
 
 export default function AdminLayout() {
