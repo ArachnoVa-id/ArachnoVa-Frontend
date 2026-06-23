@@ -7,7 +7,7 @@ export default function ProjectsPage() {
   const [projects] = useCollection("projects");
   const images = projects.map((p) => p.imageDesktop).filter(Boolean);
 
-  const rowCount = Math.min(3, Math.ceil(images.length / 3));
+  const rowCount = 6;
 
   return (
     <>
