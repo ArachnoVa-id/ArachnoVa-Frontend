@@ -64,7 +64,6 @@ export function DataProvider({ children }) {
   const login = useCallback((password) => {
     if (password === "arachnova2024") {
       sessionStorage.setItem("cms_auth", "true");
-      sessionStorage.setItem("cms_api_key", password);
       setAuth(true);
       return true;
     }
@@ -73,7 +72,6 @@ export function DataProvider({ children }) {
 
   const logout = useCallback(() => {
     sessionStorage.removeItem("cms_auth");
-    sessionStorage.removeItem("cms_api_key");
     setAuth(false);
   }, []);
 
