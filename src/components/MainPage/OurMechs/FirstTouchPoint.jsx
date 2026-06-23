@@ -2,7 +2,7 @@ import Content from "./Content";
 import { IoCall } from "react-icons/io5";
 import { IoChatbubbles } from "react-icons/io5";
 import { IoFolder } from "react-icons/io5";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";

@@ -2,7 +2,7 @@ import { BsBugFill } from "react-icons/bs";
 import { FaScrewdriverWrench } from "react-icons/fa6";
 import { FaArchive } from "react-icons/fa";
 import Content from "./Content";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";

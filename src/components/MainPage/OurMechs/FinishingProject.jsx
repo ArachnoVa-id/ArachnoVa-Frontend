@@ -2,7 +2,7 @@ import Content from "./Content";
 import { BsFillCloudArrowUpFill } from "react-icons/bs";
 import { BsBoxFill } from "react-icons/bs";
 import { FaLaptopCode } from "react-icons/fa";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";

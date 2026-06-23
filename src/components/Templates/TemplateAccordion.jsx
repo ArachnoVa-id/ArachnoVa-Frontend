@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { useEffect, useState } from "react";
 import { Collapse } from "react-collapse";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";

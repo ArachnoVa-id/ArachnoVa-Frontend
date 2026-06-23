@@ -1,6 +1,6 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { useEffect, useRef } from "react";
 import { BsFillCaretLeftFill, BsFillCaretRightFill } from "react-icons/bs";
 import { Swiper, SwiperSlide } from "swiper/react";

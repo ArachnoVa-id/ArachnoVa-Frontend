@@ -1,7 +1,7 @@
 "use client";
 
 import data from "./data";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";

@@ -3,7 +3,7 @@ import { AiOutlineCopyright } from "react-icons/ai";
 import { FaLinkedin } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 import { PiWhatsappLogoFill } from "react-icons/pi";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 
 const Footer = () => {
 	return (

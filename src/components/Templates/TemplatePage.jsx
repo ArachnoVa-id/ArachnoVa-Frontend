@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import data from "./data";
 import TemplateAccordion from "./TemplateAccordion";
 import AOS from "aos";

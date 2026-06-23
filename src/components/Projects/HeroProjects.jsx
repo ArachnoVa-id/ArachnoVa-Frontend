@@ -1,5 +1,5 @@
 import Slider from "./Slider";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 
 const HeroProjects = () => {
   return (

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 
 const PointText = ({ Title, Description, Icon, Variant }) => {
 	const Left =

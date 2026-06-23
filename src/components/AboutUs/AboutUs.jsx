@@ -5,7 +5,7 @@ import SocialMediaIcon from "./SocialMediaIcon";
 import { FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import ContentBox from "./ContentBox";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";

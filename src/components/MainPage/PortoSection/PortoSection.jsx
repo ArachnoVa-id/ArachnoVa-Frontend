@@ -1,7 +1,7 @@
 import BorderSeparator from "../BorderSeparator/BorderSeparator";
 import styles from "./PortoSection.module.css";
 import { FaArrowRight } from "react-icons/fa";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 
 const OptionButton = ({ _key, icon, text, selected }) => {
   const bordercolor = (key, selected) => {

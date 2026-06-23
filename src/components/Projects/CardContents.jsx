@@ -1,6 +1,6 @@
 "use client";
 import { useSwiper } from "swiper/react";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import styles from "./CardContents.module.css";
 
 const CardContents = ({ title, description, image, imageMobile }) => {

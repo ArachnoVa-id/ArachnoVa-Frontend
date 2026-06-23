@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import HeroProjects from "@/components/Projects/HeroProjects";
 import PortoLustrumDTETI from "@/components/Projects/PortoLustrumDTETI";
 import PortoKPUFT from "@/components/Projects/PortoKPUFT";
@@ -5,13 +6,12 @@ import PortoEzParenting from "@/components/Projects/PortoEzParenting";
 import CTAProjects from "@/components/Projects/CTAProjects";
 import PortoTemplate from "@/components/Projects/PortoTemplate";
 
-export const metadata = {
-  title: "Our Projects | ArachnoVa",
-};
-
-export default function Page() {
+export default function ProjectsPage() {
   return (
     <>
+      <Helmet>
+        <title>Our Projects | ArachnoVa</title>
+      </Helmet>
       <main className="w-full flex flex-col justify-center items-center bg-transparent">
         <HeroProjects />
         <PortoTemplate
@@ -113,7 +113,6 @@ export default function Page() {
           srcMobile={"/image/Projects/LustrumDTETIMobile.png"}
           link={"https://lustrumdteti.id/"}
         />
-
         <CTAProjects />
       </main>
     </>

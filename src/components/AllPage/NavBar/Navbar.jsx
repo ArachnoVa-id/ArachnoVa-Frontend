@@ -1,7 +1,7 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import Image from "next/image";
+import { useLocation } from "react-router-dom";
+import Image from "@/components/ui/Img";
 import NavItem from "./NavItem";
 import Button from "../Button/Button";
 import { Twirl as Hamburger } from "hamburger-react";
@@ -9,7 +9,7 @@ import { useState } from "react";
 import NavItemMobile from "./NavItemMobile";
 
 const Navbar = () => {
-	const path = usePathname();
+	const path = useLocation().pathname;
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<>

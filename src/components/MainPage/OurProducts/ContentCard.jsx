@@ -1,5 +1,5 @@
 import { useSwiper } from "swiper/react";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 
 const ContentCard = ({ img }) => {
 	const swiper = useSwiper();

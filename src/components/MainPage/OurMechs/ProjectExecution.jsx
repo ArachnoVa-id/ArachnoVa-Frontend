@@ -2,7 +2,7 @@ import Content from "./Content";
 import { IoIosPeople } from "react-icons/io";
 import { IoIosArchive } from "react-icons/io";
 import { IoSettings } from "react-icons/io5";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ServicesOptionButton from "./ServicesOptionButton";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
 const ServicesOption = () => {
