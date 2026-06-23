@@ -77,15 +77,6 @@ export default function TeamAdmin() {
             <div className="space-y-2">
               <input value={m.name} onChange={(e) => update(i, "name", e.target.value)} placeholder="Name" className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm text-center font-medium" />
               <input value={m.role} onChange={(e) => update(i, "role", e.target.value)} placeholder="Role" className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm text-center" />
-              <div className="flex gap-2">
-                <input value={m.image || ""} onChange={(e) => update(i, "image", e.target.value)} placeholder="Image path" className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono" />
-                <button onClick={() => handleUpload(i)} className="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-gray-200 shrink-0">Browse</button>
-              </div>
-              {m.image && (
-                <div className="flex justify-center">
-                  <img src={m.image} alt="" className="h-16 rounded border border-gray-200 object-cover" />
-                </div>
-              )}
               <button onClick={() => remove(i)} className="w-full text-sm text-red-600 hover:bg-red-50 py-2 rounded-lg">Remove</button>
             </div>
           </div>
