@@ -3,9 +3,24 @@ import { useCollection } from "@/context/DataContext";
 import MarqueeCarousel from "@/components/Projects/MarqueeCarousel";
 import ProjectCardGrid from "@/components/Projects/ProjectCardGrid";
 
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 export default function ProjectsPage() {
   const [projects] = useCollection("projects");
-  const images = projects.map((p) => p.imageDesktop).filter(Boolean);
+
+  const allImages = shuffle(
+    projects.flatMap((p) => [
+      ...(p.desktopImages || []),
+      ...(p.mobileImages || []),
+    ]).filter(Boolean)
+  );
 
   const rowCount = 6;
 
@@ -15,7 +30,6 @@ export default function ProjectsPage() {
         <title>Our Projects | ArachnoVa</title>
       </Helmet>
 
-      {/* Section 1: Marquee carousel rows with centered header */}
       <section className="relative w-full bg-white-MainPage lg:pt-[6vw] pt-[22vw] lg:pb-[2vw] pb-[5vw] overflow-hidden min-h-screen flex flex-col justify-center">
         <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none lg:mt-[-2vw]">
           <div className="text-center bg-white/90 lg:py-[1.5vw] py-[3vw] lg:px-[3vw] px-[6vw] rounded-xl shadow-[0_0.5vw_2vw_rgba(0,0,0,0.08)] backdrop-blur-md">
@@ -32,14 +46,13 @@ export default function ProjectsPage() {
           {Array.from({ length: rowCount }).map((_, i) => (
             <MarqueeCarousel
               key={i}
-              images={images}
+              images={allImages}
               direction={i % 2 === 0 ? "left" : "right"}
             />
           ))}
         </div>
       </section>
 
-      {/* Section 2: Project cards grid */}
       <ProjectCardGrid projects={projects} />
     </>
   );

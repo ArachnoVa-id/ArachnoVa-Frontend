@@ -9,6 +9,30 @@ function uploadFile(file) {
   return fetch(`${API_BASE}/api/upload`, { method: "POST", body: fd }).then((r) => r.json());
 }
 
+function ImageRow({ label, images, onAdd, onRemove, onMove }) {
+  return (
+    <div className="mb-4">
+      <label className="block text-sm font-medium text-gray-700 mb-2">{label}</label>
+      <div className="flex flex-wrap gap-2">
+        {images.map((img, idx) => (
+          <div key={idx} className="relative group w-28 h-20 rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
+            {idx === 0 && <div className="absolute top-0 left-0 bg-blue-500 text-white text-[10px] px-1.5 py-0.5 rounded-br z-10">COVER</div>}
+            <img src={img} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-1">
+              <button onClick={() => onMove(idx, -1)} disabled={idx === 0} className="text-white text-xs bg-white/20 rounded p-1 disabled:opacity-30">◀</button>
+              <button onClick={() => onMove(idx, 1)} disabled={idx === images.length - 1} className="text-white text-xs bg-white/20 rounded p-1 disabled:opacity-30">▶</button>
+              <button onClick={() => onRemove(idx)} className="text-white text-xs bg-red-500/70 rounded p-1">✕</button>
+            </div>
+          </div>
+        ))}
+        <button onClick={onAdd} className="w-28 h-20 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-400 hover:border-blue-400 hover:text-blue-500 transition text-xs">
+          + Add
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function ProjectsAdmin() {
   const [projects, setProjects] = useCollection("projects");
   const [editing, setEditing] = useState(null);
@@ -16,13 +40,20 @@ export default function ProjectsAdmin() {
   const dragItem = useRef(null);
   const dragOverItem = useRef(null);
 
-  const empty = { type: 1, title: "", description: "", imageDesktop: "", imageMobile: "", images: [], link: "" };
+  const empty = { type: 1, title: "", description: "", imageDesktop: "", imageMobile: "", desktopImages: [], mobileImages: [], link: "" };
 
   const save = (item) => {
+    const payload = {
+      ...item,
+      desktopImages: item.desktopImages || [],
+      mobileImages: item.mobileImages || [],
+      imageDesktop: item.desktopImages?.[0] || "",
+      imageMobile: item.mobileImages?.[0] || "",
+    };
     if (editing) {
-      setProjects(projects.map((p) => (p.id === editing.id ? { ...item, id: editing.id } : p)));
+      setProjects(projects.map((p) => (p.id === editing.id ? { ...payload, id: editing.id } : p)));
     } else {
-      setProjects([...projects, { ...item, id: Date.now() }]);
+      setProjects([...projects, { ...payload, id: Date.now() }]);
     }
     setEditing(null);
     setShowForm(false);
@@ -52,38 +83,24 @@ export default function ProjectsAdmin() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-gray-900">Projects</h2>
-        <button onClick={() => { setEditing(null); setShowForm(true); }} className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700">
-          + Add Project
-        </button>
+        <button onClick={() => { setEditing(null); setShowForm(true); }} className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700">+ Add Project</button>
       </div>
 
       {showForm && (
-        <ProjectForm
-          initial={editing || empty}
-          onSave={save}
-          onCancel={() => { setShowForm(false); setEditing(null); }}
-        />
+        <ProjectForm initial={editing || empty} onSave={save} onCancel={() => { setShowForm(false); setEditing(null); }} />
       )}
 
       <div className="space-y-2">
         {projects.map((p, i) => (
-          <div
-            key={p.id}
-            draggable
-            onDragStart={() => handleDragStart(i)}
-            onDragEnter={() => handleDragEnter(i)}
-            onDragEnd={handleDragEnd}
-            onDragOver={(e) => e.preventDefault()}
-            className={`bg-white rounded-xl border border-gray-200 p-3 flex items-center gap-3 shadow-sm cursor-grab active:cursor-grabbing transition-all ${dragItem.current === i ? "opacity-50" : ""}`}
-          >
+          <div key={p.id} draggable onDragStart={() => handleDragStart(i)} onDragEnter={() => handleDragEnter(i)} onDragEnd={handleDragEnd} onDragOver={(e) => e.preventDefault()}
+            className={`bg-white rounded-xl border border-gray-200 p-3 flex items-center gap-3 shadow-sm cursor-grab active:cursor-grabbing transition-all ${dragItem.current === i ? "opacity-50" : ""}`}>
             <div className="text-gray-300 cursor-grab text-sm">⠿</div>
             <div className="w-14 h-14 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
               {p.imageDesktop && <img src={p.imageDesktop} alt="" className="w-full h-full object-cover" />}
             </div>
             <div className="flex-1 min-w-0">
               <p className="font-medium text-gray-900 truncate">{p.title}</p>
-              <p className="text-xs text-gray-500 truncate">{p.link}</p>
-              {p.images?.length > 1 && <p className="text-xs text-gray-400">{p.images.length} images</p>}
+              <p className="text-xs text-gray-400">{(p.desktopImages?.length || 0) + (p.mobileImages?.length || 0)} images</p>
             </div>
             <button onClick={() => { setEditing(p); setShowForm(true); }} className="text-sm text-blue-600 hover:text-blue-800 font-medium shrink-0">Edit</button>
             <button onClick={() => remove(p.id)} className="text-sm text-red-600 hover:text-red-800 font-medium shrink-0">Delete</button>
@@ -95,7 +112,7 @@ export default function ProjectsAdmin() {
 }
 
 function ProjectForm({ initial, onSave, onCancel }) {
-  const [form, setForm] = useState({ ...initial, images: initial.images || [] });
+  const [form, setForm] = useState({ ...initial, desktopImages: initial.desktopImages || [], mobileImages: initial.mobileImages || [] });
   const [uploading, setUploading] = useState(false);
 
   const update = (key, val) => setForm((prev) => ({ ...prev, [key]: val }));
@@ -110,64 +127,46 @@ function ProjectForm({ initial, onSave, onCancel }) {
       setUploading(true);
       try {
         const { url } = await uploadFile(file);
-        if (field === "images") {
-          update("images", [...(form.images || []), url]);
-        } else {
-          update(field, url);
-        }
-      } catch (e) {
-        alert("Upload failed: " + e.message);
-      }
+        const arr = [...(form[field] || []), url];
+        update(field, arr);
+        if (field === "desktopImages" && arr.length === 1) update("imageDesktop", url);
+        if (field === "mobileImages" && arr.length === 1) update("imageMobile", url);
+      } catch (e) { alert("Upload failed: " + e.message); }
       setUploading(false);
     };
     input.click();
   };
 
-  const removeImage = (idx) => {
-    const next = form.images.filter((_, i) => i !== idx);
-    update("images", next);
-    if (idx === 0) update("imageDesktop", next[0] || "");
-    if (idx === 1) update("imageMobile", next[1] || "");
+  const removeImg = (field, idx) => {
+    const arr = form[field].filter((_, i) => i !== idx);
+    update(field, arr);
+    if (field === "desktopImages") update("imageDesktop", arr[0] || "");
+    if (field === "mobileImages") update("imageMobile", arr[0] || "");
   };
 
-  const moveImage = (idx, dir) => {
+  const moveImg = (field, idx, dir) => {
     const target = idx + dir;
-    if (target < 0 || target >= form.images.length) return;
-    const next = [...form.images];
-    [next[idx], next[target]] = [next[target], next[idx]];
-    update("images", next);
-    update("imageDesktop", next[0] || "");
-    update("imageMobile", next[1] || "");
+    if (target < 0 || target >= form[field].length) return;
+    const arr = [...form[field]];
+    [arr[idx], arr[target]] = [arr[target], arr[idx]];
+    update(field, arr);
+    if (field === "desktopImages") update("imageDesktop", arr[0] || "");
+    if (field === "mobileImages") update("imageMobile", arr[0] || "");
   };
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6 shadow-sm">
       <h3 className="font-semibold text-lg mb-4">{initial.id ? "Edit Project" : "New Project"}</h3>
 
-      {/* Image gallery */}
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 mb-2">Images (first = cover)</label>
-        <div className="flex flex-wrap gap-3 mb-2">
-          {form.images.map((img, idx) => (
-            <div key={idx} className="relative group w-24 h-24 rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
-              {idx === 0 && <div className="absolute top-0 left-0 bg-blue-500 text-white text-[10px] px-1.5 py-0.5 rounded-br z-10">COVER</div>}
-              <img src={img} alt="" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-1">
-                <button onClick={() => moveImage(idx, -1)} disabled={idx === 0} className="text-white text-xs bg-white/20 rounded p-1 disabled:opacity-30">←</button>
-                <button onClick={() => moveImage(idx, 1)} disabled={idx === form.images.length - 1} className="text-white text-xs bg-white/20 rounded p-1 disabled:opacity-30">→</button>
-                <button onClick={() => removeImage(idx)} className="text-white text-xs bg-red-500/70 rounded p-1">✕</button>
-              </div>
-            </div>
-          ))}
-          <button
-            onClick={() => handleUpload("images")}
-            disabled={uploading}
-            className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-400 hover:border-blue-400 hover:text-blue-500 transition text-xs"
-          >
-            {uploading ? "..." : "+ Add Image"}
-          </button>
-        </div>
-      </div>
+      <ImageRow label="Desktop Images (first = cover)" images={form.desktopImages}
+        onAdd={() => handleUpload("desktopImages")}
+        onRemove={(idx) => removeImg("desktopImages", idx)}
+        onMove={(idx, dir) => moveImg("desktopImages", idx, dir)} />
+
+      <ImageRow label="Mobile Images (first = cover)" images={form.mobileImages}
+        onAdd={() => handleUpload("mobileImages")}
+        onRemove={(idx) => removeImg("mobileImages", idx)}
+        onMove={(idx, dir) => moveImg("mobileImages", idx, dir)} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <div className="md:col-span-2">
@@ -183,27 +182,12 @@ function ProjectForm({ initial, onSave, onCancel }) {
           <input value={form.link} onChange={(e) => update("link", e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Layout Type</label>
-          <select value={form.type} onChange={(e) => update("type", Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
-            <option value={1}>Type 1</option>
-            <option value={2}>Type 2</option>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Product Tag</label>
+          <select value={form.product || "compro"} onChange={(e) => update("product", e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+            <option value="compro">Company Profile</option>
+            <option value="erp">ERP</option>
+            <option value="wa-apps">WhatsApp Apps</option>
           </select>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Desktop Image (cover)</label>
-          <div className="flex gap-2">
-            <input value={form.imageDesktop} onChange={(e) => update("imageDesktop", e.target.value)} className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono" placeholder="/uploads/xxx.png" />
-            <button onClick={() => handleUpload("imageDesktop")} className="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-gray-200 shrink-0">Upload</button>
-          </div>
-          {form.imageDesktop && <img src={form.imageDesktop} alt="" className="mt-2 h-20 rounded border border-gray-200 object-cover" />}
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Mobile Image</label>
-          <div className="flex gap-2">
-            <input value={form.imageMobile} onChange={(e) => update("imageMobile", e.target.value)} className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono" placeholder="/uploads/xxx.png" />
-            <button onClick={() => handleUpload("imageMobile")} className="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-gray-200 shrink-0">Upload</button>
-          </div>
-          {form.imageMobile && <img src={form.imageMobile} alt="" className="mt-2 h-20 rounded border border-gray-200 object-cover" />}
         </div>
       </div>
 
