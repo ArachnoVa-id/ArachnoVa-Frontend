@@ -11,6 +11,7 @@ const navItems = [
   { to: "/admin/hero", label: "Hero Section", icon: "🎯" },
   { to: "/admin/homepage-sections", label: "Home Sections", icon: "🏠" },
   { to: "/admin/redirects", label: "Redirects", icon: "🔀" },
+  { to: "/admin/team", label: "Team", icon: "👥" },
 ];
 
 export default function AdminLayout() {

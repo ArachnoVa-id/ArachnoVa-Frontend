@@ -14,6 +14,7 @@ const collections = [
   "hero",
   "homepage-sections",
   "redirects",
+  "team",
 ];
 
 function readData(name) {

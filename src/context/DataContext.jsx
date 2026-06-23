@@ -13,6 +13,7 @@ const defaults = {
   hero: {},
   "homepage-sections": {},
   redirects: [],
+  team: [],
 };
 
 function authHeaders(forWrite) {

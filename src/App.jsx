@@ -18,6 +18,7 @@ import ProductsAdmin from "@/pages/admin/ProductsAdmin";
 import HeroAdmin from "@/pages/admin/HeroAdmin";
 import HomepageSectionsAdmin from "@/pages/admin/HomepageSectionsAdmin";
 import RedirectsAdmin from "@/pages/admin/RedirectsAdmin";
+import TeamAdmin from "@/pages/admin/TeamAdmin";
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="hero" element={<HeroAdmin />} />
           <Route path="homepage-sections" element={<HomepageSectionsAdmin />} />
           <Route path="redirects" element={<RedirectsAdmin />} />
+          <Route path="team" element={<TeamAdmin />} />
         </Route>
         <Route path="*" element={
           <>
