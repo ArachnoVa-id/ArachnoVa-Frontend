@@ -12,11 +12,7 @@ const defaults = {
   products: { title: "", subtitle: "", items: [] },
   hero: {},
   "homepage-sections": {},
-  mechanisms: { stages: [] },
-  navigation: { navLinks: [], socialLinks: [], contactWhatsApp: "" },
   redirects: [],
-  "about-us": {},
-  templates: [],
 };
 
 function authHeaders(forWrite) {

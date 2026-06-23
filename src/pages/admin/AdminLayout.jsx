@@ -10,10 +10,7 @@ const navItems = [
   { to: "/admin/products", label: "Products", icon: "🛍️" },
   { to: "/admin/hero", label: "Hero Section", icon: "🎯" },
   { to: "/admin/homepage-sections", label: "Home Sections", icon: "🏠" },
-  { to: "/admin/about-us", label: "About Us", icon: "👥" },
-  { to: "/admin/navigation", label: "Navigation", icon: "🧭" },
   { to: "/admin/redirects", label: "Redirects", icon: "🔀" },
-  { to: "/admin/team", label: "Team", icon: "👥" },
 ];
 
 export default function AdminLayout() {

@@ -218,45 +218,6 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
       },
     },
 
-    // ── Navigation ──
-    {
-      name: "get_navigation",
-      description: "Get navigation data (nav links, social links, contact info)",
-      inputSchema: { type: "object", properties: {} },
-    },
-    {
-      name: "update_navigation",
-      description: "Update navigation data",
-      inputSchema: {
-        type: "object",
-        properties: {
-          navLinks: {
-            type: "array",
-            items: {
-              type: "object",
-              properties: {
-                label: { type: "string" },
-                href: { type: "string" },
-              },
-            },
-          },
-          socialLinks: {
-            type: "array",
-            items: {
-              type: "object",
-              properties: {
-                platform: { type: "string" },
-                href: { type: "string" },
-                icon: { type: "string" },
-              },
-            },
-          },
-          contactWhatsApp: { type: "string" },
-          contactEmail: { type: "string" },
-        },
-      },
-    },
-
     // ── Products ──
     {
       name: "get_products",
@@ -315,28 +276,6 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
           },
         },
         required: ["section", "data"],
-      },
-    },
-
-    // ── About Us ──
-    {
-      name: "get_about_us",
-      description: "Get About Us page data",
-      inputSchema: { type: "object", properties: {} },
-    },
-    {
-      name: "update_about_us",
-      description: "Update About Us page data",
-      inputSchema: {
-        type: "object",
-        properties: {
-          title: { type: "string" },
-          subtitle: { type: "string" },
-          brand: { type: "string" },
-          description: { type: "string" },
-          vision: { type: "string" },
-          mission: { type: "string" },
-        },
       },
     },
 
@@ -451,17 +390,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         return { content: [{ type: "text", text: "Hero section updated successfully" }] };
       }
 
-      // ── Navigation ──
-      case "get_navigation": {
-        const data = await apiGet("/navigation");
-        return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
-      }
-      case "update_navigation": {
-        const current = await apiGet("/navigation");
-        await apiPut("/navigation", { ...current, ...args });
-        return { content: [{ type: "text", text: "Navigation updated successfully" }] };
-      }
-
       // ── Products ──
       case "get_products": {
         const data = await apiGet("/products");
@@ -482,16 +410,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         current[args.section] = { ...(current[args.section] || {}), ...args.data };
         await apiPut("/homepage-sections", current);
         return { content: [{ type: "text", text: `Section "${args.section}" updated successfully` }] };
-      }
-
-      // ── About Us ──
-      case "get_about_us": {
-        const data = await apiGet("/about-us");
-        return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
-      }
-      case "update_about_us": {
-        await apiPut("/about-us", args);
-        return { content: [{ type: "text", text: "About Us updated successfully" }] };
       }
 
       // ── Redirects ──

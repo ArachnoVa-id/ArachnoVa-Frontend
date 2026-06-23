@@ -13,12 +13,7 @@ const collections = [
   "products",
   "hero",
   "homepage-sections",
-  "mechanisms",
-  "navigation",
   "redirects",
-  "about-us",
-  "templates",
-  "team",
 ];
 
 function readData(name) {

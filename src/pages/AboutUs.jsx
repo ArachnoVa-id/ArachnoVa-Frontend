@@ -1,9 +1,8 @@
 import { Helmet } from "react-helmet-async";
-import { useCollection } from "@/context/DataContext";
 import AboutUs from "@/components/AboutUs/AboutUs";
 import TeamSection from "@/components/AboutUs/TeamSection";
 
-const defaultFounders = [
+const founders = [
   { name: "Muhammad Alif Ramadhan", role: "CEO", image: "" },
   { name: "Muhammad Agus Salim", role: "Advisor", image: "" },
   { name: "Hari Afriansyah", role: "Digital Marketing Specialist", image: "" },
@@ -22,16 +21,13 @@ const defaultFounders = [
 ];
 
 export default function AboutUsPage() {
-  const [teamData] = useCollection("team");
-  const members = teamData?.length ? teamData : defaultFounders;
-
   return (
     <>
       <Helmet>
         <title>About Us | ArachnoVa</title>
       </Helmet>
       <AboutUs />
-      <TeamSection members={members} />
+      <TeamSection members={founders} />
     </>
   );
 }

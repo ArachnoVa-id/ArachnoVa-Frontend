@@ -44,6 +44,9 @@ export default function Tractions() {
           <h2 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] text-neutral-g lg:leading-[2.8vw] leading-[7.5vw] mt-[0.5vw]">
             Solutions We Deliver
           </h2>
+          <p className="font-SourceSansProSemibold lg:text-[1.042vw] text-[3.256vw] text-neutral-e lg:mt-[1vw] mt-[3vw] lg:leading-[1.8vw] leading-[5vw]">
+            ArachnoVa telah berpengalaman dalam pembuatan website mencakup aspek Frontend, Backend, dan desain UI. Kami dengan bangga mempersembahkan beberapa karya kami sebagai gambaran representatif.
+          </p>
         </div>
 
         <div className="flex flex-col lg:gap-[1.042vw] gap-[3.721vw] w-full">
