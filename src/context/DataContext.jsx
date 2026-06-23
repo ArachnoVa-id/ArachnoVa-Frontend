@@ -19,11 +19,14 @@ const defaults = {
   templates: [],
 };
 
-function authHeaders() {
-  const key = sessionStorage.getItem("cms_api_key") || ENV_API_KEY;
-  const h = { "Content-Type": "application/json" };
-  if (key) h["x-api-key"] = key;
-  return h;
+function authHeaders(forWrite) {
+  if (forWrite) {
+    const key = sessionStorage.getItem("cms_api_key") || ENV_API_KEY;
+    const h = { "Content-Type": "application/json" };
+    if (key) h["x-api-key"] = key;
+    return h;
+  }
+  return {};
 }
 
 export function DataProvider({ children }) {
@@ -33,9 +36,7 @@ export function DataProvider({ children }) {
 
   const fetchAll = useCallback(async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/all`, {
-        headers: authHeaders(),
-      });
+      const res = await fetch(`${API_BASE}/api/all`);
       if (!res.ok) throw new Error("API unavailable");
       const json = await res.json();
       setData((prev) => ({ ...prev, ...json }));
@@ -55,7 +56,7 @@ export function DataProvider({ children }) {
     try {
       await fetch(`${API_BASE}/api/${collection}`, {
         method: "PUT",
-        headers: authHeaders(),
+        headers: authHeaders(true),
         body: JSON.stringify(value),
       });
     } catch {
