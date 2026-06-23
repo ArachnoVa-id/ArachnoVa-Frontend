@@ -36,7 +36,7 @@ export default function MarqueeCarousel({ images, direction = "left" }) {
         {doubled.map((src, i) => (
           <div
             key={i}
-            className="flex-shrink-0 lg:w-[28vw] w-[70vw] aspect-[16/10] rounded-lg overflow-hidden border border-[#E2E8F0] shadow-sm"
+            className="flex-shrink-0 lg:w-[28vw] w-[70vw] aspect-[16/10] rounded-lg overflow-hidden border border-border shadow-sm"
           >
             <img
               src={src}

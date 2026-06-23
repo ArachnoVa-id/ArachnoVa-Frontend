@@ -15,7 +15,7 @@ const AboutUs = () => {
 	const href = "/aboutus";
 	return (
 		<>
-			<section className="relative w-full lg:min-h-[33.125vw] min-h-[158.14vw] flex flex-col justify-center items-center bg-white-MainPage lg:gap-y-[2.083vw] gap-y-[5.581vw] overflow-hidden">
+			<section className="relative w-full lg:min-h-[33.125vw] min-h-[158.14vw] flex flex-col justify-center items-center bg-page lg:gap-y-[2.083vw] gap-y-[5.581vw] overflow-hidden">
 				<div className="w-fit flex lg:flex-row flex-col justify-center items-center lg:gap-x-[3.333vw] gap-y-[5.581vw]">
 					<div
 						data-aos="fade-right"
@@ -24,9 +24,9 @@ const AboutUs = () => {
 							styles.BoxLeft
 						}
 					>
-						<h1 className="font-SourceSansProBold lg:text-[2.083vw] text-[6.047vw] text-neutral-g">
+						<h1 className="font-SourceSansProBold lg:text-[2.083vw] text-[6.047vw] text-ink">
 							What is
-							<span className="text-[#0893D4]"> ArachnoVa?</span>
+							<span className="text-[#0891B2]"> ArachnoVa?</span>
 						</h1>
 						<p className="lg:w-[25.938vw] w-[79.535vw] font-SourceSansProSemibold lg:text-[1.042vw] text-[4.186vw] text-[#606D7F] text-justify">
 							Community-based business mahasiswa DTETI UGM (Departemen Teknik
@@ -44,8 +44,8 @@ const AboutUs = () => {
 							styles.BoxRight
 						}
 					>
-						<h1 className="font-SourceSansProBold lg:text-[2.083vw] text-[6.047vw] text-neutral-g">
-							What Are We <span className="text-[#0893D4]"> Capable</span> Of?
+						<h1 className="font-SourceSansProBold lg:text-[2.083vw] text-[6.047vw] text-ink">
+							What Are We <span className="text-[#0891B2]"> Capable</span> Of?
 						</h1>
 						<p className="lg:w-[25.938vw] w-[79.535vw] font-SourceSansProSemibold lg:text-[1.042vw] text-[4.186vw] text-[#606D7F] text-justify">
 							Menargetkan pembuatan berbagai jenis website seperti
@@ -66,7 +66,7 @@ const AboutUs = () => {
 						styles.ButtonShadow
 					}
 				>
-					<p className="font-InterBold lg:text-[0.833vw] text-[3.256vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0893D4] via-[#44C4D9] to-[#159E8D]">
+					<p className="font-InterBold lg:text-[0.833vw] text-[3.256vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0891B2] via-[#22D3EE] to-tealDark">
 						Get to know more
 					</p>
 					<FaArrowRight

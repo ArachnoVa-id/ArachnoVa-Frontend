@@ -2,7 +2,7 @@ const ContentHeaderLeft = ({ Title, Icon }) => {
   return (
     <div className="lg:w-[16.042vw] w-full flex flex-row justify-between items-center lg:mt-[0.781vw]">
       {Icon}
-      <p className="font-SourceSansProBold text-neutral-g lg:text-[1.25vw] text-[4.651vw] lg:mr-[2.125vw] mr-[8.926vw]">
+      <p className="font-SourceSansProBold text-ink lg:text-[1.25vw] text-[4.651vw] lg:mr-[2.125vw] mr-[8.926vw]">
         {Title}
       </p>
       <div className="flex flex-row lg:w-[3.125vw] w-[11.628vw] justify-between">

@@ -48,7 +48,7 @@ const ServicesContainer = ({
 			<div
 				className={`lg:w-[52.5vw] w-[90.698vw] lg:h-[31.458vw] h-[110.023vw] absolute -bottom-[35.628vw] bg-[#F1F4F4] lg:rounded-[1.563vw] rounded-[4.651vw] -z-10 lg:hidden`}
 			/>
-			<h1 className="font-SourceSansProBold text-neutral-g text-[5.581vw] lg:hidden flex mb-[5.581vw]">
+			<h1 className="font-SourceSansProBold text-ink text-[5.581vw] lg:hidden flex mb-[5.581vw]">
 				{Title}
 			</h1>
 			{Left}

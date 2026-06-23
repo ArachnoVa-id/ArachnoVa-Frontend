@@ -22,13 +22,13 @@ const ServiceDetails = ({ _key, selected, title, description, image }) => {
   return (
     <div
       data-aos="fade-up"
-      className={`flex justify-center items-center bg-[#FAFDFF] border-[#E2E8F0] 
+      className={`flex justify-center items-center bg-[#FAFDFF] border-border 
                   ${isSelected(_key, selected)}
                   lg:flex-row lg:min-h-0 lg:px-[3.125vw] lg:py-[2.083vw]  lg:gap-[2.083vw] lg:rounded-[1.302vw] lg:border-[0.156vw] lg:shadow-[0px_0.469vw_1.042vw_-0.156vw_rgba(0,0,0,0.15)]
                   flex-col min-h-0 px-[5.581vw] py-[5.581vw] gap-[4.651vw] rounded-[3.721vw] border-[0.465vw] shadow-[0px_0.465vw_4.651vw_-1.163vw_rgba(0,0,0,0.15)]`}
     >
       <div
-        className="text-[#001118] font-SourceSansProBold
+        className="text-ink font-SourceSansProBold
                      lg:hidden
                      text-[5.581vw] leading-[117.5%]"
       >
@@ -53,12 +53,12 @@ const ServiceDetails = ({ _key, selected, title, description, image }) => {
           />
         </div>
         <div
-          className="flex justify-center items-center bg-[#FBFCFD] border-[#E2E8F0]
+          className="flex justify-center items-center bg-[#FBFCFD] border-border
                      lg:w-[31.979vw] lg:h-[18.646vw] lg:rounded-[0.781vw] lg:border-[0.156vw] lg:shadow-[0px_0.208vw_2.083vw_-0.26vw_rgba(0,0,0,0.15)
                      w-[70.233vw] h-[40vw] rounded-[2.326vw] border-[0.349vw] shadow-[0px_0.93vw_9.302vw_-1.163vw_rgba(0,0,0,0.15)"
         >
           <Swiper
-            className="overflow-hidden border-[#E2E8F0] 
+            className="overflow-hidden border-border 
                        lg:w-[30.625vw] lg:rounded-[0.521vw] lg:border-[0.104vw]
                        w-[66.977vw] aspect-[1920/980] rounded-[1.86vw] border-[0.233vw]"
             slidesPerView={1}
@@ -103,14 +103,14 @@ const ServiceDetails = ({ _key, selected, title, description, image }) => {
                    gap-[0.521vw]"
       >
         <div
-          className="text-[#001118] font-SourceSansProBold
+          className="text-ink font-SourceSansProBold
                      lg:text-[2.083vw] lg:leading-[117.5%] lg:flex
                      hidden"
         >
           {title}
         </div>
         <div
-          className="text-[#4E5F66] text-justify font-SourceSansProSemibold
+          className="text-inkLight text-justify font-SourceSansProSemibold
                      lg:text-[1.042vw] lg:w-[26.615vw] lg:leading-[150%]
                      text-[3.256vw] w-[79.536vw]  leading-[125%]"
         >

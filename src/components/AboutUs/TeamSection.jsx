@@ -20,12 +20,12 @@ export default function TeamSection({ members }) {
   if (!members?.length) return null;
 
   return (
-    <section className="w-full bg-white-MainPage lg:py-[5.208vw] py-[13.953vw] lg:px-[10vw] px-[5.581vw]">
+    <section className="w-full bg-page lg:py-[5.208vw] py-[13.953vw] lg:px-[10vw] px-[5.581vw]">
       <div className="text-center mb-[3vw]">
-        <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0893D4] via-[#44C4D9] to-[#159E8D]">
+        <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0891B2] via-[#22D3EE] to-tealDark">
           Our Team
         </p>
-        <h2 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] text-neutral-g lg:leading-[2.8vw] leading-[7.5vw] mt-[0.5vw]">
+        <h2 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] text-ink lg:leading-[2.8vw] leading-[7.5vw] mt-[0.5vw]">
           Meet the Founders
         </h2>
       </div>

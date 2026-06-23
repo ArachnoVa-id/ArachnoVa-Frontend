@@ -26,12 +26,12 @@ const ServicesAdditionalSwiper = ({ image }) => {
         />
       </div>
       <div
-        className="flex justify-center items-center bg-[#FBFCFD] border-[#E2E8F0]
+        className="flex justify-center items-center bg-[#FBFCFD] border-border
                    lg:w-[28.49vw] lg:h-[16.615vw] lg:rounded-[0.781vw] lg:border-[0.156vw] lg:shadow-[0px_0.208vw_2.083vw_-0.26vw_rgba(0,0,0,0.15)
                    w-[79.07vw] h-[45.581vw] rounded-[2.326vw] border-[0.349vw] shadow-[0px_0.93vw_9.302vw_-1.163vw_rgba(0,0,0,0.15)"
       >
         <Swiper
-          className="overflow-hidden border-[#E2E8F0]
+          className="overflow-hidden border-border
                      lg:w-[27.396vw] lg:rounded-[0.521vw] lg:border-[0.104vw]
                      w-[75.814vw] rounded-[1.86vw] border-[0.233vw]"
           slidesPerView={1}

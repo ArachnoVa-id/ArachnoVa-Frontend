@@ -10,44 +10,36 @@
     src: url("/fonts/Coolvetica/coolvetica condensed rg.otf") format("truetype");
     font-display: swap;
   }
-
   @font-face {
     font-family: "Coolvetica-Reg";
     src: url("/fonts/Coolvetica/coolvetica rg.otf") format("truetype");
     font-display: swap;
   }
-
   @font-face {
     font-family: "SourceSansPro-Semibold";
-    src: url("/fonts/SourceSansPro/source-sans-pro-semibold.ttf")
-      format("truetype");
+    src: url("/fonts/SourceSansPro/source-sans-pro-semibold.ttf") format("truetype");
     font-display: swap;
   }
-
   @font-face {
     font-family: "SourceSansPro-Bold";
     src: url("/fonts/SourceSansPro/source-sans-pro-bold.ttf") format("truetype");
     font-display: swap;
   }
-
   @font-face {
     font-family: "Inter-Bold";
     src: url("/fonts/Inter/Inter-Bold.ttf") format("truetype");
     font-display: swap;
   }
-
   @font-face {
     font-family: "Inter-SemiBold";
     src: url("/fonts/Inter/Inter-SemiBold.ttf") format("truetype");
     font-display: swap;
   }
-
   @font-face {
     font-family: "Consolas-Regular";
     src: url("/fonts/Consolas/consola.ttf") format("truetype");
     font-display: swap;
   }
-
   @font-face {
     font-family: "Consolas-Bold";
     src: url("/fonts/Consolas/consolab.ttf") format("truetype");
@@ -55,20 +47,14 @@
   }
 }
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+body {
+  color: #0F172A;
+  background: #F8FAFC;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+::selection {
+  background: #0891B2;
+  color: white;
 }
 
 .ReactCollapse--collapse {

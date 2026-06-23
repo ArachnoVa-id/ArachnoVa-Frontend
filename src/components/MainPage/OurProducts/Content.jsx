@@ -47,11 +47,11 @@ const Content = ({ data, totalSlide, variant, aos }) => {
 			>
 				<BsFillCaretLeftFill
 					size={size}
-					className="text-neutral-c cursor-pointer"
+					className="text-inkMuted cursor-pointer"
 					onClick={handlePrevious}
 				/>
 				<div
-					className="flex justify-center items-center lg:w-[35.729vw] w-[79.07vw] lg:h-[20.833vw] h-[45.581vw] bg-[#FBFCFD] lg:rounded-[0.781vw] rounded-[2.326vw] border-solid border-[#E2E8F0] lg:border-[0.156vw] border-[0.349vw]"
+					className="flex justify-center items-center lg:w-[35.729vw] w-[79.07vw] lg:h-[20.833vw] h-[45.581vw] bg-[#FBFCFD] lg:rounded-[0.781vw] rounded-[2.326vw] border-solid border-border lg:border-[0.156vw] border-[0.349vw]"
 					style={{ boxShadow: "0px 4px 40px -5px rgba(0, 0, 0, 0.15)" }}
 				>
 					<div className="flex justify-center items-center object-cover lg:w-[34.167vw] w-[75.814vw] lg:h-[19.271vw] h-[42.326vw] lg:rounded-[0.521vw] rounded-[1.86vw] overflow-hidden">
@@ -60,7 +60,7 @@ const Content = ({ data, totalSlide, variant, aos }) => {
 				</div>
 				<BsFillCaretRightFill
 					size={size}
-					className="text-neutral-c cursor-pointer"
+					className="text-inkMuted cursor-pointer"
 					onClick={handleNext}
 				/>
 			</div>

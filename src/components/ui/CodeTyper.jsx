@@ -62,7 +62,7 @@ export default function CodeTyper({ speed = 70, className }) {
               <span key={wi} style={{ color: word.color }}>{word.text}</span>
             ))}
             {isLastLine && lineIdx < flatLines.length && (
-              <span className="w-[0.05em] h-[1.1em] bg-LightBlue-c animate-pulse inline-block align-text-bottom ml-[0.05em]" />
+              <span className="w-[0.05em] h-[1.1em] bg-teal animate-pulse inline-block align-text-bottom ml-[0.05em]" />
             )}
           </p>
         );

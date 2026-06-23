@@ -50,7 +50,7 @@ export default function PortoTemplate({
           </h1>
           <p
             className={twMerge(
-              "text-[1vw]/[1.5vw] font-SourceSansProSemibold text-neutral-e",
+              "text-[1vw]/[1.5vw] font-SourceSansProSemibold text-inkLight",
               type === 1 ? "text-start" : type === 2 ? "text-end" : ""
             )}
           >
@@ -65,7 +65,7 @@ export default function PortoTemplate({
             <a
               href={link}
               className={twMerge(
-                "w-[4.688vw] mt-[1vw] bg-gradient-to-r rounded-[0.5vw] text-[0.833vw] aspect-[90/48] from-[#2DC0D8] to-[#179FB5] font-InterBold text-white",
+                "w-[4.688vw] mt-[1vw] bg-gradient-to-r rounded-[0.5vw] text-[0.833vw] aspect-[90/48] from-teal to-tealDark font-InterBold text-white",
                 "flex justify-center items-center",
                 "hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
               )}
@@ -104,7 +104,7 @@ export default function PortoTemplate({
 
       {/* Mobile */}
       <div className="flex flex-col justify-center items-center lg:hidden gap-y-[6vw]">
-        <h1 className="text-[8vw] font-SourceSansProBold text-neutral-g ">
+        <h1 className="text-[8vw] font-SourceSansProBold text-ink ">
           {title}
         </h1>
         <div
@@ -156,13 +156,13 @@ export default function PortoTemplate({
         </div>
 
         <div className="justify-center items-center w-[90vw]">
-          <p className="text-[4.5vw]/[4.5vw] font-SourceSansProSemibold text-neutral-e ">
+          <p className="text-[4.5vw]/[4.5vw] font-SourceSansProSemibold text-inkLight ">
             {desc}
           </p>
         </div>
         <a
           href={link}
-          className="w-[90vw] h-[10vw] mt-[1vw] text-[3vw] bg-gradient-to-r from-[#2DC0D8] to-[#179FB5] font-InterBold text-white rounded-md  flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
+          className="w-[90vw] h-[10vw] mt-[1vw] text-[3vw] bg-gradient-to-r from-teal to-tealDark font-InterBold text-white rounded-md  flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
         >
           Source
         </a>

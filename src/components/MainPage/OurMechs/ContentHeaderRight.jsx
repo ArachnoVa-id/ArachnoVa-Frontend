@@ -24,7 +24,7 @@ const ContentHeaderRight = ({ Title, Icon }) => {
           }}
         />
       </div>
-      <p className="font-SourceSansProBold text-neutral-g lg:text-[1.25vw] text-[4.651vw] lg:ml-[2.125vw] ml-[8.926vw]">
+      <p className="font-SourceSansProBold text-ink lg:text-[1.25vw] text-[4.651vw] lg:ml-[2.125vw] ml-[8.926vw]">
         {Title}
       </p>
       {Icon}

@@ -17,10 +17,10 @@ const ContentBox = ({ Title, Description, Background, Border, aos }) => {
 				boxShadow: "0px 4px 20px -1px rgba(0, 0, 0, 0.15)",
 			}}
 		>
-			<h1 className="font-SourceSansProBold lg:text-[2.083vw] text-[6.047vw] text-neutral-g">
-				Our <span className="text-[#0893D4]">{Title}</span>
+			<h1 className="font-SourceSansProBold lg:text-[2.083vw] text-[6.047vw] text-ink">
+				Our <span className="text-[#0891B2]">{Title}</span>
 			</h1>
-			<p className="lg:w-[25.938vw] w-[79.535vw] font-SourceSansProSemibold lg:text-[1.042vw] text-[4.186vw] text-neutral-e text-justify">
+			<p className="lg:w-[25.938vw] w-[79.535vw] font-SourceSansProSemibold lg:text-[1.042vw] text-[4.186vw] text-inkLight text-justify">
 				{Description}
 			</p>
 		</div>

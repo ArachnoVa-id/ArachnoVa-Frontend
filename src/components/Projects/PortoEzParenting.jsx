@@ -18,7 +18,7 @@ export default function PortoEzParenting() {
       <div className="flex max-lg:hidden ">
         <div className="w-[20vw] text-black pt-[2vw] mr-[5vw]">
           <h1 className="text-[2vw] font-SourceSansProBold">EzParenting</h1>
-          <p className="text-[1vw]/[1.5vw] font-SourceSansProSemibold text-neutral-e">
+          <p className="text-[1vw]/[1.5vw] font-SourceSansProSemibold text-inkLight">
             EzParenting adalah sebuah platform yang bertujuan untuk menemani
             perjalanan orang tua dalam mengoptimalkan perkembangan anak-anak
             mereka dari usia 0-5 tahun pertama kehidupan melalui pendidikan dan
@@ -26,7 +26,7 @@ export default function PortoEzParenting() {
           </p>
           <a
             href="https://www.ezparenting.id/"
-            className="w-[4.688vw] mt-[1vw] bg-gradient-to-r rounded-[0.5vw] text-[0.833vw] aspect-[90/48] from-[#2DC0D8] to-[#179FB5] font-InterBold text-white flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
+            className="w-[4.688vw] mt-[1vw] bg-gradient-to-r rounded-[0.5vw] text-[0.833vw] aspect-[90/48] from-teal to-tealDark font-InterBold text-white flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
           >
             Source
           </a>
@@ -57,7 +57,7 @@ export default function PortoEzParenting() {
 
       {/* Mobile */}
       <div className="flex flex-col justify-center items-center lg:hidden gap-y-[6vw]">
-        <h1 className="text-[8vw] font-SourceSansProBold text-neutral-g ">
+        <h1 className="text-[8vw] font-SourceSansProBold text-ink ">
           EzParenting
         </h1>
         <div
@@ -82,7 +82,7 @@ export default function PortoEzParenting() {
           />
         </div>
         <div className="justify-center items-center w-[90vw]">
-          <p className="text-[4.5vw]/[4.5vw] font-SourceSansProSemibold text-neutral-e ">
+          <p className="text-[4.5vw]/[4.5vw] font-SourceSansProSemibold text-inkLight ">
             EzParenting adalah sebuah platform yang bertujuan untuk menemani
             perjalanan orang tua dalam mengoptimalkan perkembangan anak-anak
             mereka dari usia 0-5 tahun pertama kehidupan melalui pendidikan dan
@@ -91,7 +91,7 @@ export default function PortoEzParenting() {
         </div>
         <a
           href="https://www.ezparenting.id/"
-          className="w-[90vw] h-[10vw] mt-[1vw] text-[3vw] bg-gradient-to-r from-[#2DC0D8] to-[#179FB5] font-InterBold text-white rounded-md  flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
+          className="w-[90vw] h-[10vw] mt-[1vw] text-[3vw] bg-gradient-to-r from-teal to-tealDark font-InterBold text-white rounded-md  flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
         >
           Source
         </a>

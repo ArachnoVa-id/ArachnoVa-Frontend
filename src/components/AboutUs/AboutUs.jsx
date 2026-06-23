@@ -22,7 +22,7 @@ const AboutUs = () => {
 	const Description =
 		"Bisnis yang dibentuk dari komunitas mahasiswa Departemen Teknik Elektro dan Teknologi Informasi (DTETI) UGM hadir dengan fokus utama pada penyediaan layanan desain dan pengembangan website. ArachnoVa memiliki kompetensi dalam merancang dan mengembangkan solusi web inovatif. Melibatkan tim yang didasari dengan pengetahuan teknis seputar IT  berkomitmen untuk memberikan layanan web yang berkualitas, memberikan solusi yang kreatif, dan merespons kebutuhan  setiap klien dengan cermat dan efektif.";
 	return (
-		<section className="relative w-full lg:min-h-[104.167vw] min-h-[413.256vw] flex flex-col justify-around items-center bg-white-MainPage">
+		<section className="relative w-full lg:min-h-[104.167vw] min-h-[413.256vw] flex flex-col justify-around items-center bg-page">
 			<div className="absolute top-[4.271vw] w-full aspect-[1920/458] z-0 lg:flex hidden">
 				<Image
 					src="/image/OurServices/ServicesHero/bg.png"
@@ -45,10 +45,10 @@ const AboutUs = () => {
 				className="w-fit flex flex-col items-center gap-y-[0.417vw] lg:mt-[4.271vw] mt-[15vw]"
 				data-aos="fade-down"
 			>
-				<p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] lg:leading-[1.563vw] leading-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0893D4] via-[#44C4D9] to-[#159E8D]">
+				<p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] lg:leading-[1.563vw] leading-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0891B2] via-[#22D3EE] to-tealDark">
 					Who We Are
 				</p>
-				<h1 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] lg:leading-[2.448vw] leading-[6.977vw] text-neutral-g">
+				<h1 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] lg:leading-[2.448vw] leading-[6.977vw] text-ink">
 					About ArachnoVa
 				</h1>
 			</div>
@@ -129,26 +129,26 @@ const AboutUs = () => {
 								className="object-contain"
 							/>
 						</div>
-						<p className="font-CoolveticaReg lg:text-[2.604vw] text-[9.302vw] text-[#1AB0C8]">
+						<p className="font-CoolveticaReg lg:text-[2.604vw] text-[9.302vw] text-[#0891B2]">
 							ARACHNOVA
 						</p>
 					</div>
 					<div className="lg:w-[54.583vw] w-[82.791vw] lg:aspect-[1048/3] aspect-[356/3] bg-neutral-d opacity-50" />
-					<p className="lg:w-[53.333vw] w-[82.791vw] lg:mt-[0.677vw] mt-[4.186vw] font-SourceSansProSemibold lg:text-[1.042vw] text-[4.186vw] text-neutral-g text-justify">
+					<p className="lg:w-[53.333vw] w-[82.791vw] lg:mt-[0.677vw] mt-[4.186vw] font-SourceSansProSemibold lg:text-[1.042vw] text-[4.186vw] text-ink text-justify">
 						{Description}
 					</p>
 				</div>
 			</div>
 			<div
 				data-aos="fade-down"
-				className="flex lg:flex-row flex-col justify-between lg:items-center items-start lg:w-[40.625vw] w-[90.698vw] lg:aspect-[702/111] aspect-[390/253] lg:p-[2.083vw] p-[9.302vw] bg-white lg:rounded-[1.042vw] rounded-[4.651vw] lg:border-[0.156vw] border-[0.698vw] border-[#E2E8F0] lg:mb-[2.604vw]"
+				className="flex lg:flex-row flex-col justify-between lg:items-center items-start lg:w-[40.625vw] w-[90.698vw] lg:aspect-[702/111] aspect-[390/253] lg:p-[2.083vw] p-[9.302vw] bg-white lg:rounded-[1.042vw] rounded-[4.651vw] lg:border-[0.156vw] border-[0.698vw] border-border lg:mb-[2.604vw]"
 				style={{ boxShadow: "0px 10px 40px -10px rgba(71, 85, 105, 0.25)" }}
 			>
 				<div className="lg:w-[15.35vw] w-[61.395vw] flex flex-col items-start justify-center">
-					<h1 className="font-SourceSansProBold lg:text-[2.083vw] text-[6.977vw] text-neutral-g">
+					<h1 className="font-SourceSansProBold lg:text-[2.083vw] text-[6.977vw] text-ink">
 						Get In Touch
 					</h1>
-					<p className="font-SourceSansProSemibold lg:text-[1.042vw] text-[4.186vw] text-neutral-e">
+					<p className="font-SourceSansProSemibold lg:text-[1.042vw] text-[4.186vw] text-inkLight">
 						Let&apos;s Connect and Create Together Reach Out to Us Today!
 					</p>
 				</div>

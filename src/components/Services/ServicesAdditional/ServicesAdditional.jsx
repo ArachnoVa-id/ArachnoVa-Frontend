@@ -21,7 +21,7 @@ const ServicesAdditional = () => {
   }, []);
   return (
     <section
-      className="relative w-full lg:min-h-screen flex flex-col justify-center items-center bg-white-MainPage text-black overflow-hidden
+      className="relative w-full lg:min-h-screen flex flex-col justify-center items-center bg-page text-black overflow-hidden
                  lg:pt-[5.208vw] lg:pb-[7.813vw]
                  pt-[18.605vw] pb-[23.256vw]"
     >
@@ -37,14 +37,14 @@ const ServicesAdditional = () => {
                      gap-[0.417vw]"
         >
           <div
-            className="font-SourceSansProBold text-neutral-g leading-[125%]
+            className="font-SourceSansProBold text-ink leading-[125%]
                        lg:text-[2.083vw]
                        text-[6.977vw]"
           >
             Additional Package
           </div>
           <div
-            className="font-SourceSansProSemibold text-neutral-e
+            className="font-SourceSansProSemibold text-inkLight
                        lg:text-[1.042vw]
                        text-[3.256vw]"
           >
@@ -73,14 +73,14 @@ const ServicesAdditional = () => {
                              items-center gap-[2.791vw]"
                 >
                   <div
-                    className="font-SourceSansProBold text-neutral-g leading-[100%]
+                    className="font-SourceSansProBold text-ink leading-[100%]
                                  lg:text-[1.823vw]
                                  text-[5.581vw]"
                   >
                     {data.title}
                   </div>
                   <div
-                    className="font-SourceSansProSemibold text-neutral-e leading-[150%]
+                    className="font-SourceSansProSemibold text-inkLight leading-[150%]
                                lg:text-[1.042vw] lg:w-[27.76vw]
                                text-[3.256vw] w-[79.07vw]"
                   >
@@ -88,12 +88,12 @@ const ServicesAdditional = () => {
                   </div>
                   <a
                     href={data.demo}
-                    className="flex justify-center items-center bg-gradient-to-r from-[#2EC1D9] to-[#179FB5] hover:scale-[115%] transition-all duration-500 ease-in-out
+                    className="flex justify-center items-center bg-gradient-to-r from-teal to-tealDark hover:scale-[115%] transition-all duration-500 ease-in-out
                                  lg:h-[2.396vw] lg:w-[5.938vw] lg:rounded-[0.417vw] lg:mt-0
                                  h-[9.302vw] w-[79.07vw] rounded-[1.86vw] mt-[2.791vw]"
                   >
                     <p
-                      className="font-InterBold text-neutral-a
+                      className="font-InterBold text-surface
                                    lg:text-[0.833vw]
                                    text-[3.256vw]"
                     >

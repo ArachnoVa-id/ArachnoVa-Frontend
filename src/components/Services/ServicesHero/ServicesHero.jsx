@@ -18,7 +18,7 @@ const ServicesHero = () => {
   }, []);
   return (
     <section
-      className="relative w-full lg:min-h-screen flex flex-col justify-center items-center bg-white-MainPage overflow-hidden
+      className="relative w-full lg:min-h-screen flex flex-col justify-center items-center bg-page overflow-hidden
                  lg:pb-[5.938vw]
                  pb-[58.333vw]"
     >
@@ -62,14 +62,14 @@ const ServicesHero = () => {
                          gap-[1.163vw]"
             >
               <p
-                className="font-SourceSansProBold bg-clip-text text-transparent bg-gradient-to-r from-[#0893D4] from-[17.73%] to-[#44C4D9] to-[65.68%]
+                className="font-SourceSansProBold bg-clip-text text-transparent bg-gradient-to-r from-[#0891B2] from-[17.73%] to-[#22D3EE] to-[65.68%]
                            lg:text-[1.563vw]
                            text-[4.186vw]"
               >
                 What We Provide
               </p>
               <h1
-                className="font-SourceSansProBold text-neutral-g text-center
+                className="font-SourceSansProBold text-ink text-center
                            lg:text-[2.396vw] lg:leading-[2.448vw] lg:w-auto
                            text-[6.977vw] leading-[100%] w-[68vw]"
               >
