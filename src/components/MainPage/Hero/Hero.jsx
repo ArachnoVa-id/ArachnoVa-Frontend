@@ -99,7 +99,7 @@ export default function Hero() {
               width={100}
               height={100}
             />
-            <CodeTyper speed={180} className="min-h-[13vw]" />
+            <CodeTyper speed={70} className="min-h-[13vw]" />
           </div>
         </div>
       </div>
@@ -165,7 +165,7 @@ export default function Hero() {
               width={100}
               height={100}
             />
-            <CodeTyper speed={250} className="min-h-[40vw]" />
+            <CodeTyper speed={100} className="min-h-[40vw]" />
           </div>
         </div>
       </div>
