@@ -24,7 +24,7 @@ export default function PortoSection({ projects }) {
       {/* Desktop */}
       <div className="flex flex-col justify-center items-center max-lg:hidden w-full lg:pt-[5vw]">
         <div className="text-neutral-g text-[2.3vw] font-SourceSansProBold flex justify-center">
-          Our Work in Action
+          Our Tractions
         </div>
         <p className="text-neutral-e w-[58vw] text-center text-[1vw] font-SourceSansProSemibold mt-[0.75vw] mb-[2.083vw]">
           ArachnoVa telah berpengalaman dalam pembuatan website mencakup aspek Frontend, Backend, dan desain UI. Kami dengan bangga mempersembahkan beberapa karya kami sebagai gambaran representatif.
