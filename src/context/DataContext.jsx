@@ -10,8 +10,6 @@ const defaults = {
   services: [],
   pricing: { title: "", subtitle: "", packages: [] },
   products: { title: "", subtitle: "", items: [] },
-  hero: {},
-  "homepage-sections": {},
   redirects: [],
   team: [],
 };

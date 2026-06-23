@@ -152,72 +152,6 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
       },
     },
 
-    // ── Hero ──
-    {
-      name: "get_hero",
-      description: "Get hero section data",
-      inputSchema: { type: "object", properties: {} },
-    },
-    {
-      name: "update_hero",
-      description: "Update hero section data",
-      inputSchema: {
-        type: "object",
-        properties: {
-          brand: { type: "string" },
-          tagline: { type: "string" },
-          animatedWords: {
-            type: "array",
-            items: { type: "string" },
-          },
-          subtitle: { type: "string" },
-          ctaPrimary: {
-            type: "object",
-            properties: {
-              text: { type: "string" },
-              href: { type: "string" },
-            },
-          },
-          ctaSecondary: {
-            type: "object",
-            properties: {
-              text: { type: "string" },
-              href: { type: "string" },
-            },
-          },
-          backgroundDesktop: { type: "string" },
-          backgroundMobile: { type: "string" },
-          codeSnippetImage: { type: "string" },
-        },
-      },
-    },
-
-    // ── Homepage Sections ──
-    {
-      name: "get_homepage_sections",
-      description: "Get homepage sections (About Us, CTA, Portfolio)",
-      inputSchema: { type: "object", properties: {} },
-    },
-    {
-      name: "update_homepage_section",
-      description: "Update a homepage section (aboutUs, cta, or portfolio)",
-      inputSchema: {
-        type: "object",
-        properties: {
-          section: {
-            type: "string",
-            enum: ["aboutUs", "cta", "portfolio"],
-            description: "Which section to update",
-          },
-          data: {
-            type: "object",
-            description: "Section data fields",
-          },
-        },
-        required: ["section", "data"],
-      },
-    },
-
     // ── Redirects ──
     {
       name: "get_redirects",
@@ -303,28 +237,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case "update_pricing": {
         await apiPut("/pricing", args);
         return { content: [{ type: "text", text: "Pricing updated successfully" }] };
-      }
-
-      // ── Hero ──
-      case "get_hero": {
-        const data = await apiGet("/hero");
-        return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
-      }
-      case "update_hero": {
-        await apiPut("/hero", args);
-        return { content: [{ type: "text", text: "Hero section updated successfully" }] };
-      }
-
-      // ── Homepage Sections ──
-      case "get_homepage_sections": {
-        const data = await apiGet("/homepage-sections");
-        return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
-      }
-      case "update_homepage_section": {
-        const current = await apiGet("/homepage-sections");
-        current[args.section] = { ...(current[args.section] || {}), ...args.data };
-        await apiPut("/homepage-sections", current);
-        return { content: [{ type: "text", text: `Section "${args.section}" updated successfully` }] };
       }
 
       // ── Redirects ──

@@ -6,8 +6,6 @@ const navItems = [
   { to: "/admin", label: "Dashboard", icon: "📊", end: true },
   { to: "/admin/projects", label: "Projects", icon: "📁" },
   { to: "/admin/pricing", label: "Services", icon: "⚙️" },
-  { to: "/admin/hero", label: "Hero Section", icon: "🎯" },
-  { to: "/admin/homepage-sections", label: "Home Sections", icon: "🏠" },
   { to: "/admin/redirects", label: "Redirects", icon: "🔀" },
   { to: "/admin/team", label: "Team", icon: "👥" },
 ];

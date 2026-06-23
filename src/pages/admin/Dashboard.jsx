@@ -3,12 +3,10 @@ import { useData } from "@/context/DataContext";
 const cards = [
   { key: "projects", label: "Projects", color: "bg-blue-500" },
   { key: "services", label: "Services", color: "bg-green-500" },
-  { key: "pricing", label: "Pricing Packages", color: "bg-purple-500" },
+  { key: "pricing", label: "Pricing Plans", color: "bg-purple-500" },
   { key: "products", label: "Products", color: "bg-yellow-500" },
-  { key: "navigation", label: "Nav Links", color: "bg-indigo-500" },
   { key: "redirects", label: "Redirects", color: "bg-red-500" },
-  { key: "templates", label: "Template Categories", color: "bg-pink-500" },
-  { key: "mechanisms", label: "Mechanism Stages", color: "bg-LightBlue-c-500" },
+  { key: "team", label: "Team Members", color: "bg-pink-500" },
 ];
 
 export default function Dashboard() {
@@ -17,10 +15,8 @@ export default function Dashboard() {
   const getCount = (key) => {
     const d = data[key];
     if (Array.isArray(d)) return d.length;
-    if (d?.packages) return d.packages.length;
+    if (d?.plans) return d.plans.length;
     if (d?.items) return d.items.length;
-    if (d?.stages) return d.stages.length;
-    if (d?.navLinks) return d.navLinks.length;
     return "✓";
   };
 

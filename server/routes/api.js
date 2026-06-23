@@ -11,8 +11,6 @@ const collections = [
   "services",
   "pricing",
   "products",
-  "hero",
-  "homepage-sections",
   "redirects",
   "team",
 ];
