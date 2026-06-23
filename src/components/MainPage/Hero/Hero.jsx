@@ -2,7 +2,20 @@ import Image from "@/components/ui/Img";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Typewriter from "@/components/ui/Typewriter";
+import CodeTyper from "@/components/ui/CodeTyper";
+
+const codeLines = [
+  { text: 'import "./globals.css";', color: "text-[#0151EC]" },
+  { text: 'import { ArachnoVa } from "./api/provider";', color: "text-[#1E293B]" },
+  { text: " ", color: "" },
+  { text: "export default", color: "text-[#0151EC]" },
+  { text: '<div className="Welcome to ArachnoVa">', color: "text-[#1E293B]" },
+  { text: '  <div className="content">', color: "text-[#1E293B]" },
+  { text: '    "Your web design partner"', color: "text-[#8131B2]" },
+  { text: "  </div>", color: "text-[#1E293B]" },
+  { text: '  <img src="img/herofix.png"/>', color: "text-[#1E293B]" },
+  { text: "</div>", color: "text-[#1E293B]" },
+];
 
 export default function Hero() {
   useEffect(() => {
@@ -35,12 +48,19 @@ export default function Hero() {
           </div>
           <div className="text-neutral-g font-SourceSansProBold text-[2vw]/[2.5vw]">
             <div className="text-[2vw] ">Your Web Design Partner</div>
-            <div className="flex items-center h-[3.0vw] gap-[0.5vw] leading-none">
+            <div className="overflow-clip  flex items-center justify-center h-[3.0vw] gap-[0.5vw] leading-none">
               <div className="text-[2.8vw]">Always</div>
-              <Typewriter
-                words={["Delivered", "Distinctive", "Dependable"]}
-                className="text-[2.8vw] text-LightBlue-c"
-              />
+              <div className="flex-col items-center justify-center  gap-[4vw] h-full w-full -translate-y-full  ">
+                <div className="text-[2.8vw] animate-swap_words pt-[0.2vw]">
+                  Delivered
+                </div>
+                <div className="text-[2.8vw] animate-swap_words pt-[0.1vw]">
+                  Distinctive
+                </div>
+                <div className="text-[2.8vw] animate-swap_words ">
+                  Dependable
+                </div>
+              </div>
             </div>
           </div>
           <div className="text-[1vw] text-[#4E5F66] pt-[1.1vw] font-SourceSansProSemibold ">
@@ -94,40 +114,7 @@ export default function Hero() {
               width={100}
               height={100}
             />
-            <p className="text-[#0151EC]">
-              import{" "}
-              <span className="text-[#8131B2] ">&#34;./globals.css&#34;;</span>
-            </p>
-            <p className="text-[#1E293B]">
-              <span className="text-[#0151EC]">import</span> &#123;{" "}
-              <span className="text-[#1CA7BD]"> ArachnoVa</span> &#125; from{" "}
-              <span className="text-[#8131B2]">&#34;./api/provider&#34;</span>;
-            </p>
-            <p> &nbsp; </p>
-            <p className="text-[#0151EC]">export default</p>
-            <p className="text-[#1E293B]">
-              &lt;div <span className="text-[#0151EC]">className</span>=&#34;
-              <span className="text-[#8131B2]">Welcome to ArachnoVa</span>
-              &#34;&gt;
-            </p>
-            <p>
-              &nbsp; &lt;div <span className="text-[#0151EC]">className</span>
-              =&#34;<span className="text-[#8131B2]">content</span>&#34;&gt;
-            </p>
-            <p>&nbsp; &#123;</p>
-            <p>
-              &nbsp; &nbsp;{" "}
-              <span className="text-[#8131B2]">
-                &#34;Your web design partner&#34;
-              </span>
-            </p>
-            <p>&nbsp; &#125;</p>
-            <p>&nbsp; &lt;/div&gt;</p>
-            <p>
-              &nbsp; &lt;<span className="text-[#0151EC]">img</span> src=&#34;
-              <span className="text-[#8131B2]">img/herofix.png</span>&#34;/&gt;
-            </p>
-            <p>&lt;/div&gt;</p>
+            <CodeTyper lines={codeLines} speed={25} className="min-h-[13vw]" />
           </div>
         </div>
       </div>
@@ -143,12 +130,13 @@ export default function Hero() {
 
         <div className="text-neutral-g items-center justify-center font-SourceSansProBold text-[2vw]/[6vw]">
           <div className="text-[7vw] mx-[5vw]   ">Your Web Design Partner</div>
-          <div className="flex items-center justify-center h-[9.8vw] gap-[2vw] leading-none">
+          <div className="overflow-clip  flex items-center justify-center h-[9.8vw] gap-[2vw]  leading-none">
             <div className="text-[9.8vw]">Always</div>
-            <Typewriter
-              words={["Delivered", "Distinctive", "Dependable"]}
-              className="text-[9.8vw] text-LightBlue-c"
-            />
+            <div className="flex-col gap-[4vw] text-[9.8vw] gap-y-[2vw] ">
+              <div className=" animate-swap_words ">Delivered</div>
+              <div className=" animate-swap_words">Distinctive</div>
+			  <div className=" animate-swap_words ">Dependable</div>
+            </div>
           </div>
         </div>
 
@@ -195,40 +183,7 @@ export default function Hero() {
               width={100}
               height={100}
             />
-            <p className="text-[#0151EC]">
-              import{" "}
-              <span className="text-[#8131B2] ">&#34;./globals.css&#34;;</span>
-            </p>
-            <p className="text-[#1E293B]">
-              <span className="text-[#0151EC]">import</span> &#123;{" "}
-              <span className="text-[#1CA7BD]"> ArachnoVa</span> &#125; from{" "}
-              <span className="text-[#8131B2]">&#34;./api/provider&#34;</span>;
-            </p>
-            <p> &nbsp; </p>
-            <p className="text-[#0151EC]">export default</p>
-            <p className="text-[#1E293B]">
-              &lt;div <span className="text-[#0151EC]">className</span>=&#34;
-              <span className="text-[#8131B2]">Welcome to ArachnoVa</span>
-              &#34;&gt;
-            </p>
-            <p className="text-neutral-g">
-              &nbsp; &lt;div <span className="text-[#0151EC]">className</span>
-              =&#34;<span className="text-[#8131B2]">content</span>&#34;&gt;
-            </p>
-            <p className="text-neutral-g">&nbsp; &#123;</p>
-            <p>
-              &nbsp; &nbsp;{" "}
-              <span className="text-[#8131B2]">
-                &#34;Your web design partner&#34;
-              </span>
-            </p>
-            <p className="text-neutral-g"> &nbsp; &#125;</p>
-            <p className="text-neutral-g">&nbsp; &lt;/div&gt;</p>
-            <p className="text-neutral-g">
-              &nbsp; &lt;<span className="text-[#0151EC]">img</span> src=&#34;
-              <span className="text-[#8131B2]">img/herofix.png</span>&#34;/&gt;
-            </p>
-            <p className="text-neutral-g">&lt;/div&gt;</p>
+            <CodeTyper lines={codeLines} speed={40} className="min-h-[40vw]" />
           </div>
         </div>
       </div>

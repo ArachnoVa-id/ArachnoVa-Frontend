@@ -39,8 +39,19 @@ module.exports = {
         "LightBlue-e": "#158B9E",
       },
       keyframes: {
+        swap_words: {
+          "0%": { transform: "translateY(0)", opacity: 0.1 },
+          "0.01%": { transform: "translateY(100%)", opacity: 0.1 },
+          "25%": { transform: "translateY(100%)", opacity: 1 },
+          "46%": { transform: "translateY(0)", opacity: 1 },
+          "61%": { transform: "translateY(0)", opacity: 1 },
+          "78%": { transform: "translateY(-100%)", opacity: 1 },
+          "89%": { transform: "translateY(-100%)", opacity: 1 },
+          "100%": { transform: "translateY(-100%)", opacity: 0.1 },
+        },
       },
       animation:{
+        swap_words:"swap_words 5s linear infinite "
       }
     },
   },
