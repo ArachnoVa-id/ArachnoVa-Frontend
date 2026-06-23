@@ -2,100 +2,100 @@
   {
     "id": 1,
     "type": 2,
-    "title": "Gadjah Mada Chamber Orchestra",
-    "description": "GMCO merupakan sebuah kelompok seni bermusik khususnya dalam bidang musik instrumental. Pada tanggal 16 February 2008, atas inisiatif Andreas Joko Purwanto (FMIPA 2005) dan Gian Afrisando (FMIPA 2007) mengumpulkan teman-teman maka muncullah ide untuk membentuk sebuah orkestra di Unversitas Gadjah Mada.",
+    "title": "Project Alpha",
+    "description": "Lorem ipsum dolor sit amet consectetur. Rhoncus nec dolor viverra lectus faucibus sit. Egestas rhoncus volutpat vitae euismod tortor.",
     "imageDesktop": "/image/Projects/GMCODesktop.png",
     "imageMobile": "/image/Projects/GMCOMobile.png",
-    "link": "http://gmcograndconcert.web.id/"
+    "link": "https://example.com/project-alpha"
   },
   {
     "id": 2,
     "type": 1,
-    "title": "Tsirwah Quran",
-    "description": "Tsirwah adalah pesantren Digital, Menghubungkan Anda dengan Kehidupan Akhirat, Mempertemukan Masyarakat dengan Alim Ulama Keilmuan Bersanad ila Rasulillah.",
+    "title": "Project Beta",
+    "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "imageDesktop": "/image/Projects/TsirwahDesktop.png",
     "imageMobile": "/image/Projects/TsirwahMobile.png",
-    "link": "https://quran.tsirwah.com/"
+    "link": "https://example.com/project-beta"
   },
   {
     "id": 3,
     "type": 2,
-    "title": "HMTI",
-    "description": "HMTI UGM berdiri sekitar bulan Juni tahun 2000. HMTI UGM pada mulanya merupakan Badan Semi Otonom (BSO) dibawah Keluarga Mahasiswa Teknik Mesin (KMTM) UGM. Hingga pada tahun 2003, kedudukan HMTI telah sejajar dengan KMTM sebagai keluarga/himpunan mahasiswa.",
+    "title": "Project Gamma",
+    "description": "Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     "imageDesktop": "/image/Projects/HMTIDesktop.png",
     "imageMobile": "/image/Projects/HMTIMobile.png",
-    "link": "https://hmti.ft.ugm.ac.id/"
+    "link": "https://example.com/project-gamma"
   },
   {
     "id": 4,
     "type": 1,
-    "title": "Legal Kreatif",
-    "description": "Berdiri sejak 2012, LegalKreatif telah membantu lebih dari 4000 pengusaha Indonesia untuk mendirikan perusahaan dan mengurus suluruh kebutuhan legalitas perusahaan. Membantu pengusaha mendirikan perusahaan berupa PT, CV maupun PMA.",
+    "title": "Project Delta",
+    "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     "imageDesktop": "/image/Projects/LegalKreatifDesktop.png",
     "imageMobile": "/image/Projects/LegalKreatifMobile.png",
-    "link": "https://www.legalkreatif.co.id/"
+    "link": "https://example.com/project-delta"
   },
   {
     "id": 5,
     "type": 2,
-    "title": "KMTETI",
-    "description": "KMTETI adalah organisasi resmi yang ada di Departemen Teknik Elektro dan Teknologi Informasi (DTETI). Salah satu semboyan yang dimiliki KMTETI adalah Profesionalisme Berbasis Kekeluargaan.",
+    "title": "Project Epsilon",
+    "description": "Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "imageDesktop": "/image/Projects/KMTETIDesktop.png",
     "imageMobile": "/image/Projects/KMTETIMobile.png",
-    "link": "https://kmteti.ft.ugm.ac.id/"
+    "link": "https://example.com/project-epsilon"
   },
   {
     "id": 6,
     "type": 1,
-    "title": "Teknisiade",
-    "description": "Teknisiade adalah ajang tahunan yang diselenggarakan oleh Kementrian Olahraga, Apresiasi, dan Daya Kreasi Seni (OASE) BEM KMFT UGM. Acara ini menjadi sarana untuk mengekspresikan kreativitas olahraga dan apresiasi seni dengan mempertemukan mahasiswa dari berbagai jurusan di Fakultas Teknik.",
+    "title": "Project Zeta",
+    "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam.",
     "imageDesktop": "/image/Projects/TeknisiadeDesktop.png",
     "imageMobile": "/image/Projects/TeknisiadeMobile.png",
-    "link": "https://forked-fe-teknisiade.vercel.app/"
+    "link": "https://example.com/project-zeta"
   },
   {
     "id": 7,
     "type": 2,
-    "title": "PKM Recaping",
-    "description": "Recipe Collection for Pet with Integrated Guidance: Buku resep pakan anjing yang terintegrasi media audio visual dan kalkulator nutrisi sebagai implementasi teknologi digital. Menyediakan produk buku resep pakan hewan 3 in 1 yang pertama di Indonesia yang mencakup buku fisik, kalkulator nutrisi, dan video tutorial.",
+    "title": "Project Eta",
+    "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores eos.",
     "imageDesktop": "/image/Projects/PKM_RecapingDesktop.png",
     "imageMobile": "/image/Projects/PKM_RecapingMobile.png",
-    "link": "https://recaping.id/"
+    "link": "https://example.com/project-eta"
   },
   {
     "id": 8,
     "type": 1,
-    "title": "Batam Karya Prima",
-    "description": "Perusahaan yang turut berkontribusi meningkatkan kualitas sumber daya manusia pada industri, kesehatan serta institusi lainnya agar mampu membawa perubahan yang signifikan kearah kemajuan dengan memiliki keunggulan kompetitif agar tercapai performa kerja yang unggul dan optimal.",
+    "title": "Project Theta",
+    "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit sed quia non numquam.",
     "imageDesktop": "/image/Projects/BKPDesktop.png",
     "imageMobile": "/image/Projects/BKPMobile.png",
-    "link": "https://bkpbatam.id/"
+    "link": "https://example.com/project-theta"
   },
   {
     "id": 9,
     "type": 2,
-    "title": "EzParenting",
-    "description": "EzParenting adalah sebuah platform yang bertujuan untuk menemani perjalanan orang tua dalam mengoptimalkan perkembangan anak-anak mereka dari usia 0-5 tahun pertama kehidupan melalui pendidikan dan solusi praktis.",
+    "title": "Project Iota",
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.",
     "imageDesktop": "/image/Projects/EzParenting.png",
     "imageMobile": "/image/Projects/EzParentingMobile.png",
-    "link": "https://ez-parenting.vercel.app/"
+    "link": "https://example.com/project-iota"
   },
   {
     "id": 10,
     "type": 1,
-    "title": "KPU FT UGM",
-    "description": "Komisi Pemilihan Umum Fakultas Teknik UGM adalah website yang dirancang untuk melakukan pelaksanaan pemilihan ketua umum Badan Eksekutif Mahasiswa (BEM KMFT) untuk periode 2024-2025. Website memiliki fitur untuk melakukan voting dan live count saat pemilihan berlangsung.",
+    "title": "Project Kappa",
+    "description": "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae.",
     "imageDesktop": "/image/Projects/KPUFT.png",
     "imageMobile": "/image/Projects/KPUFTMobile.png",
-    "link": "https://www.electionftugm.web.id/"
+    "link": "https://example.com/project-kappa"
   },
   {
     "id": 11,
     "type": 2,
-    "title": "Lustrum DTETI",
-    "description": "Rangkaian acara besar perayaan ulang tahun Departemen Teknik Elektro dan Teknologi Informasi UGM yang ke-60 lebih tepatnya perayaan lustrum yang ke-12. Acara ini dimeriahkan menjadi 3 sub acara besar yaitu Tetipendence, Enforian dan Troposfer dengan semua kegiatan dinaungi oleh bagian dari DTETI FT UGM.",
+    "title": "Project Lambda",
+    "description": "Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
     "imageDesktop": "/image/Projects/LustrumDTETIDesktop.png",
     "imageMobile": "/image/Projects/LustrumDTETIMobile.png",
-    "link": "https://lustrumdteti.id/"
+    "link": "https://example.com/project-lambda"
   }
 ]

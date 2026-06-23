@@ -2,8 +2,8 @@
   {
     "key": 1,
     "icon": "/image/OurServices/ServicesHero/icon-landingpage.png",
-    "title": "Landing Page",
-    "description": "Jenis website dengan page tunggal untuk mengarahkan pengunjung pada informasi yang ingin disampaikan pemilik website secara spesifik seperti mempromosikan kegiatan/produk, pemberian kontak person dan lain-lain.",
+    "title": "Service One",
+    "description": "Lorem ipsum dolor sit amet consectetur. Rhoncus nec dolor viverra lectus faucibus sit. Egestas rhoncus volutpat vitae euismod tortor. Neque nunc duis enim quam pellentesque.",
     "images": [
       "/image/OurProducts/LandingPage-1.png",
       "/image/OurProducts/LandingPage-2.png",
@@ -13,8 +13,8 @@
   {
     "key": 2,
     "icon": "/image/OurServices/ServicesHero/icon-profilingpage.png",
-    "title": "Company Profile",
-    "description": "Website Profiling memberikan informasi menyeluruh tentang organisasi atau event melalui beberapa halaman, memungkinkan pengunjung untuk dengan mudah menavigasi situs dan memperoleh detail informasi mendetail.",
+    "title": "Service Two",
+    "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam eaque ipsa.",
     "images": [
       "/image/OurProducts/KMTETI1.png",
       "/image/OurProducts/KMTETI2.png",
@@ -27,8 +27,8 @@
   {
     "key": 3,
     "icon": "/image/OurServices/ServicesHero/icon-customweb.png",
-    "title": "Custom Web",
-    "description": "Website yang memiliki kapabilitas melakukan hal yang lebih kompleks untuk keperluan client seperti pembentukan dashboard profesional, sistem registrasi dalam platform dan beberapa fitur yang memerlukan database.",
+    "title": "Service Three",
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.",
     "images": [
       "/image/OurProducts/TropoTable.svg",
       "/image/OurProducts/TropoRegis.svg",

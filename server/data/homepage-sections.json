@@ -1,15 +1,15 @@
 {
   "aboutUs": {
-    "title": "What is ArachnoVa?",
+    "title": "What is OurBrand?",
     "subtitle": "What Are We Capable Of?",
-    "description": "Community-based business mahasiswa DTETI UGM yang bergerak dibidang jasa pembuatan website untuk berbagai kebutuhan. Menargetkan pembuatan berbagai jenis website seperti Landing Page, Profiling, dan Custom Web yang menarik dan fungsional.",
-    "cta": { "text": "Get to know more", "href": "/aboutus" }
+    "description": "Lorem ipsum dolor sit amet consectetur. Rhoncus nec dolor viverra lectus faucibus sit. Egestas rhoncus volutpat vitae euismod tortor.",
+    "cta": { "text": "Learn more", "href": "/aboutus" }
   },
   "cta": {
     "title": "Ready to Transform Your Digital Presence?",
     "subtitle": "Let's Start Crafting Your Website Today",
     "buttonText": "Start Your Project",
-    "buttonHref": "https://wa.me/6287785917029",
+    "buttonHref": "https://wa.me/6287882832538",
     "backgroundImage": "/image/CTA/BGCTA.png"
   },
   "portfolio": {
