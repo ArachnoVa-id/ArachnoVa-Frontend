@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import CodeTyper from "@/components/ui/CodeTyper";
+import TerminalTyper from "@/components/ui/TerminalTyper";
 
 export default function Hero() {
   useEffect(() => {
@@ -85,11 +86,8 @@ export default function Hero() {
               width={100}
               height={100}
             />
-            <div className="flex gap-x-[0.1vw] pt-[1vw]">
-              <span className="text-[#8131B2]">.\arachnova-</span>
-              <span className="text-[#0151EC]">official-site</span>
-              <span className="text-[#1CA7BD]"> &gt; </span>
-              {" "}npm run dev
+            <div className="flex gap-x-[0.1vw] pt-[1vw] whitespace-nowrap">
+              <TerminalTyper speed={60} />
             </div>
           </div>
           <div className="px-[1vw] py-[2vw] text-[1.05vw]/[1.15vw] relative">
@@ -101,7 +99,7 @@ export default function Hero() {
               width={100}
               height={100}
             />
-            <CodeTyper speed={70} className="min-h-[13vw]" />
+            <CodeTyper speed={180} className="min-h-[13vw]" />
           </div>
         </div>
       </div>
@@ -154,11 +152,8 @@ export default function Hero() {
               width={100}
               height={100}
             />
-            <div className="flex justify-center items-center text-[2.6vw] gap-x-[.05vw] pt-[5vw]">
-              <div className="text-[#8131B2]">.\arachnova-</div>
-              <div className="text-[#0151EC]">official-site</div>
-              <div className="text-[#1CA7BD]"> &gt;</div>
-              <div className="text-neutral-g">{"  "}npm run dev</div>
+            <div className="flex justify-center items-center text-[2.6vw] gap-x-[.05vw] pt-[5vw] whitespace-nowrap">
+              <TerminalTyper speed={80} />
             </div>
           </div>
           <div className="px-[1vw] py-[4vw] text-[3vw]/[4vw] relative ">
@@ -170,7 +165,7 @@ export default function Hero() {
               width={100}
               height={100}
             />
-            <CodeTyper speed={100} className="min-h-[40vw]" />
+            <CodeTyper speed={250} className="min-h-[40vw]" />
           </div>
         </div>
       </div>
