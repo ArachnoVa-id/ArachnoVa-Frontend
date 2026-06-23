@@ -50,6 +50,12 @@ export default function PricingAdmin() {
     return { ...p, plans };
   });
 
+  const updateRowLabel = (ri, value) => update((p) => {
+    const rows = [...p.featureRows];
+    rows[ri] = value;
+    return { ...p, featureRows: rows };
+  });
+
   if (!local) return null;
 
   return (
@@ -64,56 +70,7 @@ export default function PricingAdmin() {
         </div>
       </div>
 
-      {/* CTA table - same column structure */}
-      {local.plans?.length > 0 && (
-        <div className="mb-4 overflow-x-auto border border-gray-200 rounded-xl shadow-sm bg-white">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="bg-gray-50">
-                <th className="text-left px-4 py-2.5 font-semibold text-gray-700 border-b border-r border-gray-200 min-w-[160px]">CTA Settings</th>
-                {local.plans.map((plan, pi) => (
-                  <th key={pi} className="px-3 py-2.5 border-b border-r border-gray-200 text-center min-w-[180px]">
-                    <span className="text-xs font-medium text-gray-500">{plan.name}</span>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="bg-white">
-                <td className="px-4 py-2.5 border-b border-r border-gray-200 text-xs font-medium text-gray-500">Button Text</td>
-                {local.plans.map((plan, pi) => (
-                  <td key={pi} className="px-3 py-2 border-b border-r border-gray-200 text-center">
-                    <input value={plan.ctaText || ""} onChange={(e) => updatePlanField(pi, "ctaText", e.target.value)}
-                      placeholder="Btn text" className="w-full px-2 py-1.5 text-xs border border-gray-200 rounded focus:outline-none text-center" />
-                  </td>
-                ))}
-              </tr>
-              <tr className="bg-gray-50/30">
-                <td className="px-4 py-2.5 border-b border-r border-gray-200 text-xs font-medium text-gray-500">URL</td>
-                {local.plans.map((plan, pi) => (
-                  <td key={pi} className="px-3 py-2 border-b border-r border-gray-200 text-center">
-                    <input value={plan.cta || ""} onChange={(e) => updatePlanField(pi, "cta", e.target.value)}
-                      placeholder="URL" className="w-full px-2 py-1.5 text-xs font-mono border border-gray-200 rounded focus:outline-none" />
-                  </td>
-                ))}
-              </tr>
-              <tr className="bg-white">
-                <td className="px-4 py-2.5 border-r border-gray-200 text-xs font-medium text-gray-500">Popular</td>
-                {local.plans.map((plan, pi) => (
-                  <td key={pi} className="px-3 py-2 border-r border-gray-200 text-center">
-                    <label className="inline-flex items-center gap-2 text-xs text-gray-500 cursor-pointer">
-                      <input type="checkbox" checked={!!plan.popular} onChange={(e) => updatePlanField(pi, "popular", e.target.checked)} className="rounded" />
-                      Highlight
-                    </label>
-                  </td>
-                ))}
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      {/* Table */}
+      {/* Single combined table */}
       <div className="overflow-x-auto border border-gray-200 rounded-xl shadow-sm">
         <table className="w-full text-sm">
           <thead>
@@ -143,15 +100,13 @@ export default function PricingAdmin() {
             </tr>
           </thead>
           <tbody>
+            {/* Feature rows */}
             {local.featureRows?.map((feature, ri) => (
-              <tr key={ri} className={ri % 2 === 0 ? "bg-white" : "bg-gray-50/30"}>
+              <tr key={`feat-${ri}`} className={ri % 2 === 0 ? "bg-white" : "bg-gray-50/30"}>
                 <td className="px-4 py-2.5 border-b border-r border-gray-200 font-medium text-gray-700">
                   <div className="flex items-center gap-2">
-                    <input value={feature} onChange={(e) => {
-                      const rows = [...local.featureRows];
-                      rows[ri] = e.target.value;
-                      setLocal((p) => { setDirty(true); return { ...p, featureRows: rows }; });
-                    }} className="bg-transparent border-none focus:outline-none w-full" />
+                    <input value={feature} onChange={(e) => updateRowLabel(ri, e.target.value)}
+                      className="bg-transparent border-none focus:outline-none w-full" />
                     <button onClick={() => removeRow(ri)} className="text-red-300 hover:text-red-500 text-xs shrink-0">✕</button>
                   </div>
                 </td>
@@ -163,6 +118,56 @@ export default function PricingAdmin() {
                 ))}
               </tr>
             ))}
+
+            {/* Empty separator row */}
+            <tr className="bg-gray-100/50">
+              <td colSpan={(local.plans?.length || 0) + 1} className="h-6 border-b border-r border-gray-200" />
+            </tr>
+
+            {/* CTA section header */}
+            <tr className="bg-gray-50">
+              <td className="px-4 py-2.5 border-b border-r border-gray-200 text-xs font-semibold text-gray-500">CTA Settings</td>
+              {local.plans?.map((plan, pi) => (
+                <td key={pi} className="px-3 py-2.5 border-b border-r border-gray-200 text-center text-xs font-medium text-gray-500">
+                  {plan.name}
+                </td>
+              ))}
+            </tr>
+
+            {/* CTA: Button Text */}
+            <tr className="bg-white">
+              <td className="px-4 py-2.5 border-b border-r border-gray-200 text-xs font-medium text-gray-500">Button Text</td>
+              {local.plans?.map((plan, pi) => (
+                <td key={pi} className="px-3 py-2 border-b border-r border-gray-200 text-center">
+                  <input value={plan.ctaText || ""} onChange={(e) => updatePlanField(pi, "ctaText", e.target.value)}
+                    placeholder="Btn text" className="w-full px-2 py-1.5 text-xs border border-gray-200 rounded focus:outline-none text-center" />
+                </td>
+              ))}
+            </tr>
+
+            {/* CTA: URL */}
+            <tr className="bg-gray-50/30">
+              <td className="px-4 py-2.5 border-b border-r border-gray-200 text-xs font-medium text-gray-500">URL</td>
+              {local.plans?.map((plan, pi) => (
+                <td key={pi} className="px-3 py-2 border-b border-r border-gray-200 text-center">
+                  <input value={plan.cta || ""} onChange={(e) => updatePlanField(pi, "cta", e.target.value)}
+                    placeholder="URL" className="w-full px-2 py-1.5 text-xs font-mono border border-gray-200 rounded focus:outline-none" />
+                </td>
+              ))}
+            </tr>
+
+            {/* CTA: Popular */}
+            <tr className="bg-white">
+              <td className="px-4 py-2.5 border-r border-gray-200 text-xs font-medium text-gray-500">Popular</td>
+              {local.plans?.map((plan, pi) => (
+                <td key={pi} className="px-3 py-2 border-r border-gray-200 text-center">
+                  <label className="inline-flex items-center gap-2 text-xs text-gray-500 cursor-pointer">
+                    <input type="checkbox" checked={!!plan.popular} onChange={(e) => updatePlanField(pi, "popular", e.target.checked)} className="rounded" />
+                    Highlight
+                  </label>
+                </td>
+              ))}
+            </tr>
           </tbody>
         </table>
       </div>
