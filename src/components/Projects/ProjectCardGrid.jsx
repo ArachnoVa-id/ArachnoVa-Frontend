@@ -31,33 +31,27 @@ export default function ProjectCardGrid({ projects }) {
             data-aos-delay={(i % 4) * 100}
             className="group bg-white rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-[0.3vw]"
           >
-            {/* Desktop + Mobile screenshots side by side */}
-            <div className="relative flex p-[0.5vw] gap-[0.3vw] bg-gray-100">
-              {/* Mobile mockup */}
-              <div className="w-[30%] aspect-[9/19] rounded-md overflow-hidden border border-border bg-white flex-shrink-0">
-                {project.imageMobile && (
-                  <img
-                    src={project.imageMobile}
-                    alt=""
-                    className="w-full h-full object-cover"
-                    draggable="false"
-                  />
-                )}
-              </div>
-              {/* Desktop mockup */}
-              <div className="flex-1 aspect-[16/10] rounded-md overflow-hidden border border-border bg-white">
-                {project.imageDesktop && (
-                  <img
-                    src={project.imageDesktop}
-                    alt=""
-                    className="w-full h-full object-cover"
-                    draggable="false"
-                  />
-                )}
-              </div>
+            {/* Desktop + Mobile stacked preview */}
+            <div className="relative w-full aspect-[824.28/426.9] bg-gray-50">
+              {project.imageDesktop && (
+                <img
+                  src={project.imageDesktop}
+                  alt=""
+                  className="absolute w-[80%] aspect-[669/376] rounded-lg shadow-lg right-0 top-[5%]"
+                  draggable="false"
+                />
+              )}
+              {project.imageMobile && (
+                <img
+                  src={project.imageMobile}
+                  alt=""
+                  className="absolute w-[22%] aspect-[245/485] rounded-[0.6vw] shadow-lg -bottom-[2%] left-[4%]"
+                  draggable="false"
+                />
+              )}
             </div>
             {/* Info */}
-            <div className="p-[1vw]">
+            <div className="p-[1vw] pt-[1.5vw]">
               <h3 className="font-SourceSansProBold lg:text-[0.938vw] text-[3.5vw] text-neutral-g group-hover:text-LightBlue-d transition-colors truncate">
                 {project.title}
               </h3>
