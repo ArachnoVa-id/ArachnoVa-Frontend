@@ -66,7 +66,7 @@ export default function TeamSection({ members }) {
           <div key={i} className="flex-shrink-0 w-[60vw]">
             <div className="rounded-2xl overflow-hidden border border-gray-200/80 bg-gray-50 shadow-sm mb-[2vw]">
               {member.image ? (
-                <img alt={member.name} src={member.image} className="object-cover aspect-square w-full" draggable="false" />
+                <img loading="lazy" alt={member.name} src={member.image} className="object-cover aspect-square w-full" draggable="false" />
               ) : (
                 <div className={`aspect-square w-full bg-gradient-to-br ${gradientColors[i % gradientColors.length]} flex items-center justify-center`}>
                   <span className="text-white text-[15vw] font-bold">{member.name?.charAt(0) || "?"}</span>

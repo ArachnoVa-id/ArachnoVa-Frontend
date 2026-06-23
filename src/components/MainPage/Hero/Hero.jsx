@@ -101,42 +101,7 @@ export default function Hero() {
               width={100}
               height={100}
             />
-            <CodeTyper speed={250} className="min-h-[13vw]">
-              <p className="text-[#0151EC]">
-                import{" "}
-                <span className="text-[#8131B2] ">&#34;./globals.css&#34;;</span>
-              </p>
-              <p className="text-[#1E293B]">
-                <span className="text-[#0151EC]">import</span> &#123;{" "}
-                <span className="text-[#1CA7BD]"> ArachnoVa</span> &#125; from{" "}
-                <span className="text-[#8131B2]">&#34;./api/provider&#34;</span>;
-              </p>
-              <p> &nbsp; </p>
-              <p className="text-[#0151EC]">export default</p>
-              <p className="text-[#1E293B]">
-                &lt;div <span className="text-[#0151EC]">className</span>=&#34;
-                <span className="text-[#8131B2]">Welcome to ArachnoVa</span>
-                &#34;&gt;
-              </p>
-              <p>
-                &nbsp; &lt;div <span className="text-[#0151EC]">className</span>
-                =&#34;<span className="text-[#8131B2]">content</span>&#34;&gt;
-              </p>
-              <p>&nbsp; &#123;</p>
-              <p>
-                &nbsp; &nbsp;{" "}
-                <span className="text-[#8131B2]">
-                  &#34;Your web design partner&#34;
-                </span>
-              </p>
-              <p>&nbsp; &#125;</p>
-              <p>&nbsp; &lt;/div&gt;</p>
-              <p>
-                &nbsp; &lt;<span className="text-[#0151EC]">img</span> src=&#34;
-                <span className="text-[#8131B2]">img/herofix.png</span>&#34;/&gt;
-              </p>
-              <p>&lt;/div&gt;</p>
-            </CodeTyper>
+            <CodeTyper speed={70} className="min-h-[13vw]" />
           </div>
         </div>
       </div>
@@ -205,42 +170,7 @@ export default function Hero() {
               width={100}
               height={100}
             />
-            <CodeTyper speed={300} className="min-h-[40vw]">
-              <p className="text-[#0151EC]">
-                import{" "}
-                <span className="text-[#8131B2] ">&#34;./globals.css&#34;;</span>
-              </p>
-              <p className="text-[#1E293B]">
-                <span className="text-[#0151EC]">import</span> &#123;{" "}
-                <span className="text-[#1CA7BD]"> ArachnoVa</span> &#125; from{" "}
-                <span className="text-[#8131B2]">&#34;./api/provider&#34;</span>;
-              </p>
-              <p> &nbsp; </p>
-              <p className="text-[#0151EC]">export default</p>
-              <p className="text-[#1E293B]">
-                &lt;div <span className="text-[#0151EC]">className</span>=&#34;
-                <span className="text-[#8131B2]">Welcome to ArachnoVa</span>
-                &#34;&gt;
-              </p>
-              <p className="text-neutral-g">
-                &nbsp; &lt;div <span className="text-[#0151EC]">className</span>
-                =&#34;<span className="text-[#8131B2]">content</span>&#34;&gt;
-              </p>
-              <p className="text-neutral-g">&nbsp; &#123;</p>
-              <p>
-                &nbsp; &nbsp;{" "}
-                <span className="text-[#8131B2]">
-                  &#34;Your web design partner&#34;
-                </span>
-              </p>
-              <p className="text-neutral-g"> &nbsp; &#125;</p>
-              <p className="text-neutral-g">&nbsp; &lt;/div&gt;</p>
-              <p className="text-neutral-g">
-                &nbsp; &lt;<span className="text-[#0151EC]">img</span> src=&#34;
-                <span className="text-[#8131B2]">img/herofix.png</span>&#34;/&gt;
-              </p>
-              <p className="text-neutral-g">&lt;/div&gt;</p>
-            </CodeTyper>
+            <CodeTyper speed={100} className="min-h-[40vw]" />
           </div>
         </div>
       </div>

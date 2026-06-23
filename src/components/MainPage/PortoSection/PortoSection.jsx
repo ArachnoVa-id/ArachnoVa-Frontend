@@ -41,7 +41,6 @@ export default function PortoSection() {
                   draggable="false"
                   width={10000}
                   height={10000}
-                  priority
                 />
                 <div className="p-[1.2vw] w-full h-full fixed top-0 left-0 pointer-events-none">
                   <div className="w-full justify-center items-center flex group-hover:opacity-0 opacity-100 group-hover:delay-0 delay-[350ms] group-hover:duration-500 duration-[1200ms]">
@@ -72,7 +71,6 @@ export default function PortoSection() {
                   draggable="false"
                   width={10000}
                   height={10000}
-                  priority
                 />
               </div>
               <div className="absolute top-0 left-0 w-full h-full p-[.5vw] pointer-events-none">
@@ -135,7 +133,6 @@ export default function PortoSection() {
                   draggable="false"
                   width={1000}
                   height={1000}
-                  priority
                 />
               </div>
               <div className="w-full h-full absolute top-0 left-0 pointer-events-none rounded-xl overflow-clip">
@@ -168,7 +165,6 @@ export default function PortoSection() {
                   draggable="false"
                   width={1000}
                   height={1000}
-                  priority
                 />
               </div>
               <div className="w-full h-full absolute top-0 left-0 pointer-events-none rounded-xl overflow-clip">

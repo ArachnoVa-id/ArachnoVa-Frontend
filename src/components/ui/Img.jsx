@@ -1,4 +1,5 @@
-const Img = ({ src, alt, fill, width, height, className, style, draggable, ...props }) => {
+const Img = ({ src, alt, fill, width, height, className, style, draggable, priority, ...props }) => {
+  const shouldLazy = !priority && !fill;
   if (fill) {
     return (
       <img
@@ -26,6 +27,8 @@ const Img = ({ src, alt, fill, width, height, className, style, draggable, ...pr
       draggable={draggable}
       className={className}
       style={style}
+      loading={shouldLazy ? "lazy" : undefined}
+      decoding={shouldLazy ? "async" : undefined}
       {...props}
     />
   );
