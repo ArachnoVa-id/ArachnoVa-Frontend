@@ -4,10 +4,10 @@ const PointText = ({ Title, Description, Icon, Variant }) => {
 	const Left =
 		Variant === "left" ? (
 			<div className="flex flex-col">
-				<h1 className="font-SourceSansProSemibold text-[1.042vw] text-ink">
+				<h1 className="font-SourceSansProSemibold text-[1.042vw] text-neutral-g">
 					{Title}
 				</h1>
-				<p className="font-SourceSansProSemibold text-[0.938vw] text-inkLight">
+				<p className="font-SourceSansProSemibold text-[0.938vw] text-neutral-e">
 					{Description}
 				</p>
 			</div>
@@ -39,10 +39,10 @@ const PointText = ({ Title, Description, Icon, Variant }) => {
 			</>
 		) : (
 			<div className="flex flex-col">
-				<h1 className="font-SourceSansProSemibold lg:text-[1.042vw] text-[4.186vw] text-ink">
+				<h1 className="font-SourceSansProSemibold lg:text-[1.042vw] text-[4.186vw] text-neutral-g">
 					{Title}
 				</h1>
-				<p className="font-SourceSansProSemibold lg:text-[0.938vw] text-[3.488vw] text-inkLight">
+				<p className="font-SourceSansProSemibold lg:text-[0.938vw] text-[3.488vw] text-neutral-e">
 					{Description}
 				</p>
 			</div>

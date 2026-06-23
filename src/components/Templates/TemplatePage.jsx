@@ -15,7 +15,7 @@ const TemplatePage = () => {
   }, []);
   return (
     <section
-      className="relative w-full lg:min-h-[53.021vw] min-h-[190.465vw] flex flex-col items-center bg-page text-black
+      className="relative w-full lg:min-h-[53.021vw] min-h-[190.465vw] flex flex-col items-center bg-white-MainPage text-black
                  lg:pb-[5.208vw]
                  pb-[58.333vw]"
     >
@@ -51,10 +51,10 @@ const TemplatePage = () => {
             className="lg:w-[43.981vw] w-[68.442vw] flex flex-col justify-center items-center"
             data-aos="fade-down"
           >
-            <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0891B2] via-[#22D3EE] to-tealDark">
+            <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
               Section Template
             </p>
-            <h1 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] text-ink lg:leading-[2.448vw] leading-[6.977vw] text-center">
+            <h1 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] text-neutral-g lg:leading-[2.448vw] leading-[6.977vw] text-center">
               Find the Best Section for You
             </h1>
           </div>
@@ -76,12 +76,12 @@ const TemplatePage = () => {
                            rounded-[2.093023vw] px-[4vw] py-[2.32559vw]"
               >
                 <p
-                  className="text-inkLight font-SourceSansProSemibold leading-[150%]
+                  className="text-neutral-e font-SourceSansProSemibold leading-[150%]
                              lg:text-[0.938vw]
                              text-[2.79067vw]"
                 >
                   Pilihan template section hanya tersedia untuk paket{" "}
-                  <span className="text-ink font-SourceSansProBold">
+                  <span className="text-neutral-g font-SourceSansProBold">
                     Landing Page
                   </span>
                   .

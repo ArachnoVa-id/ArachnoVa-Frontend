@@ -42,7 +42,7 @@ const FinishingProject = () => {
             <>
               <BsFillCloudArrowUpFill
                 size="1.042vw"
-                className="text-[#0891B2]"
+                className="text-[#1AB0C8]"
               />
             </>
           }
@@ -61,7 +61,7 @@ const FinishingProject = () => {
               </li>
             </>
           }
-          Icon={<BsBoxFill size="1.042vw" className="text-[#0891B2]" />}
+          Icon={<BsBoxFill size="1.042vw" className="text-[#1AB0C8]" />}
           Position="absolute top-[10.104vw] -left-[0.729vw] z-[20]"
           Variant="Left"
         />
@@ -81,7 +81,7 @@ const FinishingProject = () => {
               </li>
             </>
           }
-          Icon={<FaLaptopCode size="1.042vw" className="text-[#0891B2]" />}
+          Icon={<FaLaptopCode size="1.042vw" className="text-[#1AB0C8]" />}
           Position="absolute right-[2.031vw] bottom-[1.304vw] z-[30]"
         />
       </div>
@@ -104,7 +104,7 @@ const FinishingProject = () => {
             <>
               <BsFillCloudArrowUpFill
                 size="5.116vw"
-                className="text-[#0891B2]"
+                className="text-[#1AB0C8]"
               />
             </>
           }
@@ -122,7 +122,7 @@ const FinishingProject = () => {
               </li>
             </>
           }
-          Icon={<BsBoxFill size="5.581vw" className="text-[#0891B2]" />}
+          Icon={<BsBoxFill size="5.581vw" className="text-[#1AB0C8]" />}
           Variant="Left"
         />
         <Content
@@ -141,7 +141,7 @@ const FinishingProject = () => {
               </li>
             </>
           }
-          Icon={<FaLaptopCode size="5.581vw" className="text-[#0891B2]" />}
+          Icon={<FaLaptopCode size="5.581vw" className="text-[#1AB0C8]" />}
         />
       </div>
     </>

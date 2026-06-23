@@ -33,7 +33,7 @@ const TemplateAccordion = ({ number, title, image }) => {
                      px-[4.65116vw] py-[3.5vw]"
         >
           <div
-            className="w-full flex items-center font-SourceSansProBold text-ink
+            className="w-full flex items-center font-SourceSansProBold text-neutral-g
                        lg:gap-[1.25vw] lg:text-[1.25vw]
                        gap-[2.32558vw] text-[4.18605vw]"
           >
@@ -97,7 +97,7 @@ const TemplateAccordion = ({ number, title, image }) => {
                                  "
                     >
                       <p
-                        className="font-SourceSansProSemibold text-ink
+                        className="font-SourceSansProSemibold text-neutral-g
                                    lg:text-[0.938vw]
                                    text-[2.7907vw]"
                       >

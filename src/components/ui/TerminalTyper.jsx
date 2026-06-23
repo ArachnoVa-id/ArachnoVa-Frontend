@@ -4,7 +4,7 @@ const parts = [
   { text: ".\\arachnova-", color: "text-[#8131B2]" },
   { text: "official-site", color: "text-[#0151EC]" },
   { text: " > ", color: "text-[#1CA7BD]" },
-  { text: "npm run dev", color: "text-ink" },
+  { text: "npm run dev", color: "text-neutral-g" },
 ];
 
 const fullText = parts.map((p) => p.text).join("");
@@ -39,7 +39,7 @@ export default function TerminalTyper({ speed = 50 }) {
     <>
       {visible}
       {!done && (
-        <span className="w-[0.05em] h-[1.1em] bg-teal animate-pulse inline-block align-text-bottom ml-[0.05em]" />
+        <span className="w-[0.05em] h-[1.1em] bg-LightBlue-c animate-pulse inline-block align-text-bottom ml-[0.05em]" />
       )}
     </>
   );

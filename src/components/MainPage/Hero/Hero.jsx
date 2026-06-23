@@ -13,7 +13,7 @@ export default function Hero() {
     });
   }, []);
   return (
-    <section className="w-full min-h-screen relative bg-page overflow-hidden flex flex-row justify-center items-center">
+    <section className="w-full min-h-screen relative bg-white-MainPage overflow-hidden flex flex-row justify-center items-center">
       <WebPattern opacity={0.04} />
       <Image
         alt="Background"
@@ -33,10 +33,10 @@ export default function Hero() {
       {/* Dekstop */}
       <div className="text-black flex gap-x-[8vw] max-lg:hidden z-[2]">
         <div className="flex flex-col justify-center scale-[1.2]">
-          <div className="text-[1.6vw] text-ink font-CoolveticaCondReg ">
+          <div className="text-[1.6vw] text-neutral-g font-CoolveticaCondReg ">
             ArachnoVa{" "}
           </div>
-          <div className="text-ink font-SourceSansProBold text-[2vw]/[2.5vw]">
+          <div className="text-neutral-g font-SourceSansProBold text-[2vw]/[2.5vw]">
             <div className="text-[2vw] ">Your Web Design Partner</div>
             <div className="overflow-clip  flex items-center justify-center h-[3.0vw] gap-[0.5vw] leading-none">
               <div className="text-[2.8vw]">Always</div>
@@ -53,13 +53,13 @@ export default function Hero() {
               </div>
             </div>
           </div>
-          <div className="text-[1vw] text-inkLight pt-[1.1vw] font-SourceSansProSemibold ">
+          <div className="text-[1vw] text-neutral-e pt-[1.1vw] font-SourceSansProSemibold ">
             Crafting Digital Presence in Every Strand of Code
           </div>
           <div className="py-[2vh] flex gap-[1vw]">
             <a
               href="https://wa.me/6287882832538"
-              className="aspect-[167/46] w-[8.698vw] rounded-[0.4vw] bg-gradient-to-r from-teal to-tealDark font-InterBold text-white text-[0.8vw] flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
+              className="aspect-[167/46] w-[8.698vw] rounded-[0.4vw] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white text-[0.8vw] flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
             >
               Start Your Project
             </a>
@@ -67,7 +67,7 @@ export default function Hero() {
               href="/services"
               className="aspect-[197/48] w-[10.26vw] rounded-[0.4vw] bg-transparent text-[0.8vw] flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out hover:bg-[#cae8ee] "
             >
-              <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#0891B2] to-tealDark font-InterBold">
+              <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold">
                 Discover Our Services
               </div>
             </a>
@@ -111,11 +111,11 @@ export default function Hero() {
         data-aos="fade-up"
         className="flex flex-col lg:hidden w-full items-center mb-[40vw] z-[2] mt-[24.372vw]"
       >
-        <div className="text-[8.6vw] text-ink font-CoolveticaCondReg ">
+        <div className="text-[8.6vw] text-neutral-g font-CoolveticaCondReg ">
           ArachnoVa{" "}
         </div>
 
-        <div className="text-ink items-center justify-center font-SourceSansProBold text-[2vw]/[6vw]">
+        <div className="text-neutral-g items-center justify-center font-SourceSansProBold text-[2vw]/[6vw]">
           <div className="text-[7vw] mx-[5vw]   ">Your Web Design Partner</div>
           <div className="overflow-clip  flex items-center justify-center h-[9.8vw] gap-[2vw]  leading-none">
             <div className="text-[9.8vw]">Always</div>
@@ -127,19 +127,19 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center items-center text-[5vw]/[5vw] pt-[4vw] text-inkLight font-SourceSansProSemibold ">
+        <div className="flex flex-col justify-center items-center text-[5vw]/[5vw] pt-[4vw] text-neutral-e font-SourceSansProSemibold ">
           <div className="">Crafting Digital Presence in Every</div>
           <div className="">Strand of Code</div>
         </div>
 
         <a
           href="https://wa.me/6287882832538"
-          className="w-[80vw] h-[8vw] mt-[4vw] my-[2.5vw] bg-gradient-to-r from-teal to-tealDark font-InterBold text-white rounded-md text-[3vw] flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
+          className="w-[80vw] h-[8vw] mt-[4vw] my-[2.5vw] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white rounded-md text-[3vw] flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
         >
           Start Your Project
         </a>
         <a href="/services" className="w-[80vw] h-[8vw] bg-transparent mb-[2.5vw] rounded-md text-[3vw] flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out hover:bg-[#cae8ee] ">
-          <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#0891B2] to-tealDark font-InterBold">
+          <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold">
             Discover Our Services
           </div>
         </a>

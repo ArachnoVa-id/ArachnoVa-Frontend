@@ -13,7 +13,7 @@ const Content = ({ Title, Icon, List, Variant, Position }) => {
     >
       <ContentHeader Title={Title} Icon={Icon} Variant={Variant} />
       <div className="lg:w-[15.104vw] w-full font-SourceSansProSemibold lg:text-[0.938vw] text-[3.256vw] lg:ml-[1.563vw] mt-[2vw] lg:mt-0 lg:pl-0 pl-[4.014vw]">
-        <ul className="list-disc text-inkLight lg:leading-[1.146vw]">
+        <ul className="list-disc text-neutral-e lg:leading-[1.146vw]">
           {List}
         </ul>
       </div>

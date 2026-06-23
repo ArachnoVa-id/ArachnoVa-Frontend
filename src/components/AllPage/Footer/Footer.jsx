@@ -8,7 +8,7 @@ import Image from "@/components/ui/Img";
 const Footer = () => {
 	return (
 		<>
-			<div className="flex lg:flex-row flex-col lg:justify-around justify-between items-center w-full lg:min-h-[12.708vw] min-h-[123.256vw] lg:p-0 pt-[13.953vw] pb-[9.767vw] bg-teal">
+			<div className="flex lg:flex-row flex-col lg:justify-around justify-between items-center w-full lg:min-h-[12.708vw] min-h-[123.256vw] lg:p-0 pt-[13.953vw] pb-[9.767vw] bg-LightBlue-c">
 				<div className="flex lg:flex-row flex-col justify-center items-center lg:w-[28.698vw]">
 					<div className="relative lg:w-[7.135vw] w-[26.512vw] lg:aspect-[137/132] aspect-[114/95] lg:mr-[3.385vw]">
 						<Image
@@ -58,19 +58,19 @@ const Footer = () => {
 						<a href="https://www.linkedin.com/company/arachnova-id/">
 							<FaLinkedin
 								size="1.563vw"
-								className="text-surface hover:text-inkMuted transition-all duration-500 ease-in-out"
+								className="text-surface hover:text-neutral-gMuted transition-all duration-500 ease-in-out"
 							/>
 						</a>
 						<a href="https://www.instagram.com/arachnova.id/">
 							<AiFillInstagram
 								size="1.563vw"
-								className="text-surface hover:text-inkMuted transition-all duration-500 ease-in-out"
+								className="text-surface hover:text-neutral-gMuted transition-all duration-500 ease-in-out"
 							/>
 						</a>
 						<a href="https://wa.me/6287882832538">
 							<PiWhatsappLogoFill
 								size="1.563vw"
-								className="text-surface hover:text-inkMuted transition-all duration-500 ease-in-out"
+								className="text-surface hover:text-neutral-gMuted transition-all duration-500 ease-in-out"
 							/>
 						</a>
 					</div>
@@ -78,19 +78,19 @@ const Footer = () => {
 						<a href="https://www.linkedin.com/company/arachnova-id/">
 							<FaLinkedin
 								size="6.279vw"
-								className="text-surface hover:text-inkMuted transition-all duration-500 ease-in-out"
+								className="text-surface hover:text-neutral-gMuted transition-all duration-500 ease-in-out"
 							/>
 						</a>
 						<a href="https://www.instagram.com/arachnova.id/">
 							<AiFillInstagram
 								size="6.279vw"
-								className="text-surface hover:text-inkMuted transition-all duration-500 ease-in-out"
+								className="text-surface hover:text-neutral-gMuted transition-all duration-500 ease-in-out"
 							/>
 						</a>
 						<a href="https://wa.me/6287882832538">
 							<PiWhatsappLogoFill
 								size="7.209vw"
-								className="text-surface hover:text-inkMuted transition-all duration-500 ease-in-out"
+								className="text-surface hover:text-neutral-gMuted transition-all duration-500 ease-in-out"
 							/>
 						</a>
 					</div>

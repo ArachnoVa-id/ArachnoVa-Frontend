@@ -8,7 +8,7 @@ const gradientColors = [
   "from-yellow-400 to-orange-400",
   "from-pink-400 to-rose-400",
   "from-indigo-400 to-purple-400",
-  "from-teal-400 to-green-400",
+  "from-[#1AB0C8]-400 to-green-400",
 ];
 
 export default function TeamAdmin() {

@@ -33,7 +33,7 @@ function renderValue(val) {
   if (val === true || val === "true" || val === "✓") return <CheckIcon />;
   if (val === false || val === "false" || val === "✗") return <CrossIcon />;
   if (val === null || val === "" || val === "-") return <MinusIcon />;
-  return <span className="text-ink font-InterSemibold lg:text-[0.833vw] text-[3vw]">{val}</span>;
+  return <span className="text-neutral-g font-InterSemibold lg:text-[0.833vw] text-[3vw]">{val}</span>;
 }
 
 export default function PricingTable({ data }) {
@@ -46,13 +46,13 @@ export default function PricingTable({ data }) {
   if (!plans || plans.length === 0) return null;
 
   return (
-    <section className="w-full bg-page lg:py-[5.208vw] py-[13.953vw] overflow-hidden">
+    <section className="w-full bg-white-MainPage lg:py-[5.208vw] py-[13.953vw] overflow-hidden">
       <div className="flex flex-col items-center lg:gap-[3.125vw] gap-[5.581vw] lg:px-[10vw] px-[5.581vw]">
         <div data-aos="fade-down" className="text-center lg:max-w-[55vw]">
-          <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0891B2] via-[#22D3EE] to-tealDark">
+          <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
             {title || "Pricing"}
           </p>
-          <h2 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] text-ink lg:leading-[2.8vw] leading-[7.5vw] mt-[0.5vw]">
+          <h2 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] text-neutral-g lg:leading-[2.8vw] leading-[7.5vw] mt-[0.5vw]">
             {subtitle || "Choose Your Plan"}
           </h2>
         </div>
@@ -70,14 +70,14 @@ export default function PricingTable({ data }) {
                     plan.popular ? "bg-gradient-to-br from-[#76BDE4] to-[#52CEE0]" : ""
                   }`}
                 >
-                  <p className={`font-SourceSansProBold lg:text-[1.25vw] ${plan.popular ? "text-white" : "text-ink"}`}>
+                  <p className={`font-SourceSansProBold lg:text-[1.25vw] ${plan.popular ? "text-white" : "text-neutral-g"}`}>
                     {plan.name}
                   </p>
-                  <p className={`font-InterBold lg:text-[1.8vw] mt-[0.3vw] ${plan.popular ? "text-white" : "text-teal"}`}>
+                  <p className={`font-InterBold lg:text-[1.8vw] mt-[0.3vw] ${plan.popular ? "text-white" : "text-LightBlue-c"}`}>
                     {plan.price}
                   </p>
                   {plan.priceNote && (
-                    <p className={`lg:text-[0.73vw] font-InterSemibold ${plan.popular ? "text-white/80" : "text-inkMuted"}`}>
+                    <p className={`lg:text-[0.73vw] font-InterSemibold ${plan.popular ? "text-white/80" : "text-neutral-gMuted"}`}>
                       {plan.priceNote}
                     </p>
                   )}
@@ -88,7 +88,7 @@ export default function PricingTable({ data }) {
               {featureRows?.map((feature, rowIndex) => (
                 <div key={rowIndex} className="contents">
                   <div className={`p-[1vw] lg:px-[1.5vw] flex items-center border-t border-border border-r ${rowIndex % 2 === 0 ? "bg-gray-50" : "bg-white"}`}>
-                    <p className="font-InterBold lg:text-[0.833vw] text-ink">{feature}</p>
+                    <p className="font-InterBold lg:text-[0.833vw] text-neutral-g">{feature}</p>
                   </div>
                   {plans.map((plan, colIndex) => (
                     <div
@@ -109,7 +109,7 @@ export default function PricingTable({ data }) {
                 <div key={i} className="p-[1.2vw] text-center border-t border-border border-r last:border-r-0">
                   <a
                     href={plan.cta || "https://wa.me/6287882832538"}
-                    className="inline-block font-InterBold lg:text-[0.833vw] text-surface bg-gradient-to-r from-teal to-tealDark px-[1.5vw] py-[0.6vw] rounded-[0.4vw] hover:translate-y-[-0.15vw] transition-all duration-300"
+                    className="inline-block font-InterBold lg:text-[0.833vw] text-surface bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] px-[1.5vw] py-[0.6vw] rounded-[0.4vw] hover:translate-y-[-0.15vw] transition-all duration-300"
                   >
                     {plan.ctaText || "Pilih Paket"}
                   </a>
@@ -123,20 +123,20 @@ export default function PricingTable({ data }) {
         <div className="w-full lg:hidden space-y-[4vw]">
           {plans.map((plan, i) => (
             <div key={i} data-aos="fade-up" data-aos-delay={i * 100} className={`bg-white rounded-xl border border-border p-[5.581vw] shadow-sm ${plan.popular ? "ring-2 ring-LightBlue-c" : ""}`}>
-              <p className="font-SourceSansProBold text-[5vw] text-ink text-center">{plan.name}</p>
-              <p className="font-InterBold text-[6vw] text-teal text-center mt-[1vw]">{plan.price}</p>
-              {plan.priceNote && <p className="text-[3vw] font-InterSemibold text-inkMuted text-center">{plan.priceNote}</p>}
+              <p className="font-SourceSansProBold text-[5vw] text-neutral-g text-center">{plan.name}</p>
+              <p className="font-InterBold text-[6vw] text-LightBlue-c text-center mt-[1vw]">{plan.price}</p>
+              {plan.priceNote && <p className="text-[3vw] font-InterSemibold text-neutral-gMuted text-center">{plan.priceNote}</p>}
               <div className="mt-[4vw] space-y-[2vw]">
                 {featureRows?.map((feature, ri) => (
                   <div key={ri} className="flex justify-between items-center py-[1.5vw] border-b border-border last:border-b-0">
-                    <p className="font-InterBold text-[3.5vw] text-ink">{feature}</p>
+                    <p className="font-InterBold text-[3.5vw] text-neutral-g">{feature}</p>
                     <div className="flex-shrink-0 ml-[2vw]">{renderValue(plan.values?.[ri])}</div>
                   </div>
                 ))}
               </div>
               <a
                 href={plan.cta || "https://wa.me/6287882832538"}
-                className="block text-center font-InterBold text-[3.5vw] text-surface bg-gradient-to-r from-teal to-tealDark py-[2.5vw] rounded-[1.5vw] mt-[4vw]"
+                className="block text-center font-InterBold text-[3.5vw] text-surface bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] py-[2.5vw] rounded-[1.5vw] mt-[4vw]"
               >
                 {plan.ctaText || "Pilih Paket"}
               </a>

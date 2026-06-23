@@ -17,7 +17,7 @@ export default function PortoLustrumDTETI() {
       <div className="flex max-lg:hidden ">
         <div className="w-[20vw] text-black pt-[2vw] mr-[5vw]">
           <h1 className="text-[2vw] font-SourceSansProBold">Lustrum DTETI</h1>
-          <p className="text-[1vw]/[1.5vw] font-SourceSansProSemibold text-inkLight">
+          <p className="text-[1vw]/[1.5vw] font-SourceSansProSemibold text-neutral-e">
             Rangkaian acara besar perayaan ulang tahun Departemen Teknik Elektro
             dan Teknologi Informasi UGM yang ke-60 lebih tepatnya perayaan
             lustrum yang ke-12. Acara ini dimeriahkan menjadi 3 sub acara besar
@@ -26,7 +26,7 @@ export default function PortoLustrumDTETI() {
           </p>
           <a
             href="https://lustrumdteti.id/"
-            className="w-[4.688vw] mt-[1vw] bg-gradient-to-r rounded-[0.5vw] text-[0.833vw] aspect-[90/48] from-teal to-tealDark font-InterBold text-white flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
+            className="w-[4.688vw] mt-[1vw] bg-gradient-to-r rounded-[0.5vw] text-[0.833vw] aspect-[90/48] from-[#1AB0C8] to-[#179FB5] font-InterBold text-white flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
           >
             Source
           </a>
@@ -57,7 +57,7 @@ export default function PortoLustrumDTETI() {
 
       {/* Mobile */}
       <div className="flex flex-col justify-center items-center lg:hidden gap-y-[6vw]">
-        <h1 className="text-[8vw] font-SourceSansProBold text-ink ">
+        <h1 className="text-[8vw] font-SourceSansProBold text-neutral-g ">
           Lustrum DTETI XII
         </h1>
         <div
@@ -82,7 +82,7 @@ export default function PortoLustrumDTETI() {
           />
         </div>
         <div className="justify-center items-center w-[90vw]">
-          <p className="text-[4.5vw]/[4.5vw] font-SourceSansProSemibold text-inkLight ">
+          <p className="text-[4.5vw]/[4.5vw] font-SourceSansProSemibold text-neutral-e ">
             Rangkaian acara besar perayaan ulang tahun Departemen Teknik Elektro
             dan Teknologi Informasi UGM yang ke-60 lebih tepatnya perayaan
             lustrum yang ke-12. Acara ini dimeriahkan menjadi 3 sub acara besar
@@ -92,7 +92,7 @@ export default function PortoLustrumDTETI() {
         </div>
         <a
           href="https://lustrumdteti.id/"
-          className="w-[90vw] h-[10vw] mt-[1vw] text-[3vw] bg-gradient-to-r from-teal to-tealDark font-InterBold text-white rounded-md  flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
+          className="w-[90vw] h-[10vw] mt-[1vw] text-[3vw] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white rounded-md  flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
         >
           Source
         </a>

@@ -23,7 +23,7 @@ export default function CTA() {
 			<div className="flex flex-col justify-center items-center max-lg:hidden">
 				<div
 					data-aos="fade-up"
-					className="text-ink font-SourceSansProBold text-[2.396vw]/[2.4vw] flex flex-col justify-center items-center"
+					className="text-neutral-g font-SourceSansProBold text-[2.396vw]/[2.4vw] flex flex-col justify-center items-center"
 				>
 					<p>Ready to Transform Your Digital Presence ? </p>
 					<p>Let&apos;s Start Crafting Your Website Today</p>
@@ -41,7 +41,7 @@ export default function CTA() {
 			<div className="flex flex-col justify-center items-center lg:hidden">
 				<div
 					data-aos="fade-up"
-					className="text-ink font-SourceSansProBold text-[4.5vw]/[5vw] flex flex-col justify-center items-center"
+					className="text-neutral-g font-SourceSansProBold text-[4.5vw]/[5vw] flex flex-col justify-center items-center"
 				>
 					<p>Ready to Transform Your Digital Presence ? </p>
 					<p>Let&apos;s Start Crafting Your Website Today</p>

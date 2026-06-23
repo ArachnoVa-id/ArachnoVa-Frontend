@@ -17,11 +17,11 @@ const RightContent = ({
 		<div
 			className={`lg:w-[26.615vw] w-[75.581vw] lg:h-fit h-fit flex flex-col lg:justify-between justify-end ${Position} lg:mt-0`}
 		>
-			<h1 className="font-SourceSansProBold text-ink text-[2.083vw] hidden lg:flex">
+			<h1 className="font-SourceSansProBold text-neutral-g text-[2.083vw] hidden lg:flex">
 				{Title}
 			</h1>
 			<p
-				className={`font-SourceSansProSemibold text-inkLight lg:text-[1.042vw] text-[4.186vw] lg:pt-[1.094vw] text-justify lg:pb-[1.563vw] pt-[3.488vw] lg:mb-0 mb-[4.186vw] ${Text}`}
+				className={`font-SourceSansProSemibold text-neutral-e lg:text-[1.042vw] text-[4.186vw] lg:pt-[1.094vw] text-justify lg:pb-[1.563vw] pt-[3.488vw] lg:mb-0 mb-[4.186vw] ${Text}`}
 			>
 				{Description}
 			</p>

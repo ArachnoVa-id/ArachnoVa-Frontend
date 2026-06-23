@@ -14,15 +14,15 @@ export default function PortoSection() {
   }, []);
 
   return (
-    <section className="w-full lg:aspect-[1920/1312] max-lg:aspect-[430/1101] relative  flex flex-row justify-center items-center bg-page gap-y-[2.083vw]">
+    <section className="w-full lg:aspect-[1920/1312] max-lg:aspect-[430/1101] relative  flex flex-row justify-center items-center bg-white-MainPage gap-y-[2.083vw]">
       {/* Desktop */}
       <div className="flex flex-col justify-center items-center max-lg:hidden">
-        <div className="text-ink text-[2.3vw] font-SourceSansProBold flex justify-center ">
+        <div className="text-neutral-g text-[2.3vw] font-SourceSansProBold flex justify-center ">
           Our Work in Action
         </div>
         <div
           data-aos="fade-up"
-          className="text-inkLight w-[58vw] text-center text-[1vw] font-SourceSansProSemibold mt-[0.75vw] mb-[2.083vw] "
+          className="text-neutral-e w-[58vw] text-center text-[1vw] font-SourceSansProSemibold mt-[0.75vw] mb-[2.083vw] "
         >
           ArachnoVa telah berpengalaman dalam pembuatan website mencakup aspek
           Frontend, Backend, dan desain UI. Kami dengan bangga mempersembahkan
@@ -99,7 +99,7 @@ export default function PortoSection() {
             styles.ButtonShadow
           }
         >
-          <p className="font-InterBold text-[0.833vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0891B2] via-[#22D3EE] to-tealDark">
+          <p className="font-InterBold text-[0.833vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
             More Projects
           </p>
           <FaArrowRight className="text-[#24AAA7] w-[1.25vw] aspect-[1/1]" />
@@ -110,11 +110,11 @@ export default function PortoSection() {
       <div className="flex flex-col justify-center items-center lg:hidden aspect-[430/1101]">
         <div
           data-aos="fade-up"
-          className="text-ink text-[8vw] font-SourceSansProBold flex justify-center "
+          className="text-neutral-g text-[8vw] font-SourceSansProBold flex justify-center "
         >
           Our Work in Action
         </div>
-        <div className="text-inkLight w-[78vw] text-center text-[2.5vw] font-SourceSansProSemibold my-[1vw] mb-[5vw] ">
+        <div className="text-neutral-e w-[78vw] text-center text-[2.5vw] font-SourceSansProSemibold my-[1vw] mb-[5vw] ">
           ArachnoVa telah berpengalaman dalam pembuatan website mencakup aspek
           Frontend, Backend, dan desain UI. Kami dengan bangga mempersembahkan
           beberapa karya kami sebagai gambaran representatif. Berikut merupakan
@@ -192,7 +192,7 @@ export default function PortoSection() {
             styles.ButtonShadow
           }
         >
-          <p className="font-InterBold text-[2.833vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0891B2] via-[#22D3EE] to-tealDark">
+          <p className="font-InterBold text-[2.833vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
             More Projects
           </p>
           <FaArrowRight className="text-[#24AAA7] w-[1.25vw] aspect-[1/1]" />

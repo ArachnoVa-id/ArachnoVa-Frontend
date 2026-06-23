@@ -1,7 +1,7 @@
 const ServicesCTA = () => {
   return (
     <section
-      className="relative w-full flex flex-col justify-center items-center bg-page text-black
+      className="relative w-full flex flex-col justify-center items-center bg-white-MainPage text-black
                  lg:py-[4.167vw] lg:pb-[4.167vw]
                  pt-[13.488vw] pb-[21.163vw]"
     >

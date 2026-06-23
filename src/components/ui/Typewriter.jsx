@@ -33,7 +33,7 @@ export default function Typewriter({ words, className }) {
   return (
     <span className={className}>
       {displayed}
-      <span className="animate-pulse text-teal">|</span>
+      <span className="animate-pulse text-LightBlue-c">|</span>
     </span>
   );
 }

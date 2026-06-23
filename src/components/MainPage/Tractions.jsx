@@ -10,10 +10,10 @@ const tractions = [
       "Website profiling yang menyajikan informasi lengkap perusahaan, organisasi, atau institusi. Multi-page dengan navigasi profesional, cocok untuk branding dan credibility.",
     icon: (
       <svg className="w-10 h-10" viewBox="0 0 40 40" fill="none">
-        <rect x="4" y="8" width="32" height="24" rx="3" stroke="#0891B2" strokeWidth="2" fill="none" />
-        <line x1="10" y1="16" x2="22" y2="16" stroke="#0891B2" strokeWidth="2" />
-        <line x1="10" y1="22" x2="30" y2="22" stroke="#0891B2" strokeWidth="2" />
-        <line x1="10" y1="28" x2="26" y2="28" stroke="#0891B2" strokeWidth="2" />
+        <rect x="4" y="8" width="32" height="24" rx="3" stroke="#1AB0C8" strokeWidth="2" fill="none" />
+        <line x1="10" y1="16" x2="22" y2="16" stroke="#1AB0C8" strokeWidth="2" />
+        <line x1="10" y1="22" x2="30" y2="22" stroke="#1AB0C8" strokeWidth="2" />
+        <line x1="10" y1="28" x2="26" y2="28" stroke="#1AB0C8" strokeWidth="2" />
       </svg>
     ),
     link: "/services",
@@ -26,18 +26,18 @@ const tractions = [
       "Sistem terintegrasi untuk mengelola operasional bisnis: dashboard, database, inventory, hingga laporan keuangan. Solusi end-to-end untuk digitalisasi perusahaan.",
     icon: (
       <svg className="w-10 h-10" viewBox="0 0 40 40" fill="none">
-        <circle cx="12" cy="12" r="5" stroke="#0891B2" strokeWidth="2" fill="none" />
-        <circle cx="28" cy="12" r="5" stroke="#0891B2" strokeWidth="2" fill="none" />
-        <circle cx="12" cy="28" r="5" stroke="#0891B2" strokeWidth="2" fill="none" />
-        <circle cx="28" cy="28" r="5" stroke="#0891B2" strokeWidth="2" fill="none" />
-        <line x1="17" y1="12" x2="23" y2="12" stroke="#0891B2" strokeWidth="2" />
-        <line x1="12" y1="17" x2="12" y2="23" stroke="#0891B2" strokeWidth="2" />
-        <line x1="28" y1="17" x2="28" y2="23" stroke="#0891B2" strokeWidth="2" />
-        <line x1="17" y1="28" x2="23" y2="28" stroke="#0891B2" strokeWidth="2" />
+        <circle cx="12" cy="12" r="5" stroke="#1AB0C8" strokeWidth="2" fill="none" />
+        <circle cx="28" cy="12" r="5" stroke="#1AB0C8" strokeWidth="2" fill="none" />
+        <circle cx="12" cy="28" r="5" stroke="#1AB0C8" strokeWidth="2" fill="none" />
+        <circle cx="28" cy="28" r="5" stroke="#1AB0C8" strokeWidth="2" fill="none" />
+        <line x1="17" y1="12" x2="23" y2="12" stroke="#1AB0C8" strokeWidth="2" />
+        <line x1="12" y1="17" x2="12" y2="23" stroke="#1AB0C8" strokeWidth="2" />
+        <line x1="28" y1="17" x2="28" y2="23" stroke="#1AB0C8" strokeWidth="2" />
+        <line x1="17" y1="28" x2="23" y2="28" stroke="#1AB0C8" strokeWidth="2" />
       </svg>
     ),
     link: "/services",
-    gradient: "from-teal to-tealDark",
+    gradient: "from-[#1AB0C8] to-[#179FB5]",
   },
   {
     title: "WhatsApp Apps",
@@ -46,14 +46,14 @@ const tractions = [
       "Aplikasi berbasis WhatsApp API untuk automation: broadcast, chatbot, order management, CRM, dan customer service terintegrasi. Optimalkan komunikasi bisnis Anda.",
     icon: (
       <svg className="w-10 h-10" viewBox="0 0 40 40" fill="none">
-        <path d="M8 32L11 24C9 21 8 18 8 15C8 9 13 5 20 5C27 5 32 9 32 15C32 21 27 25 20 25H18L8 32Z" stroke="#0891B2" strokeWidth="2" fill="none" />
-        <circle cx="15" cy="15" r="1.5" fill="#0891B2" />
-        <circle cx="20" cy="15" r="1.5" fill="#0891B2" />
-        <circle cx="25" cy="15" r="1.5" fill="#0891B2" />
+        <path d="M8 32L11 24C9 21 8 18 8 15C8 9 13 5 20 5C27 5 32 9 32 15C32 21 27 25 20 25H18L8 32Z" stroke="#1AB0C8" strokeWidth="2" fill="none" />
+        <circle cx="15" cy="15" r="1.5" fill="#1AB0C8" />
+        <circle cx="20" cy="15" r="1.5" fill="#1AB0C8" />
+        <circle cx="25" cy="15" r="1.5" fill="#1AB0C8" />
       </svg>
     ),
     link: "/services",
-    gradient: "from-[#0891B2] to-tealDark",
+    gradient: "from-[#1AB0C8] to-[#179FB5]",
   },
 ];
 
@@ -63,16 +63,16 @@ export default function Tractions() {
   }, []);
 
   return (
-    <section className="w-full bg-page lg:py-[5.208vw] py-[13.953vw] overflow-hidden">
+    <section className="w-full bg-white-MainPage lg:py-[5.208vw] py-[13.953vw] overflow-hidden">
       <div className="flex flex-col items-center lg:gap-[3.125vw] gap-[5.581vw] lg:px-[10vw] px-[5.581vw]">
         <div data-aos="fade-down" className="text-center lg:max-w-[50vw]">
-          <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0891B2] via-[#22D3EE] to-tealDark">
+          <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
             Our Tractions
           </p>
-          <h2 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] text-ink lg:leading-[2.8vw] leading-[7.5vw] mt-[0.5vw]">
+          <h2 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] text-neutral-g lg:leading-[2.8vw] leading-[7.5vw] mt-[0.5vw]">
             Solutions We Deliver
           </h2>
-          <p className="font-SourceSansProSemibold lg:text-[1.042vw] text-[3.256vw] text-inkLight lg:mt-[1vw] mt-[3vw] lg:leading-[1.8vw] leading-[5vw]">
+          <p className="font-SourceSansProSemibold lg:text-[1.042vw] text-[3.256vw] text-neutral-e lg:mt-[1vw] mt-[3vw] lg:leading-[1.8vw] leading-[5vw]">
             Dari company profile hingga sistem enterprise dan integrasi WhatsApp — kami hadirkan solusi digital yang tepat untuk setiap kebutuhan
           </p>
         </div>
@@ -88,18 +88,18 @@ export default function Tractions() {
               <div className={`w-fit p-[0.8vw] rounded-lg bg-gradient-to-br ${item.gradient} bg-opacity-10 mb-[1.5vw]`}>
                 {item.icon}
               </div>
-              <p className="font-SourceSansProBold lg:text-[1.25vw] text-[4.186vw] text-ink">
+              <p className="font-SourceSansProBold lg:text-[1.25vw] text-[4.186vw] text-neutral-g">
                 {item.title}
               </p>
-              <p className="font-InterSemibold lg:text-[0.833vw] text-[2.791vw] text-tealDark mb-[0.8vw]">
+              <p className="font-InterSemibold lg:text-[0.833vw] text-[2.791vw] text-LightBlue-cDark mb-[0.8vw]">
                 {item.subtitle}
               </p>
-              <p className="font-SourceSansProSemibold lg:text-[0.938vw] text-[3.256vw] text-inkLight lg:leading-[1.6vw] leading-[5vw]">
+              <p className="font-SourceSansProSemibold lg:text-[0.938vw] text-[3.256vw] text-neutral-e lg:leading-[1.6vw] leading-[5vw]">
                 {item.description}
               </p>
               <a
                 href={item.link}
-                className="inline-block mt-[1.2vw] font-InterBold lg:text-[0.833vw] text-[2.791vw] text-teal hover:text-tealDark transition-colors"
+                className="inline-block mt-[1.2vw] font-InterBold lg:text-[0.833vw] text-[2.791vw] text-LightBlue-c hover:text-LightBlue-cDark transition-colors"
               >
                 Learn more →
               </a>

@@ -45,7 +45,7 @@ const FirstTouchPoint = () => {
           }
           Icon={
             <>
-              <IoCall size="1.042vw" className="text-[#0891B2]" />
+              <IoCall size="1.042vw" className="text-[#1AB0C8]" />
             </>
           }
           Position="absolute left-0 top-0 z-[10]"
@@ -64,7 +64,7 @@ const FirstTouchPoint = () => {
               </li>
             </>
           }
-          Icon={<IoChatbubbles size="1.042vw" className="text-[#0891B2]" />}
+          Icon={<IoChatbubbles size="1.042vw" className="text-[#1AB0C8]" />}
           Position="absolute top-[9.583vw] left-[13.177vw] z-[20]"
           Variant="Left"
         />
@@ -78,7 +78,7 @@ const FirstTouchPoint = () => {
               </li>
             </>
           }
-          Icon={<IoFolder size="1.042vw" className="text-[#0891B2]" />}
+          Icon={<IoFolder size="1.042vw" className="text-[#1AB0C8]" />}
           Position="absolute left-[2.969vw] bottom-0 z-[30]"
         />
       </div>
@@ -103,7 +103,7 @@ const FirstTouchPoint = () => {
           }
           Icon={
             <>
-              <IoCall size="4.186vw" className="text-[#0891B2]" />
+              <IoCall size="4.186vw" className="text-[#1AB0C8]" />
             </>
           }
         />
@@ -121,7 +121,7 @@ const FirstTouchPoint = () => {
               </li>
             </>
           }
-          Icon={<IoChatbubbles size="4.186vw" className="text-[#0891B2]" />}
+          Icon={<IoChatbubbles size="4.186vw" className="text-[#1AB0C8]" />}
           Variant="Left"
         />
         <Content
@@ -134,7 +134,7 @@ const FirstTouchPoint = () => {
               </li>
             </>
           }
-          Icon={<IoFolder size="4.186vw" className="text-[#0891B2]" />}
+          Icon={<IoFolder size="4.186vw" className="text-[#1AB0C8]" />}
         />
       </div>
     </>

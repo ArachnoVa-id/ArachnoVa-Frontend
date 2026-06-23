@@ -8,7 +8,7 @@ const cards = [
   { key: "navigation", label: "Nav Links", color: "bg-indigo-500" },
   { key: "redirects", label: "Redirects", color: "bg-red-500" },
   { key: "templates", label: "Template Categories", color: "bg-pink-500" },
-  { key: "mechanisms", label: "Mechanism Stages", color: "bg-teal-500" },
+  { key: "mechanisms", label: "Mechanism Stages", color: "bg-LightBlue-c-500" },
 ];
 
 export default function Dashboard() {

@@ -3,7 +3,7 @@ import Image from "@/components/ui/Img";
 const OptionButton = ({ _key, icon, text, selected }) => {
   const bordercolor = (key, selected) => {
     if (_key === selected) {
-      return "border-[#0891B2]";
+      return "border-[#1AB0C8]";
     } else {
       return "border-border";
     }
@@ -29,7 +29,7 @@ const OptionButton = ({ _key, icon, text, selected }) => {
         />
       </div>
       <div
-        className="font-SourceSansProBold text-ink text-nowrap
+        className="font-SourceSansProBold text-neutral-g text-nowrap
                    lg:text-[1.458vw] lg:flex
                    hidden"
       >

@@ -44,7 +44,7 @@ const FutureTouchPoints = () => {
           }
           Icon={
             <>
-              <BsBugFill size="1.042vw" className="text-[#0891B2]" />
+              <BsBugFill size="1.042vw" className="text-[#1AB0C8]" />
             </>
           }
           Position="absolute left-[3.646vw] top-0 z-[10]"
@@ -60,7 +60,7 @@ const FutureTouchPoints = () => {
             </>
           }
           Icon={
-            <FaScrewdriverWrench size="1.042vw" className="text-[#0891B2]" />
+            <FaScrewdriverWrench size="1.042vw" className="text-[#1AB0C8]" />
           }
           Position="absolute top-[9.167vw] right-0 z-[20]"
           Variant="Left"
@@ -75,7 +75,7 @@ const FutureTouchPoints = () => {
               </li>
             </>
           }
-          Icon={<FaArchive size="1.042vw" className="text-[#0891B2]" />}
+          Icon={<FaArchive size="1.042vw" className="text-[#1AB0C8]" />}
           Position="absolute right-[7.865vw] bottom-[0] z-[30]"
         />
       </div>
@@ -100,7 +100,7 @@ const FutureTouchPoints = () => {
           }
           Icon={
             <>
-              <BsBugFill size="5.581vw" className="text-[#0891B2]" />
+              <BsBugFill size="5.581vw" className="text-[#1AB0C8]" />
             </>
           }
           Variant="Left"
@@ -116,7 +116,7 @@ const FutureTouchPoints = () => {
             </>
           }
           Icon={
-            <FaScrewdriverWrench size="5.581vw" className="text-[#0891B2]" />
+            <FaScrewdriverWrench size="5.581vw" className="text-[#1AB0C8]" />
           }
         />
         <Content
@@ -129,7 +129,7 @@ const FutureTouchPoints = () => {
               </li>
             </>
           }
-          Icon={<FaArchive size="5.581vw" className="text-[#0891B2]" />}
+          Icon={<FaArchive size="5.581vw" className="text-[#1AB0C8]" />}
           Variant="Left"
         />
       </div>

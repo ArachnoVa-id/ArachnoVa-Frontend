@@ -60,16 +60,16 @@ const OurMechs = () => {
 		console.log("Future Touch Points Displayed");
 	};
 	return (
-		<section className="relative flex flex-col w-full lg:aspect-[1920/1147] max-lg:aspect-[430/3808] justify-center items-center bg-page  overflow-hidden">
+		<section className="relative flex flex-col w-full lg:aspect-[1920/1147] max-lg:aspect-[430/3808] justify-center items-center bg-white-MainPage  overflow-hidden">
 			<div className="w-[70.521vw] h-[44.792vw] hidden lg:flex flex-col gap-y-[2.083vw]">
 				<div data-aos="fade-up" className="w-[28.385vw] flex flex-col">
-					<p className="font-SourceSansProBold text-[1.042vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0891B2] via-[#22D3EE] to-tealDark">
+					<p className="font-SourceSansProBold text-[1.042vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
 						Simple Steps, Remarkable Solutions
 					</p>
-					<h1 className="font-SourceSansProBold text-[1.823vw] text-ink leading-[1.563vw] mt-[0.521vw]">
+					<h1 className="font-SourceSansProBold text-[1.823vw] text-neutral-g leading-[1.563vw] mt-[0.521vw]">
 						How Our Mechanism Can <br /> Help You Build Your Dream Website
 					</h1>
-					<p className="font-SourceSansProSemibold text-[1.042vw] text-inkLight mt-[1.042vw]">
+					<p className="font-SourceSansProSemibold text-[1.042vw] text-neutral-e mt-[1.042vw]">
 						Anda dapat membangun situs web impian Anda dengan mekanisme kami
 						yang sederhana dan efektif. Dengan beberapa langkah tersebut, Kami
 						akan mengeksekusi projects Anda secara detail dan tepat sesuai
@@ -196,13 +196,13 @@ const OurMechs = () => {
 					data-aos="fade-up"
 					className="w-[90.698vw] lg:hidden flex flex-col gap-y-[1.86vw]"
 				>
-					<p className="font-SourceSansProBold text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0891B2] via-[#22D3EE] to-tealDark">
+					<p className="font-SourceSansProBold text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
 						Simple Steps, Remarkable Solutions
 					</p>
-					<h1 className="font-SourceSansProBold text-[6.977vw] text-ink leading-[6.977vw] mt-[0.521vw]">
+					<h1 className="font-SourceSansProBold text-[6.977vw] text-neutral-g leading-[6.977vw] mt-[0.521vw]">
 						How Our Mechanism Can <br /> Help You Build Your Dream Website
 					</h1>
-					<p className="font-SourceSansProSemibold text-[4.186vw] text-inkLight mt-[1.042vw]">
+					<p className="font-SourceSansProSemibold text-[4.186vw] text-neutral-e mt-[1.042vw]">
 						Dengan ArachnoVa, Anda dapat membangun situs web impian Anda.
 						Mekanisme kami sederhana dan efektif, Anda memberi tahu kami apa
 						yang Anda inginkan, dan kami mewujudkannya
