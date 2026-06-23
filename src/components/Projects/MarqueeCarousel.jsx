@@ -28,21 +28,20 @@ export default function MarqueeCarousel({ images, direction = "left" }) {
 
   if (!images?.length) return null;
 
-  const doubled = [...images, ...images];
-
   return (
     <div className="overflow-hidden w-full">
-      <div ref={containerRef} className="flex gap-[1vw] will-change-transform" style={{ width: "max-content" }}>
-        {doubled.map((src, i) => (
+      <div ref={containerRef} className="flex gap-[0.5vw] will-change-transform" style={{ width: "max-content" }}>
+        {images.map((src, i) => (
           <div
             key={i}
-            className="flex-shrink-0 lg:w-[18vw] w-[55vw] aspect-[16/9] rounded-lg overflow-hidden border border-border shadow-sm"
+            className="flex-shrink-0 lg:w-[14vw] w-[45vw] aspect-[4/3] rounded-lg overflow-hidden border border-border shadow-sm"
           >
             <img
               src={src}
               alt=""
               className="w-full h-full object-cover"
               draggable="false"
+              loading="lazy"
             />
           </div>
         ))}
