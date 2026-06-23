@@ -10,18 +10,15 @@ export default function PricingAdmin() {
     if (pricing && !local) setLocal(JSON.parse(JSON.stringify(pricing)));
   }, [pricing]);
 
-  const update = (fn) => {
-    setLocal((prev) => {
-      const next = fn(prev);
-      setDirty(true);
-      return next;
-    });
-  };
+  const save = () => { setPricing(local); setDirty(false); };
 
-  const save = () => {
-    setPricing(local);
-    setDirty(false);
-  };
+  const update = (fn) => { setLocal((prev) => { setDirty(true); return fn(prev); }); };
+
+  const updatePlanField = (pi, field, value) => update((p) => {
+    const plans = [...p.plans];
+    plans[pi] = { ...plans[pi], [field]: value };
+    return { ...p, plans };
+  });
 
   const addRow = () => update((p) => ({
     ...p, featureRows: [...(p.featureRows || []), "New Feature"],
@@ -45,17 +42,11 @@ export default function PricingAdmin() {
     ...p, plans: p.plans.filter((_, idx) => idx !== i)
   }));
 
-  const updateCell = (planIdx, rowIdx, value) => update((p) => {
+  const updateCell = (pi, ri, value) => update((p) => {
     const plans = [...p.plans];
-    const values = [...(plans[planIdx].values || [])];
-    values[rowIdx] = value;
-    plans[planIdx] = { ...plans[planIdx], values };
-    return { ...p, plans };
-  });
-
-  const updatePlanField = (planIdx, field, value) => update((p) => {
-    const plans = [...p.plans];
-    plans[planIdx] = { ...plans[planIdx], [field]: value };
+    const values = [...(plans[pi].values || [])];
+    values[ri] = value;
+    plans[pi] = { ...plans[pi], values };
     return { ...p, plans };
   });
 
@@ -69,16 +60,40 @@ export default function PricingAdmin() {
           {dirty && <span className="text-xs text-amber-600 font-medium">Unsaved changes</span>}
           <button onClick={addRow} className="px-3 py-1.5 bg-white border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50">+ Add Row</button>
           <button onClick={addPlan} className="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700">+ Add Plan</button>
-          <button onClick={save} className={`px-4 py-1.5 text-sm rounded-lg font-medium transition ${dirty ? "bg-green-600 text-white hover:bg-green-700" : "bg-gray-100 text-gray-400 cursor-not-allowed"}`} disabled={!dirty}>
-            {dirty ? "Save Changes" : "Saved"}
-          </button>
+          <button onClick={save} className={`px-4 py-1.5 text-sm rounded-lg font-medium transition ${dirty ? "bg-green-600 text-white hover:bg-green-700" : "bg-gray-100 text-gray-400 cursor-not-allowed"}`} disabled={!dirty}>Save</button>
         </div>
       </div>
 
+      {/* CTA settings - above table, synced to columns */}
+      {local.plans?.length > 0 && (
+        <div className="mb-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
+          <p className="text-xs font-medium text-gray-500 mb-3">CTA Settings</p>
+          <div className="grid gap-3" style={{ gridTemplateColumns: `160px repeat(${local.plans.length}, 1fr)` }}>
+            <div className="text-xs text-gray-400 font-medium self-center">Button Text</div>
+            {local.plans.map((plan, pi) => (
+              <input key={pi} value={plan.ctaText || ""} onChange={(e) => updatePlanField(pi, "ctaText", e.target.value)}
+                placeholder="Btn text" className="px-2 py-1.5 text-xs border border-gray-200 rounded focus:outline-none text-center" />
+            ))}
+            <div className="text-xs text-gray-400 font-medium self-center">URL</div>
+            {local.plans.map((plan, pi) => (
+              <input key={pi} value={plan.cta || ""} onChange={(e) => updatePlanField(pi, "cta", e.target.value)}
+                placeholder="URL" className="px-2 py-1.5 text-xs font-mono border border-gray-200 rounded focus:outline-none" />
+            ))}
+            <div className="text-xs text-gray-400 font-medium self-center">Popular</div>
+            {local.plans.map((plan, pi) => (
+              <label key={pi} className="flex items-center justify-center gap-2 text-xs text-gray-500">
+                <input type="checkbox" checked={!!plan.popular} onChange={(e) => updatePlanField(pi, "popular", e.target.checked)} className="rounded" />
+                Highlight
+              </label>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Table */}
       <div className="overflow-x-auto border border-gray-200 rounded-xl shadow-sm">
         <table className="w-full text-sm">
           <thead>
-            {/* Row 1: Plan name + delete */}
             <tr className="bg-gray-50">
               <th className="text-left px-4 py-3 font-semibold text-gray-700 border-b border-r border-gray-200 min-w-[160px]">Feature</th>
               {local.plans?.map((plan, pi) => (
@@ -90,7 +105,6 @@ export default function PricingAdmin() {
                 </th>
               ))}
             </tr>
-            {/* Row 2: Price */}
             <tr className="bg-gray-50/50">
               <th className="text-left px-4 py-2 text-xs font-medium text-gray-500 border-b border-r border-gray-200">Price</th>
               {local.plans?.map((plan, pi) => (
@@ -100,26 +114,6 @@ export default function PricingAdmin() {
                       placeholder="Note" className="w-14 text-center text-[11px] text-gray-400 bg-transparent border border-gray-200 rounded px-1 focus:outline-none" />
                     <input value={plan.price} onChange={(e) => updatePlanField(pi, "price", e.target.value)}
                       className="w-20 text-center font-semibold text-gray-900 bg-transparent border-none focus:outline-none" />
-                  </div>
-                </th>
-              ))}
-            </tr>
-            {/* Row 3: Buttons + Popular */}
-            <tr className="bg-gray-50/30">
-              <th className="text-left px-4 py-2 text-xs font-medium text-gray-500 border-b border-r border-gray-200">CTA</th>
-              {local.plans?.map((plan, pi) => (
-                <th key={pi} className="px-3 py-2 border-b border-r border-gray-200 text-center">
-                  <div className="flex flex-col gap-1 items-center">
-                    <div className="flex gap-1 w-full">
-                      <input value={plan.ctaText || ""} onChange={(e) => updatePlanField(pi, "ctaText", e.target.value)}
-                        placeholder="Btn text" className="flex-1 min-w-0 px-1.5 py-1 text-[11px] border border-gray-200 rounded focus:outline-none text-center" />
-                      <input value={plan.cta || ""} onChange={(e) => updatePlanField(pi, "cta", e.target.value)}
-                        placeholder="URL" className="flex-1 min-w-0 px-1.5 py-1 text-[11px] font-mono border border-gray-200 rounded focus:outline-none" />
-                    </div>
-                    <label className="flex items-center gap-1.5 text-[11px] text-gray-500">
-                      <input type="checkbox" checked={!!plan.popular} onChange={(e) => updatePlanField(pi, "popular", e.target.checked)} className="rounded" />
-                      Highlight
-                    </label>
                   </div>
                 </th>
               ))}

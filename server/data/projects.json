@@ -1,13 +1,178 @@
 [
-  { "id": 1, "type": 2, "product": "compro", "title": "Project Alpha", "description": "Lorem ipsum dolor sit amet consectetur.", "imageDesktop": "/image/Projects/GMCODesktop.png", "imageMobile": "/image/Projects/GMCOMobile.png", "link": "https://example.com/project-alpha" },
-  { "id": 2, "type": 1, "product": "compro", "title": "Project Beta", "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit.", "imageDesktop": "/image/Projects/TsirwahDesktop.png", "imageMobile": "/image/Projects/TsirwahMobile.png", "link": "https://example.com/project-beta" },
-  { "id": 3, "type": 2, "product": "compro", "title": "Project Gamma", "description": "Ut enim ad minim veniam quis nostrud exercitation.", "imageDesktop": "/image/Projects/HMTIDesktop.png", "imageMobile": "/image/Projects/HMTIMobile.png", "link": "https://example.com/project-gamma" },
-  { "id": 4, "type": 1, "product": "compro", "title": "Project Delta", "description": "Duis aute irure dolor in reprehenderit in voluptate.", "imageDesktop": "/image/Projects/LegalKreatifDesktop.png", "imageMobile": "/image/Projects/LegalKreatifMobile.png", "link": "https://example.com/project-delta" },
-  { "id": 5, "type": 2, "product": "compro", "title": "Project Epsilon", "description": "Excepteur sint occaecat cupidatat non proident.", "imageDesktop": "/image/Projects/KMTETIDesktop.png", "imageMobile": "/image/Projects/KMTETIMobile.png", "link": "https://example.com/project-epsilon" },
-  { "id": 6, "type": 1, "product": "compro", "title": "Project Zeta", "description": "Sed ut perspiciatis unde omnis iste natus error.", "imageDesktop": "/image/Projects/TeknisiadeDesktop.png", "imageMobile": "/image/Projects/TeknisiadeMobile.png", "link": "https://example.com/project-zeta" },
-  { "id": 7, "type": 2, "product": "erp", "title": "Project Eta", "description": "Nemo enim ipsam voluptatem quia voluptas sit.", "imageDesktop": "/image/Projects/PKM_RecapingDesktop.png", "imageMobile": "/image/Projects/PKM_RecapingMobile.png", "link": "https://example.com/project-eta" },
-  { "id": 8, "type": 1, "product": "compro", "title": "Project Theta", "description": "Neque porro quisquam est qui dolorem ipsum.", "imageDesktop": "/image/Projects/BKPDesktop.png", "imageMobile": "/image/Projects/BKPMobile.png", "link": "https://example.com/project-theta" },
-  { "id": 9, "type": 2, "product": "erp", "title": "Project Iota", "description": "At vero eos et accusamus et iusto odio dignissimos.", "imageDesktop": "/image/Projects/EzParenting.png", "imageMobile": "/image/Projects/EzParentingMobile.png", "link": "https://example.com/project-iota" },
-  { "id": 10, "type": 1, "product": "erp", "title": "Project Kappa", "description": "Temporibus autem quibusdam et aut officiis debitis.", "imageDesktop": "/image/Projects/KPUFT.png", "imageMobile": "/image/Projects/KPUFTMobile.png", "link": "https://example.com/project-kappa" },
-  { "id": 11, "type": 2, "product": "compro", "title": "Project Lambda", "description": "Nam libero tempore cum soluta nobis est eligendi.", "imageDesktop": "/image/Projects/LustrumDTETIDesktop.png", "imageMobile": "/image/Projects/LustrumDTETIMobile.png", "link": "https://example.com/project-lambda" }
+  {
+    "id": 1,
+    "type": 2,
+    "product": "compro",
+    "title": "Project Alpha",
+    "description": "Lorem ipsum dolor sit amet consectetur.",
+    "imageDesktop": "/uploads/GMCODesktop.png",
+    "imageMobile": "/uploads/GMCOMobile.png",
+    "link": "https://example.com/project-alpha",
+    "desktopImages": [
+      "/uploads/GMCODesktop.png"
+    ],
+    "mobileImages": [
+      "/uploads/GMCOMobile.png"
+    ]
+  },
+  {
+    "id": 2,
+    "type": 1,
+    "product": "compro",
+    "title": "Project Beta",
+    "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+    "imageDesktop": "/uploads/TsirwahDesktop.png",
+    "imageMobile": "/uploads/TsirwahMobile.png",
+    "link": "https://example.com/project-beta",
+    "desktopImages": [
+      "/uploads/TsirwahDesktop.png"
+    ],
+    "mobileImages": [
+      "/uploads/TsirwahMobile.png"
+    ]
+  },
+  {
+    "id": 3,
+    "type": 2,
+    "product": "compro",
+    "title": "Project Gamma",
+    "description": "Ut enim ad minim veniam quis nostrud exercitation.",
+    "imageDesktop": "/uploads/HMTIDesktop.png",
+    "imageMobile": "/uploads/HMTIMobile.png",
+    "link": "https://example.com/project-gamma",
+    "desktopImages": [
+      "/uploads/HMTIDesktop.png"
+    ],
+    "mobileImages": [
+      "/uploads/HMTIMobile.png"
+    ]
+  },
+  {
+    "id": 4,
+    "type": 1,
+    "product": "compro",
+    "title": "Project Delta",
+    "description": "Duis aute irure dolor in reprehenderit in voluptate.",
+    "imageDesktop": "/uploads/LegalKreatifDesktop.png",
+    "imageMobile": "/uploads/LegalKreatifMobile.png",
+    "link": "https://example.com/project-delta",
+    "desktopImages": [
+      "/uploads/LegalKreatifDesktop.png"
+    ],
+    "mobileImages": [
+      "/uploads/LegalKreatifMobile.png"
+    ]
+  },
+  {
+    "id": 5,
+    "type": 2,
+    "product": "compro",
+    "title": "Project Epsilon",
+    "description": "Excepteur sint occaecat cupidatat non proident.",
+    "imageDesktop": "/uploads/KMTETIDesktop.png",
+    "imageMobile": "/uploads/KMTETIMobile.png",
+    "link": "https://example.com/project-epsilon",
+    "desktopImages": [
+      "/uploads/KMTETIDesktop.png"
+    ],
+    "mobileImages": [
+      "/uploads/KMTETIMobile.png"
+    ]
+  },
+  {
+    "id": 6,
+    "type": 1,
+    "product": "compro",
+    "title": "Project Zeta",
+    "description": "Sed ut perspiciatis unde omnis iste natus error.",
+    "imageDesktop": "/uploads/TeknisiadeDesktop.png",
+    "imageMobile": "/uploads/TeknisiadeMobile.png",
+    "link": "https://example.com/project-zeta",
+    "desktopImages": [
+      "/uploads/TeknisiadeDesktop.png"
+    ],
+    "mobileImages": [
+      "/uploads/TeknisiadeMobile.png"
+    ]
+  },
+  {
+    "id": 7,
+    "type": 2,
+    "product": "erp",
+    "title": "Project Eta",
+    "description": "Nemo enim ipsam voluptatem quia voluptas sit.",
+    "imageDesktop": "/uploads/PKM_RecapingDesktop.png",
+    "imageMobile": "/uploads/PKM_RecapingMobile.png",
+    "link": "https://example.com/project-eta",
+    "desktopImages": [
+      "/uploads/PKM_RecapingDesktop.png"
+    ],
+    "mobileImages": [
+      "/uploads/PKM_RecapingMobile.png"
+    ]
+  },
+  {
+    "id": 8,
+    "type": 1,
+    "product": "compro",
+    "title": "Project Theta",
+    "description": "Neque porro quisquam est qui dolorem ipsum.",
+    "imageDesktop": "/uploads/BKPDesktop.png",
+    "imageMobile": "/uploads/BKPMobile.png",
+    "link": "https://example.com/project-theta",
+    "desktopImages": [
+      "/uploads/BKPDesktop.png"
+    ],
+    "mobileImages": [
+      "/uploads/BKPMobile.png"
+    ]
+  },
+  {
+    "id": 9,
+    "type": 2,
+    "product": "erp",
+    "title": "Project Iota",
+    "description": "At vero eos et accusamus et iusto odio dignissimos.",
+    "imageDesktop": "/uploads/EzParenting.png",
+    "imageMobile": "/uploads/EzParentingMobile.png",
+    "link": "https://example.com/project-iota",
+    "desktopImages": [
+      "/uploads/EzParenting.png"
+    ],
+    "mobileImages": [
+      "/uploads/EzParentingMobile.png"
+    ]
+  },
+  {
+    "id": 10,
+    "type": 1,
+    "product": "erp",
+    "title": "Project Kappa",
+    "description": "Temporibus autem quibusdam et aut officiis debitis.",
+    "imageDesktop": "/uploads/KPUFT.png",
+    "imageMobile": "/uploads/KPUFTMobile.png",
+    "link": "https://example.com/project-kappa",
+    "desktopImages": [
+      "/uploads/KPUFT.png"
+    ],
+    "mobileImages": [
+      "/uploads/KPUFTMobile.png"
+    ]
+  },
+  {
+    "id": 11,
+    "type": 2,
+    "product": "compro",
+    "title": "Project Lambda",
+    "description": "Nam libero tempore cum soluta nobis est eligendi.",
+    "imageDesktop": "/uploads/LustrumDTETIDesktop.png",
+    "imageMobile": "/uploads/LustrumDTETIMobile.png",
+    "link": "https://example.com/project-lambda",
+    "desktopImages": [
+      "/uploads/LustrumDTETIDesktop.png"
+    ],
+    "mobileImages": [
+      "/uploads/LustrumDTETIMobile.png"
+    ]
+  }
 ]
