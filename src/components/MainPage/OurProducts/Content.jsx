@@ -47,7 +47,7 @@ const Content = ({ data, totalSlide, variant, aos }) => {
 			>
 				<BsFillCaretLeftFill
 					size={size}
-					className="text-neutral-gMuted cursor-pointer"
+					className="text-neutral-d cursor-pointer"
 					onClick={handlePrevious}
 				/>
 				<div
@@ -60,7 +60,7 @@ const Content = ({ data, totalSlide, variant, aos }) => {
 				</div>
 				<BsFillCaretRightFill
 					size={size}
-					className="text-neutral-gMuted cursor-pointer"
+					className="text-neutral-d cursor-pointer"
 					onClick={handleNext}
 				/>
 			</div>

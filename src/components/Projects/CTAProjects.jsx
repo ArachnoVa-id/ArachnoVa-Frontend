@@ -25,12 +25,12 @@ export default function CTAProjects() {
           width={1000}
           height={1000}
         />
-        <h1 className="text-surface font-SourceSansProBold text-[2.5vw] z-[2]">
+        <h1 className="text-neutral-a font-SourceSansProBold text-[2.5vw] z-[2]">
           Get Inspired? Create Yours Now!
         </h1>
         <a
           href="https://wa.me/6287882832538"
-          className="bg-black w-[13.646vw] flex text-surface justify-center items-center aspect-[262/54] z-[2] rounded-[0.260vw] font-SourceSansProSemibold mt-[1vw] text-[1.042vw] hover:bg-neutral-e duration-500"
+          className="bg-black w-[13.646vw] flex text-neutral-a justify-center items-center aspect-[262/54] z-[2] rounded-[0.260vw] font-SourceSansProSemibold mt-[1vw] text-[1.042vw] hover:bg-neutral-e duration-500"
         >
           Start Your Project
         </a>
@@ -49,17 +49,17 @@ export default function CTAProjects() {
           height={1000}
         />
         <div className="text-[7vw]/[7vw] z-[2] flex flex-col justify-center items-center mb-[10vw]">
-          <h1 className="text-surface font-SourceSansProBold">
+          <h1 className="text-neutral-a font-SourceSansProBold">
             Get Inspired?
           </h1>
-          <h1 className="text-surface font-SourceSansProBold">
+          <h1 className="text-neutral-a font-SourceSansProBold">
             Create Yours Now!
           </h1>
         </div>
 
         <a
           href="https://wa.me/6287882832538"
-          className="bg-black w-[60vw] h-[12vw] flex justify-center items-center z-[2] text-surface rounded-lg font-SourceSansProSemibold mt-[1vw] text-[5vw] hover:bg-neutral-e duration-500"
+          className="bg-black w-[60vw] h-[12vw] flex justify-center items-center z-[2] text-neutral-a rounded-lg font-SourceSansProSemibold mt-[1vw] text-[5vw] hover:bg-neutral-e duration-500"
         >
           Start Your Project
         </a>

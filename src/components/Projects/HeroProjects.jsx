@@ -32,7 +32,7 @@ const HeroProjects = () => {
       </div>
 
       <div className="text-black flex flex-col justify-center items-center  text-[2.3vw]/[2.2vw] max-lg:hidden z-[2] mb-[2.6vw] " data-aos="fade-down">
-        <div className="text-[1.6vw] font-SourceSansProBold bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] to-[#6D28D9]" > 
+        <div className="text-[1.6vw] font-SourceSansProBold bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] to-[#179FB5]" > 
           Unleashing Digital Excellence
         </div>
         <div className="text-[2.3vw] font-SourceSansProBold">
@@ -47,7 +47,7 @@ const HeroProjects = () => {
 
       {/* Mobile */}
       <div className="text-black flex flex-col justify-center items-center text-[4vw]/[6vw] mb-[10vw] lg:hidden z-[2] mt-[24.372vw]" data-aos="fade-down">
-        <div className="text-[4.186vw] font-SourceSansProBold bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] to-[#6D28D9]" >
+        <div className="text-[4.186vw] font-SourceSansProBold bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] to-[#179FB5]" >
           Unleashing Digital Excellence
         </div>
         <div className="text-[6.977vw] font-SourceSansProBold ">

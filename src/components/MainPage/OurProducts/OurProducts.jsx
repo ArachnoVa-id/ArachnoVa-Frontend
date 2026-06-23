@@ -22,7 +22,7 @@ const OurProducts = () => {
 						data-aos="fade-up"
 						className="flex flex-col w-[19vw] items-center justify-center gap-y-[0.625vw]"
 					>
-						<p className="font-SourceSansProBold text-[1.302vw] bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] via-[#A78BFA] to-[#6D28D9]">
+						<p className="font-SourceSansProBold text-[1.302vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
 							Unlocking Possibilities
 						</p>
 						<h1 className="font-SourceSansProBold text-[2.083vw] leading-[2.083vw] text-neutral-g text-center">
@@ -93,7 +93,7 @@ const OurProducts = () => {
 						data-aos="fade-up"
 						className="flex flex-col w-[62.558vw] items-center justify-center"
 					>
-						<p className="font-SourceSansProBold text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] via-[#A78BFA] to-[#6D28D9]">
+						<p className="font-SourceSansProBold text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
 							Unlocking Possibilities
 						</p>
 						<h1 className="font-SourceSansProBold text-[6.977vw] leading-[5.814vw] text-neutral-g text-center">

@@ -49,7 +49,7 @@ export default function PricingTable({ data }) {
     <section className="w-full bg-white-MainPage lg:py-[5.208vw] py-[13.953vw] overflow-hidden">
       <div className="flex flex-col items-center lg:gap-[3.125vw] gap-[5.581vw] lg:px-[10vw] px-[5.581vw]">
         <div data-aos="fade-down" className="text-center lg:max-w-[55vw]">
-          <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] via-[#A78BFA] to-[#6D28D9]">
+          <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
             {title || "Pricing"}
           </p>
           <h2 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] text-neutral-g lg:leading-[2.8vw] leading-[7.5vw] mt-[0.5vw]">
@@ -77,7 +77,7 @@ export default function PricingTable({ data }) {
                     {plan.price}
                   </p>
                   {plan.priceNote && (
-                    <p className={`lg:text-[0.73vw] font-InterSemibold ${plan.popular ? "text-white/80" : "text-neutral-gMuted"}`}>
+                    <p className={`lg:text-[0.73vw] font-InterSemibold ${plan.popular ? "text-white/80" : "text-neutral-d"}`}>
                       {plan.priceNote}
                     </p>
                   )}
@@ -109,7 +109,7 @@ export default function PricingTable({ data }) {
                 <div key={i} className="p-[1.2vw] text-center border-t border-border border-r last:border-r-0">
                   <a
                     href={plan.cta || "https://wa.me/6287882832538"}
-                    className="inline-block font-InterBold lg:text-[0.833vw] text-surface bg-gradient-to-r from-[#7C3AED] to-[#6D28D9] px-[1.5vw] py-[0.6vw] rounded-[0.4vw] hover:translate-y-[-0.15vw] transition-all duration-300"
+                    className="inline-block font-InterBold lg:text-[0.833vw] text-neutral-a bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] px-[1.5vw] py-[0.6vw] rounded-[0.4vw] hover:translate-y-[-0.15vw] transition-all duration-300"
                   >
                     {plan.ctaText || "Pilih Paket"}
                   </a>
@@ -125,7 +125,7 @@ export default function PricingTable({ data }) {
             <div key={i} data-aos="fade-up" data-aos-delay={i * 100} className={`bg-white rounded-xl border border-border p-[5.581vw] shadow-sm ${plan.popular ? "ring-2 ring-LightBlue-c" : ""}`}>
               <p className="font-SourceSansProBold text-[5vw] text-neutral-g text-center">{plan.name}</p>
               <p className="font-InterBold text-[6vw] text-LightBlue-c text-center mt-[1vw]">{plan.price}</p>
-              {plan.priceNote && <p className="text-[3vw] font-InterSemibold text-neutral-gMuted text-center">{plan.priceNote}</p>}
+              {plan.priceNote && <p className="text-[3vw] font-InterSemibold text-neutral-d text-center">{plan.priceNote}</p>}
               <div className="mt-[4vw] space-y-[2vw]">
                 {featureRows?.map((feature, ri) => (
                   <div key={ri} className="flex justify-between items-center py-[1.5vw] border-b border-border last:border-b-0">
@@ -136,7 +136,7 @@ export default function PricingTable({ data }) {
               </div>
               <a
                 href={plan.cta || "https://wa.me/6287882832538"}
-                className="block text-center font-InterBold text-[3.5vw] text-surface bg-gradient-to-r from-[#7C3AED] to-[#6D28D9] py-[2.5vw] rounded-[1.5vw] mt-[4vw]"
+                className="block text-center font-InterBold text-[3.5vw] text-neutral-a bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] py-[2.5vw] rounded-[1.5vw] mt-[4vw]"
               >
                 {plan.ctaText || "Pilih Paket"}
               </a>

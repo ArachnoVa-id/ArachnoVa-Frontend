@@ -29,8 +29,8 @@ const Footer = () => {
 							</ul>
 						</div>
 						<div className="flex flex-row items-center justify-center">
-							<AiOutlineCopyright size="0.938vw" className="text-surface" />
-							<p className="font-InterSemibold text-surface text-[0.833vw]">
+							<AiOutlineCopyright size="0.938vw" className="text-neutral-a" />
+							<p className="font-InterSemibold text-neutral-a text-[0.833vw]">
 								2024 ArachnoVa. All Rights Reserved
 							</p>
 						</div>
@@ -45,32 +45,32 @@ const Footer = () => {
 					</ul>
 				</div>
 				<div className="lg:hidden flex flex-row items-center justify-center">
-					<AiOutlineCopyright size="4.186vw" className="text-surface" />
-					<p className="font-InterSemibold text-surface text-[4.186vw]">
+					<AiOutlineCopyright size="4.186vw" className="text-neutral-a" />
+					<p className="font-InterSemibold text-neutral-a text-[4.186vw]">
 						2024 ArachnoVa. All Rights Reserved
 					</p>
 				</div>
 				<div className="flex flex-col lg:w-[5.781vw] w-[25.814vw] justify-center lg:items-end items-center gap-y-[0.417vw]">
-					<p className="font-InterBold lg:text-[0.938vw] text-[4.186vw] text-surface">
+					<p className="font-InterBold lg:text-[0.938vw] text-[4.186vw] text-neutral-a">
 						Follow Us!
 					</p>
 					<div className="w-full lg:flex flex-row justify-between hidden">
 						<a href="https://www.linkedin.com/company/arachnova-id/">
 							<FaLinkedin
 								size="1.563vw"
-								className="text-surface hover:text-neutral-gMuted transition-all duration-500 ease-in-out"
+								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
 							/>
 						</a>
 						<a href="https://www.instagram.com/arachnova.id/">
 							<AiFillInstagram
 								size="1.563vw"
-								className="text-surface hover:text-neutral-gMuted transition-all duration-500 ease-in-out"
+								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
 							/>
 						</a>
 						<a href="https://wa.me/6287882832538">
 							<PiWhatsappLogoFill
 								size="1.563vw"
-								className="text-surface hover:text-neutral-gMuted transition-all duration-500 ease-in-out"
+								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
 							/>
 						</a>
 					</div>
@@ -78,19 +78,19 @@ const Footer = () => {
 						<a href="https://www.linkedin.com/company/arachnova-id/">
 							<FaLinkedin
 								size="6.279vw"
-								className="text-surface hover:text-neutral-gMuted transition-all duration-500 ease-in-out"
+								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
 							/>
 						</a>
 						<a href="https://www.instagram.com/arachnova.id/">
 							<AiFillInstagram
 								size="6.279vw"
-								className="text-surface hover:text-neutral-gMuted transition-all duration-500 ease-in-out"
+								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
 							/>
 						</a>
 						<a href="https://wa.me/6287882832538">
 							<PiWhatsappLogoFill
 								size="7.209vw"
-								className="text-surface hover:text-neutral-gMuted transition-all duration-500 ease-in-out"
+								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
 							/>
 						</a>
 					</div>

@@ -14,9 +14,9 @@ const NavItemMobile = ({ href }) => {
 			</ul>
 			<a
 				href={href}
-				className="w-[21.395vw] h-[9.302vw] rounded-[1.86vw] flex items-center justify-center bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out"
+				className="w-[21.395vw] h-[9.302vw] rounded-[1.86vw] flex items-center justify-center bg-gradient-to-br from-[#1AB0C8] to-[#179FB5] hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out"
 			>
-				<p className="font-InterBold text-[3.256vw] text-surface">
+				<p className="font-InterBold text-[3.256vw] text-neutral-a">
 					Contact Us
 				</p>
 			</a>
