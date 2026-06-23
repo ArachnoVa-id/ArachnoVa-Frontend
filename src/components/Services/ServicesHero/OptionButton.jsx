@@ -3,7 +3,7 @@ import Image from "@/components/ui/Img";
 const OptionButton = ({ _key, icon, text, selected }) => {
   const bordercolor = (key, selected) => {
     if (_key === selected) {
-      return "border-[#1AB0C8]";
+      return "border-[#7C3AED]";
     } else {
       return "border-border";
     }

@@ -12,7 +12,7 @@ export default function ProjectCardGrid({ projects }) {
   return (
     <section className="w-full bg-white-MainPage lg:py-[5.208vw] py-[13.953vw] lg:px-[10vw] px-[5.581vw]">
       <div data-aos="fade-down" className="text-center mb-[3vw]">
-        <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+        <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] via-[#A78BFA] to-[#6D28D9]">
           Our Projects
         </p>
         <h2 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] text-neutral-g lg:leading-[2.8vw] leading-[7.5vw] mt-[0.5vw]">

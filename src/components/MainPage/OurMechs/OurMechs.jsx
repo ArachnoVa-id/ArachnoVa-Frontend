@@ -63,7 +63,7 @@ const OurMechs = () => {
 		<section className="relative flex flex-col w-full lg:aspect-[1920/1147] max-lg:aspect-[430/3808] justify-center items-center bg-white-MainPage  overflow-hidden">
 			<div className="w-[70.521vw] h-[44.792vw] hidden lg:flex flex-col gap-y-[2.083vw]">
 				<div data-aos="fade-up" className="w-[28.385vw] flex flex-col">
-					<p className="font-SourceSansProBold text-[1.042vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+					<p className="font-SourceSansProBold text-[1.042vw] bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] via-[#A78BFA] to-[#6D28D9]">
 						Simple Steps, Remarkable Solutions
 					</p>
 					<h1 className="font-SourceSansProBold text-[1.823vw] text-neutral-g leading-[1.563vw] mt-[0.521vw]">
@@ -196,7 +196,7 @@ const OurMechs = () => {
 					data-aos="fade-up"
 					className="w-[90.698vw] lg:hidden flex flex-col gap-y-[1.86vw]"
 				>
-					<p className="font-SourceSansProBold text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+					<p className="font-SourceSansProBold text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] via-[#A78BFA] to-[#6D28D9]">
 						Simple Steps, Remarkable Solutions
 					</p>
 					<h1 className="font-SourceSansProBold text-[6.977vw] text-neutral-g leading-[6.977vw] mt-[0.521vw]">

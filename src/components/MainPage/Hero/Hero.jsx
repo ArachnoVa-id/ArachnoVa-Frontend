@@ -59,7 +59,7 @@ export default function Hero() {
           <div className="py-[2vh] flex gap-[1vw]">
             <a
               href="https://wa.me/6287882832538"
-              className="aspect-[167/46] w-[8.698vw] rounded-[0.4vw] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white text-[0.8vw] flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
+              className="aspect-[167/46] w-[8.698vw] rounded-[0.4vw] bg-gradient-to-r from-[#7C3AED] to-[#6D28D9] font-InterBold text-white text-[0.8vw] flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
             >
               Start Your Project
             </a>
@@ -67,7 +67,7 @@ export default function Hero() {
               href="/services"
               className="aspect-[197/48] w-[10.26vw] rounded-[0.4vw] bg-transparent text-[0.8vw] flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out hover:bg-[#cae8ee] "
             >
-              <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold">
+              <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] to-[#6D28D9] font-InterBold">
                 Discover Our Services
               </div>
             </a>
@@ -134,12 +134,12 @@ export default function Hero() {
 
         <a
           href="https://wa.me/6287882832538"
-          className="w-[80vw] h-[8vw] mt-[4vw] my-[2.5vw] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white rounded-md text-[3vw] flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
+          className="w-[80vw] h-[8vw] mt-[4vw] my-[2.5vw] bg-gradient-to-r from-[#7C3AED] to-[#6D28D9] font-InterBold text-white rounded-md text-[3vw] flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
         >
           Start Your Project
         </a>
         <a href="/services" className="w-[80vw] h-[8vw] bg-transparent mb-[2.5vw] rounded-md text-[3vw] flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out hover:bg-[#cae8ee] ">
-          <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold">
+          <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] to-[#6D28D9] font-InterBold">
             Discover Our Services
           </div>
         </a>

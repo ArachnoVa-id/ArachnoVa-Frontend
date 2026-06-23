@@ -45,7 +45,7 @@ const AboutUs = () => {
 				className="w-fit flex flex-col items-center gap-y-[0.417vw] lg:mt-[4.271vw] mt-[15vw]"
 				data-aos="fade-down"
 			>
-				<p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] lg:leading-[1.563vw] leading-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+				<p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] lg:leading-[1.563vw] leading-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] via-[#A78BFA] to-[#6D28D9]">
 					Who We Are
 				</p>
 				<h1 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] lg:leading-[2.448vw] leading-[6.977vw] text-neutral-g">
@@ -129,7 +129,7 @@ const AboutUs = () => {
 								className="object-contain"
 							/>
 						</div>
-						<p className="font-CoolveticaReg lg:text-[2.604vw] text-[9.302vw] text-[#1AB0C8]">
+						<p className="font-CoolveticaReg lg:text-[2.604vw] text-[9.302vw] text-[#7C3AED]">
 							ARACHNOVA
 						</p>
 					</div>

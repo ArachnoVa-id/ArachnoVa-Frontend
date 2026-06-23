@@ -18,17 +18,17 @@ module.exports = {
       colors: {
         "white-MainPage": "#F8FAFC",
         "neutral-a": "#FFFFFF",
-        "neutral-b": "#CBD5E1",
+        "neutral-b": "#E2E8F0",
         "neutral-c": "#94A3B8",
         "neutral-d": "#64748B",
         "neutral-e": "#475569",
         "neutral-f": "#1E293B",
         "neutral-g": "#0F172A",
-        "LightBlue-a": "#22D3EE",
-        "LightBlue-b": "#06B6D4",
-        "LightBlue-c": "#0891B2",
-        "LightBlue-d": "#0E7490",
-        "LightBlue-e": "#155E75",
+        "LightBlue-a": "#A78BFA",
+        "LightBlue-b": "#8B5CF6",
+        "LightBlue-c": "#7C3AED",
+        "LightBlue-d": "#6D28D9",
+        "LightBlue-e": "#5B21B6",
       },
       keyframes: {
         swap_words: {

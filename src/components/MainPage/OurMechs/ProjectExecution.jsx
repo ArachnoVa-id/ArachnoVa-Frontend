@@ -40,7 +40,7 @@ const ProjectExecution = () => {
           }
           Icon={
             <>
-              <IoIosPeople size="1.542vw" className="text-[#1AB0C8]" />
+              <IoIosPeople size="1.542vw" className="text-[#7C3AED]" />
             </>
           }
           Position="absolute right-0 top-0 z-[10]"
@@ -58,7 +58,7 @@ const ProjectExecution = () => {
               </li>
             </>
           }
-          Icon={<IoIosArchive size="1.042vw" className="text-[#1AB0C8]" />}
+          Icon={<IoIosArchive size="1.042vw" className="text-[#7C3AED]" />}
           Position="absolute top-[7.604vw] -left-[1.51vw] z-[20]"
           Variant="Left"
         />
@@ -76,7 +76,7 @@ const ProjectExecution = () => {
               </li>
             </>
           }
-          Icon={<IoSettings size="1.242vw" className="text-[#1AB0C8]" />}
+          Icon={<IoSettings size="1.242vw" className="text-[#7C3AED]" />}
           Position="absolute right-[2.031vw] bottom-[2.604vw] z-[30]"
         />
       </div>
@@ -105,7 +105,7 @@ const ProjectExecution = () => {
           }
           Icon={
             <>
-              <IoIosPeople size="7.674vw" className="text-[#1AB0C8]" />
+              <IoIosPeople size="7.674vw" className="text-[#7C3AED]" />
             </>
           }
           Variant="Left"
@@ -123,7 +123,7 @@ const ProjectExecution = () => {
               </li>
             </>
           }
-          Icon={<IoIosArchive size="5.814vw" className="text-[#1AB0C8]" />}
+          Icon={<IoIosArchive size="5.814vw" className="text-[#7C3AED]" />}
         />
         <Content
           Title="Production"
@@ -139,7 +139,7 @@ const ProjectExecution = () => {
               </li>
             </>
           }
-          Icon={<IoSettings size="5.581vw" className="text-[#1AB0C8]" />}
+          Icon={<IoSettings size="5.581vw" className="text-[#7C3AED]" />}
           Variant="Left"
         />
       </div>

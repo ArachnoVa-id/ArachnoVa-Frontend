@@ -12,7 +12,7 @@ const Description = ({ Title, Description, Variant, href }) => {
 		return (
 			<a
 				href={href}
-				className="w-[77.907vw] aspect-[335/40] rounded-[1.86vw] flex lg:hidden items-center justify-center bg-gradient-to-br from-[#1AB0C8] to-[#179FB5] hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out"
+				className="w-[77.907vw] aspect-[335/40] rounded-[1.86vw] flex lg:hidden items-center justify-center bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out"
 			>
 				<p className="font-InterBold text-[3.256vw] text-surface">
 					Learn More

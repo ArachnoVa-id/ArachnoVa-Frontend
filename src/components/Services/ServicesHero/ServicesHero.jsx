@@ -62,7 +62,7 @@ const ServicesHero = () => {
                          gap-[1.163vw]"
             >
               <p
-                className="font-SourceSansProBold bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] from-[17.73%] to-[#84D4E1] to-[65.68%]
+                className="font-SourceSansProBold bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] from-[17.73%] to-[#A78BFA] to-[65.68%]
                            lg:text-[1.563vw]
                            text-[4.186vw]"
               >

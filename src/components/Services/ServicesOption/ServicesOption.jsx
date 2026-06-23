@@ -44,7 +44,7 @@ export default function ServicesOption({ data }) {
               </div>
               {featureRows?.map((feature, i) => (
                 <div key={i} className={`flex flex-col justify-center border-border font-InterSemibold lg:p-[1.667vw] lg:border-b-[0.052vw] lg:text-[0.938vw] p-[4.651vw] border-b-[0.233vw] h-[18.605vw] text-[3.256vw] ${i === 0 ? "lg:h-[6.406vw] h-[28.837vw]" : "lg:h-[4.167vw]"}`}>
-                  <div className={i === 0 ? "font-InterBold text-transparent bg-clip-text bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5] lg:text-[1.25vw] text-[4.186vw]" : ""}>
+                  <div className={i === 0 ? "font-InterBold text-transparent bg-clip-text bg-gradient-to-r from-[#7C3AED] via-[#A78BFA] to-[#6D28D9] lg:text-[1.25vw] text-[4.186vw]" : ""}>
                     {i === 0 ? "Harga" : feature}
                   </div>
                 </div>
@@ -70,7 +70,7 @@ export default function ServicesOption({ data }) {
                       )}
                     </div>
                     <div className="absolute bottom-0 w-full flex justify-center">
-                      <a href={plan.cta || "https://wa.me/6287882832538"} className="inline-block font-InterBold lg:text-[0.729vw] text-[2.5vw] text-surface bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] lg:px-[1.5vw] px-[4vw] lg:py-[0.5vw] py-[1.5vw] rounded-[0.3vw] hover:translate-y-[-0.15vw] transition-all duration-300 whitespace-nowrap">
+                      <a href={plan.cta || "https://wa.me/6287882832538"} className="inline-block font-InterBold lg:text-[0.729vw] text-[2.5vw] text-surface bg-gradient-to-r from-[#7C3AED] to-[#6D28D9] lg:px-[1.5vw] px-[4vw] lg:py-[0.5vw] py-[1.5vw] rounded-[0.3vw] hover:translate-y-[-0.15vw] transition-all duration-300 whitespace-nowrap">
                         {plan.ctaText || "Pilih Paket"}
                       </a>
                     </div>
@@ -79,7 +79,7 @@ export default function ServicesOption({ data }) {
 
                 {/* Price */}
                 <div className="flex flex-col justify-center items-center border-border lg:p-[1.667vw] lg:border-b-[0.052vw] lg:h-[6.406vw] border-b-[0.233vw] h-[28.837vw]">
-                  <div className="font-InterBold text-transparent bg-clip-text bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5] lg:text-[1.458vw] text-[4.186vw]">
+                  <div className="font-InterBold text-transparent bg-clip-text bg-gradient-to-r from-[#7C3AED] via-[#A78BFA] to-[#6D28D9] lg:text-[1.458vw] text-[4.186vw]">
                     {plan.price}
                   </div>
                   {plan.priceNote && (

@@ -99,7 +99,7 @@ export default function PortoSection() {
             styles.ButtonShadow
           }
         >
-          <p className="font-InterBold text-[0.833vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+          <p className="font-InterBold text-[0.833vw] bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] via-[#A78BFA] to-[#6D28D9]">
             More Projects
           </p>
           <FaArrowRight className="text-[#24AAA7] w-[1.25vw] aspect-[1/1]" />
@@ -192,7 +192,7 @@ export default function PortoSection() {
             styles.ButtonShadow
           }
         >
-          <p className="font-InterBold text-[2.833vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+          <p className="font-InterBold text-[2.833vw] bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] via-[#A78BFA] to-[#6D28D9]">
             More Projects
           </p>
           <FaArrowRight className="text-[#24AAA7] w-[1.25vw] aspect-[1/1]" />

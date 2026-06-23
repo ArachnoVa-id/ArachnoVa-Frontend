@@ -18,7 +18,7 @@ const ContentBox = ({ Title, Description, Background, Border, aos }) => {
 			}}
 		>
 			<h1 className="font-SourceSansProBold lg:text-[2.083vw] text-[6.047vw] text-neutral-g">
-				Our <span className="text-[#1AB0C8]">{Title}</span>
+				Our <span className="text-[#7C3AED]">{Title}</span>
 			</h1>
 			<p className="lg:w-[25.938vw] w-[79.535vw] font-SourceSansProSemibold lg:text-[1.042vw] text-[4.186vw] text-neutral-e text-justify">
 				{Description}

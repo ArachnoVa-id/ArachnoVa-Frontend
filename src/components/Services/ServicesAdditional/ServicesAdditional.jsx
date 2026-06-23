@@ -88,7 +88,7 @@ const ServicesAdditional = () => {
                   </div>
                   <a
                     href={data.demo}
-                    className="flex justify-center items-center bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] hover:scale-[115%] transition-all duration-500 ease-in-out
+                    className="flex justify-center items-center bg-gradient-to-r from-[#7C3AED] to-[#6D28D9] hover:scale-[115%] transition-all duration-500 ease-in-out
                                  lg:h-[2.396vw] lg:w-[5.938vw] lg:rounded-[0.417vw] lg:mt-0
                                  h-[9.302vw] w-[79.07vw] rounded-[1.86vw] mt-[2.791vw]"
                   >

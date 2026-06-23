@@ -26,7 +26,7 @@ const AboutUs = () => {
 					>
 						<h1 className="font-SourceSansProBold lg:text-[2.083vw] text-[6.047vw] text-neutral-g">
 							What is
-							<span className="text-[#1AB0C8]"> ArachnoVa?</span>
+							<span className="text-[#7C3AED]"> ArachnoVa?</span>
 						</h1>
 						<p className="lg:w-[25.938vw] w-[79.535vw] font-SourceSansProSemibold lg:text-[1.042vw] text-[4.186vw] text-[#606D7F] text-justify">
 							Community-based business mahasiswa DTETI UGM (Departemen Teknik
@@ -45,7 +45,7 @@ const AboutUs = () => {
 						}
 					>
 						<h1 className="font-SourceSansProBold lg:text-[2.083vw] text-[6.047vw] text-neutral-g">
-							What Are We <span className="text-[#1AB0C8]"> Capable</span> Of?
+							What Are We <span className="text-[#7C3AED]"> Capable</span> Of?
 						</h1>
 						<p className="lg:w-[25.938vw] w-[79.535vw] font-SourceSansProSemibold lg:text-[1.042vw] text-[4.186vw] text-[#606D7F] text-justify">
 							Menargetkan pembuatan berbagai jenis website seperti
@@ -66,7 +66,7 @@ const AboutUs = () => {
 						styles.ButtonShadow
 					}
 				>
-					<p className="font-InterBold lg:text-[0.833vw] text-[3.256vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+					<p className="font-InterBold lg:text-[0.833vw] text-[3.256vw] bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] via-[#A78BFA] to-[#6D28D9]">
 						Get to know more
 					</p>
 					<FaArrowRight

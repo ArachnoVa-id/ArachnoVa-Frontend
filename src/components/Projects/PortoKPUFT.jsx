@@ -49,7 +49,7 @@ export default function KPUFT() {
             berlangsung.
           </p>
           <div className="flex justify-end">
-            <a href="https://www.electionftugm.web.id/" className="w-[4.688vw] mt-[1vw] bg-gradient-to-r rounded-[0.5vw] text-[0.833vw] aspect-[90/48] from-[#1AB0C8] to-[#179FB5] font-InterBold text-white flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out ">
+            <a href="https://www.electionftugm.web.id/" className="w-[4.688vw] mt-[1vw] bg-gradient-to-r rounded-[0.5vw] text-[0.833vw] aspect-[90/48] from-[#7C3AED] to-[#6D28D9] font-InterBold text-white flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out ">
               Source
             </a>
           </div>
@@ -91,7 +91,7 @@ export default function KPUFT() {
             berlangsung.
           </p>
         </div>
-        <a href="https://www.electionftugm.web.id/" className="w-[90vw] h-[10vw] mt-[1vw] text-[3vw] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white rounded-md  flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out ">
+        <a href="https://www.electionftugm.web.id/" className="w-[90vw] h-[10vw] mt-[1vw] text-[3vw] bg-gradient-to-r from-[#7C3AED] to-[#6D28D9] font-InterBold text-white rounded-md  flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out ">
           Source
         </a>
       </div>
