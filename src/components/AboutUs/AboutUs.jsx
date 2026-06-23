@@ -4,7 +4,6 @@ import { IoIosMail } from "react-icons/io";
 import SocialMediaIcon from "./SocialMediaIcon";
 import { FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
-import ContentBox from "./ContentBox";
 import Image from "@/components/ui/Img";
 import { useEffect } from "react";
 import AOS from "aos";
@@ -20,7 +19,7 @@ const AboutUs = () => {
 	const instagram = "https://www.instagram.com/arachnova.id/";
 	const whatsapp = "https://wa.me/6287882832538";
 	const Description =
-		"Bisnis yang dibentuk dari komunitas mahasiswa Departemen Teknik Elektro dan Teknologi Informasi (DTETI) UGM hadir dengan fokus utama pada penyediaan layanan desain dan pengembangan website. ArachnoVa memiliki kompetensi dalam merancang dan mengembangkan solusi web inovatif. Melibatkan tim yang didasari dengan pengetahuan teknis seputar IT  berkomitmen untuk memberikan layanan web yang berkualitas, memberikan solusi yang kreatif, dan merespons kebutuhan  setiap klien dengan cermat dan efektif.";
+		"ArachnoVa adalah perusahaan yang berfokus pada penyediaan layanan desain dan pengembangan website profesional. Dengan tim yang memiliki kompetensi teknis mendalam di bidang teknologi informasi, kami berkomitmen untuk menghadirkan solusi web inovatif yang kreatif, responsif, dan sesuai dengan kebutuhan setiap klien.";
 	return (
 		<section className="relative w-full lg:min-h-[104.167vw] min-h-[413.256vw] flex flex-col justify-around items-center bg-white-MainPage">
 			<div className="absolute top-[4.271vw] w-full aspect-[1920/458] z-0 lg:flex hidden">
@@ -181,25 +180,7 @@ const AboutUs = () => {
 					/>
 				</div>
 			</div>
-			<div
-				data-aos="fade-up"
-				className="lg:w-[66.667vw] lg:h-fit w-[90.698vw] h-[113.767vw] flex flex-col lg:flex-row justify-between items-center lg:mb-[10vw]"
-			>
-				<ContentBox
-					Title="Vision"
-					Description="Menjadi pionir dalam penyediaan solusi layanan website inovatif dan berkualitas tinggi serta menjadi wadah kolaborasi yang menghubungkan mahasiswa dengan industri di bidang desain dan pengembangan web."
-					Background="linear-gradient(65deg, rgba(107, 179, 231, 0.50) 6.41%, rgba(209, 248, 241, 0.50) 101.04%)"
-					Border="border-[#76BDE4]"
-					aos="fade-right"
-				/>
-				<ContentBox
-					Title="Mission"
-					Description="Menawarkan layanan desain dan pengembangan web yang kreatif dengan standar tinggi dan memberikan solusi yang teliti, akurat, dan responsif terhadap kebutuhan unik setiap client."
-					Background="linear-gradient(107deg, rgba(118, 188, 239, 0.50) -5.5%, rgba(135, 213, 224, 0.50) 106.23%)"
-					Border="border-[#52CEE0]"
-					aos="fade-left"
-				/>
-			</div>
+
 		</section>
 	);
 };
