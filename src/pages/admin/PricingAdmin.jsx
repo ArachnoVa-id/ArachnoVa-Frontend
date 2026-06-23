@@ -64,29 +64,52 @@ export default function PricingAdmin() {
         </div>
       </div>
 
-      {/* CTA settings - above table, synced to columns */}
+      {/* CTA table - same column structure */}
       {local.plans?.length > 0 && (
-        <div className="mb-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
-          <p className="text-xs font-medium text-gray-500 mb-3">CTA Settings</p>
-          <div className="grid gap-3" style={{ gridTemplateColumns: `160px repeat(${local.plans.length}, 1fr)` }}>
-            <div className="text-xs text-gray-400 font-medium self-center">Button Text</div>
-            {local.plans.map((plan, pi) => (
-              <input key={pi} value={plan.ctaText || ""} onChange={(e) => updatePlanField(pi, "ctaText", e.target.value)}
-                placeholder="Btn text" className="px-2 py-1.5 text-xs border border-gray-200 rounded focus:outline-none text-center" />
-            ))}
-            <div className="text-xs text-gray-400 font-medium self-center">URL</div>
-            {local.plans.map((plan, pi) => (
-              <input key={pi} value={plan.cta || ""} onChange={(e) => updatePlanField(pi, "cta", e.target.value)}
-                placeholder="URL" className="px-2 py-1.5 text-xs font-mono border border-gray-200 rounded focus:outline-none" />
-            ))}
-            <div className="text-xs text-gray-400 font-medium self-center">Popular</div>
-            {local.plans.map((plan, pi) => (
-              <label key={pi} className="flex items-center justify-center gap-2 text-xs text-gray-500">
-                <input type="checkbox" checked={!!plan.popular} onChange={(e) => updatePlanField(pi, "popular", e.target.checked)} className="rounded" />
-                Highlight
-              </label>
-            ))}
-          </div>
+        <div className="mb-4 overflow-x-auto border border-gray-200 rounded-xl shadow-sm bg-white">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="text-left px-4 py-2.5 font-semibold text-gray-700 border-b border-r border-gray-200 min-w-[160px]">CTA Settings</th>
+                {local.plans.map((plan, pi) => (
+                  <th key={pi} className="px-3 py-2.5 border-b border-r border-gray-200 text-center min-w-[180px]">
+                    <span className="text-xs font-medium text-gray-500">{plan.name}</span>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="bg-white">
+                <td className="px-4 py-2.5 border-b border-r border-gray-200 text-xs font-medium text-gray-500">Button Text</td>
+                {local.plans.map((plan, pi) => (
+                  <td key={pi} className="px-3 py-2 border-b border-r border-gray-200 text-center">
+                    <input value={plan.ctaText || ""} onChange={(e) => updatePlanField(pi, "ctaText", e.target.value)}
+                      placeholder="Btn text" className="w-full px-2 py-1.5 text-xs border border-gray-200 rounded focus:outline-none text-center" />
+                  </td>
+                ))}
+              </tr>
+              <tr className="bg-gray-50/30">
+                <td className="px-4 py-2.5 border-b border-r border-gray-200 text-xs font-medium text-gray-500">URL</td>
+                {local.plans.map((plan, pi) => (
+                  <td key={pi} className="px-3 py-2 border-b border-r border-gray-200 text-center">
+                    <input value={plan.cta || ""} onChange={(e) => updatePlanField(pi, "cta", e.target.value)}
+                      placeholder="URL" className="w-full px-2 py-1.5 text-xs font-mono border border-gray-200 rounded focus:outline-none" />
+                  </td>
+                ))}
+              </tr>
+              <tr className="bg-white">
+                <td className="px-4 py-2.5 border-r border-gray-200 text-xs font-medium text-gray-500">Popular</td>
+                {local.plans.map((plan, pi) => (
+                  <td key={pi} className="px-3 py-2 border-r border-gray-200 text-center">
+                    <label className="inline-flex items-center gap-2 text-xs text-gray-500 cursor-pointer">
+                      <input type="checkbox" checked={!!plan.popular} onChange={(e) => updatePlanField(pi, "popular", e.target.checked)} className="rounded" />
+                      Highlight
+                    </label>
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
         </div>
       )}
 
