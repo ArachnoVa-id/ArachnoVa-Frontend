@@ -6,9 +6,16 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 
 const API_BASE = process.env.API_URL || "https://neo.arachnova.id/api";
+const API_KEY = process.env.CMS_API_KEY || "";
+
+async function headers(extra = {}) {
+  const h = { ...extra };
+  if (API_KEY) h["x-api-key"] = API_KEY;
+  return h;
+}
 
 async function apiGet(path) {
-  const res = await fetch(`${API_BASE}${path}`);
+  const res = await fetch(`${API_BASE}${path}`, { headers: await headers() });
   if (!res.ok) throw new Error(`GET ${path} failed: ${res.status}`);
   return res.json();
 }
@@ -16,7 +23,7 @@ async function apiGet(path) {
 async function apiPut(path, data) {
   const res = await fetch(`${API_BASE}${path}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
+    headers: await headers({ "Content-Type": "application/json" }),
     body: JSON.stringify(data),
   });
   if (!res.ok) throw new Error(`PUT ${path} failed: ${res.status}`);

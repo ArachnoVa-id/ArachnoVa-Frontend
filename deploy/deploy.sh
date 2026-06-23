@@ -8,6 +8,11 @@ echo "=== Updating code ==="
 cd $REPO_DIR
 git pull origin main
 
+CMS_API_KEY="${CMS_API_KEY:-$(openssl rand -hex 16)}"
+
+echo "CMS_API_KEY=$CMS_API_KEY" > $REPO_DIR/.env
+echo "VITE_CMS_API_KEY=$CMS_API_KEY" >> $REPO_DIR/.env
+
 echo "=== Installing dependencies ==="
 npm install
 
@@ -23,7 +28,7 @@ sudo ln -sf /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 
 echo "=== Setting up CMS server service ==="
-sudo tee /etc/systemd/system/arachnova-cms.service > /dev/null << 'SERVICE'
+sudo tee /etc/systemd/system/arachnova-cms.service > /dev/null << SERVICE
 [Unit]
 Description=ArachnoVa CMS API Server
 After=network.target
@@ -37,6 +42,7 @@ Restart=always
 RestartSec=5
 Environment=PORT=3001
 Environment=NODE_ENV=production
+Environment=CMS_API_KEY=$CMS_API_KEY
 
 [Install]
 WantedBy=multi-user.target

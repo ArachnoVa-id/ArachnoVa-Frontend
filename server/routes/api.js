@@ -31,6 +31,17 @@ function writeData(name, data) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
 }
 
+const API_KEY = process.env.CMS_API_KEY;
+
+function requireKey(req, res, next) {
+  if (!API_KEY) return next();
+  const provided = req.headers["x-api-key"];
+  if (!provided || provided !== API_KEY) {
+    return res.status(401).json({ error: "Unauthorized: invalid or missing API key" });
+  }
+  next();
+}
+
 export const apiRouter = Router();
 
 apiRouter.get("/health", (req, res) => {
@@ -44,7 +55,7 @@ collections.forEach((name) => {
     res.json(data);
   });
 
-  apiRouter.put(`/${name}`, (req, res) => {
+  apiRouter.put(`/${name}`, requireKey, (req, res) => {
     writeData(name, req.body);
     res.json({ ok: true, collection: name });
   });
@@ -58,7 +69,7 @@ apiRouter.get("/all", (req, res) => {
   res.json(all);
 });
 
-apiRouter.put("/all", (req, res) => {
+apiRouter.put("/all", requireKey, (req, res) => {
   Object.keys(req.body).forEach((name) => {
     if (collections.includes(name)) {
       writeData(name, req.body[name]);

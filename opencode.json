@@ -6,7 +6,8 @@
       "command": ["node", "mcp/index.js"],
       "enabled": true,
       "env": {
-        "API_URL": "https://neo.arachnova.id/api"
+        "API_URL": "https://neo.arachnova.id/api",
+        "CMS_API_KEY": "${CMS_API_KEY}"
       }
     }
   }

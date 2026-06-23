@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 
 const API_BASE = import.meta.env.VITE_API_URL || "";
+const ENV_API_KEY = import.meta.env.VITE_CMS_API_KEY || "";
 
 const DataContext = createContext(null);
 
@@ -18,6 +19,13 @@ const defaults = {
   templates: [],
 };
 
+function authHeaders() {
+  const key = sessionStorage.getItem("cms_api_key") || ENV_API_KEY;
+  const h = { "Content-Type": "application/json" };
+  if (key) h["x-api-key"] = key;
+  return h;
+}
+
 export function DataProvider({ children }) {
   const [data, setData] = useState(defaults);
   const [loading, setLoading] = useState(true);
@@ -25,7 +33,9 @@ export function DataProvider({ children }) {
 
   const fetchAll = useCallback(async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/all`);
+      const res = await fetch(`${API_BASE}/api/all`, {
+        headers: authHeaders(),
+      });
       if (!res.ok) throw new Error("API unavailable");
       const json = await res.json();
       setData((prev) => ({ ...prev, ...json }));
@@ -45,7 +55,7 @@ export function DataProvider({ children }) {
     try {
       await fetch(`${API_BASE}/api/${collection}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: authHeaders(),
         body: JSON.stringify(value),
       });
     } catch {
@@ -56,6 +66,7 @@ export function DataProvider({ children }) {
   const login = useCallback((password) => {
     if (password === "arachnova2024") {
       sessionStorage.setItem("cms_auth", "true");
+      sessionStorage.setItem("cms_api_key", password);
       setAuth(true);
       return true;
     }
@@ -64,6 +75,7 @@ export function DataProvider({ children }) {
 
   const logout = useCallback(() => {
     sessionStorage.removeItem("cms_auth");
+    sessionStorage.removeItem("cms_api_key");
     setAuth(false);
   }, []);
 
