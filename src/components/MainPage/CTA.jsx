@@ -29,7 +29,7 @@ export default function CTA() {
 					<p>Let&apos;s Start Crafting Your Website Today</p>
 				</div>
 				<a
-					href="https://wa.me/6287785917029"
+					href="https://wa.me/6287882832538"
 					data-aos="fade-up"
 					className="bg-black w-[13.646vw] text-white aspect-[262/54] flex justify-center items-center rounded-[0.260vw] font-SourceSansProSemibold mt-[3vw] text-[1.042vw] hover:bg-neutral-e duration-500"
 				>
@@ -47,7 +47,7 @@ export default function CTA() {
 					<p>Let&apos;s Start Crafting Your Website Today</p>
 				</div>
 				<a
-					href="https://wa.me/6287785917029"
+					href="https://wa.me/6287882832538"
 					data-aos="fade-up"
 					className="bg-black w-[53.256vw] aspect-[229/49] text-white rounded-lg flex justify-center items-center font-SourceSansProSemibold mt-[8vw] text-[4.5vw] hover:bg-neutral-e duration-500"
 				>

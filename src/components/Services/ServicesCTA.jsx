@@ -32,7 +32,7 @@ const ServicesCTA = () => {
           </div>
         </div>
         <a
-          href="https://wa.me/6287785917029"
+          href="https://wa.me/6287882832538"
           className="flex justify-center items-center bg-black hover:scale-[110%] transition-all duration-500 ease-in-out
                      lg:w-[13.646vw] lg:h-[2.813vw] lg:rounded-[0.26vw] lg:hover:translate-y-[-0.282vw]
                      w-[53.256vw] h-[11.395vw] rounded-[1.163vw] hover:translate-y-[-1.1395vw]"

@@ -2,6 +2,7 @@ import Image from "@/components/ui/Img";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Typewriter from "@/components/ui/Typewriter";
 
 export default function Hero() {
   useEffect(() => {
@@ -34,19 +35,12 @@ export default function Hero() {
           </div>
           <div className="text-neutral-g font-SourceSansProBold text-[2vw]/[2.5vw]">
             <div className="text-[2vw] ">Your Web Design Partner</div>
-            <div className="overflow-clip  flex items-center justify-center h-[3.0vw] gap-[0.5vw] leading-none">
+            <div className="flex items-center h-[3.0vw] gap-[0.5vw] leading-none">
               <div className="text-[2.8vw]">Always</div>
-              <div className="flex-col items-center justify-center  gap-[4vw] h-full w-full -translate-y-full  ">
-                <div className="text-[2.8vw] animate-swap_words pt-[0.2vw]">
-                  Delivered
-                </div>
-                <div className="text-[2.8vw] animate-swap_words pt-[0.1vw]">
-                  Distinctive
-                </div>
-                <div className="text-[2.8vw] animate-swap_words ">
-                  Dependable
-                </div>
-              </div>
+              <Typewriter
+                words={["Delivered", "Distinctive", "Dependable"]}
+                className="text-[2.8vw] text-LightBlue-c"
+              />
             </div>
           </div>
           <div className="text-[1vw] text-[#4E5F66] pt-[1.1vw] font-SourceSansProSemibold ">
@@ -54,7 +48,7 @@ export default function Hero() {
           </div>
           <div className="py-[2vh] flex gap-[1vw]">
             <a
-              href="https://wa.me/6287785917029"
+              href="https://wa.me/6287882832538"
               className="aspect-[167/46] w-[8.698vw] rounded-[0.4vw] bg-gradient-to-r from-[#2DC0D8] to-[#179FB5] font-InterBold text-white text-[0.8vw] flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
             >
               Start Your Project
@@ -149,13 +143,12 @@ export default function Hero() {
 
         <div className="text-neutral-g items-center justify-center font-SourceSansProBold text-[2vw]/[6vw]">
           <div className="text-[7vw] mx-[5vw]   ">Your Web Design Partner</div>
-          <div className="overflow-clip  flex items-center justify-center h-[9.8vw] gap-[2vw]  leading-none">
+          <div className="flex items-center justify-center h-[9.8vw] gap-[2vw] leading-none">
             <div className="text-[9.8vw]">Always</div>
-            <div className="flex-col gap-[4vw] text-[9.8vw] gap-y-[2vw] ">
-              <div className=" animate-swap_words ">Delivered</div>
-              <div className=" animate-swap_words">Distinctive</div>
-			  <div className=" animate-swap_words ">Dependable</div>
-            </div>
+            <Typewriter
+              words={["Delivered", "Distinctive", "Dependable"]}
+              className="text-[9.8vw] text-LightBlue-c"
+            />
           </div>
         </div>
 
@@ -165,7 +158,7 @@ export default function Hero() {
         </div>
 
         <a
-          href="https://wa.me/6287785917029"
+          href="https://wa.me/6287882832538"
           className="w-[80vw] h-[8vw] mt-[4vw] my-[2.5vw] bg-gradient-to-r from-[#2DC0D8] to-[#179FB5] font-InterBold text-white rounded-md text-[3vw] flex justify-center items-center hover:translate-y-[-0.208vw] transition-all duration-500 ease-in-out "
         >
           Start Your Project

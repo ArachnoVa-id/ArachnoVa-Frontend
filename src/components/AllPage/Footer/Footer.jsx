@@ -67,7 +67,7 @@ const Footer = () => {
 								className="text-neutral-a hover:text-neutral-c transition-all duration-500 ease-in-out"
 							/>
 						</a>
-						<a href="https://wa.me/6287785917029">
+						<a href="https://wa.me/6287882832538">
 							<PiWhatsappLogoFill
 								size="1.563vw"
 								className="text-neutral-a hover:text-neutral-c transition-all duration-500 ease-in-out"
@@ -87,7 +87,7 @@ const Footer = () => {
 								className="text-neutral-a hover:text-neutral-c transition-all duration-500 ease-in-out"
 							/>
 						</a>
-						<a href="https://wa.me/6287785917029">
+						<a href="https://wa.me/6287882832538">
 							<PiWhatsappLogoFill
 								size="7.209vw"
 								className="text-neutral-a hover:text-neutral-c transition-all duration-500 ease-in-out"

@@ -18,7 +18,7 @@ const AboutUs = () => {
 	}, []);
 	const email = "mailto:arachnova.id@gmail.com";
 	const instagram = "https://www.instagram.com/arachnova.id/";
-	const whatsapp = "https://wa.me/6287785917029";
+	const whatsapp = "https://wa.me/6287882832538";
 	const Description =
 		"Bisnis yang dibentuk dari komunitas mahasiswa Departemen Teknik Elektro dan Teknologi Informasi (DTETI) UGM hadir dengan fokus utama pada penyediaan layanan desain dan pengembangan website. ArachnoVa memiliki kompetensi dalam merancang dan mengembangkan solusi web inovatif. Melibatkan tim yang didasari dengan pengetahuan teknis seputar IT  berkomitmen untuk memberikan layanan web yang berkualitas, memberikan solusi yang kreatif, dan merespons kebutuhan  setiap klien dengan cermat dan efektif.";
 	return (
