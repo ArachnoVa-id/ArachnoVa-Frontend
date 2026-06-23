@@ -1,0 +1,11 @@
+{
+  "name": "arachnova-cms-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "MCP server for ArachnoVa CMS API",
+  "main": "index.js",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.13.0"
+  }
+}

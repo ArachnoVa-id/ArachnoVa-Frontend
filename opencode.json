@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "arachnova-cms": {
+      "type": "local",
+      "command": ["node", "mcp/index.js"],
+      "enabled": true,
+      "env": {
+        "API_URL": "https://neo.arachnova.id/api"
+      }
+    }
+  }
+}
