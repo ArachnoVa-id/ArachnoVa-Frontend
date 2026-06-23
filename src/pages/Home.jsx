@@ -31,14 +31,16 @@ export default function Home() {
       <PricingTable data={pricing} />
 
       {/* Projects carousel */}
-      <section className="w-full bg-white-MainPage lg:pt-[5.208vw] pt-[13.953vw] lg:pb-[3vw] pb-[8vw] overflow-hidden">
-        <div data-aos="fade-down" className="text-center mb-[2.5vw] lg:px-[10vw] px-[5.581vw]">
-          <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0893D4] via-[#44C4D9] to-[#159E8D]">
-            Our Creations
-          </p>
-          <h2 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] text-neutral-g lg:leading-[2.8vw] leading-[7.5vw] mt-[0.5vw]">
-            A Glimpse of What We Build
-          </h2>
+      <section className="relative w-full bg-white-MainPage lg:pt-[12vw] pt-[35vw] lg:pb-[3vw] pb-[8vw] overflow-hidden">
+        <div className="absolute inset-0 z-10 flex items-start justify-center lg:pt-[4vw] pt-[10vw] pointer-events-none">
+          <div className="text-center lg:px-[10vw] px-[5.581vw] bg-white/80 lg:py-[1.5vw] py-[3vw] lg:px-[3vw] px-[5vw] rounded-xl backdrop-blur-sm">
+            <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#0893D4] via-[#44C4D9] to-[#159E8D]">
+              Our Creations
+            </p>
+            <h2 className="font-SourceSansProBold lg:text-[2.396vw] text-[6.977vw] text-neutral-g lg:leading-[2.8vw] leading-[7.5vw] mt-[0.5vw]">
+              A Glimpse of What We Build
+            </h2>
+          </div>
         </div>
 
         <div className="flex flex-col gap-[1.5vw]">
