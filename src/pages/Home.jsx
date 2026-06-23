@@ -1,8 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { useCollection } from "@/context/DataContext";
 import Hero from "@/components/MainPage/Hero/Hero";
-import ServicesOption from "@/components/Services/ServicesOption/ServicesOption";
 import PortoSection from "@/components/MainPage/PortoSection";
+import ServicesOption from "@/components/Services/ServicesOption/ServicesOption";
 import CTA from "@/components/MainPage/CTA";
 
 export default function Home() {
@@ -15,8 +15,11 @@ export default function Home() {
         <title>ArachnoVa</title>
       </Helmet>
       <Hero />
-      <ServicesOption data={pricing} />
+      <div className="w-full lg:h-[0.052vw] h-[0.233vw] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />
       <PortoSection projects={projects} />
+      <div className="w-full lg:h-[0.052vw] h-[0.233vw] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />
+      <ServicesOption data={pricing} />
+      <div className="w-full lg:h-[0.052vw] h-[0.233vw] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />
       <CTA />
     </>
   );
