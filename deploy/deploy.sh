@@ -40,7 +40,7 @@ WorkingDirectory=/var/www/neo.arachnova.id
 ExecStart=/usr/bin/node server/index.js
 Restart=always
 RestartSec=5
-Environment=PORT=3002
+Environment=PORT=3006
 Environment=NODE_ENV=production
 Environment=CMS_API_KEY=$CMS_API_KEY
 
