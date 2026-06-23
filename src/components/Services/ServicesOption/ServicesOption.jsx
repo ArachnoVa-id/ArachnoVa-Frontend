@@ -258,8 +258,8 @@ const ServicesOption = () => {
                 <div className="w-full h-full relative">
                   <div
                     className="flex flex-col justify-center items-center relative
-                             lg:gap-0
-                             gap-[0.93vw]"
+                               lg:gap-0
+                               gap-[0.93vw]"
                   >
                     <div
                       className="font-SourceSansProBold text-center text-neutral-g
@@ -302,8 +302,8 @@ const ServicesOption = () => {
                   Rp 1.100.000
                   <div
                     className="flex justify-center items-center font-InterSemibold text-neutral-d text-center
-                             lg:text-[0.833vw] lg:h-[1.823vw]
-                             text-[2.791vw] h-auto"
+                               lg:text-[0.833vw] lg:h-[1.823vw]
+                               text-[2.791vw] h-auto"
                   >
                     Harga tergantung jumlah page
                   </div>
@@ -369,8 +369,8 @@ const ServicesOption = () => {
             </div>
             <div
               className="flex flex-col border-[#E2E8F0] relative
-                       lg:border-r-[0.052vw] lg:w-[18.75vw]
-                       border-r-[0.233vw] w-[31.628vw]"
+                       lg:w-[18.75vw]
+                       w-[31.628vw]"
             >
               <div
                 className="flex flex-col items-center border-[#E2E8F0] relative
@@ -380,8 +380,8 @@ const ServicesOption = () => {
                 <div className="w-full h-full relative">
                   <div
                     className="flex flex-col justify-center items-center relative
-                             lg:gap-0
-                             gap-[0.93vw]"
+                               lg:gap-0
+                               gap-[0.93vw]"
                   >
                     <div
                       className="font-SourceSansProBold text-center text-neutral-g
@@ -407,7 +407,8 @@ const ServicesOption = () => {
               <div
                 className="flex flex-col justify-center items-center border-[#E2E8F0]
                          lg:p-[1.667vw] lg:border-b-[0.052vw] lg:h-[6.406vw]
-                         border-b-[0.233vw] h-[28.837vw] "
+                         border-b-[0.233vw] h-[28.837vw]
+                         "
               >
                 <div
                   className="font-InterBold text-transparent bg-clip-text bg-gradient-to-r from-[#0893D4] via-[#44C4D9] to-[#159E8D]
@@ -447,20 +448,18 @@ const ServicesOption = () => {
               </div>
               <div
                 className="flex flex-col justify-center items-center border-[#E2E8F0] font-InterSemibold
-                         lg:p-[1.667vw] lg:border-b-[0.052vw] lg:h-[4.167vw] lg:text-[0.938vw]
-                         border-b-[0.233vw] h-[18.605vw] text-[3.256vw]"
-              >
-              </div>
+                          lg:p-[1.667vw] lg:border-b-[0.052vw] lg:h-[4.167vw] lg:text-[0.938vw]
+                          border-b-[0.233vw] h-[18.605vw] text-[3.256vw]"
+              ></div>
               <div
                 className="flex flex-col justify-center items-center border-[#E2E8F0] font-InterSemibold
-                         lg:p-[1.667vw] lg:border-b-[0.052vw] lg:h-[4.167vw] lg:text-[0.938vw]
-                         border-b-[0.233vw] h-[18.605vw] text-[3.256vw]"
-              >
-              </div>
+                          lg:p-[1.667vw] lg:border-b-[0.052vw] lg:h-[4.167vw] lg:text-[0.938vw]
+                          border-b-[0.233vw] h-[18.605vw] text-[3.256vw]"
+              ></div>
               <div
                 className="flex flex-col justify-center items-center border-[#E2E8F0] font-InterSemibold text-center
-                         lg:p-[1.667vw] lg:border-b-[0.052vw] lg:h-[4.167vw] lg:text-[0.938vw]
-                         border-b-[0.233vw] h-[18.605vw] text-[3.256vw]"
+                          lg:p-[1.667vw] lg:border-b-[0.052vw] lg:h-[4.167vw] lg:text-[0.938vw]
+                          border-b-[0.233vw] h-[18.605vw] text-[3.256vw]"
               >
                 Desain dan Layout Unik
               </div>
@@ -468,12 +467,36 @@ const ServicesOption = () => {
                 className="flex flex-col justify-center items-center border-[#E2E8F0] font-InterSemibold
                          lg:p-[1.667vw] lg:border-b-[0.052vw] lg:h-[4.167vw] lg:text-[0.938vw]
                          h-[18.605vw] text-[3.256vw]"
-              >
-              </div>
+              ></div>
             </div>
           </div>
         </div>
+        <a
+          href="https://wa.me/6287882832538"
+          data-aos="fade-up"
+          className="group flex justify-center items-center text-transparent bg-clip-text bg-gradient-to-r from-[#0893D4] hover:from-[#159E8D] via-[#44C4D9] hover:via-[#0893D4] to-[#159E8D] hover:to-[#44C4D9] *:transition-all duration-[5000] ease-in-out
+                     lg:w-[8.75vw] lg:h-[2.396vw] lg:gap-[0.417vw]
+                     w-[32.558vw] h-[9.302vw] gap-[1.86vw]"
+        >
+          <p
+            className="font-InterSemibold
+                       lg:text-[0.833vw] lg:group-hover:text-[0.9163vw]
+                       text-[3.256vw] group-hover:text-[3.721vw]"
+          >
+            Talk With Us{" "}
+          </p>
+          <IoMdArrowRoundBack
+            className="text-[#24AAA7] group-hover:text-[#20d2ed] group-hover:scale-[-110%] scale-x-[-100%]
+                       lg:text-[1.25vw] lg:group-hover:text-[1.375vw]
+                       text-[3.953vw] group-hover:text-[4.651vw]"
+          />
+        </a>
       </div>
+      <div
+        className="absolute bottom-0 w-full bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]
+                   lg:h-[0.052vw]
+                   h-[0.233vw]"
+      ></div>
     </section>
   );
 };
