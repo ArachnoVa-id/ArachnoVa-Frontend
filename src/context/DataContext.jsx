@@ -37,11 +37,13 @@ export function DataProvider({ children }) {
   const fetchAll = useCallback(async () => {
     try {
       const res = await fetch(`${API_BASE}/api/all`);
-      if (!res.ok) throw new Error("API unavailable");
+      console.log("CMS API response status:", res.status);
+      if (!res.ok) throw new Error(`API unavailable (${res.status})`);
       const json = await res.json();
+      console.log("CMS API projects count:", json?.projects?.length);
       setData((prev) => ({ ...prev, ...json }));
-    } catch {
-      console.warn("CMS API unavailable, using default data");
+    } catch (e) {
+      console.warn("CMS API unavailable, using default data:", e.message);
     } finally {
       setLoading(false);
     }
