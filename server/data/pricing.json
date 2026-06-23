@@ -1,0 +1,48 @@
+{
+  "title": "Choose Your Services",
+  "subtitle": "Kami menawarkan berbagai pilihan paket dengan fitur dan harga yang berbeda sehingga dapat menemukan solusi yang tepat untuk Anda.",
+  "packages": [
+    {
+      "name": "Landing Page",
+      "subtitle": "Laman utama yang untuk memperkenalkan produk atau identitas yang memaparkan informasi spesifik",
+      "price": "Rp 475.000",
+      "priceNote": null,
+      "features": {
+        "pages": "1-2 Pages",
+        "sections": "4-12",
+        "estimatedTime": "3-10 Hari",
+        "adminConfig": false,
+        "customization": "Desain unik / Layout template",
+        "extension": "+25K untuk tiap section tambahan"
+      }
+    },
+    {
+      "name": "ComPro",
+      "subtitle": "Website yang menyajikan informasi perusahaan/organisasi, visi, misi, layanan, dan kontak.",
+      "price": "Rp 1.100.000",
+      "priceNote": "Start from",
+      "features": {
+        "pages": "3-6 Pages",
+        "sections": "15-25",
+        "estimatedTime": "14-28 Hari",
+        "adminConfig": true,
+        "customization": "Desain unik / Layout opsional",
+        "extension": "+125K untuk tiap page tambahan"
+      }
+    },
+    {
+      "name": "Custom",
+      "subtitle": "Website yang dirancang sesuai dengan kebutuhan spesifik client dengan fitur yang lebih kompleks",
+      "price": "Custom",
+      "priceNote": null,
+      "features": {
+        "pages": "Unlimited",
+        "sections": "Unlimited",
+        "estimatedTime": "",
+        "adminConfig": null,
+        "customization": "Desain dan Layout Unik",
+        "extension": ""
+      }
+    }
+  ]
+}

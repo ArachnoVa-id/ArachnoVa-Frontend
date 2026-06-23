@@ -1,0 +1,19 @@
+{
+  "navLinks": [
+    { "label": "Projects", "href": "/projects" },
+    { "label": "Services", "href": "/services" },
+    { "label": "About", "href": "/aboutus" }
+  ],
+  "socialLinks": [
+    { "platform": "email", "href": "mailto:arachnova.id@gmail.com", "icon": "IoIosMail" },
+    { "platform": "instagram", "href": "https://www.instagram.com/arachnova.id/", "icon": "FaInstagram" },
+    { "platform": "whatsapp", "href": "https://wa.me/6287785917029", "icon": "FaWhatsapp" },
+    { "platform": "linkedin", "href": "https://www.linkedin.com/company/arachnova-id/", "icon": "FaLinkedin" }
+  ],
+  "footer": {
+    "copyright": "2024 ArachnoVa. All Rights Reserved",
+    "followText": "Follow Us!"
+  },
+  "contactWhatsApp": "https://wa.me/6287785917029",
+  "contactEmail": "arachnova.id@gmail.com"
+}

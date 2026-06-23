@@ -1,0 +1,11 @@
+{
+  "brand": "ArachnoVa",
+  "tagline": "Your Web Design Partner",
+  "animatedWords": ["Delivered", "Distinctive", "Dependable"],
+  "subtitle": "Crafting Digital Presence in Every Strand of Code",
+  "ctaPrimary": { "text": "Start Your Project", "href": "https://wa.me/6287785917029" },
+  "ctaSecondary": { "text": "Discover Our Services", "href": "/services" },
+  "backgroundDesktop": "/image/Hero/HeroBG.png",
+  "backgroundMobile": "/image/Hero/HeroBGMobile.png",
+  "codeSnippetImage": "/image/Hero/3ColorButton.png"
+}

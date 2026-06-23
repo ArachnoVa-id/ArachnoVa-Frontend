@@ -11,7 +11,7 @@ git pull origin main
 echo "=== Installing dependencies ==="
 npm install
 
-echo "=== Building ==="
+echo "=== Building frontend ==="
 npm run build
 
 echo "=== Setting up SSL ==="
@@ -22,5 +22,31 @@ sudo cp $REPO_DIR/deploy/neo.arachnova.id.nginx /etc/nginx/sites-available/$DOMA
 sudo ln -sf /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 
+echo "=== Setting up CMS server service ==="
+sudo tee /etc/systemd/system/arachnova-cms.service > /dev/null << 'SERVICE'
+[Unit]
+Description=ArachnoVa CMS API Server
+After=network.target
+
+[Service]
+Type=simple
+User=adminlpbuilder
+WorkingDirectory=/var/www/neo.arachnova.id
+ExecStart=/usr/bin/node server/index.js
+Restart=always
+RestartSec=5
+Environment=PORT=3001
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
+SERVICE
+
+sudo systemctl daemon-reload
+sudo systemctl enable arachnova-cms
+sudo systemctl restart arachnova-cms
+
 echo "=== Deployment complete! ==="
 echo "https://$DOMAIN"
+echo "Admin: https://$DOMAIN/admin"
+echo "Password: arachnova2024"
