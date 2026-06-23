@@ -129,7 +129,7 @@ export default function PortoSection({ projects }) {
 
       {/* Mobile */}
       <div className="flex flex-col justify-center items-center lg:hidden w-full pt-[25vw] pb-[10vw] px-[5.581vw]">
-        <div className="text-neutral-g text-[8vw] font-SourceSansProBold text-center">Our Work in Action</div>
+        <div className="text-neutral-g text-[8vw] font-SourceSansProBold text-center">Our Tractions</div>
         <p className="text-neutral-e text-[3vw] text-center font-SourceSansProSemibold my-[3vw]">
           ArachnoVa telah berpengalaman dalam pembuatan website mencakup aspek Frontend, Backend, dan desain UI.
         </p>
