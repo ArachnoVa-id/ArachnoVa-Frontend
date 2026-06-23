@@ -75,7 +75,7 @@ export default function Hero() {
         <div className="aspect-[537/366] w-[27.969vw] border-2 border-[#F1F5F9] rounded-[0.625vw]  relative font-ConsolasRegular ">
           <div className="bg-white opacity-60 w-full h-full absolute rounded-[0.625vw] backdrop-blur-3xl"></div>
           <div
-            className="absolute aspect-[419/96] w-[21.823vw] bg-white opacity-90 rounded-[0.625vw] -bottom-[3vw] -right-[4vw] text-[1vw]  flex justify-center items-center border-2 border-[#E2E8F0] font-ConsolasBold"
+            className="absolute aspect-[419/96] w-[21.823vw] bg-white opacity-90 rounded-[0.625vw] -bottom-[3vw] -right-[4vw] text-[1vw]  flex items-center border-2 border-[#E2E8F0] font-ConsolasBold"
             data-aos="fade-left"
           >
             <Image
@@ -86,7 +86,7 @@ export default function Hero() {
               width={100}
               height={100}
             />
-            <div className="flex gap-x-[0.1vw] pt-[1vw] whitespace-nowrap">
+            <div className="flex gap-x-[0.1vw] pt-[1vw] whitespace-nowrap ml-[0.8vw]">
               <TerminalTyper speed={60} />
             </div>
           </div>
@@ -152,7 +152,7 @@ export default function Hero() {
               width={100}
               height={100}
             />
-            <div className="flex justify-center items-center text-[2.6vw] gap-x-[.05vw] pt-[5vw] whitespace-nowrap">
+            <div className="flex items-center text-[2.6vw] gap-x-[.05vw] pt-[5vw] whitespace-nowrap ml-[2vw]">
               <TerminalTyper speed={80} />
             </div>
           </div>
