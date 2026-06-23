@@ -1,22 +1,10 @@
 const data = [
   {
     key: 1,
-    icon: "/image/OurServices/ServicesHero/icon-landingpage.png",
-    title: "Landing Page",
-    description:
-      "Jenis website dengan page tunggal untuk mengarahkan pengunjung pada informasi yang ingin disampaikan pemilik website secara spesifik seperti mempromosikan kegiatan/produk, pemberian kontak person dan lain-lain.",
-    image: [
-      "/image/OurProducts/LandingPage-1.png",
-      "/image/OurProducts/LandingPage-2.png",
-      "/image/OurProducts/LandingPage-3.png",
-    ],
-  },
-  {
-    key: 2,
     icon: "/image/OurServices/ServicesHero/icon-profilingpage.png",
     title: "Company Profile",
     description:
-      "Website Profiling memberikan informasi menyeluruh tentang organisasi atau event melalui beberapa halaman, memungkinkan pengunjung untuk dengan mudah menavigasi situs dan memperoleh detail informasi mendetail.",
+      "Website profiling yang menyajikan informasi lengkap perusahaan, organisasi, atau institusi. Multi-page dengan navigasi profesional, cocok untuk branding dan credibility. Menampilkan profil, visi misi, layanan, portofolio, dan kontak dalam satu platform yang elegan.",
     image: [
       "/image/OurProducts/KMTETI1.png",
       "/image/OurProducts/KMTETI2.png",
@@ -27,15 +15,27 @@ const data = [
     ],
   },
   {
-    key: 3,
+    key: 2,
     icon: "/image/OurServices/ServicesHero/icon-customweb.png",
-    title: "Custom Web",
+    title: "ERP",
     description:
-      "Website yang memiliki kapabilitas melakukan hal yang lebih kompleks untuk keperluan client seperti pembentukan dashboard profesional, sistem registrasi dalam platform dan beberapa fitur yang memerlukan database.",
+      "Sistem terintegrasi untuk mengelola operasional bisnis secara end-to-end. Meliputi dashboard manajemen, database inventory, laporan keuangan, manajemen SDM, dan modul-modul khusus sesuai kebutuhan enterprise Anda.",
     image: [
       "/image/OurProducts/TropoTable.svg",
       "/image/OurProducts/TropoRegis.svg",
       "/image/OurProducts/CustomWeb-1.png",
+    ],
+  },
+  {
+    key: 3,
+    icon: "/image/OurServices/ServicesHero/icon-landingpage.png",
+    title: "WhatsApp Apps",
+    description:
+      "Aplikasi berbasis WhatsApp API untuk automation dan optimalisasi komunikasi bisnis. Fitur broadcast, chatbot otomatis, order management, CRM integration, dan customer service yang terintegrasi penuh.",
+    image: [
+      "/image/OurProducts/LandingPage-1.png",
+      "/image/OurProducts/LandingPage-2.png",
+      "/image/OurProducts/LandingPage-3.png",
     ],
   },
 ];
