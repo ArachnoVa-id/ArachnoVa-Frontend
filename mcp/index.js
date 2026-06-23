@@ -110,33 +110,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
       },
     },
 
-    // ── Services ──
-    {
-      name: "list_services",
-      description: "List all services",
-      inputSchema: { type: "object", properties: {} },
-    },
-    {
-      name: "update_service",
-      description: "Update a single service by key",
-      inputSchema: {
-        type: "object",
-        properties: {
-          key: { type: "number" },
-          title: { type: "string" },
-          icon: { type: "string", description: "Icon image path" },
-          description: { type: "string" },
-          images: {
-            type: "array",
-            items: { type: "string" },
-            description: "Array of image paths",
-          },
-        },
-        required: ["key"],
-      },
-    },
-
-    // ── Pricing ──
+    // ── Pricing / Services ──
     {
       name: "get_pricing",
       description: "Get pricing data",
@@ -214,41 +188,6 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
           backgroundDesktop: { type: "string" },
           backgroundMobile: { type: "string" },
           codeSnippetImage: { type: "string" },
-        },
-      },
-    },
-
-    // ── Products ──
-    {
-      name: "get_products",
-      description: "Get homepage products data",
-      inputSchema: { type: "object", properties: {} },
-    },
-    {
-      name: "update_products",
-      description: "Update homepage products",
-      inputSchema: {
-        type: "object",
-        properties: {
-          title: { type: "string" },
-          subtitle: { type: "string" },
-          items: {
-            type: "array",
-            items: {
-              type: "object",
-              properties: {
-                id: { type: "string" },
-                title: { type: "string" },
-                description: { type: "string" },
-                variant: { type: "string", enum: ["Left", "Right"] },
-                href: { type: "string" },
-                slideImages: {
-                  type: "array",
-                  items: { type: "string" },
-                },
-              },
-            },
-          },
         },
       },
     },
@@ -356,21 +295,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         return { content: [{ type: "text", text: "Projects reordered successfully" }] };
       }
 
-      // ── Services ──
-      case "list_services": {
-        const data = await apiGet("/services");
-        return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
-      }
-      case "update_service": {
-        const services = await apiGet("/services");
-        const idx = services.findIndex((s) => s.key === args.key);
-        if (idx === -1) throw new Error(`Service with key ${args.key} not found`);
-        services[idx] = { ...services[idx], ...args };
-        await apiPut("/services", services);
-        return { content: [{ type: "text", text: JSON.stringify(services[idx], null, 2) }] };
-      }
-
-      // ── Pricing ──
+      // ── Pricing / Services ──
       case "get_pricing": {
         const data = await apiGet("/pricing");
         return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
@@ -388,16 +313,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case "update_hero": {
         await apiPut("/hero", args);
         return { content: [{ type: "text", text: "Hero section updated successfully" }] };
-      }
-
-      // ── Products ──
-      case "get_products": {
-        const data = await apiGet("/products");
-        return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
-      }
-      case "update_products": {
-        await apiPut("/products", args);
-        return { content: [{ type: "text", text: "Products updated successfully" }] };
       }
 
       // ── Homepage Sections ──

@@ -12,9 +12,7 @@ import AdminLayout from "@/pages/admin/AdminLayout";
 import Login from "@/pages/admin/Login";
 import Dashboard from "@/pages/admin/Dashboard";
 import ProjectsAdmin from "@/pages/admin/ProjectsAdmin";
-import ServicesAdmin from "@/pages/admin/ServicesAdmin";
 import PricingAdmin from "@/pages/admin/PricingAdmin";
-import ProductsAdmin from "@/pages/admin/ProductsAdmin";
 import HeroAdmin from "@/pages/admin/HeroAdmin";
 import HomepageSectionsAdmin from "@/pages/admin/HomepageSectionsAdmin";
 import RedirectsAdmin from "@/pages/admin/RedirectsAdmin";
@@ -28,9 +26,7 @@ export default function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="projects" element={<ProjectsAdmin />} />
-          <Route path="services" element={<ServicesAdmin />} />
           <Route path="pricing" element={<PricingAdmin />} />
-          <Route path="products" element={<ProductsAdmin />} />
           <Route path="hero" element={<HeroAdmin />} />
           <Route path="homepage-sections" element={<HomepageSectionsAdmin />} />
           <Route path="redirects" element={<RedirectsAdmin />} />
