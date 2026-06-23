@@ -1,5 +1,6 @@
 import { useCollection } from "@/context/DataContext";
 
+const API_BASE = import.meta.env.VITE_API_URL || "";
 const gradientColors = [
   "from-purple-400 to-pink-400",
   "from-blue-400 to-teal-400",
@@ -10,6 +11,12 @@ const gradientColors = [
   "from-indigo-400 to-purple-400",
   "from-teal-400 to-green-400",
 ];
+
+function uploadFile(file) {
+  const fd = new FormData();
+  fd.append("file", file);
+  return fetch(`${API_BASE}/api/upload`, { method: "POST", body: fd }).then((r) => r.json());
+}
 
 export default function TeamAdmin() {
   const [members, setMembers] = useCollection("team");
@@ -28,6 +35,23 @@ export default function TeamAdmin() {
     setMembers(members.filter((_, i) => i !== index));
   };
 
+  const handleUpload = async (index) => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.onchange = async () => {
+      const file = input.files?.[0];
+      if (!file) return;
+      try {
+        const { url } = await uploadFile(file);
+        update(index, "image", url);
+      } catch (e) {
+        alert("Upload failed: " + e.message);
+      }
+    };
+    input.click();
+  };
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -37,17 +61,31 @@ export default function TeamAdmin() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {members?.map((m, i) => (
           <div key={i} className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
-            <div className={`w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br ${gradientColors[i % gradientColors.length]} flex items-center justify-center text-white text-2xl font-bold overflow-hidden`}>
+            <div
+              className={`w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br ${gradientColors[i % gradientColors.length]} flex items-center justify-center text-white text-2xl font-bold overflow-hidden cursor-pointer relative group`}
+              onClick={() => handleUpload(i)}
+            >
               {m.image ? (
                 <img src={m.image} alt="" className="w-full h-full object-cover" />
               ) : (
-                (m.name?.charAt(0) || "?")
+                <span>{m.name?.charAt(0) || "?"}</span>
               )}
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-white text-xs font-normal rounded-full">
+                Upload
+              </div>
             </div>
             <div className="space-y-2">
               <input value={m.name} onChange={(e) => update(i, "name", e.target.value)} placeholder="Name" className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm text-center font-medium" />
               <input value={m.role} onChange={(e) => update(i, "role", e.target.value)} placeholder="Role" className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm text-center" />
-              <input value={m.image || ""} onChange={(e) => update(i, "image", e.target.value)} placeholder="Image path" className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono" />
+              <div className="flex gap-2">
+                <input value={m.image || ""} onChange={(e) => update(i, "image", e.target.value)} placeholder="Image path" className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono" />
+                <button onClick={() => handleUpload(i)} className="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-gray-200 shrink-0">Browse</button>
+              </div>
+              {m.image && (
+                <div className="flex justify-center">
+                  <img src={m.image} alt="" className="h-16 rounded border border-gray-200 object-cover" />
+                </div>
+              )}
               <button onClick={() => remove(i)} className="w-full text-sm text-red-600 hover:bg-red-50 py-2 rounded-lg">Remove</button>
             </div>
           </div>
