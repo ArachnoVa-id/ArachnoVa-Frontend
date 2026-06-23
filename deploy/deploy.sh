@@ -8,7 +8,7 @@ echo "=== Updating code ==="
 cd $REPO_DIR
 git pull origin main
 
-CMS_API_KEY="${CMS_API_KEY:-$(cat .env 2>/dev/null | grep CMS_API_KEY | cut -d= -f2)}"
+CMS_API_KEY="${CMS_API_KEY:-$(cat .env 2>/dev/null | grep '^CMS_API_KEY=' | cut -d= -f2)}"
 CMS_API_KEY="${CMS_API_KEY:-$(openssl rand -hex 16)}"
 
 echo "CMS_API_KEY=$CMS_API_KEY" > $REPO_DIR/.env
