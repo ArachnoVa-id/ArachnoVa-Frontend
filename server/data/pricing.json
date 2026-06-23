@@ -11,31 +11,34 @@
   ],
   "plans": [
     {
-      "name": "Landing Page",
-      "price": "Rp 475.000",
-      "priceNote": "",
-      "popular": false,
-      "cta": "https://wa.me/6287882832538",
-      "ctaText": "Pilih Paket",
-      "values": ["1-2 Pages", "4-12", "3-10 Hari", false, "Desain unik / Layout template", "+25K untuk tiap section tambahan"]
-    },
-    {
-      "name": "ComPro",
+      "name": "Company Profile",
       "price": "Rp 1.100.000",
       "priceNote": "Start from",
       "popular": true,
       "cta": "https://wa.me/6287882832538",
       "ctaText": "Pilih Paket",
-      "values": ["3-6 Pages", "15-25", "14-28 Hari", true, "Desain unik / Layout opsional", "+125K untuk tiap page tambahan"]
+      "subtitle": "Website profiling multi-page untuk perusahaan/organisasi",
+      "values": ["3-6 Pages", "15-25", "14-28 Hari", true, "Desain unik / Layout opsional", "+125K per page tambahan"]
     },
     {
-      "name": "Custom",
+      "name": "ERP",
       "price": "Custom",
       "priceNote": "",
       "popular": false,
       "cta": "https://wa.me/6287882832538",
       "ctaText": "Hubungi Kami",
-      "values": ["Unlimited", "Unlimited", "Disesuaikan", null, "Desain dan Layout Unik", ""]
+      "subtitle": "Sistem terintegrasi untuk operasional bisnis",
+      "values": ["Unlimited", "Unlimited", "Disesuaikan", true, "Dashboard + Modul Kustom", "Menyesuaikan kebutuhan"]
+    },
+    {
+      "name": "WhatsApp Apps",
+      "price": "Custom",
+      "priceNote": "",
+      "popular": false,
+      "cta": "https://wa.me/6287882832538",
+      "ctaText": "Hubungi Kami",
+      "subtitle": "Aplikasi berbasis WhatsApp API",
+      "values": ["1-3 Pages", "5-10", "7-14 Hari", true, "Chatbot + Broadcast + CRM", "Integrasi API tambahan"]
     }
   ]
 }

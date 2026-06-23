@@ -6,6 +6,7 @@ import PortoSection from "@/components/MainPage/PortoSection";
 import CTA from "@/components/MainPage/CTA";
 
 export default function Home() {
+  const [pricing] = useCollection("pricing");
   const [projects] = useCollection("projects");
 
   return (
@@ -14,7 +15,7 @@ export default function Home() {
         <title>ArachnoVa</title>
       </Helmet>
       <Hero />
-      <ServicesOption />
+      <ServicesOption data={pricing} />
       <PortoSection projects={projects} />
       <CTA />
     </>
