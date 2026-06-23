@@ -16,9 +16,9 @@ export default function ProjectsPage() {
       </Helmet>
 
       {/* Section 1: Marquee carousel rows with centered header */}
-      <section className="relative w-full bg-white-MainPage lg:pt-[7vw] pt-[25vw] lg:pb-[3vw] pb-[8vw] overflow-hidden">
+      <section className="relative w-full bg-white-MainPage lg:pt-[6vw] pt-[22vw] lg:pb-[2vw] pb-[5vw] overflow-hidden min-h-screen flex flex-col justify-center">
         <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none lg:mt-[-2vw]">
-          <div className="text-center bg-white/90 lg:py-[2.5vw] py-[5vw] lg:px-[4vw] px-[8vw] rounded-xl shadow-[0_0.5vw_2vw_rgba(0,0,0,0.08)] backdrop-blur-md">
+          <div className="text-center bg-white/90 lg:py-[1.5vw] py-[3vw] lg:px-[3vw] px-[6vw] rounded-xl shadow-[0_0.5vw_2vw_rgba(0,0,0,0.08)] backdrop-blur-md">
             <p className="font-SourceSansProBold lg:text-[1.563vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
               Our Projects
             </p>
@@ -28,7 +28,7 @@ export default function ProjectsPage() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[1.5vw]">
+        <div className="flex flex-col gap-[0.3vw]">
           {Array.from({ length: rowCount }).map((_, i) => (
             <MarqueeCarousel
               key={i}
