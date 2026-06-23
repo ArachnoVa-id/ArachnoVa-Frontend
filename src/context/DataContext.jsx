@@ -16,9 +16,8 @@ const defaults = {
 
 function authHeaders(forWrite) {
   if (forWrite) {
-    const key = sessionStorage.getItem("cms_api_key") || ENV_API_KEY;
     const h = { "Content-Type": "application/json" };
-    if (key) h["x-api-key"] = key;
+    if (ENV_API_KEY) h["x-api-key"] = ENV_API_KEY;
     return h;
   }
   return {};
@@ -51,13 +50,15 @@ export function DataProvider({ children }) {
   const update = useCallback(async (collection, value) => {
     setData((prev) => ({ ...prev, [collection]: value }));
     try {
-      await fetch(`${API_BASE}/api/${collection}`, {
+      const res = await fetch(`${API_BASE}/api/${collection}`, {
         method: "PUT",
         headers: authHeaders(true),
         body: JSON.stringify(value),
       });
-    } catch {
-      console.error(`Failed to save ${collection}`);
+      if (!res.ok) throw new Error(`Server returned ${res.status}`);
+    } catch (e) {
+      console.error(`Failed to save ${collection}:`, e.message);
+      alert(`Save failed: ${e.message}`);
     }
   }, []);
 
