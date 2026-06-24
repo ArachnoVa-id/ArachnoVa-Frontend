@@ -19,7 +19,11 @@ export default function ProjectModal({ project, onClose, originRect }) {
 
   useEffect(() => {
     if (!originRect) { setPhase("open"); return; }
-    // Force initial position to match the card exactly
+    const maxW = Math.min(window.innerWidth * 0.9, 1024);
+    const finalLeft = (window.innerWidth - maxW) / 2;
+    const finalTop = Math.max(window.innerHeight * 0.05, 20);
+    const finalHeight = window.innerHeight * 0.9;
+
     requestAnimationFrame(() => {
       if (!cardRef.current) return;
       cardRef.current.style.top = originRect.top + "px";
@@ -28,30 +32,18 @@ export default function ProjectModal({ project, onClose, originRect }) {
       cardRef.current.style.height = originRect.height + "px";
       cardRef.current.style.borderRadius = "12px";
 
-      // Next frame: animate to full screen
       requestAnimationFrame(() => {
         if (!cardRef.current) return;
         cardRef.current.style.transition = "all 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-radius 0.35s ease";
-        cardRef.current.style.top = "0px";
-        cardRef.current.style.left = "0px";
-        cardRef.current.style.width = "100%";
-        cardRef.current.style.height = "100%";
-        cardRef.current.style.borderRadius = "0px";
+        cardRef.current.style.top = finalTop + "px";
+        cardRef.current.style.left = finalLeft + "px";
+        cardRef.current.style.width = maxW + "px";
+        cardRef.current.style.height = finalHeight + "px";
+        cardRef.current.style.borderRadius = "12px";
         setPhase("open");
       });
     });
   }, []);
-
-  useEffect(() => {
-    const handleKey = (e) => {
-      if (e.key === "Escape") handleClose();
-      if (e.key === "ArrowLeft") { e.preventDefault(); prevDesktop(); }
-      if (e.key === "ArrowRight") { e.preventDefault(); nextDesktop(); }
-    };
-    window.addEventListener("keydown", handleKey);
-    document.body.style.overflow = "hidden";
-    return () => { window.removeEventListener("keydown", handleKey); document.body.style.overflow = ""; };
-  }, [desktopIdx, mobileIdx]);
 
   const handleClose = () => {
     if (cardRef.current && originRect) {
@@ -65,6 +57,17 @@ export default function ProjectModal({ project, onClose, originRect }) {
     }
     setTimeout(onClose, 200);
   };
+
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === "Escape") handleClose();
+      if (e.key === "ArrowLeft") { e.preventDefault(); prevDesktop(); }
+      if (e.key === "ArrowRight") { e.preventDefault(); nextDesktop(); }
+    };
+    window.addEventListener("keydown", handleKey);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", handleKey); document.body.style.overflow = ""; };
+  }, [desktopIdx, mobileIdx]);
 
   if (!project) return null;
 
