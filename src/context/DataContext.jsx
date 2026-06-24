@@ -45,7 +45,6 @@ export function DataProvider({ children }) {
     }
   }, []);
 
-  const settings = useSettings();
   useEffect(() => {
     fetchAll();
   }, [fetchAll]);
