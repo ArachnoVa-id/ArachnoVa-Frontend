@@ -48,18 +48,20 @@ export default function ProjectCardGrid({ projects, autoOpenId, onAutoOpenDone, 
               data-aos-delay={(i % 4) * 100}
               className="group bg-white rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-[0.3rem] cursor-pointer"
             >
-              <div className="relative w-full aspect-[824.28/426.9] bg-gray-50">
-                {hasDesktop && (
-                  <img src={project.imageDesktop || project.desktopImages[0]} alt=""
-                    className="absolute w-[80%] aspect-[669/376] rounded-lg shadow-lg right-0 top-[5%]"
-                    draggable="false" loading="lazy" />
-                )}
-                {hasMobile && (
-                  <img src={project.imageMobile || project.mobileImages[0]} alt=""
-                    className="absolute w-[22%] aspect-[245/485] rounded-[0.6rem] shadow-lg -bottom-[2%] left-[4%]"
-                    draggable="false" loading="lazy" />
-                )}
-              </div>
+              {(hasDesktop || hasMobile) && (
+                <div className="relative w-full aspect-[824.28/426.9] bg-gray-50">
+                  {hasDesktop && (
+                    <img src={project.imageDesktop || project.desktopImages[0]} alt=""
+                      className="desktop-card-img absolute w-[80%] aspect-[669/376] rounded-lg shadow-lg right-0 top-[5%]"
+                      draggable="false" loading="lazy" />
+                  )}
+                  {hasMobile && (
+                    <img src={project.imageMobile || project.mobileImages[0]} alt=""
+                      className="mobile-card-img absolute w-[22%] aspect-[245/485] rounded-[0.6rem] shadow-lg -bottom-[2%] left-[4%]"
+                      draggable="false" loading="lazy" />
+                  )}
+                </div>
+              )}
               <div className="p-[1.0rem] pt-[1.5rem]">
                 <h3 className="font-SourceSansProBold lg:text-[0.94rem] text-[3.5rem] text-neutral-g group-hover:text-LightBlue-d transition-colors truncate">
                   {project.title}
