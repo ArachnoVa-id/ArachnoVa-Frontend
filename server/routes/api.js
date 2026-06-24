@@ -80,25 +80,39 @@ apiRouter.get("/linkedin-image", async (req, res) => {
   if (!url || !url.includes("linkedin.com/in/")) {
     return res.status(400).json({ error: "Invalid LinkedIn URL" });
   }
+  const username = url.match(/linkedin\.com\/in\/([^/?#]+)/)?.[1];
+  if (!username) return res.status(400).json({ error: "Could not extract username" });
+
+  const agents = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+  ];
+  const agent = agents[Math.floor(Math.random() * agents.length)];
+
   try {
     const response = await fetch(url, {
       headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml",
+        "User-Agent": agent,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Referer": "https://www.google.com/",
+        "DNT": "1",
       },
     });
     const html = await response.text();
-    // Extract og:image from meta tags
-    const match = html.match(/<meta[^>]+property="og:image"[^>]+content="([^"]+)"/);
-    if (match) {
-      return res.json({ image: match[1] });
+
+    const patterns = [
+      /<meta[^>]+property="og:image"[^>]+content="([^"]+)"/,
+      /<meta[^>]+content="([^"]+)"[^>]+property="og:image"/,
+      /class="profile-photo[^"]*"[^>]*src="([^"]+)"/,
+      /"profilePictureUrl":"([^"]+)"/,
+    ];
+    for (const pattern of patterns) {
+      const match = html.match(pattern);
+      if (match) return res.json({ image: match[1].replace(/&amp;/g, "&") });
     }
-    // Try alternate pattern
-    const match2 = html.match(/<meta[^>]+content="([^"]+)"[^>]+property="og:image"/);
-    if (match2) {
-      return res.json({ image: match2[1] });
-    }
-    return res.status(404).json({ error: "No profile image found" });
+    return res.status(404).json({ error: "LinkedIn profile image not found (profile may be private or require login)", hint: "Use the Upload button to set the image manually" });
   } catch (e) {
     return res.status(500).json({ error: e.message });
   }
