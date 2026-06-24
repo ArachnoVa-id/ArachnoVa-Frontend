@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useCollection } from "@/context/DataContext";
+import { useToast } from "@/components/ui/Toast";
 
 const API_BASE = import.meta.env.VITE_API_URL || "";
 const gradientColors = [
@@ -19,6 +20,7 @@ export default function TeamAdmin() {
   const [members, setMembers] = useCollection("team");
   const [local, setLocal] = useState(null);
   const [dirty, setDirty] = useState(false);
+  const toast = useToast();
 
   useEffect(() => {
     if (members && !local) setLocal(JSON.parse(JSON.stringify(members)));
@@ -48,7 +50,7 @@ export default function TeamAdmin() {
       try {
         const { url } = await uploadFile(file);
         change(i, "image", url);
-      } catch (e) { alert("Upload failed: " + e.message); }
+      } catch (e) { toast("Upload failed: " + e.message, "error"); }
     };
     input.click();
   };

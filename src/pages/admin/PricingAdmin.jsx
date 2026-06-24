@@ -81,8 +81,10 @@ export default function PricingAdmin() {
                 <th key={pi} className="px-3 py-3 border-b border-r border-gray-200 text-center min-w-[180px] relative group">
                   <input value={plan.name} onChange={(e) => updatePlanField(pi, "name", e.target.value)}
                     className="w-full text-center font-semibold text-gray-900 bg-transparent border-none focus:outline-none" />
-                  <button onClick={() => removePlan(pi)}
-                    className="absolute -top-3 -right-3 text-red-400 hover:text-red-600 bg-white rounded-full w-7 h-7 flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition hover:shadow-lg hover:scale-110 z-10"><FiTrash2 size={14} /></button>
+                  <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition z-10">
+                    <button onClick={() => removePlan(pi)}
+                      className="text-red-400 hover:text-red-600 bg-white/90 hover:bg-white rounded-md w-6 h-6 flex items-center justify-center shadow-sm hover:shadow-md hover:scale-110 transition-all"><FiTrash2 size={12} /></button>
+                  </div>
                 </th>
               ))}
             </tr>
@@ -118,7 +120,7 @@ export default function PricingAdmin() {
                   <div className="flex items-center gap-2">
                     <input value={feature} onChange={(e) => updateRowLabel(ri, e.target.value)}
                       className="bg-transparent border-none focus:outline-none w-full" />
-                    <button onClick={() => removeRow(ri)} className="text-red-300 hover:text-red-500 text-xs shrink-0">✕</button>
+                    <button onClick={() => removeRow(ri)} className="text-red-300 hover:text-red-500 shrink-0 p-1 rounded hover:bg-red-50 transition"><FiTrash2 size={14} /></button>
                   </div>
                 </td>
                 {local.plans?.map((plan, pi) => (

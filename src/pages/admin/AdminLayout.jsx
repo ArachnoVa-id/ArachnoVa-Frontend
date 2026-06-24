@@ -1,5 +1,6 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useData } from "@/context/DataContext";
+import { ToastProvider } from "@/components/ui/Toast";
 import { FiGrid, FiFolder, FiServer, FiShuffle, FiUsers, FiSliders } from "react-icons/fi";
 
 const navItems = [
@@ -59,14 +60,16 @@ export default function AdminLayout() {
         </div>
       </header>
 
-      <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
-        {loading ? (
-          <div className="flex items-center justify-center h-64">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
-          </div>
-        ) : (
-          <Outlet />
-        )}
+      <main className="flex-1 px-4 sm:px-6 lg:px-8 py-1 sm:py-2 lg:py-4 max-w-7xl mx-auto w-full">
+        <ToastProvider>
+          {loading ? (
+            <div className="flex items-center justify-center h-64">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
+            </div>
+          ) : (
+            <Outlet />
+          )}
+        </ToastProvider>
       </main>
     </div>
   );

@@ -60,7 +60,6 @@ export function DataProvider({ children }) {
       if (!res.ok) throw new Error(`Server returned ${res.status}`);
     } catch (e) {
       console.error(`Failed to save ${collection}:`, e.message);
-      alert(`Save failed: ${e.message}`);
     }
   }, []);
 

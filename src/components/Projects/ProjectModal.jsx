@@ -127,32 +127,44 @@ export default function ProjectModal({ project, onClose, originEl }) {
           </div>
 
           {/* Images */}
-          <div className={`p-4 grid gap-4 ${hasDesktop && hasMobile ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-1"}`}>
+          <div className={`p-4 grid gap-6 ${hasDesktop && hasMobile ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-1"}`}>
             {hasDesktop && (
               <div>
                 <p className="text-xs font-medium text-gray-500 mb-2">Desktop ({desktopIdx + 1}/{desktopImages.length})</p>
-                <div className="relative bg-gray-100 rounded-xl overflow-hidden border border-border">
+                <div className="flex items-center gap-2">
                   {desktopImages.length > 1 && (
-                    <>
-                      <button onClick={prevDesktop} className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-1.5 shadow transition"><IoMdArrowBack size={18} /></button>
-                      <button onClick={nextDesktop} className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-1.5 shadow transition"><IoMdArrowForward size={18} /></button>
-                    </>
+                    <button onClick={prevDesktop} className="shrink-0 w-8 h-8 flex items-center justify-center bg-white border border-border rounded-full shadow-sm hover:shadow-md hover:bg-gray-50 transition text-gray-600">
+                      <IoMdArrowBack size={16} />
+                    </button>
                   )}
-                  <img src={desktopImages[desktopIdx]} alt="" className="w-full h-auto" draggable="false" />
+                  <div className="flex-1 bg-gray-100 rounded-xl overflow-hidden border border-border min-w-0">
+                    <img src={desktopImages[desktopIdx]} alt="" className="w-full h-auto" draggable="false" />
+                  </div>
+                  {desktopImages.length > 1 && (
+                    <button onClick={nextDesktop} className="shrink-0 w-8 h-8 flex items-center justify-center bg-white border border-border rounded-full shadow-sm hover:shadow-md hover:bg-gray-50 transition text-gray-600">
+                      <IoMdArrowForward size={16} />
+                    </button>
+                  )}
                 </div>
               </div>
             )}
             {hasMobile && (
               <div>
                 <p className="text-xs font-medium text-gray-500 mb-2">Mobile ({mobileIdx + 1}/{mobileImages.length})</p>
-                <div className="relative bg-gray-100 rounded-xl overflow-hidden border border-border max-w-[280px] mx-auto">
+                <div className="flex items-center gap-2 justify-center">
                   {mobileImages.length > 1 && (
-                    <>
-                      <button onClick={prevMobile} className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-1.5 shadow transition"><IoMdArrowBack size={18} /></button>
-                      <button onClick={nextMobile} className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-1.5 shadow transition"><IoMdArrowForward size={18} /></button>
-                    </>
+                    <button onClick={prevMobile} className="shrink-0 w-8 h-8 flex items-center justify-center bg-white border border-border rounded-full shadow-sm hover:shadow-md hover:bg-gray-50 transition text-gray-600">
+                      <IoMdArrowBack size={16} />
+                    </button>
                   )}
-                  <img src={mobileImages[mobileIdx]} alt="" className="w-full h-auto" draggable="false" />
+                  <div className="bg-gray-100 rounded-xl overflow-hidden border border-border max-w-[200px] w-full">
+                    <img src={mobileImages[mobileIdx]} alt="" className="w-full h-auto" draggable="false" />
+                  </div>
+                  {mobileImages.length > 1 && (
+                    <button onClick={nextMobile} className="shrink-0 w-8 h-8 flex items-center justify-center bg-white border border-border rounded-full shadow-sm hover:shadow-md hover:bg-gray-50 transition text-gray-600">
+                      <IoMdArrowForward size={16} />
+                    </button>
+                  )}
                 </div>
               </div>
             )}

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useCollection } from "@/context/DataContext";
+import { useToast } from "@/components/ui/Toast";
 import { FiEdit2, FiTrash2, FiPlus, FiSave, FiX } from "react-icons/fi";
 
 const API_BASE = import.meta.env.VITE_API_URL || "";
@@ -34,6 +35,7 @@ function ImageRow({ label, images, onAdd, onRemove, onMove }) {
 
 function EditModal({ form, setForm, onSave, onCancel }) {
   const [uploading, setUploading] = useState(false);
+  const toast = useToast();
   const update = (key, val) => setForm((prev) => ({ ...prev, [key]: val }));
 
   const handleUpload = async (field) => {
@@ -52,7 +54,7 @@ function EditModal({ form, setForm, onSave, onCancel }) {
         update(field, arr);
         if (field === "desktopImages" && arr.length === urls.length) update("imageDesktop", urls[0]);
         if (field === "mobileImages" && arr.length === urls.length) update("imageMobile", urls[0]);
-      } catch (e) { alert("Upload failed: " + e.message); }
+      } catch (e) { toast("Upload failed: " + e.message, "error"); }
       setUploading(false);
     };
     input.click();
