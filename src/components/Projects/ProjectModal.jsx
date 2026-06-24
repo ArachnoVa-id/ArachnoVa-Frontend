@@ -157,7 +157,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
                       <IoMdArrowBack size={16} />
                     </button>
                   )}
-                  <div className="bg-gray-100 rounded-xl overflow-hidden border border-border max-w-[200px] w-full">
+                  <div className="bg-gray-100 rounded-xl overflow-hidden border border-border max-w-[280px] w-full">
                     <img src={mobileImages[mobileIdx]} alt="" className="w-full h-auto" draggable="false" />
                   </div>
                   {mobileImages.length > 1 && (
