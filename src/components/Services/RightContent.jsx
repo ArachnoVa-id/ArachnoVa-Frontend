@@ -10,18 +10,18 @@ const RightContent = ({
 }) => {
 	const Position =
 		Variant === "left"
-			? "items-end ml-[1.46rem]"
-			: "items-start lg:mr-[1.46rem]";
+			? "items-end ml-[1.67rem]"
+			: "items-start lg:mr-[1.67rem]";
 	const Text = Variant === "left" ? "text-right" : "text-left";
 	return (
 		<div
-			className={`lg:w-[23.3rem] w-[66.1rem] lg:h-fit h-fit flex flex-col lg:justify-between justify-end ${Position} lg:mt-0`}
+			className={`lg:w-[26.6rem] w-[75.6rem] lg:h-fit h-fit flex flex-col lg:justify-between justify-end ${Position} lg:mt-0`}
 		>
-			<h1 className="font-SourceSansProBold text-neutral-g text-[1.82rem] hidden lg:flex">
+			<h1 className="font-SourceSansProBold text-neutral-g text-[2.1rem] hidden lg:flex">
 				{Title}
 			</h1>
 			<p
-				className={`font-SourceSansProSemibold text-neutral-e lg:text-[0.91rem] text-[3.7rem] lg:pt-[0.96rem] text-justify lg:pb-[1.37rem] pt-[3.1rem] lg:mb-0 mb-[3.7rem] ${Text}`}
+				className={`font-SourceSansProSemibold text-neutral-e lg:text-[1.04rem] text-[4.2rem] lg:pt-[1.09rem] text-justify lg:pb-[1.56rem] pt-[3.5rem] lg:mb-0 mb-[4.2rem] ${Text}`}
 			>
 				{Description}
 			</p>

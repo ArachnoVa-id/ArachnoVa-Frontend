@@ -54,9 +54,9 @@ export default function ProjectsPage() {
         <title>Our Projects | ArachnoVa</title>
       </Helmet>
 
-      <section className="relative w-full bg-white-MainPage lg:pt-[0.8rem] pt-[3.52rem] lg:pb-[0.2rem] pb-[0.8rem] h-screen overflow-hidden flex flex-col justify-center">
+      <section className="relative w-full bg-white-MainPage lg:pt-[5.0rem] pt-[22.0rem] lg:pb-[1.0rem] pb-[5.0rem] h-screen overflow-hidden flex flex-col justify-center">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <svg className="absolute lg:w-[6.4rem] w-[12.8rem] lg:top-[0.32rem] top-[1.6rem] lg:left-[4.8rem] left-[1.6rem]" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: "blur(60px)" }}>
+          <svg className="absolute lg:w-[40.0rem] w-[80.0rem] lg:top-[2.0rem] top-[10.0rem] lg:left-[30.0rem] left-[10.0rem]" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: "blur(60px)" }}>
             <path d="M300 0C450 0 550 50 600 150C650 250 600 350 500 380C400 410 200 420 100 350C0 280 -50 150 50 80C150 10 200 0 300 0Z" fill="url(#blobGrad)" opacity="0.3" />
             <defs>
               <linearGradient id="blobGrad" x1="0" y1="0" x2="1" y2="1">
@@ -68,14 +68,14 @@ export default function ProjectsPage() {
           </svg>
         </div>
 
-        <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none lg:mt-[-2.4rem]">
-          <div className="text-center bg-white/90 lg:py-[0.2rem] py-[0.48rem] lg:px-[0.48rem] px-[0.96rem] rounded-xl shadow-[0_5px_18px_rgba(0,0,0,0.08)] backdrop-blur-md">
-            <p className="font-SourceSansProBold lg:text-[0.5rem] text-[0.67rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Our Projects</p>
-            <h2 className="font-SourceSansProBold lg:text-[0.5rem] text-[1.12rem] text-neutral-g lg:leading-[0.45rem] leading-[1.2rem] mt-[0.2rem]">Explore Our Work</h2>
+        <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none lg:mt-[-32px]">
+          <div className="text-center bg-white/90 lg:py-[1.0rem] py-[3.0rem] lg:px-[3.0rem] px-[6.0rem] rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-md">
+            <p className="font-SourceSansProBold lg:text-[1.3rem] text-[4.2rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Our Projects</p>
+            <h2 className="font-SourceSansProBold lg:text-[2.0rem] text-[7.0rem] text-neutral-g lg:leading-[2.8rem] leading-[7.5rem] mt-[0.3rem]">Explore Our Work</h2>
           </div>
         </div>
 
-        <div className="flex flex-col gap-[0.2rem] relative z-[5]">
+        <div className="flex flex-col gap-[0.15rem] relative z-[5]">
           {imageChunks.map((chunk, i) => (
             <MarqueeCarousel
               key={i}

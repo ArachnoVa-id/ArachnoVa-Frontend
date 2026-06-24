@@ -4,14 +4,14 @@ const NavItem = ({ Menu, href, path }) => {
     <li className="relative">
       <a
         href={href}
-        className={`font-InterBold lg:text-[0.73rem] text-[3.3rem] transition-all duration-300 ease-in-out ${
+        className={`font-InterBold lg:text-[0.83rem] text-[3.7rem] transition-all duration-300 ease-in-out ${
           isActive ? "text-LightBlue-d" : "text-neutral-g hover:text-LightBlue-d"
         }`}
       >
         {Menu}
       </a>
       {isActive && (
-        <div className="absolute -bottom-[0.26rem] left-1/2 -translate-x-1/2 w-[60%] h-[0.14rem] bg-LightBlue-c rounded-full" />
+        <div className="absolute -bottom-[0.3rem] left-1/2 -translate-x-1/2 w-[60%] h-[0.16rem] bg-LightBlue-c rounded-full" />
       )}
     </li>
   );

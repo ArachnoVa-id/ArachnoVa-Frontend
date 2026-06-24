@@ -24,25 +24,25 @@ const ServiceDetails = ({ _key, selected, title, description, image }) => {
       data-aos="fade-up"
       className={`flex justify-center items-center bg-[#FAFDFF] border-border 
                   ${isSelected(_key, selected)}
-                  lg:flex-row lg:min-h-0 lg:px-[2.7rem] lg:py-[1.82rem]  lg:gap-[1.82rem] lg:rounded-[1.14rem] lg:border-[0.14rem] lg:shadow-[0px_7px_15px_-2px_rgba(0,0,0,0.15)]
-                  flex-col min-h-0 px-[4.9rem] py-[4.9rem] gap-[4.1rem] rounded-[3.3rem] border-[0.41rem] shadow-[0px_7px_65px_-16px_rgba(0,0,0,0.15)]`}
+                  lg:flex-row lg:min-h-0 lg:px-[3.1rem] lg:py-[2.1rem]  lg:gap-[2.1rem] lg:rounded-[1.3rem] lg:border-[0.16rem] lg:shadow-[0px_8px_17px_-2px_rgba(0,0,0,0.15)]
+                  flex-col min-h-0 px-[5.6rem] py-[5.6rem] gap-[4.7rem] rounded-[3.7rem] border-[0.46rem] shadow-[0px_7px_74px_-19px_rgba(0,0,0,0.15)]`}
     >
       <div
         className="text-neutral-g font-SourceSansProBold
                      lg:hidden
-                     text-[4.9rem] leading-[117.5%]"
+                     text-[5.6rem] leading-[117.5%]"
       >
         {title}
       </div>
       <div
         className="flex justify-center items-center
-                   lg:gap-[0.36rem]
-                   gap-[0.81rem]"
+                   lg:gap-[0.42rem]
+                   gap-[0.93rem]"
       >
         <div
           className="text-[#9CADB4]
-                     lg:w-[1.82rem]
-                     w-[4.3rem]"
+                     lg:w-[2.1rem]
+                     w-[4.9rem]"
         >
           <BsFillCaretLeftFill
             size={"100%"}
@@ -54,13 +54,13 @@ const ServiceDetails = ({ _key, selected, title, description, image }) => {
         </div>
         <div
           className="flex justify-center items-center bg-[#FBFCFD] border-border
-                     lg:w-[28.0rem] lg:h-[16.3rem] lg:rounded-[0.68rem] lg:border-[0.14rem] lg:shadow-[0px_3px_29px_-4px_rgba(0,0,0,0.15)
-                     w-[61.5rem] h-[35.0rem] rounded-[2.0rem] border-[0.31rem] shadow-[0px_13px_130px_-16px_rgba(0,0,0,0.15)"
+                     lg:w-[32.0rem] lg:h-[18.6rem] lg:rounded-[0.78rem] lg:border-[0.16rem] lg:shadow-[0px_3px_33px_-4px_rgba(0,0,0,0.15)
+                     w-[70.2rem] h-[40.0rem] rounded-[2.3rem] border-[0.35rem] shadow-[0px_15px_149px_-19px_rgba(0,0,0,0.15)"
         >
           <Swiper
             className="overflow-hidden border-border 
-                       lg:w-[26.8rem] lg:rounded-[0.46rem] lg:border-[0.09rem]
-                       w-[58.6rem] aspect-[1920/980] rounded-[1.63rem] border-[0.2rem]"
+                       lg:w-[30.6rem] lg:rounded-[0.52rem] lg:border-[0.1rem]
+                       w-[67.0rem] aspect-[1920/980] rounded-[1.86rem] border-[0.23rem]"
             slidesPerView={1}
             spaceBetween={5}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
@@ -85,8 +85,8 @@ const ServiceDetails = ({ _key, selected, title, description, image }) => {
         </div>
         <div
           className="text-[#9CADB4]
-                     lg:w-[1.82rem]
-                     w-[4.3rem]"
+                     lg:w-[2.1rem]
+                     w-[4.9rem]"
         >
           <BsFillCaretRightFill
             size={"100%"}
@@ -99,20 +99,20 @@ const ServiceDetails = ({ _key, selected, title, description, image }) => {
       </div>
       <div
         className="flex flex-col
-                   lg:gap-[0.46rem]
-                   gap-[0.46rem]"
+                   lg:gap-[0.52rem]
+                   gap-[0.52rem]"
       >
         <div
           className="text-neutral-g font-SourceSansProBold
-                     lg:text-[1.82rem] lg:leading-[117.5%] lg:flex
+                     lg:text-[2.1rem] lg:leading-[117.5%] lg:flex
                      hidden"
         >
           {title}
         </div>
         <div
           className="text-neutral-e text-justify font-SourceSansProSemibold
-                     lg:text-[0.91rem] lg:w-[23.3rem] lg:leading-[150%]
-                     text-[2.8rem] w-[69.6rem]  leading-[125%]"
+                     lg:text-[1.04rem] lg:w-[26.6rem] lg:leading-[150%]
+                     text-[3.3rem] w-[79.5rem]  leading-[125%]"
         >
           {description}
         </div>

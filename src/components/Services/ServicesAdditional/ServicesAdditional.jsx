@@ -22,39 +22,39 @@ const ServicesAdditional = () => {
   return (
     <section
       className="relative w-full lg:min-h-screen flex flex-col justify-center items-center bg-white-MainPage text-black overflow-hidden
-                 lg:pt-[4.6rem] lg:pb-[6.8rem]
-                 pt-[16.3rem] pb-[20.3rem]"
+                 lg:pt-[5.2rem] lg:pb-[7.8rem]
+                 pt-[18.6rem] pb-[23.3rem]"
     >
       <div
         className="relative flex flex-col justify-center items-center
-                   lg:gap-[2.7rem]
-                   gap-[4.9rem]"
+                   lg:gap-[3.1rem]
+                   gap-[5.6rem]"
       >
         <div
           data-aos="fade-down"
           className="flex flex-col justify-center items-center
-                     lg:gap-[0.36rem]
-                     gap-[0.36rem]"
+                     lg:gap-[0.42rem]
+                     gap-[0.42rem]"
         >
           <div
             className="font-SourceSansProBold text-neutral-g leading-[125%]
-                       lg:text-[1.82rem]
-                       text-[6.1rem]"
+                       lg:text-[2.1rem]
+                       text-[7.0rem]"
           >
             Additional Package
           </div>
           <div
             className="font-SourceSansProSemibold text-neutral-e
-                       lg:text-[0.91rem]
-                       text-[2.8rem]"
+                       lg:text-[1.04rem]
+                       text-[3.3rem]"
           >
             Fitur tambahan yang dapat diimplementasikan dalam web Anda
           </div>
         </div>
         <div
           className="flex flex-col overflow-hidden
-                       lg:gap-[4.6rem]
-                       gap-[9.8rem]"
+                       lg:gap-[5.2rem]
+                       gap-[11.2rem]"
         >
           {data?.map((data) => {
             return (
@@ -62,40 +62,40 @@ const ServicesAdditional = () => {
                 key={data.key}
                 data-aos={fade(data.key)}
                 className="flex justify-center items-center
-                             lg:flex-row lg:gap-[3.3rem]
-                             flex-col gap-[4.9rem]"
+                             lg:flex-row lg:gap-[3.8rem]
+                             flex-col gap-[5.6rem]"
               >
                 <ServicesAdditionalSwiper image={data.image} />
 
                 <div
                   className="flex flex-col justify-center
-                             lg:items-start lg:gap-[0.77rem]
-                             items-center gap-[2.4rem]"
+                             lg:items-start lg:gap-[0.88rem]
+                             items-center gap-[2.8rem]"
                 >
                   <div
                     className="font-SourceSansProBold text-neutral-g leading-[100%]
-                                 lg:text-[1.6rem]
-                                 text-[4.9rem]"
+                                 lg:text-[1.82rem]
+                                 text-[5.6rem]"
                   >
                     {data.title}
                   </div>
                   <div
                     className="font-SourceSansProSemibold text-neutral-e leading-[150%]
-                               lg:text-[0.91rem] lg:w-[24.3rem]
-                               text-[2.8rem] w-[69.2rem]"
+                               lg:text-[1.04rem] lg:w-[27.8rem]
+                               text-[3.3rem] w-[79.1rem]"
                   >
                     {data.description}
                   </div>
                   <a
                     href={data.demo}
                     className="flex justify-center items-center bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] hover:scale-[115%] transition-all duration-500 ease-in-out
-                                 lg:h-[2.1rem] lg:w-[5.2rem] lg:rounded-[0.36rem] lg:mt-0
-                                 h-[8.1rem] w-[69.2rem] rounded-[1.63rem] mt-[2.4rem]"
+                                 lg:h-[2.4rem] lg:w-[5.9rem] lg:rounded-[0.42rem] lg:mt-0
+                                 h-[9.3rem] w-[79.1rem] rounded-[1.86rem] mt-[2.8rem]"
                   >
                     <p
                       className="font-InterBold text-neutral-a
-                                   lg:text-[0.73rem]
-                                   text-[2.8rem]"
+                                   lg:text-[0.83rem]
+                                   text-[3.3rem]"
                     >
                       Demo
                     </p>
@@ -109,8 +109,8 @@ const ServicesAdditional = () => {
 
       <div
         className="absolute bottom-0 w-full bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]
-                   lg:h-[0.045rem]
-                   h-[0.2rem]"
+                   lg:h-[0.06rem]
+                   h-[0.23rem]"
       ></div>
     </section>
   );

@@ -14,7 +14,7 @@ export default function CTAProjects() {
   return (
     <section className="w-full h-[60vh] relative flex flex-row justify-center items-center bg-neutral-a">
       <div
-        className="w-[56.9rem] h-[15.3rem] relative bg-transparent rounded-xl flex flex-col justify-center items-center max-lg:hidden"
+        className="w-[65.0rem] h-[17.5rem] relative bg-transparent rounded-xl flex flex-col justify-center items-center max-lg:hidden"
         data-aos="fade-up"
       >
         <Image
@@ -25,19 +25,19 @@ export default function CTAProjects() {
           width={1000}
           height={1000}
         />
-        <h1 className="text-neutral-a font-SourceSansProBold text-[2.2rem] z-[2]">
+        <h1 className="text-neutral-a font-SourceSansProBold text-[2.5rem] z-[2]">
           Get Inspired? Create Yours Now!
         </h1>
         <a
           href="https://wa.me/6287882832538"
-          className="bg-black w-[11.9rem] flex text-neutral-a justify-center items-center aspect-[262/54] z-[2] rounded-[0.23rem] font-SourceSansProSemibold mt-[0.88rem] text-[0.91rem] hover:bg-neutral-e duration-500"
+          className="bg-black w-[13.6rem] flex text-neutral-a justify-center items-center aspect-[262/54] z-[2] rounded-[0.26rem] font-SourceSansProSemibold mt-[1.0rem] text-[1.04rem] hover:bg-neutral-e duration-500"
         >
           Start Your Project
         </a>
       </div>
 
       <div
-        className="w-[78.8rem] h-[61.7rem] relative bg-transparent rounded-xl flex flex-col justify-center items-center lg:hidden"
+        className="w-[90.0rem] h-[70.5rem] relative bg-transparent rounded-xl flex flex-col justify-center items-center lg:hidden"
         data-aos="fade-up"
       >
         <Image
@@ -48,7 +48,7 @@ export default function CTAProjects() {
           width={1000}
           height={1000}
         />
-        <div className="text-[6.1rem]/[6.1rem] z-[2] flex flex-col justify-center items-center mb-[8.8rem]">
+        <div className="text-[7.0rem]/[7.0rem] z-[2] flex flex-col justify-center items-center mb-[10.0rem]">
           <h1 className="text-neutral-a font-SourceSansProBold">
             Get Inspired?
           </h1>
@@ -59,7 +59,7 @@ export default function CTAProjects() {
 
         <a
           href="https://wa.me/6287882832538"
-          className="bg-black w-[52.5rem] h-[10.5rem] flex justify-center items-center z-[2] text-neutral-a rounded-lg font-SourceSansProSemibold mt-[0.88rem] text-[4.4rem] hover:bg-neutral-e duration-500"
+          className="bg-black w-[60.0rem] h-[12.0rem] flex justify-center items-center z-[2] text-neutral-a rounded-lg font-SourceSansProSemibold mt-[1.0rem] text-[5.0rem] hover:bg-neutral-e duration-500"
         >
           Start Your Project
         </a>

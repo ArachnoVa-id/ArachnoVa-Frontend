@@ -13,11 +13,11 @@ const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<>
-			<nav className="fixed z-[100] lg:py-[0.82rem] lg:px-[13.1rem] px-[4.9rem] py-[2.5rem] w-screen flex items-center justify-between bg-[#FAFDFF]/[0.75] lg:backdrop-blur-[0.18rem] backdrop-blur-[1.02rem] lg:border-b-[0.09rem] border-b-[0.41rem] border-[#E6ECF0]">
+			<nav className="fixed z-[100] lg:py-[0.94rem] lg:px-[15.0rem] px-[5.6rem] py-[2.9rem] w-screen flex items-center justify-between bg-[#FAFDFF]/[0.75] lg:backdrop-blur-[0.21rem] backdrop-blur-[1.16rem] lg:border-b-[0.1rem] border-b-[0.46rem] border-[#E6ECF0]">
 				<div className="flex items-center flex-row">
-					<ul className="lg:flex items-center gap-x-[2.7rem] hidden">
+					<ul className="lg:flex items-center gap-x-[3.1rem] hidden">
 						<a href="/">
-							<div className="relative w-[2.9rem] aspect-[69/53] hover:scale-110 transition-all duration-300 ease-in-out">
+							<div className="relative w-[3.3rem] aspect-[69/53] hover:scale-110 transition-all duration-300 ease-in-out">
 								<Image
 									src="/image/Logo.png"
 									draggable="false"
@@ -33,7 +33,7 @@ const Navbar = () => {
 						<NavItem Menu="About" href="/aboutus" path={path} />
 					</ul>
 					<a href="/">
-						<div className="relative lg:hidden w-[9.2rem] aspect-[45/33] hover:scale-110 transition-all duration-300 ease-in-out">
+						<div className="relative lg:hidden w-[10.5rem] aspect-[45/33] hover:scale-110 transition-all duration-300 ease-in-out">
 							<Image
 								src="/image/Logo.png"
 								draggable="false"

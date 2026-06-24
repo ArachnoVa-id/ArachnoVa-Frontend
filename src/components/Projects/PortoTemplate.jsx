@@ -36,13 +36,13 @@ export default function PortoTemplate({
       >
         <div
           className={twMerge(
-            "w-[17.5rem] text-black pt-[1.75rem]",
-            type === 2 ? "ml-[4.4rem]" : type === 1 ? "mr-[4.4rem]" : ""
+            "w-[20.0rem] text-black pt-[2.0rem]",
+            type === 2 ? "ml-[5.0rem]" : type === 1 ? "mr-[5.0rem]" : ""
           )}
         >
           <h1
             className={twMerge(
-              "text-[1.75rem] font-SourceSansProBold",
+              "text-[2.0rem] font-SourceSansProBold",
               type === 1 ? "text-start" : type === 2 ? "text-end" : ""
             )}
           >
@@ -50,7 +50,7 @@ export default function PortoTemplate({
           </h1>
           <p
             className={twMerge(
-              "text-[0.88rem]/[1.31rem] font-SourceSansProSemibold text-neutral-e",
+              "text-[1.0rem]/[1.5rem] font-SourceSansProSemibold text-neutral-e",
               type === 1 ? "text-start" : type === 2 ? "text-end" : ""
             )}
           >
@@ -65,7 +65,7 @@ export default function PortoTemplate({
             <a
               href={link}
               className={twMerge(
-                "w-[4.1rem] mt-[0.88rem] bg-gradient-to-r rounded-[0.44rem] text-[0.73rem] aspect-[90/48] from-[#1AB0C8] to-[#179FB5] font-InterBold text-white",
+                "w-[4.7rem] mt-[1.0rem] bg-gradient-to-r rounded-[0.5rem] text-[0.83rem] aspect-[90/48] from-[#1AB0C8] to-[#179FB5] font-InterBold text-white",
                 "flex justify-center items-center",
                 "hover:translate-y-[-3px] transition-all duration-500 ease-in-out "
               )}
@@ -76,13 +76,13 @@ export default function PortoTemplate({
         </div>
 
         <div
-          className="relative w-[35.0rem] aspect-[824.28/426.9]"
+          className="relative w-[40.0rem] aspect-[824.28/426.9]"
           data-aos="fade-left"
         >
           <Image
             alt="Content Prototype"
             src={srcDesktop}
-            className={twMerge("absolute w-[30.3rem] aspect-[669/376] rounded-xl shadow-2xl",
+            className={twMerge("absolute w-[34.6rem] aspect-[669/376] rounded-xl shadow-2xl",
               type === 1 ? "left-[0.000rem]" : type === 2 ? "right-[0.000rem]" : "" 
             )}
             draggable="false"
@@ -92,7 +92,7 @@ export default function PortoTemplate({
           <Image
             alt="Content Prototype"
             src={srcMobile}
-            className={twMerge("absolute w-[7.0rem] aspect-[245/485] rounded-[0.88rem] -bottom-[1.75rem]  shadow-2xl",
+            className={twMerge("absolute w-[8.0rem] aspect-[245/485] rounded-[1.0rem] -bottom-[2.0rem]  shadow-2xl",
               type === 1 ?"right-[0.000rem]" : type === 2 ? "left-[0.000rem]" : ""
             )}
             draggable="false"
@@ -103,13 +103,13 @@ export default function PortoTemplate({
       </div>
 
       {/* Mobile */}
-      <div className="flex flex-col justify-center items-center lg:hidden gap-y-[5.2rem]">
-        <h1 className="text-[7.0rem] font-SourceSansProBold text-neutral-g ">
+      <div className="flex flex-col justify-center items-center lg:hidden gap-y-[6.0rem]">
+        <h1 className="text-[8.0rem] font-SourceSansProBold text-neutral-g ">
           {title}
         </h1>
         <div
           className={twMerge(
-            "relative w-[79.4rem] aspect-[824.28/426.9]",
+            "relative w-[90.7rem] aspect-[824.28/426.9]",
             type === 1 ? "" : type === 2 ? "justify-end items-start flex" : ""
           )}
           data-aos="fade-left"
@@ -119,7 +119,7 @@ export default function PortoTemplate({
               <Image
                 alt="Content Prototype"
                 src={srcDesktop}
-                className=" w-[66.1rem] aspect-[669/376] rounded-xl shadow-2xl "
+                className=" w-[75.6rem] aspect-[669/376] rounded-xl shadow-2xl "
                 draggable="false"
                 width={1000}
                 height={1000}
@@ -127,7 +127,7 @@ export default function PortoTemplate({
               <Image
                 alt="Content Prototype"
                 src={srcMobile}
-                className="absolute w-[17.5rem] aspect-[245/495] rounded-[2.6rem] -bottom-[1.75rem] right-[0.000rem] shadow-2xl "
+                className="absolute w-[20.0rem] aspect-[245/495] rounded-[3.0rem] -bottom-[2.0rem] right-[0.000rem] shadow-2xl "
                 draggable="false"
                 width={1000}
                 height={1000}
@@ -138,7 +138,7 @@ export default function PortoTemplate({
               <Image
                 alt="Content Prototype"
                 src={srcDesktop}
-                className=" w-[66.1rem] aspect-[669/376] rounded-xl border-white border-[0.18rem] shadow-2xl "
+                className=" w-[75.6rem] aspect-[669/376] rounded-xl border-white border-[0.2rem] shadow-2xl "
                 draggable="false"
                 width={1000}
                 height={1000}
@@ -146,7 +146,7 @@ export default function PortoTemplate({
               <Image
                 alt="Content Prototype"
                 src={srcMobile}
-                className="absolute w-[17.5rem] aspect-[245/495] rounded-[2.6rem] -bottom-[1.75rem] left-[0.000rem] shadow-2xl "
+                className="absolute w-[20.0rem] aspect-[245/495] rounded-[3.0rem] -bottom-[2.0rem] left-[0.000rem] shadow-2xl "
                 draggable="false"
                 width={1000}
                 height={1000}
@@ -155,14 +155,14 @@ export default function PortoTemplate({
           )}
         </div>
 
-        <div className="justify-center items-center w-[78.8rem]">
-          <p className="text-[3.9rem]/[3.9rem] font-SourceSansProSemibold text-neutral-e ">
+        <div className="justify-center items-center w-[90.0rem]">
+          <p className="text-[4.5rem]/[4.5rem] font-SourceSansProSemibold text-neutral-e ">
             {desc}
           </p>
         </div>
         <a
           href={link}
-          className="w-[78.8rem] h-[8.8rem] mt-[0.88rem] text-[2.6rem] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white rounded-md  flex justify-center items-center hover:translate-y-[-3px] transition-all duration-500 ease-in-out "
+          className="w-[90.0rem] h-[10.0rem] mt-[1.0rem] text-[3.0rem] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white rounded-md  flex justify-center items-center hover:translate-y-[-3px] transition-all duration-500 ease-in-out "
         >
           Source
         </a>

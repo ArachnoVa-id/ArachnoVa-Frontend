@@ -15,11 +15,11 @@ export default function Home() {
         <title>ArachnoVa</title>
       </Helmet>
       <Hero />
-      <div className="w-full lg:h-[0.2rem] h-[0.2rem] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />
+      <div className="w-full lg:h-[0.06rem] h-[0.23rem] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />
       <PortoSection projects={projects} />
-      <div className="w-full lg:h-[0.2rem] h-[0.2rem] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />
+      <div className="w-full lg:h-[0.06rem] h-[0.23rem] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />
       <ServicesOption data={pricing} />
-      <div className="w-full lg:h-[0.2rem] h-[0.2rem] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />
+      <div className="w-full lg:h-[0.06rem] h-[0.23rem] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />
       <CTA />
     </>
   );

@@ -41,14 +41,14 @@ const ServicesContainer = ({
 			/>
 		);
 	return (
-		<div className="relative lg:w-[63.9rem] w-[79.4rem] lg:h-[27.5rem] h-[114.0rem] flex lg:flex-row flex-col justify-between items-center z-10 lg:mt-[1.82rem] lg:mb-0 mb-[26.8rem]">
+		<div className="relative lg:w-[73.0rem] w-[90.7rem] lg:h-[31.5rem] h-[130.2rem] flex lg:flex-row flex-col justify-between items-center z-10 lg:mt-[2.1rem] lg:mb-0 mb-[30.6rem]">
 			<div
-				className={`lg:w-[45.9rem] w-[79.4rem] lg:h-[27.5rem] h-[81.4rem] absolute ${Position} bg-[#F1F4F4] lg:rounded-[1.37rem] rounded-[4.1rem] -z-10 lg:flex hidden`}
+				className={`lg:w-[52.5rem] w-[90.7rem] lg:h-[31.5rem] h-[93.0rem] absolute ${Position} bg-[#F1F4F4] lg:rounded-[1.56rem] rounded-[4.7rem] -z-10 lg:flex hidden`}
 			/>
 			<div
-				className={`lg:w-[45.9rem] w-[79.4rem] lg:h-[27.5rem] h-[96.3rem] absolute -bottom-[31.2rem] bg-[#F1F4F4] lg:rounded-[1.37rem] rounded-[4.1rem] -z-10 lg:hidden`}
+				className={`lg:w-[52.5rem] w-[90.7rem] lg:h-[31.5rem] h-[110.0rem] absolute -bottom-[35.6rem] bg-[#F1F4F4] lg:rounded-[1.56rem] rounded-[4.7rem] -z-10 lg:hidden`}
 			/>
-			<h1 className="font-SourceSansProBold text-neutral-g text-[4.9rem] lg:hidden flex mb-[4.9rem]">
+			<h1 className="font-SourceSansProBold text-neutral-g text-[5.6rem] lg:hidden flex mb-[5.6rem]">
 				{Title}
 			</h1>
 			{Left}

@@ -35,30 +35,30 @@ export default function Tractions() {
   }, []);
 
   return (
-    <section className="w-full bg-white-MainPage lg:py-[4.6rem] py-[12.2rem] overflow-hidden">
-      <div className="flex flex-col items-center lg:gap-[2.7rem] gap-[4.9rem] lg:px-[8.8rem] px-[4.9rem]">
-        <div data-aos="fade-down" className="text-center lg:max-w-[43.8rem]">
-          <p className="font-SourceSansProBold lg:text-[1.37rem] text-[3.7rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+    <section className="w-full bg-white-MainPage lg:py-[5.2rem] py-[14.0rem] overflow-hidden">
+      <div className="flex flex-col items-center lg:gap-[3.1rem] gap-[5.6rem] lg:px-[10.0rem] px-[5.6rem]">
+        <div data-aos="fade-down" className="text-center lg:max-w-[50.0rem]">
+          <p className="font-SourceSansProBold lg:text-[1.56rem] text-[4.2rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
             Our Tractions
           </p>
-          <h2 className="font-SourceSansProBold lg:text-[2.1rem] text-[6.1rem] text-neutral-g lg:leading-[2.4rem] leading-[6.6rem] mt-[0.44rem]">
+          <h2 className="font-SourceSansProBold lg:text-[2.4rem] text-[7.0rem] text-neutral-g lg:leading-[2.8rem] leading-[7.5rem] mt-[0.5rem]">
             Solutions We Deliver
           </h2>
-          <p className="font-SourceSansProSemibold lg:text-[0.91rem] text-[2.8rem] text-neutral-e lg:mt-[0.88rem] mt-[2.6rem] lg:leading-[1.58rem] leading-[4.4rem]">
+          <p className="font-SourceSansProSemibold lg:text-[1.04rem] text-[3.3rem] text-neutral-e lg:mt-[1.0rem] mt-[3.0rem] lg:leading-[1.8rem] leading-[5.0rem]">
             ArachnoVa telah berpengalaman dalam pembuatan website mencakup aspek Frontend, Backend, dan desain UI. Kami dengan bangga mempersembahkan beberapa karya kami sebagai gambaran representatif.
           </p>
         </div>
 
-        <div className="flex flex-col lg:gap-[0.91rem] gap-[3.3rem] w-full">
+        <div className="flex flex-col lg:gap-[1.04rem] gap-[3.7rem] w-full">
           {tractions.map((item, i) => (
             <div
               key={item.title}
               data-aos="fade-up"
               data-aos-delay={i * 150}
-              className="group lg:w-full lg:h-[6.0rem] w-full h-auto flex flex-row lg:p-[1.09rem] p-[3.1rem] gap-x-[0.91rem] rounded-[0.64rem] lg:cursor-pointer z-50 border-[0.11rem] border-border bg-white hover:shadow-md transition-all duration-300"
+              className="group lg:w-full lg:h-[6.9rem] w-full h-auto flex flex-row lg:p-[1.25rem] p-[3.5rem] gap-x-[1.04rem] rounded-[0.73rem] lg:cursor-pointer z-50 border-[0.13rem] border-border bg-white hover:shadow-md transition-all duration-300"
             >
               <div className="w-fit h-fit lg:flex hidden">
-                <div className="relative w-[1.75rem] aspect-[21/17]">
+                <div className="relative w-[2.0rem] aspect-[21/17]">
                   <img
                     src={item.icon}
                     alt="icon"
@@ -67,9 +67,9 @@ export default function Tractions() {
                   />
                 </div>
               </div>
-              <div className="flex flex-col lg:gap-y-[0.41rem] gap-y-[1.31rem] flex-1">
+              <div className="flex flex-col lg:gap-y-[0.47rem] gap-y-[1.5rem] flex-1">
                 <div className="w-fit h-fit flex lg:hidden">
-                  <div className="relative w-[5.2rem] aspect-[21/17]">
+                  <div className="relative w-[6.0rem] aspect-[21/17]">
                     <img
                       src={item.icon}
                       alt="icon"
@@ -78,10 +78,10 @@ export default function Tractions() {
                     />
                   </div>
                 </div>
-                <p className="lg:group-hover:bg-clip-text lg:group-hover:text-transparent lg:group-hover:bg-gradient-to-r lg:group-hover:from-[#1AB0C8] lg:group-hover:via-[#84D4E1] lg:group-hover:to-[#179FB5] transition-all duration-500 ease-in-out font-SourceSansProBold lg:text-[1.28rem] text-[4.1rem]/[6.1rem] text-neutral-g lg:leading-[1.37rem]">
+                <p className="lg:group-hover:bg-clip-text lg:group-hover:text-transparent lg:group-hover:bg-gradient-to-r lg:group-hover:from-[#1AB0C8] lg:group-hover:via-[#84D4E1] lg:group-hover:to-[#179FB5] transition-all duration-500 ease-in-out font-SourceSansProBold lg:text-[1.46rem] text-[4.7rem]/[7.0rem] text-neutral-g lg:leading-[1.56rem]">
                   {item.title}
                 </p>
-                <p className="font-SourceSansProSemibold lg:text-[0.73rem] text-[3.3rem] lg:leading-normal leading-[4.1rem] text-neutral-d">
+                <p className="font-SourceSansProSemibold lg:text-[0.83rem] text-[3.7rem] lg:leading-normal leading-[4.7rem] text-neutral-d">
                   {item.description}
                 </p>
               </div>
