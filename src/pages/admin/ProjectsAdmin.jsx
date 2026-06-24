@@ -134,6 +134,7 @@ export default function ProjectsAdmin() {
   const [local, setLocal] = useState(null);
   const [dirty, setDirty] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const toast = useToast();
   const [editing, setEditing] = useState(null);
   const [form, setForm] = useState(null);
   const dragItem = useRef(null);
@@ -143,7 +144,7 @@ export default function ProjectsAdmin() {
     if (projects && !local) setLocal(JSON.parse(JSON.stringify(projects)));
   }, [projects]);
 
-  const save = () => { setProjects(local); setDirty(false); };
+  const save = () => { setProjects(local); setDirty(false); toast("Projects saved", "success"); };
   const updateLocal = (fn) => { setLocal((prev) => { setDirty(true); return fn(prev); }); };
 
   const openNew = () => {

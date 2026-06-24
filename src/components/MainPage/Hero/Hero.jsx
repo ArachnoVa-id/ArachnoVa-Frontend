@@ -78,11 +78,11 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="aspect-[537/366] w-[28.0rem] border-2 border-[#F1F5F9] rounded-[0.62rem]  relative font-ConsolasRegular ">
-          <div className="bg-white opacity-60 w-full h-full absolute rounded-[0.62rem] backdrop-blur-3xl"></div>
+        <div className="aspect-[537/366] w-[28.0rem] border-2 border-[#2D2D2D] rounded-[0.62rem] relative font-ConsolasRegular overflow-hidden">
+          <div className="bg-[#1E1E1E] w-full h-full absolute rounded-[0.62rem]"></div>
           {codeDone && (
             <div
-               className="absolute aspect-[419/96] w-[24rem] bg-white opacity-90 rounded-[0.62rem] -bottom-[3.0rem] -right-[4.0rem] text-[1.0rem]  flex items-center border-2 border-border font-ConsolasBold"
+               className="absolute aspect-[419/96] w-[24rem] bg-[#252526] rounded-[0.62rem] -bottom-[3.0rem] -right-[4.0rem] text-[1.0rem] flex items-center border-2 border-[#3C3C3C] font-ConsolasBold"
               data-aos="fade-left"
             >
               <Image
