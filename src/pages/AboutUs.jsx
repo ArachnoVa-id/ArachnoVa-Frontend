@@ -5,6 +5,7 @@ import TeamSection from "@/components/AboutUs/TeamSection";
 
 export default function AboutUsPage() {
   const [members] = useCollection("team");
+  const [projects] = useCollection("projects");
 
   return (
     <>
@@ -12,7 +13,7 @@ export default function AboutUsPage() {
         <title>About Us | ArachnoVa</title>
       </Helmet>
       <AboutUs />
-      <TeamSection members={members} />
+      <TeamSection members={members} projects={projects} />
     </>
   );
 }

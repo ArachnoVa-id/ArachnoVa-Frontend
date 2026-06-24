@@ -11,7 +11,15 @@ const gradientColors = [
   "from-lime-400 to-emerald-400",
 ];
 
-export default function TeamSection({ members }) {
+function shortUrl(url) {
+  return url
+    .replace(/^https?:\/\//, "")
+    .replace(/^www\./, "")
+    .replace(/\/$/, "")
+    .slice(0, 30);
+}
+
+export default function TeamSection({ members, projects }) {
   if (!members?.length) return null;
 
   return (
@@ -26,74 +34,103 @@ export default function TeamSection({ members }) {
       </div>
 
       <div className="hidden md:flex flex-wrap justify-center gap-8">
-        {members.map((member, i) => (
-          <article key={i} className="flex flex-col gap-4 group w-72">
-            <figure className="relative overflow-hidden rounded-2xl border border-gray-200/80 bg-gray-50 shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:border-purple-200">
-              {member.image ? (
-                <img alt={member.name} src={member.image}
-                  className="object-cover aspect-square w-full h-full transition-transform duration-500 group-hover:scale-110"
-                  draggable="false"
-                  onError={(e) => { e.target.style.display = "none"; e.target.nextSibling.style.display = "flex"; }} />
-              ) : null}
-              <div className={`aspect-square w-full h-full bg-gradient-to-br ${gradientColors[i % gradientColors.length]} flex items-center justify-center ${member.image ? "hidden" : ""}`}>
-                <span className="text-white lg:text-6xl text-4xl font-bold">{member.name?.charAt(0) || "?"}</span>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" />
-            </figure>
-            <div className="flex flex-col gap-1">
-              <span className="text-lg font-bold text-gray-900 transition-colors group-hover:text-purple-600">{member.name}</span>
-              <span className="text-sm text-gray-500">{member.role}</span>
-              {/* Social links */}
-              <div className="flex gap-2 mt-1">
+        {members.map((member, i) => {
+          const memberProjects = (member.projectIds || [])
+            .map((id) => (projects || []).find((p) => p.id === id))
+            .filter(Boolean);
+          return (
+            <article key={i} className="flex flex-col gap-3 group w-72">
+              <figure className="relative overflow-hidden rounded-2xl border border-gray-200/80 bg-gray-50 shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:border-purple-200">
+                {member.image ? (
+                  <img alt={member.name} src={member.image}
+                    className="object-cover aspect-square w-full h-full transition-transform duration-500 group-hover:scale-110"
+                    draggable="false"
+                    onError={(e) => { e.target.style.display = "none"; e.target.nextSibling.style.display = "flex"; }} />
+                ) : null}
+                <div className={`aspect-square w-full h-full bg-gradient-to-br ${gradientColors[i % gradientColors.length]} flex items-center justify-center ${member.image ? "hidden" : ""}`}>
+                  <span className="text-white lg:text-6xl text-4xl font-bold">{member.name?.charAt(0) || "?"}</span>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" />
+              </figure>
+              <div className="flex flex-col gap-1.5">
+                <span className="text-lg font-bold text-gray-900 transition-colors group-hover:text-purple-600">{member.name}</span>
+                <span className="text-sm text-gray-500">{member.role}</span>
+
+                {/* LinkedIn */}
                 {member.linkedin && (
                   <a href={member.linkedin} target="_blank" rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-blue-600 transition-colors" title="LinkedIn">
-                    <FiLinkedin size={16} />
+                    className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-blue-600 transition-colors truncate">
+                    <FiLinkedin size={12} className="shrink-0" />
+                    <span className="truncate">{shortUrl(member.linkedin)}</span>
                   </a>
                 )}
+
+                {/* Website */}
                 {member.website && (
                   <a href={member.website} target="_blank" rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-teal-600 transition-colors" title="Personal website">
-                    <FiGlobe size={16} />
+                    className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-teal-600 transition-colors truncate">
+                    <FiGlobe size={12} className="shrink-0" />
+                    <span className="truncate">{shortUrl(member.website)}</span>
                   </a>
                 )}
+
+                {/* Project tags */}
+                {memberProjects.length > 0 && (
+                  <div className="flex flex-wrap gap-1 mt-0.5">
+                    {memberProjects.map((p) => (
+                      <span key={p.id} className="text-[10px] px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-500 border border-gray-200">
+                        {p.title}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </div>
 
-      {/* Mobile: horizontal scroll */}
+      {/* Mobile */}
       <div className="md:hidden flex gap-6 overflow-x-auto pb-4">
-        {members.map((member, i) => (
-          <div key={i} className="flex-shrink-0 w-64">
-            <div className="rounded-2xl overflow-hidden border border-gray-200/80 bg-gray-50 shadow-sm mb-3">
-              {member.image ? (
-                <img loading="lazy" alt={member.name} src={member.image} className="object-cover aspect-square w-full" draggable="false" />
-              ) : (
-                <div className={`aspect-square w-full bg-gradient-to-br ${gradientColors[i % gradientColors.length]} flex items-center justify-center`}>
-                  <span className="text-white text-5xl font-bold">{member.name?.charAt(0) || "?"}</span>
-                </div>
-              )}
-            </div>
-            <p className="font-bold text-base text-gray-900">{member.name}</p>
-            <p className="text-sm text-gray-500">{member.role}</p>
-            <div className="flex gap-2 mt-1">
+        {members.map((member, i) => {
+          const memberProjects = (member.projectIds || [])
+            .map((id) => (projects || []).find((p) => p.id === id))
+            .filter(Boolean);
+          return (
+            <div key={i} className="flex-shrink-0 w-64">
+              <div className="rounded-2xl overflow-hidden border border-gray-200/80 bg-gray-50 shadow-sm mb-3">
+                {member.image ? (
+                  <img loading="lazy" alt={member.name} src={member.image} className="object-cover aspect-square w-full" draggable="false" />
+                ) : (
+                  <div className={`aspect-square w-full bg-gradient-to-br ${gradientColors[i % gradientColors.length]} flex items-center justify-center`}>
+                    <span className="text-white text-5xl font-bold">{member.name?.charAt(0) || "?"}</span>
+                  </div>
+                )}
+              </div>
+              <p className="font-bold text-base text-gray-900">{member.name}</p>
+              <p className="text-sm text-gray-500">{member.role}</p>
               {member.linkedin && (
                 <a href={member.linkedin} target="_blank" rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-blue-600 transition-colors" title="LinkedIn">
-                  <FiLinkedin size={14} />
+                  className="flex items-center gap-1 text-xs text-gray-400 hover:text-blue-600 mt-1">
+                  <FiLinkedin size={12} /> <span className="truncate">{shortUrl(member.linkedin)}</span>
                 </a>
               )}
               {member.website && (
                 <a href={member.website} target="_blank" rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-teal-600 transition-colors" title="Personal website">
-                  <FiGlobe size={14} />
+                  className="flex items-center gap-1 text-xs text-gray-400 hover:text-teal-600 mt-0.5">
+                  <FiGlobe size={12} /> <span className="truncate">{shortUrl(member.website)}</span>
                 </a>
               )}
+              {memberProjects.length > 0 && (
+                <div className="flex flex-wrap gap-1 mt-1">
+                  {memberProjects.map((p) => (
+                    <span key={p.id} className="text-[10px] px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-500 border border-gray-200">{p.title}</span>
+                  ))}
+                </div>
+              )}
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
