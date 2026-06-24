@@ -179,7 +179,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
               transition: "opacity 0.25s ease, transform 0.3s ease",
             }}>
               <p className="text-sm text-neutral-e leading-relaxed">{project.description}</p>
-              <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 px-4 py-2 bg-gradient-to-r from-LightBlue-c to-LightBlue-d text-white text-sm font-InterBold rounded-lg hover:translate-y-[-0.1vw] transition-transform">
+              <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 px-4 py-2 bg-gradient-to-r from-LightBlue-c to-LightBlue-d text-white text-sm font-InterBold rounded-lg hover:translate-y-[-0px] transition-transform">
                 Visit Project
               </a>
             </div>
