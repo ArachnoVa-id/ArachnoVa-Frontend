@@ -18,6 +18,7 @@ export default function Hero() {
   }, []);
   return (
     <section className="w-full min-h-screen relative bg-white-MainPage overflow-hidden flex flex-row justify-center items-center">
+      <style>{`@keyframes fade-in-left { from { opacity: 0; transform: translateX(-1.5rem); } to { opacity: 1; transform: translateX(0); } } .animate-fade-in-left { animation: fade-in-left 0.5s ease-out; }`}</style>
       <WebPattern opacity={0.04} />
       <Image
         alt="Background"
@@ -94,7 +95,7 @@ export default function Hero() {
             </div>
           </div>
           {codeDone && (
-            <div className="absolute aspect-[419/96] w-[24rem] bg-white rounded-[0.62rem] -bottom-[1.5rem] -right-[1.0rem] text-[1.0rem] flex items-center border-2 border-[#E2E8F0] font-ConsolasBold shadow-md">
+            <div className="absolute aspect-[419/96] w-[24rem] bg-white rounded-[0.62rem] -bottom-[1.5rem] -right-[1.0rem] text-[1.0rem] flex items-center border-2 border-[#E2E8F0] font-ConsolasBold shadow-md animate-fade-in-left">
               <Image
                 alt=""
                 src="/image/Hero/3ColorButton.png"
@@ -164,7 +165,7 @@ export default function Hero() {
             </div>
           </div>
           {codeDone && (
-            <div className="absolute w-[60.0rem] h-[13.0rem] bg-white rounded-md -bottom-[3.0rem] -right-[2.0rem] text-[3.0rem] border-2 border-[#E2E8F0] font-ConsolasBold shadow-md">
+            <div className="absolute w-[60.0rem] h-[13.0rem] bg-white rounded-md -bottom-[3.0rem] -right-[2.0rem] text-[3.0rem] border-2 border-[#E2E8F0] font-ConsolasBold shadow-md animate-fade-in-left">
               <Image
                 alt=""
                 src="/image/Hero/3ColorButton.png"
