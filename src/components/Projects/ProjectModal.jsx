@@ -18,18 +18,15 @@ export default function ProjectModal({ project, onClose, originEl }) {
 
   const desktopImages = project?.desktopImages?.filter(Boolean) || [project?.imageDesktop].filter(Boolean);
   const mobileImages = project?.mobileImages?.filter(Boolean) || [project?.imageMobile].filter(Boolean);
-  const hasDesktop = desktopImages.length > 0;
-  const hasMobile = mobileImages.length > 0;
 
   const allImages = [];
-  const count = Math.max(desktopImages.length, mobileImages.length);
+  const count = Math.max(desktopImages.length, mobileImages.length, 1);
   for (let i = 0; i < count; i++) {
     allImages.push({
       desktop: desktopImages[i % desktopImages.length],
       mobile: mobileImages[i % mobileImages.length],
     });
   }
-  if (!allImages.length) allImages.push({ desktop: null, mobile: null });
 
   const [imgIdx, setImgIdx] = useState(0);
   const touchStart = useRef(0);
@@ -56,7 +53,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
 
   useEffect(() => {
     if (!originRect.current) { setPhase("open"); return; }
-    const maxW = Math.min(window.innerWidth * 0.9, 468);
+    const maxW = Math.min(window.innerWidth * 0.9, 680);
     const finalLeft = (window.innerWidth - maxW) / 2;
     const finalTop = Math.max(window.innerHeight * 0.025, 10);
     const finalHeight = window.innerHeight * 0.95;
@@ -76,7 +73,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
         cardRef.current.style.left = finalLeft + "px";
         cardRef.current.style.width = maxW + "px";
         cardRef.current.style.height = finalHeight + "px";
-        cardRef.current.style.borderRadius = "0";
+        cardRef.current.style.borderRadius = "16px";
         setPhase("open");
       });
     });
@@ -125,9 +122,9 @@ export default function ProjectModal({ project, onClose, originEl }) {
         zIndex: 200,
         top: "2.5%",
         left: "50%",
-        width: "min(90vw, 468px)",
+        width: "min(90vw, 680px)",
         height: "95%",
-        borderRadius: "0",
+        borderRadius: "16px",
         overflow: "hidden",
         background: "white",
         boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
@@ -144,10 +141,10 @@ export default function ProjectModal({ project, onClose, originEl }) {
         <div className="h-full flex flex-col bg-white"
           style={{ opacity: phase === "start" ? 0 : 1, transition: "opacity 0.2s ease 0.15s" }}>
 
-          {/* Header — profile bar style */}
-          <div className="flex items-center justify-between px-3 py-2.5 border-b border-border shrink-0">
+          {/* Header */}
+          <div className="flex items-center justify-between px-4 py-3 border-b border-border shrink-0">
             <div className="flex items-center gap-2.5 min-w-0">
-              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-LightBlue-c to-LightBlue-d flex items-center justify-center text-white text-[0.55rem] font-bold shrink-0">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-LightBlue-c to-LightBlue-d flex items-center justify-center text-white text-[0.6rem] font-bold shrink-0">
                 {project.title?.charAt(0)?.toUpperCase() || "P"}
               </div>
               <div className="min-w-0">
@@ -162,59 +159,64 @@ export default function ProjectModal({ project, onClose, originEl }) {
             <div className="flex items-center gap-2 shrink-0">
               {project.link && (
                 <a href={project.link} target="_blank" rel="noopener noreferrer"
-                  className="px-2.5 py-1 bg-gradient-to-r from-LightBlue-c to-LightBlue-d text-white text-[0.65rem] font-InterBold rounded-lg hover:brightness-110 transition-all">
+                  className="px-3 py-1 bg-gradient-to-r from-LightBlue-c to-LightBlue-d text-white text-xs font-InterBold rounded-lg hover:brightness-110 transition-all">
                   Visit
                 </a>
               )}
               <button onClick={handleClose} className="text-gray-400 hover:text-gray-600 p-0.5 transition-colors">
-                <IoMdClose size={18} />
+                <IoMdClose size={20} />
               </button>
             </div>
           </div>
 
-          {/* Image area — Instagram style */}
-          <div className="flex-1 overflow-hidden bg-black select-none relative"
+          {/* Image area — transparent bg, mockups fill space */}
+          <div className="flex-1 overflow-hidden select-none relative bg-gray-50"
             onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
             <div className="flex h-full transition-transform duration-300 ease-out"
               style={{ transform: `translateX(${touching ? deltaX - imgIdx * 100 : -imgIdx * 100}%)` }}>
               {allImages.map((pair, i) => (
-                <div key={i} className="min-w-full h-full flex items-center justify-center bg-black">
+                <div key={i} className="min-w-full h-full flex items-center justify-center">
                   {pair.desktop && pair.mobile ? (
-                    <div className="relative w-full h-full flex items-center justify-center p-[5%]">
-                      <img src={pair.desktop} alt="" className="w-[80%] aspect-[669/376] rounded-lg shadow-2xl object-cover" draggable="false" />
-                      <img src={pair.mobile} alt="" className="absolute w-[22%] aspect-[245/485] rounded-[0.6rem] shadow-2xl object-cover" style={{ bottom: "3%", left: "4%" }} draggable="false" />
+                    <div className="relative w-full h-full flex items-center justify-center p-[2%]">
+                      <img src={pair.desktop} alt=""
+                        className="w-[95%] aspect-[669/376] rounded-xl shadow-xl object-cover"
+                        draggable="false" />
+                      <img src={pair.mobile} alt=""
+                        className="absolute w-[26%] aspect-[245/485] rounded-[0.8rem] shadow-xl object-cover"
+                        style={{ bottom: "2%", left: "1%" }}
+                        draggable="false" />
                     </div>
                   ) : pair.desktop ? (
-                    <img src={pair.desktop} alt="" className="w-full h-full object-contain p-[3%]" draggable="false" />
+                    <img src={pair.desktop} alt="" className="w-full h-full object-contain p-[1%]" draggable="false" />
                   ) : pair.mobile ? (
-                    <div className="flex items-center justify-center w-full h-full p-[8%]">
-                      <img src={pair.mobile} alt="" className="h-full w-auto rounded-lg shadow-2xl" draggable="false" />
+                    <div className="flex items-center justify-center w-full h-full p-[5%]">
+                      <img src={pair.mobile} alt="" className="h-full w-auto rounded-xl shadow-xl" draggable="false" />
                     </div>
                   ) : (
-                    <div className="text-gray-500 text-sm italic">No image</div>
+                    <div className="text-gray-400 text-sm italic">No image</div>
                   )}
                 </div>
               ))}
             </div>
 
-            {/* Dots overlay */}
+            {/* Dots */}
             {allImages.length > 1 && (
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-[0.3rem]">
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-[0.35rem]">
                 {allImages.map((_, i) => (
                   <button key={i} onClick={(e) => { e.stopPropagation(); setImgIdx(i); }}
-                    className={`w-[0.35rem] h-[0.35rem] rounded-full transition-all duration-300 ${i === imgIdx ? "bg-white scale-150" : "bg-white/50 hover:bg-white/80"}`} />
+                    className={`w-[0.4rem] h-[0.4rem] rounded-full transition-all duration-300 ${i === imgIdx ? "bg-LightBlue-c scale-150" : "bg-gray-400/60 hover:bg-gray-500/80"}`} />
                 ))}
               </div>
             )}
           </div>
 
-          {/* Description area */}
-          <div className="shrink-0 px-3 py-2.5 border-t border-border">
+          {/* Description */}
+          <div className="shrink-0 px-4 py-3 border-t border-border">
             {productLabel && (
               <span className="text-[0.6rem] uppercase tracking-[0.1em] text-gray-400 font-medium">{productLabel}</span>
             )}
             {project.description && (
-              <p className="text-xs text-neutral-e leading-relaxed mt-1 whitespace-pre-line">{project.description}</p>
+              <p className="text-sm text-neutral-e leading-relaxed mt-1 whitespace-pre-line">{project.description}</p>
             )}
           </div>
         </div>
