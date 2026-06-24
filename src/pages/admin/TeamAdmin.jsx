@@ -104,10 +104,6 @@ export default function TeamAdmin() {
         change(i, "image", data.image);
         toast("Profile image fetched", "success");
       }
-      if (data.name && (!member.name || member.name.startsWith("John") || member.name.startsWith("Jane") || member.name.includes("Doe"))) {
-        change(i, "name", data.name);
-        toast(data.image ? "Name and image fetched" : "Name auto-filled", "success");
-      }
       if (!data.image) {
         // Open LinkedIn in new tab so user can copy image URL
         window.open(member.linkedin, "_blank");
