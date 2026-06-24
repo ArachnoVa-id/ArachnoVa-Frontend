@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { useCollection } from "@/context/DataContext";
 import { useToast } from "@/components/ui/Toast";
-import { FiPlus, FiSave, FiUpload, FiSearch, FiX, FiLinkedin, FiUserPlus, FiUsers } from "react-icons/fi";
+import { FiPlus, FiSave, FiUpload, FiSearch, FiX, FiLinkedin } from "react-icons/fi";
 
 const API_BASE = import.meta.env.VITE_API_URL || "";
 const gradientColors = [
@@ -23,7 +23,6 @@ function ProjectPicker({ selected, onChange, projects }) {
   const filtered = (projects || []).filter((p) =>
     p.title.toLowerCase().includes(search.toLowerCase())
   );
-
   return (
     <div className="relative">
       <div className="flex flex-wrap gap-1 mb-1">
@@ -46,9 +45,7 @@ function ProjectPicker({ selected, onChange, projects }) {
           <div className="absolute z-10 top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-32 overflow-y-auto">
             {filtered.filter((p) => !selected.includes(p.id)).map((p) => (
               <button key={p.id} onClick={() => { onChange([...selected, p.id]); setSearch(""); setOpen(false); }}
-                className="w-full text-left px-3 py-1.5 text-[11px] hover:bg-blue-50 text-gray-700">
-                {p.title}
-              </button>
+                className="w-full text-left px-3 py-1.5 text-[11px] hover:bg-blue-50 text-gray-700">{p.title}</button>
             ))}
           </div>
         )}
@@ -57,6 +54,40 @@ function ProjectPicker({ selected, onChange, projects }) {
     </div>
   );
 }
+
+const MemberCard = memo(({ member, idx, onUpdate, onUpload, onFetchLinkedIn, onRemove, fetchingLi, projects, gradientColor }) => {
+  const change = (field, val) => onUpdate(idx, field, val);
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
+      <div className="relative w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden cursor-pointer group" onClick={() => onUpload(idx)}>
+        {member.image ? <img src={member.image} alt="" className="w-full h-full object-cover" /> : (
+          <div className={`w-full h-full bg-gradient-to-br ${gradientColor} flex items-center justify-center text-white text-lg font-bold`}>
+            {member.name?.charAt(0) || "?"}
+          </div>
+        )}
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-white text-[10px] rounded-full"><FiUpload size={14} /></div>
+      </div>
+      <div className="space-y-1.5">
+        <input defaultValue={member.name} onBlur={(e) => change("name", e.target.value)}
+          placeholder="Name" className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-xs text-center font-medium" />
+        <input defaultValue={member.role} onBlur={(e) => change("role", e.target.value)}
+          placeholder="Role" className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-xs text-center" />
+        <div className="flex gap-1">
+          <input defaultValue={member.linkedin || ""} onBlur={(e) => change("linkedin", e.target.value)}
+            placeholder="LinkedIn URL" className="flex-1 px-2 py-1 border border-gray-200 rounded-lg text-[10px] font-mono" />
+          <button onClick={() => onFetchLinkedIn(idx)} disabled={fetchingLi === idx}
+            className="px-1.5 py-1 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 disabled:opacity-50 flex items-center" title="Fetch profile pic">
+            {fetchingLi === idx ? <span className="text-[10px]">...</span> : <FiLinkedin size={12} />}
+          </button>
+        </div>
+        <input defaultValue={member.website || ""} onBlur={(e) => change("website", e.target.value)}
+          placeholder="Personal website URL" className="w-full px-2 py-1 border border-gray-200 rounded-lg text-[10px] font-mono" />
+        <ProjectPicker selected={member.projectIds || []} onChange={(ids) => change("projectIds", ids)} projects={projects} />
+        <button onClick={() => onRemove(idx)} className="w-full text-xs text-red-500 hover:bg-red-50 py-1.5 rounded-lg flex items-center justify-center gap-1"><FiX size={12} /> Remove</button>
+      </div>
+    </div>
+  );
+});
 
 export default function TeamAdmin() {
   const [members, setMembers] = useCollection("team");
@@ -72,7 +103,7 @@ export default function TeamAdmin() {
 
   const save = () => { setMembers(local); setDirty(false); toast("Team saved", "success"); };
   const update = (fn) => { setLocal((prev) => { setDirty(true); return fn(prev); }); };
-  const add = (type) => update((prev) => [...prev, { name: "", role: "", image: "", linkedin: "", type, projectIds: [] }]);
+  const add = (type) => update((prev) => [...prev, { name: "", role: "", image: "", linkedin: "", type, projectIds: [], website: "" }]);
   const remove = (i) => update((prev) => prev.filter((_, idx) => idx !== i));
   const change = (i, field, value) => update((prev) => {
     const next = [...prev]; next[i] = { ...next[i], [field]: value }; return next;
@@ -80,15 +111,12 @@ export default function TeamAdmin() {
 
   const handleUpload = async (i) => {
     const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/*";
+    input.type = "file"; input.accept = "image/*";
     input.onchange = async () => {
       const file = input.files?.[0];
       if (!file) return;
-      try {
-        const { url } = await uploadFile(file);
-        change(i, "image", url);
-      } catch (e) { toast("Upload failed: " + e.message, "error"); }
+      try { const { url } = await uploadFile(file); change(i, "image", url); }
+      catch (e) { toast("Upload failed: " + e.message, "error"); }
     };
     input.click();
   };
@@ -100,18 +128,9 @@ export default function TeamAdmin() {
     try {
       const res = await fetch(`${API_BASE}/api/linkedin-image?url=${encodeURIComponent(member.linkedin)}`);
       const data = await res.json();
-      if (data.image) {
-        change(i, "image", data.image);
-        toast("Profile image fetched", "success");
-      }
-      if (!data.image) {
-        // Open LinkedIn in new tab so user can copy image URL
-        window.open(member.linkedin, "_blank");
-        toast("LinkedIn opened in new tab. Right-click the profile photo → Copy Image Address → paste below", "info", 5000);
-      }
-    } catch (e) {
-      toast("Error: " + e.message, "error");
-    }
+      if (data.image) { change(i, "image", data.image); toast("Profile image fetched", "success"); }
+      if (!data.image) { window.open(member.linkedin, "_blank"); toast("LinkedIn opened. Right-click photo → Copy Image Address → paste below", "info", 5000); }
+    } catch (e) { toast("Error: " + e.message, "error"); }
     setFetchingLi(null);
   };
 
@@ -124,50 +143,28 @@ export default function TeamAdmin() {
       <div className="mb-8" key={type}>
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
-            <span className={`w-2 h-2 rounded-full ${color}`} />
-            {title} ({indices.length})
+            <span className={`w-2 h-2 rounded-full ${color}`} /> {title} ({indices.length})
           </h3>
           <button onClick={() => add(type)} className="px-2.5 py-1.5 bg-blue-600 text-white text-xs rounded-lg hover:bg-blue-700 flex items-center gap-1">
             <FiPlus size={12} /> Add
           </button>
         </div>
-        {indices.length === 0 ? (
-          <p className="text-sm text-gray-400 italic">No members yet</p>
-        ) : (
+        {indices.length === 0 ? <p className="text-sm text-gray-400 italic">No members yet</p> : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-            {indices.map((idx) => {
-              const m = local[idx];
-              return (
-                <div key={m.id || idx} className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
-                  <div className="relative w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden cursor-pointer group" onClick={() => handleUpload(idx)}>
-                    {m.image ? <img src={m.image} alt="" className="w-full h-full object-cover" /> : (
-                      <div className={`w-full h-full bg-gradient-to-br ${gradientColors[idx % gradientColors.length]} flex items-center justify-center text-white text-lg font-bold`}>
-                        {m.name?.charAt(0) || "?"}
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-white text-[10px] rounded-full"><FiUpload size={14} /></div>
-                  </div>
-                  <div className="space-y-1.5">
-                    <input value={m.name} onChange={(e) => change(idx, "name", e.target.value)}
-                      placeholder="Name" className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-xs text-center font-medium" />
-                    <input value={m.role} onChange={(e) => change(idx, "role", e.target.value)}
-                      placeholder="Role" className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-xs text-center" />
-                    <div className="flex gap-1">
-                      <input value={m.linkedin || ""} onChange={(e) => change(idx, "linkedin", e.target.value)}
-                        placeholder="LinkedIn URL" className="flex-1 px-2 py-1 border border-gray-200 rounded-lg text-[10px] font-mono" />
-                      <button onClick={() => fetchLinkedInImage(idx)} disabled={fetchingLi === idx}
-                        className="px-1.5 py-1 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 disabled:opacity-50 flex items-center" title="Fetch profile pic from LinkedIn">
-                        {fetchingLi === idx ? <span className="text-[10px]">...</span> : <FiLinkedin size={12} />}
-                      </button>
-                    </div>
-                    <input value={m.website || ""} onChange={(e) => change(idx, "website", e.target.value)}
-                      placeholder="Personal website URL" className="w-full px-2 py-1 border border-gray-200 rounded-lg text-[10px] font-mono" />
-                    <ProjectPicker selected={m.projectIds || []} onChange={(ids) => change(idx, "projectIds", ids)} projects={projects} />
-                    <button onClick={() => remove(idx)} className="w-full text-xs text-red-500 hover:bg-red-50 py-1.5 rounded-lg flex items-center justify-center gap-1"><FiX size={12} /> Remove</button>
-                  </div>
-                </div>
-              );
-            })}
+            {indices.map((idx) => (
+              <MemberCard
+                key={local[idx]?.id || idx}
+                member={local[idx]}
+                idx={idx}
+                onUpdate={change}
+                onUpload={handleUpload}
+                onFetchLinkedIn={fetchLinkedInImage}
+                onRemove={remove}
+                fetchingLi={fetchingLi === idx}
+                projects={projects}
+                gradientColor={gradientColors[idx % gradientColors.length]}
+              />
+            ))}
           </div>
         )}
       </div>
