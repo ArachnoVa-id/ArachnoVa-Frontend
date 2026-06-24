@@ -7,75 +7,6 @@ const productLabels = {
   "wa-apps": "WhatsApp Apps",
 };
 
-function MockupPreview({ images, mobileImages }) {
-  const [idx, setIdx] = useState(0);
-  const touchStart = useRef(0);
-  const [touching, setTouching] = useState(false);
-  const [deltaX, setDeltaX] = useState(0);
-
-  const count = Math.max(images?.length || 1, mobileImages?.length || 1);
-
-  const goTo = (next) => {
-    if (next < 0) next = count - 1;
-    if (next >= count) next = 0;
-    setIdx(next);
-  };
-
-  const onTouchStart = (e) => { touchStart.current = e.touches[0].clientX; setTouching(true); setDeltaX(0); };
-  const onTouchMove = (e) => { setDeltaX(e.touches[0].clientX - touchStart.current); };
-  const onTouchEnd = () => {
-    setTouching(false);
-    if (deltaX > 50) goTo(idx - 1);
-    else if (deltaX < -50) goTo(idx + 1);
-    setDeltaX(0);
-  };
-
-  const desktopSrc = images?.[idx % images.length];
-  const mobileSrc = mobileImages?.[idx % mobileImages.length];
-
-  if (!desktopSrc && !mobileSrc) return null;
-
-  return (
-    <div className="flex flex-col min-h-0 flex-1">
-      <div className="flex-1 rounded-lg overflow-hidden border border-border relative select-none bg-gray-50 min-h-0"
-        onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
-        <div className="flex h-full transition-transform duration-300 ease-out"
-          style={{ transform: `translateX(${touching ? deltaX - idx * 100 : -idx * 100}%)` }}>
-          {Array.from({ length: count }).map((_, i) => {
-            const ds = images?.[i % images.length];
-            const ms = mobileImages?.[i % mobileImages.length];
-            return (
-              <div key={i} className="min-w-full h-full flex items-center justify-center bg-gray-50 p-[3%]">
-                <div className="relative w-full h-full max-h-full max-w-full flex items-center justify-center">
-                  {ds && (
-                    <img src={ds} alt=""
-                      className="w-[80%] aspect-[669/376] rounded-lg shadow-lg object-cover"
-                      draggable="false" />
-                  )}
-                  {ms && (
-                    <img src={ms} alt=""
-                      className="absolute w-[22%] aspect-[245/485] rounded-[0.6rem] shadow-lg object-cover"
-                      style={{ bottom: "-5%", left: "2%" }}
-                      draggable="false" />
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      {count > 1 && (
-        <div className="flex items-center justify-center gap-[0.35rem] mt-[0.4rem] shrink-0">
-          {Array.from({ length: count }).map((_, i) => (
-            <button key={i} onClick={() => setIdx(i)}
-              className={`w-[0.4rem] h-[0.4rem] rounded-full transition-all duration-300 ${i === idx ? "bg-LightBlue-c scale-150" : "bg-gray-300 hover:bg-gray-400"}`} />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function ProjectModal({ project, onClose, originEl }) {
   const [phase, setPhase] = useState("start");
   const cardRef = useRef(null);
@@ -89,15 +20,46 @@ export default function ProjectModal({ project, onClose, originEl }) {
   const mobileImages = project?.mobileImages?.filter(Boolean) || [project?.imageMobile].filter(Boolean);
   const hasDesktop = desktopImages.length > 0;
   const hasMobile = mobileImages.length > 0;
+
+  const allImages = [];
+  const count = Math.max(desktopImages.length, mobileImages.length);
+  for (let i = 0; i < count; i++) {
+    allImages.push({
+      desktop: desktopImages[i % desktopImages.length],
+      mobile: mobileImages[i % mobileImages.length],
+    });
+  }
+  if (!allImages.length) allImages.push({ desktop: null, mobile: null });
+
+  const [imgIdx, setImgIdx] = useState(0);
+  const touchStart = useRef(0);
+  const [touching, setTouching] = useState(false);
+  const [deltaX, setDeltaX] = useState(0);
+
   const productLabel = productLabels[project?.product] || project?.product || "";
   const domain = project?.link ? project.link.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "") : "";
 
+  const goTo = (next) => {
+    if (next < 0) next = allImages.length - 1;
+    if (next >= allImages.length) next = 0;
+    setImgIdx(next);
+  };
+
+  const onTouchStart = (e) => { touchStart.current = e.touches[0].clientX; setTouching(true); setDeltaX(0); };
+  const onTouchMove = (e) => { setDeltaX(e.touches[0].clientX - touchStart.current); };
+  const onTouchEnd = () => {
+    setTouching(false);
+    if (deltaX > 50) goTo(imgIdx - 1);
+    else if (deltaX < -50) goTo(imgIdx + 1);
+    setDeltaX(0);
+  };
+
   useEffect(() => {
     if (!originRect.current) { setPhase("open"); return; }
-    const maxW = Math.min(window.innerWidth * 0.9, 1024);
+    const maxW = Math.min(window.innerWidth * 0.9, 468);
     const finalLeft = (window.innerWidth - maxW) / 2;
-    const finalTop = Math.max(window.innerHeight * 0.05, 20);
-    const finalHeight = window.innerHeight * 0.9;
+    const finalTop = Math.max(window.innerHeight * 0.025, 10);
+    const finalHeight = window.innerHeight * 0.95;
 
     requestAnimationFrame(() => {
       if (!cardRef.current) return;
@@ -114,7 +76,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
         cardRef.current.style.left = finalLeft + "px";
         cardRef.current.style.width = maxW + "px";
         cardRef.current.style.height = finalHeight + "px";
-        cardRef.current.style.borderRadius = "12px";
+        cardRef.current.style.borderRadius = "0";
         setPhase("open");
       });
     });
@@ -161,77 +123,98 @@ export default function ProjectModal({ project, onClose, originEl }) {
     : {
         position: "fixed",
         zIndex: 200,
-        top: "5%",
-        left: "5%",
-        width: "90%",
-        height: "90%",
-        borderRadius: "12px",
+        top: "2.5%",
+        left: "50%",
+        width: "min(90vw, 468px)",
+        height: "95%",
+        borderRadius: "0",
         overflow: "hidden",
         background: "white",
         boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
+        transform: "translateX(-50%)",
       };
 
   return (
     <>
-      <div className="fixed inset-0 z-[199] bg-black/40 backdrop-blur-sm"
+      <div className="fixed inset-0 z-[199] bg-black/50 backdrop-blur-sm"
         onClick={handleClose}
         style={{ opacity: phase === "start" ? 0 : 1, transition: "opacity 0.3s ease" }} />
 
       <div ref={cardRef} style={startStyle}>
-        <div className="h-full flex flex-col"
+        <div className="h-full flex flex-col bg-white"
           style={{ opacity: phase === "start" ? 0 : 1, transition: "opacity 0.2s ease 0.15s" }}>
 
-          {/* Header */}
-          <div className="flex items-start justify-between px-5 pt-4 pb-3 border-b border-border shrink-0">
-            <div className="min-w-0 mr-4">
-              {productLabel && (
-                <span className="text-[0.65rem] uppercase tracking-[0.12em] text-gray-400 font-medium">
-                  {productLabel}
-                </span>
-              )}
-              <h2 className="text-xl font-SourceSansProBold text-neutral-g truncate leading-tight mt-0.5">
-                {project.title}
-              </h2>
-              {domain && (
-                <a href={project.link} target="_blank" rel="noopener noreferrer"
-                  className="text-xs text-LightBlue-c hover:underline truncate block mt-0.5">
-                  {domain}
-                </a>
-              )}
+          {/* Header — profile bar style */}
+          <div className="flex items-center justify-between px-3 py-2.5 border-b border-border shrink-0">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-LightBlue-c to-LightBlue-d flex items-center justify-center text-white text-[0.55rem] font-bold shrink-0">
+                {project.title?.charAt(0)?.toUpperCase() || "P"}
+              </div>
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-neutral-g leading-tight truncate">{project.title}</p>
+                {domain && (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-[0.65rem] text-LightBlue-c hover:underline truncate block leading-tight">
+                    {domain}
+                  </a>
+                )}
+              </div>
             </div>
-            <div className="flex items-center gap-3 shrink-0 mt-0.5">
+            <div className="flex items-center gap-2 shrink-0">
               {project.link && (
                 <a href={project.link} target="_blank" rel="noopener noreferrer"
-                  className="px-3 py-1.5 bg-gradient-to-r from-LightBlue-c to-LightBlue-d text-white text-xs font-InterBold rounded-lg hover:translate-y-[-1px] transition-transform">
-                  Visit Project
+                  className="px-2.5 py-1 bg-gradient-to-r from-LightBlue-c to-LightBlue-d text-white text-[0.65rem] font-InterBold rounded-lg hover:brightness-110 transition-all">
+                  Visit
                 </a>
               )}
-              <button onClick={handleClose} className="text-gray-400 hover:text-gray-600 p-1 transition-colors">
-                <IoMdClose size={22} />
+              <button onClick={handleClose} className="text-gray-400 hover:text-gray-600 p-0.5 transition-colors">
+                <IoMdClose size={18} />
               </button>
             </div>
           </div>
 
-          {/* Body */}
-          <div className="flex-1 flex flex-col lg:flex-row overflow-hidden min-h-0">
-            {/* Left — mockup preview with swipe */}
-            <div className="lg:w-[60%] p-4 pb-3 flex flex-col overflow-hidden min-h-0">
-              {hasDesktop || hasMobile ? (
-                <MockupPreview images={desktopImages} mobileImages={mobileImages} />
-              ) : (
-                <div className="flex-1 flex items-center justify-center text-gray-400 text-sm italic">
-                  No images available
+          {/* Image area — Instagram style */}
+          <div className="flex-1 overflow-hidden bg-black select-none relative"
+            onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+            <div className="flex h-full transition-transform duration-300 ease-out"
+              style={{ transform: `translateX(${touching ? deltaX - imgIdx * 100 : -imgIdx * 100}%)` }}>
+              {allImages.map((pair, i) => (
+                <div key={i} className="min-w-full h-full flex items-center justify-center bg-black">
+                  {pair.desktop && pair.mobile ? (
+                    <div className="relative w-full h-full flex items-center justify-center p-[5%]">
+                      <img src={pair.desktop} alt="" className="w-[80%] aspect-[669/376] rounded-lg shadow-2xl object-cover" draggable="false" />
+                      <img src={pair.mobile} alt="" className="absolute w-[22%] aspect-[245/485] rounded-[0.6rem] shadow-2xl object-cover" style={{ bottom: "3%", left: "4%" }} draggable="false" />
+                    </div>
+                  ) : pair.desktop ? (
+                    <img src={pair.desktop} alt="" className="w-full h-full object-contain p-[3%]" draggable="false" />
+                  ) : pair.mobile ? (
+                    <div className="flex items-center justify-center w-full h-full p-[8%]">
+                      <img src={pair.mobile} alt="" className="h-full w-auto rounded-lg shadow-2xl" draggable="false" />
+                    </div>
+                  ) : (
+                    <div className="text-gray-500 text-sm italic">No image</div>
+                  )}
                 </div>
-              )}
+              ))}
             </div>
 
-            {/* Right — description */}
-            {project.description && (
-              <div className="lg:w-[40%] overflow-hidden border-t lg:border-t-0 lg:border-l border-border p-5 flex items-start">
-                <p className="text-sm text-neutral-e leading-relaxed whitespace-pre-line overflow-y-auto max-h-full">
-                  {project.description}
-                </p>
+            {/* Dots overlay */}
+            {allImages.length > 1 && (
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-[0.3rem]">
+                {allImages.map((_, i) => (
+                  <button key={i} onClick={(e) => { e.stopPropagation(); setImgIdx(i); }}
+                    className={`w-[0.35rem] h-[0.35rem] rounded-full transition-all duration-300 ${i === imgIdx ? "bg-white scale-150" : "bg-white/50 hover:bg-white/80"}`} />
+                ))}
               </div>
+            )}
+          </div>
+
+          {/* Description area */}
+          <div className="shrink-0 px-3 py-2.5 border-t border-border">
+            {productLabel && (
+              <span className="text-[0.6rem] uppercase tracking-[0.1em] text-gray-400 font-medium">{productLabel}</span>
+            )}
+            {project.description && (
+              <p className="text-xs text-neutral-e leading-relaxed mt-1 whitespace-pre-line">{project.description}</p>
             )}
           </div>
         </div>
