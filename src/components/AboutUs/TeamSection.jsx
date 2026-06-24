@@ -20,12 +20,12 @@ export default function TeamSection({ members }) {
   if (!members?.length) return null;
 
   return (
-    <section className="w-full bg-white-MainPage lg:py-[0.83rem] py-[2.23rem] lg:px-[1.6rem] px-[0.89rem]">
-      <div className="text-center mb-[0.48rem]">
-        <p className="font-SourceSansProBold lg:text-[0.5rem] text-[0.67rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+    <section className="w-full bg-white-MainPage lg:py-[2.9rem] py-[7.8rem] lg:px-[5.6rem] px-[3.1rem]">
+      <div className="text-center mb-[1.69rem]">
+        <p className="font-SourceSansProBold lg:text-[0.88rem] text-[2.4rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
           Our Team
         </p>
-        <h2 className="font-SourceSansProBold lg:text-[0.5rem] text-[1.12rem] text-neutral-g lg:leading-[0.45rem] leading-[1.2rem] mt-[0.2rem]">
+        <h2 className="font-SourceSansProBold lg:text-[1.35rem] text-[3.9rem] text-neutral-g lg:leading-[1.58rem] leading-[4.2rem] mt-[0.28rem]">
           Meet the Founders
         </h2>
       </div>
@@ -44,37 +44,37 @@ export default function TeamSection({ members }) {
                 />
               ) : null}
               <div className={`aspect-square w-full h-full bg-gradient-to-br ${gradientColors[i % gradientColors.length]} flex items-center justify-center ${member.image ? "hidden" : ""}`}>
-                <span className="text-white lg:text-[0.64rem] text-[2.4rem] font-bold">
+                <span className="text-white lg:text-[2.2rem] text-[8.4rem] font-bold">
                   {member.name?.charAt(0) || "?"}
                 </span>
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" />
             </figure>
             <div className="flex flex-col gap-0.5">
-              <span className="lg:text-lg text-[0.64rem] font-bold text-gray-900 transition-colors group-hover:text-purple-600">
+              <span className="lg:text-lg text-[2.2rem] font-bold text-gray-900 transition-colors group-hover:text-purple-600">
                 {member.name}
               </span>
-              <span className="lg:text-sm text-[0.5rem] text-gray-500">{member.role}</span>
+              <span className="lg:text-sm text-[1.69rem] text-gray-500">{member.role}</span>
             </div>
           </article>
         ))}
       </div>
 
       {/* Mobile: horizontal scroll */}
-      <div className="md:hidden flex gap-[0.64rem] overflow-x-auto pb-[0.32rem]">
+      <div className="md:hidden flex gap-[2.2rem] overflow-x-auto pb-[1.12rem]">
         {members.map((member, i) => (
-          <div key={i} className="flex-shrink-0 w-[9.6rem]">
-            <div className="rounded-2xl overflow-hidden border border-gray-200/80 bg-gray-50 shadow-sm mb-[0.32rem]">
+          <div key={i} className="flex-shrink-0 w-[33.8rem]">
+            <div className="rounded-2xl overflow-hidden border border-gray-200/80 bg-gray-50 shadow-sm mb-[1.12rem]">
               {member.image ? (
                 <img loading="lazy" alt={member.name} src={member.image} className="object-cover aspect-square w-full" draggable="false" />
               ) : (
                 <div className={`aspect-square w-full bg-gradient-to-br ${gradientColors[i % gradientColors.length]} flex items-center justify-center`}>
-                  <span className="text-white text-[2.4rem] font-bold">{member.name?.charAt(0) || "?"}</span>
+                  <span className="text-white text-[8.4rem] font-bold">{member.name?.charAt(0) || "?"}</span>
                 </div>
               )}
             </div>
-            <p className="font-bold text-[0.64rem] text-gray-900">{member.name}</p>
-            <p className="text-[0.56rem] text-gray-500">{member.role}</p>
+            <p className="font-bold text-[2.2rem] text-gray-900">{member.name}</p>
+            <p className="text-[1.97rem] text-gray-500">{member.role}</p>
           </div>
         ))}
       </div>

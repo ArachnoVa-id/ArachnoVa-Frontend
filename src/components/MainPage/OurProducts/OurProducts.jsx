@@ -16,22 +16,22 @@ const OurProducts = () => {
 	const hrefCustomWeb = "/services#ServicesCustomWeb";
 	return (
 		<>
-			<section className="relative flex flex-col w-full lg:min-h-[16.48rem] min-h-[63.59rem] justify-around items-center bg-white-MainPage">
-				<div className="lg:flex hidden flex-col w-fit h-[14.23rem] justify-between items-center bg-transparent">
+			<section className="relative flex flex-col w-full lg:min-h-[57.9rem] min-h-[223.6rem] justify-around items-center bg-white-MainPage">
+				<div className="lg:flex hidden flex-col w-fit h-[50.0rem] justify-between items-center bg-transparent">
 					<div
 						data-aos="fade-up"
-						className="flex flex-col w-[3.04rem] items-center justify-center gap-y-[0.2rem]"
+						className="flex flex-col w-[10.7rem] items-center justify-center gap-y-[0.35rem]"
 					>
-						<p className="font-SourceSansProBold text-[0.5rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+						<p className="font-SourceSansProBold text-[0.73rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
 							Unlocking Possibilities
 						</p>
-						<h1 className="font-SourceSansProBold text-[0.5rem] leading-[0.33rem] text-neutral-g text-center">
+						<h1 className="font-SourceSansProBold text-[1.17rem] leading-[1.17rem] text-neutral-g text-center">
 							Explore the Range of Websites We Craft
 						</h1>
 					</div>
 					<div
 						data-aos="fade-up"
-						className="flex flex-row w-[11.67rem] justify-between items-center"
+						className="flex flex-row w-[41.0rem] justify-between items-center"
 					>
 						<Description
 							Title="Landing Page"
@@ -50,7 +50,7 @@ const OurProducts = () => {
 					</div>
 					<div
 						data-aos="fade-up"
-						className="flex flex-row w-[11.67rem] justify-between items-center"
+						className="flex flex-row w-[41.0rem] justify-between items-center"
 					>
 						<Content
 							data={[
@@ -69,7 +69,7 @@ const OurProducts = () => {
 					</div>
 					<div
 						data-aos="fade-up"
-						className="flex flex-row w-[11.67rem] justify-between items-center"
+						className="flex flex-row w-[41.0rem] justify-between items-center"
 					>
 						<Description
 							Title="Custom Web"
@@ -88,15 +88,15 @@ const OurProducts = () => {
 					</div>
 				</div>
 				{/* Mobile Version */}
-				<div className="flex flex-col w-[14.51rem] h-[54.47rem] justify-between items-center lg:hidden">
+				<div className="flex flex-col w-[51.0rem] h-[191.5rem] justify-between items-center lg:hidden">
 					<div
 						data-aos="fade-up"
-						className="flex flex-col w-[10.01rem] items-center justify-center"
+						className="flex flex-col w-[35.2rem] items-center justify-center"
 					>
-						<p className="font-SourceSansProBold text-[0.67rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+						<p className="font-SourceSansProBold text-[2.4rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
 							Unlocking Possibilities
 						</p>
-						<h1 className="font-SourceSansProBold text-[1.12rem] leading-[0.93rem] text-neutral-g text-center">
+						<h1 className="font-SourceSansProBold text-[3.9rem] leading-[3.3rem] text-neutral-g text-center">
 							Explore the Range of Websites We Craft
 						</h1>
 					</div>

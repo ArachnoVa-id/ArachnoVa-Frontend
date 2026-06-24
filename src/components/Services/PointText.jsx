@@ -4,16 +4,16 @@ const PointText = ({ Title, Description, Icon, Variant }) => {
 	const Left =
 		Variant === "left" ? (
 			<div className="flex flex-col">
-				<h1 className="font-SourceSansProSemibold text-[0.5rem] text-neutral-g">
+				<h1 className="font-SourceSansProSemibold text-[0.59rem] text-neutral-g">
 					{Title}
 				</h1>
-				<p className="font-SourceSansProSemibold text-[0.5rem] text-neutral-e">
+				<p className="font-SourceSansProSemibold text-[0.53rem] text-neutral-e">
 					{Description}
 				</p>
 			</div>
 		) : (
 			<>
-				<div className="relative lg:w-[0.58rem] w-[2.01rem] aspect-[1/1]">
+				<div className="relative lg:w-[2.1rem] w-[7.1rem] aspect-[1/1]">
 					<Image
 						src={Icon}
 						alt="icon"
@@ -27,7 +27,7 @@ const PointText = ({ Title, Description, Icon, Variant }) => {
 	const Right =
 		Variant === "left" ? (
 			<>
-				<div className="relative w-[0.58rem] aspect-[1/1]">
+				<div className="relative w-[2.1rem] aspect-[1/1]">
 					<Image
 						src={Icon}
 						alt="icon"
@@ -39,10 +39,10 @@ const PointText = ({ Title, Description, Icon, Variant }) => {
 			</>
 		) : (
 			<div className="flex flex-col">
-				<h1 className="font-SourceSansProSemibold lg:text-[0.5rem] text-[0.67rem] text-neutral-g">
+				<h1 className="font-SourceSansProSemibold lg:text-[0.59rem] text-[2.4rem] text-neutral-g">
 					{Title}
 				</h1>
-				<p className="font-SourceSansProSemibold lg:text-[0.5rem] text-[0.56rem] text-neutral-e">
+				<p className="font-SourceSansProSemibold lg:text-[0.53rem] text-[1.96rem] text-neutral-e">
 					{Description}
 				</p>
 			</div>
@@ -50,7 +50,7 @@ const PointText = ({ Title, Description, Icon, Variant }) => {
 	const Position = Variant === "left" ? "justify-end text-right" : "";
 	return (
 		<div
-			className={`w-full lg:h-[0.58rem] h-fit flex flex-row items-start lg:gap-x-[0.2rem] gap-x-[0.41rem] lg:my-[0] my-[0.37rem] ${Position}`}
+			className={`w-full lg:h-[2.1rem] h-fit flex flex-row items-start lg:gap-x-[0.53rem] gap-x-[1.44rem] lg:my-[0] my-[1.31rem] ${Position}`}
 		>
 			{Left}
 			{Right}

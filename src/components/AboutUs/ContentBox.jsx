@@ -11,16 +11,16 @@ const ContentBox = ({ Title, Description, Background, Border, aos }) => {
 	return (
 		<div
 			data-aos={aos}
-			className={`lg:w-[5.07rem] lg:aspect-[608/316] w-[14.51rem] aspect-[390/234] flex flex-col justify-center items-center lg:rounded-[0.2rem] rounded-[0.6rem] lg:border-[0.041rem] border-[0.18rem] ${Border}`}
+			className={`lg:w-[17.8rem] lg:aspect-[608/316] w-[51.0rem] aspect-[390/234] flex flex-col justify-center items-center lg:rounded-[0.47rem] rounded-[2.1rem] lg:border-[0.09rem] border-[0.39rem] ${Border}`}
 			style={{
 				background: Background,
 				boxShadow: "0px 4px 20px -1px rgba(0, 0, 0, 0.15)",
 			}}
 		>
-			<h1 className="font-SourceSansProBold lg:text-[0.5rem] text-[0.97rem] text-neutral-g">
+			<h1 className="font-SourceSansProBold lg:text-[1.17rem] text-[3.4rem] text-neutral-g">
 				Our <span className="text-[#1AB0C8]">{Title}</span>
 			</h1>
-			<p className="lg:w-[4.15rem] w-[12.73rem] font-SourceSansProSemibold lg:text-[0.5rem] text-[0.67rem] text-neutral-e text-justify">
+			<p className="lg:w-[14.6rem] w-[44.7rem] font-SourceSansProSemibold lg:text-[0.59rem] text-[2.4rem] text-neutral-e text-justify">
 				{Description}
 			</p>
 		</div>

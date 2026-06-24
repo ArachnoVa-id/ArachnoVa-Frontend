@@ -69,7 +69,7 @@ export default function ProjectsPage() {
         </div>
 
         <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none lg:mt-[-2.4rem]">
-          <div className="text-center bg-white/90 lg:py-[0.2rem] py-[0.48rem] lg:px-[0.48rem] px-[0.96rem] rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.08)] backdrop-blur-md">
+          <div className="text-center bg-white/90 lg:py-[0.2rem] py-[0.48rem] lg:px-[0.48rem] px-[0.96rem] rounded-xl shadow-[0_0.6.0rem_2.4rem_rgba(0,0,0,0.08)] backdrop-blur-md">
             <p className="font-SourceSansProBold lg:text-[0.5rem] text-[0.67rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Our Projects</p>
             <h2 className="font-SourceSansProBold lg:text-[0.5rem] text-[1.12rem] text-neutral-g lg:leading-[0.45rem] leading-[1.2rem] mt-[0.2rem]">Explore Our Work</h2>
           </div>

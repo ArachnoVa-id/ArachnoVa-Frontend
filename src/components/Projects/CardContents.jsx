@@ -7,42 +7,42 @@ const CardContents = ({ title, description, image, imageMobile }) => {
   const swiper = useSwiper();
   return (
     <section>
-      <div className="relative bg-gradient-to-r from-[#1AB0C8] to-[#179FB5]  mx-[0.8rem] rounded-[0.32rem] w-[11.24rem] aspect-[1349/576] flex flex-col justify-end items-center mt-[2.08rem] max-lg:hidden">
+      <div className="relative bg-gradient-to-r from-[#1AB0C8] to-[#179FB5]  mx-[2.8rem] rounded-[1.12rem] w-[39.5rem] aspect-[1349/576] flex flex-col justify-end items-center mt-[7.3rem] max-lg:hidden">
         <div
-          className="absolute flex cursor-pointer justify-center items-center w-[0.64rem] h-[0.64rem] -left-[0.32rem] top-[24vh] bg-[#84D4E1] rounded-[0.48rem] hover:bg-[#cae8ee] duration-500 ease-in-out"
+          className="absolute flex cursor-pointer justify-center items-center w-[2.2rem] h-[2.2rem] -left-[1.12rem] top-[24vh] bg-[#84D4E1] rounded-[1.69rem] hover:bg-[#cae8ee] duration-500 ease-in-out"
           onClick={() => swiper.slidePrev()}
         >
           <Image
             alt="Next Arrow"
             src="/image/Projects/LeftArrow.png"
-            className="aspect-[1/1] w-[0.28rem] mr-[0.2rem]"
+            className="aspect-[1/1] w-[1.0rem] mr-[0.22rem]"
             draggable="false"
             width={1000}
             height={1000}
           />
         </div>
         <div
-          className="cursor-pointer flex justify-center items-center absolute w-[0.64rem] h-[0.64rem] -right-[0.32rem] top-[24vh] bg-[#84D4E1] rounded-[0.48rem] hover:bg-[#cae8ee] duration-500 ease-in-out"
+          className="cursor-pointer flex justify-center items-center absolute w-[2.2rem] h-[2.2rem] -right-[1.12rem] top-[24vh] bg-[#84D4E1] rounded-[1.69rem] hover:bg-[#cae8ee] duration-500 ease-in-out"
           onClick={() => swiper.slideNext()}
         >
           <Image
             alt="Next Arrow"
             src="/image/Projects/RightArrow.png"
-            className="aspect-[1/1] w-[0.28rem] ml-[0.2rem]"
+            className="aspect-[1/1] w-[1.0rem] ml-[0.22rem]"
             draggable="false"
             width={1000}
             height={1000}
           />
         </div>
-        <div className="font-SourceSansProBold text-[0.5rem] text-neutral-a">{title}</div>
-        <div className="w-[9.6rem] text-center text-[0.5rem] font-SourceSansProSemibold mb-[0.48rem] text-neutral-a ">
+        <div className="font-SourceSansProBold text-[1.17rem] text-neutral-a">{title}</div>
+        <div className="w-[33.8rem] text-center text-[0.59rem] font-SourceSansProSemibold mb-[1.69rem] text-neutral-a ">
           {description}
         </div>
-        <div className="absolute -top-[1.92rem] w-[9.89rem] aspect-[1187/573]  ">
+        <div className="absolute -top-[6.8rem] w-[34.8rem] aspect-[1187/573]  ">
           <Image
             alt="Content Prototype"
             src={image}
-            className=" w-[8.17rem] aspect-[1920/1080] rounded-xl border-white shadow-2xl "
+            className=" w-[28.7rem] aspect-[1920/1080] rounded-xl border-white shadow-2xl "
             draggable="false"
             width={10000}
             height={10000}
@@ -50,7 +50,7 @@ const CardContents = ({ title, description, image, imageMobile }) => {
           <Image
             alt="Content Prototype"
             src={imageMobile}
-            className="absolute w-[2.04rem] aspect-[245/495] rounded-[0.32rem] bottom-[0.2rem] right-[0.2rem] shadow-2xl "
+            className="absolute w-[7.2rem] aspect-[245/495] rounded-[1.12rem] bottom-[0.000rem] right-[0.000rem] shadow-2xl "
             draggable="false"
             width={10000}
             height={10000}
@@ -58,44 +58,44 @@ const CardContents = ({ title, description, image, imageMobile }) => {
         </div>
       </div>
       {/* Mobile */}
-      <div className="relative bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] rounded-2xl aspect-[344/304] w-[11.27rem] mx-[1.6rem]  flex flex-col justify-end items-center mt-[4.8rem] lg:hidden">
+      <div className="relative bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] rounded-2xl aspect-[344/304] w-[39.6rem] mx-[5.6rem]  flex flex-col justify-end items-center mt-[16.9rem] lg:hidden">
         <div
-          className="absolute flex justify-center items-center w-[1.28rem] aspect-[1/1] -left-[0.64rem] top-[4.8rem] bg-[#84D4E1] rounded-[1.6rem] hover:bg-[#cae8ee] duration-500 ease-in-out"
+          className="absolute flex justify-center items-center w-[4.5rem] aspect-[1/1] -left-[2.2rem] top-[16.9rem] bg-[#84D4E1] rounded-[5.6rem] hover:bg-[#cae8ee] duration-500 ease-in-out"
           onClick={() => swiper.slidePrev()}
         >
           <Image
             alt="Next Arrow"
             src="/image/Projects/LeftArrow.png"
-            className="aspect-[1/1] w-[0.64rem] "
+            className="aspect-[1/1] w-[2.2rem] "
             draggable="false"
             width={1000}
             height={1000}
           />
         </div>
         <div
-          className="absolute flex justify-center items-center w-[1.28rem] aspect-[1/1] -right-[0.64rem] top-[4.8rem] bg-[#84D4E1] rounded-[1.6rem] hover:bg-[#cae8ee] duration-500 ease-in-out"
+          className="absolute flex justify-center items-center w-[4.5rem] aspect-[1/1] -right-[2.2rem] top-[16.9rem] bg-[#84D4E1] rounded-[5.6rem] hover:bg-[#cae8ee] duration-500 ease-in-out"
           onClick={() => swiper.slideNext()}
         >
           <Image
             alt="Next Arrow"
             src="/image/Projects/RightArrow.png"
-            className="aspect-[1/1] w-[0.64rem] "
+            className="aspect-[1/1] w-[2.2rem] "
             draggable="false"
             width={1000}
             height={1000}
           />
         </div>
-        <div className="font-SourceSansProBold mb-[0.32rem] text-[0.89rem] text-neutral-a">
+        <div className="font-SourceSansProBold mb-[1.12rem] text-[3.1rem] text-neutral-a">
           {title}
         </div>
-        <div className="w-[9.6rem] text-[0.5rem] text-center font-SourceSansProSemibold mb-[0.8rem] text-neutral-a">
+        <div className="w-[33.8rem] text-[1.69rem] text-center font-SourceSansProSemibold mb-[2.8rem] text-neutral-a">
           {description}
         </div>
-        <div className="absolute -top-[4.0rem] w-[11.32rem] h-[5.6rem] aspect-[1920/1080]  ">
+        <div className="absolute -top-[14.1rem] w-[39.8rem] h-[19.7rem] aspect-[1920/1080]  ">
           <Image
             alt="Content Prototype"
             src={image}
-            className=" w-[9.29rem] aspect-[980/551] rounded-xl border-white border-[0.05rem] ml-[0.32rem] shadow-2xl "
+            className=" w-[32.6rem] aspect-[980/551] rounded-xl border-white border-[0.11rem] ml-[1.12rem] shadow-2xl "
             draggable="false"
             width={10000}
             height={10000}
@@ -103,7 +103,7 @@ const CardContents = ({ title, description, image, imageMobile }) => {
           <Image
             alt="Content Prototype"
             src={imageMobile}
-            className="absolute w-[2.04rem] aspect-[245/495] rounded-[0.32rem] bottom-[0.2rem] right-[0.2rem] mr-[0.32rem] shadow-2xl "
+            className="absolute w-[7.2rem] aspect-[245/495] rounded-[1.12rem] bottom-[0.000rem] right-[0.000rem] mr-[1.12rem] shadow-2xl "
             draggable="false"
             width={1000}
             height={1000}

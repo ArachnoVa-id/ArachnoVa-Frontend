@@ -9,13 +9,13 @@ const ServicesAdditionalSwiper = ({ image }) => {
   return (
     <div
       className="flex justify-center items-center
-                 lg:gap-[0.2rem]
-                 gap-[0.2rem]"
+                 lg:gap-[0.23rem]
+                 gap-[0.52rem]"
     >
       <div
         className="text-[#9CADB4]
-                     lg:w-[0.33rem]
-                     w-[0.78rem]"
+                     lg:w-[1.17rem]
+                     w-[2.7rem]"
       >
         <BsFillCaretLeftFill
           size={"100%"}
@@ -27,13 +27,13 @@ const ServicesAdditionalSwiper = ({ image }) => {
       </div>
       <div
         className="flex justify-center items-center bg-[#FBFCFD] border-border
-                   lg:w-[4.56rem] lg:h-[2.66rem] lg:rounded-[0.2rem] lg:border-[0.041rem] lg:shadow-[0px_1px_9px_-1px_rgba(0,0,0,0.15)
-                   w-[12.65rem] h-[7.29rem] rounded-[0.37rem] border-[0.09rem] shadow-[0px_4px_39px_-5px_rgba(0,0,0,0.15)"
+                   lg:w-[16.0rem] lg:h-[9.3rem] lg:rounded-[0.44rem] lg:border-[0.09rem] lg:shadow-[0px_2px_19px_-2px_rgba(0,0,0,0.15)
+                   w-[44.5rem] h-[25.6rem] rounded-[1.31rem] border-[0.2rem] shadow-[0px_8px_84px_-10px_rgba(0,0,0,0.15)"
       >
         <Swiper
           className="overflow-hidden border-border
-                     lg:w-[4.38rem] lg:rounded-[0.2rem] lg:border-[0.027rem]
-                     w-[12.13rem] rounded-[0.3rem] border-[0.06rem]"
+                     lg:w-[15.4rem] lg:rounded-[0.29rem] lg:border-[0.06rem]
+                     w-[42.6rem] rounded-[1.05rem] border-[0.13rem]"
           slidesPerView={1}
           spaceBetween={5}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
@@ -57,8 +57,8 @@ const ServicesAdditionalSwiper = ({ image }) => {
       </div>
       <div
         className="text-[#9CADB4]
-                   lg:w-[0.33rem]
-                   w-[0.78rem]"
+                   lg:w-[1.17rem]
+                   w-[2.7rem]"
       >
         <BsFillCaretRightFill
           size={"100%"}

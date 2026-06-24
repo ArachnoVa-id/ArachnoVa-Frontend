@@ -2,30 +2,30 @@ const ServicesCTA = () => {
   return (
     <section
       className="relative w-full flex flex-col justify-center items-center bg-white-MainPage text-black
-                 lg:py-[0.67rem] lg:pb-[0.67rem]
-                 pt-[2.16rem] pb-[3.39rem]"
+                 lg:py-[2.3rem] lg:pb-[2.3rem]
+                 pt-[7.6rem] pb-[11.9rem]"
     >
       <div
         className="flex justify-center items-center bg-gradient-to-t from-[#1AA2B8] to-[#2CBFD6]
-                   lg:flex-row lg:w-[10.43rem] lg:h-[2.0rem] lg:rounded-[0.2rem] lg:px-[0.67rem] lg:gap-[0.67rem]
-                   flex-col w-[14.51rem] h-[8.74rem] rounded-[1.12rem] px-0 gap-[0.89rem]"
+                   lg:flex-row lg:w-[36.7rem] lg:h-[7.0rem] lg:rounded-[0.59rem] lg:px-[2.3rem] lg:gap-[2.3rem]
+                   flex-col w-[51.0rem] h-[30.7rem] rounded-[3.9rem] px-0 gap-[3.1rem]"
       >
         <div
           className="flex flex-col justify-center text-white
-                     lg:gap-[0.2rem] lg:w-[6.25rem]
-                     gap-[0.3rem] w-full"
+                     lg:gap-[0.35rem] lg:w-[22.0rem]
+                     gap-[1.05rem] w-full"
         >
           <div
             className="font-SourceSansProBold leading-[110%]
-                       lg:text-[0.5rem] lg:text-start
-                       text-[0.89rem] text-center"
+                       lg:text-[1.17rem] lg:text-start
+                       text-[3.1rem] text-center"
           >
             Get Started Today
           </div>
           <div
             className="font-SourceSansProSemibold leading-[160%]
-                       lg:text-[0.5rem] lg:text-start
-                       text-[0.52rem] text-center"
+                       lg:text-[0.59rem] lg:text-start
+                       text-[1.83rem] text-center"
           >
             Kami siap membantu Anda mewujudkan visi online Anda. <br />
             Hubungi kami untuk memulai perjalanan Anda
@@ -34,13 +34,13 @@ const ServicesCTA = () => {
         <a
           href="https://wa.me/6287882832538"
           className="flex justify-center items-center bg-black hover:scale-[110%] transition-all duration-500 ease-in-out
-                     lg:w-[2.18rem] lg:h-[0.45rem] lg:rounded-[0.2rem] lg:hover:translate-y-[-1px]
-                     w-[8.52rem] h-[1.82rem] rounded-[0.2rem] hover:translate-y-[-5px]"
+                     lg:w-[7.7rem] lg:h-[1.58rem] lg:rounded-[0.15rem] lg:hover:translate-y-[-3px]
+                     w-[30.0rem] h-[6.4rem] rounded-[0.65rem] hover:translate-y-[-10px]"
         >
           <p
             className="font-SourceSansProSemibold text-white
-                       lg:text-[0.5rem]
-                       text-[0.6rem]"
+                       lg:text-[0.59rem]
+                       text-[2.1rem]"
           >
             Start Your Project
           </p>
