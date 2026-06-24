@@ -23,7 +23,7 @@ export default function CTA() {
 			<div className="flex flex-col justify-center items-center max-lg:hidden">
 				<div
 					data-aos="fade-up"
-					className="text-neutral-g font-SourceSansProBold text-[1.35rem]/[1.35rem] flex flex-col justify-center items-center"
+					className="text-neutral-g font-SourceSansProBold text-[2.1rem]/[2.1rem] flex flex-col justify-center items-center"
 				>
 					<p>Ready to Transform Your Digital Presence ? </p>
 					<p>Let&apos;s Start Crafting Your Website Today</p>
@@ -31,7 +31,7 @@ export default function CTA() {
 				<a
 					href="https://wa.me/6287882832538"
 					data-aos="fade-up"
-					className="bg-black w-[7.7rem] text-white aspect-[262/54] flex justify-center items-center rounded-[0.15rem] font-SourceSansProSemibold mt-[1.69rem] text-[0.59rem] hover:bg-neutral-e duration-500"
+					className="bg-black w-[11.9rem] text-white aspect-[262/54] flex justify-center items-center rounded-[0.23rem] font-SourceSansProSemibold mt-[2.6rem] text-[0.91rem] hover:bg-neutral-e duration-500"
 				>
 					Start Your Project
 				</a>
@@ -41,7 +41,7 @@ export default function CTA() {
 			<div className="flex flex-col justify-center items-center lg:hidden">
 				<div
 					data-aos="fade-up"
-					className="text-neutral-g font-SourceSansProBold text-[2.5rem]/[2.8rem] flex flex-col justify-center items-center"
+					className="text-neutral-g font-SourceSansProBold text-[3.9rem]/[4.4rem] flex flex-col justify-center items-center"
 				>
 					<p>Ready to Transform Your Digital Presence ? </p>
 					<p>Let&apos;s Start Crafting Your Website Today</p>
@@ -49,7 +49,7 @@ export default function CTA() {
 				<a
 					href="https://wa.me/6287882832538"
 					data-aos="fade-up"
-					className="bg-black w-[30.0rem] aspect-[229/49] text-white rounded-lg flex justify-center items-center font-SourceSansProSemibold mt-[4.5rem] text-[2.5rem] hover:bg-neutral-e duration-500"
+					className="bg-black w-[46.6rem] aspect-[229/49] text-white rounded-lg flex justify-center items-center font-SourceSansProSemibold mt-[7.0rem] text-[3.9rem] hover:bg-neutral-e duration-500"
 				>
 					Start Your Project
 				</a>

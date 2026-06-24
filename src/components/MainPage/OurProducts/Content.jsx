@@ -14,7 +14,7 @@ const Content = ({ data, totalSlide, variant, aos }) => {
 			duration: 1000,
 		});
 	}, []);
-	const size = variant ? "44px" : "19px";
+	const size = variant ? "68px" : "29px";
 
 	const swiper = useSwiper();
 	const [currentSlide, setCurrentSlide] = useState(0);
@@ -43,7 +43,7 @@ const Content = ({ data, totalSlide, variant, aos }) => {
 		<>
 			<div
 				data-aos={aos}
-				className="flex justify-around items-center lg:w-[22.9rem] w-[51.0rem] lg:h-[11.7rem] h-[25.6rem] z-10"
+				className="flex justify-around items-center lg:w-[35.6rem] w-[79.4rem] lg:h-[18.2rem] h-[39.9rem] z-10"
 			>
 				<BsFillCaretLeftFill
 					size={size}
@@ -51,10 +51,10 @@ const Content = ({ data, totalSlide, variant, aos }) => {
 					onClick={handlePrevious}
 				/>
 				<div
-					className="flex justify-center items-center lg:w-[20.1rem] w-[44.5rem] lg:h-[11.7rem] h-[25.6rem] bg-[#FBFCFD] lg:rounded-[0.44rem] rounded-[1.31rem] border-solid border-border lg:border-[0.09rem] border-[0.2rem]"
+					className="flex justify-center items-center lg:w-[31.3rem] w-[69.2rem] lg:h-[18.2rem] h-[39.9rem] bg-[#FBFCFD] lg:rounded-[0.68rem] rounded-[2.0rem] border-solid border-border lg:border-[0.14rem] border-[0.31rem]"
 					style={{ boxShadow: "0px 4px 40px -5px rgba(0, 0, 0, 0.15)" }}
 				>
-					<div className="flex justify-center items-center object-cover lg:w-[19.2rem] w-[42.6rem] lg:h-[10.8rem] h-[23.8rem] lg:rounded-[0.29rem] rounded-[1.05rem] overflow-hidden">
+					<div className="flex justify-center items-center object-cover lg:w-[29.9rem] w-[66.3rem] lg:h-[16.9rem] h-[37.0rem] lg:rounded-[0.46rem] rounded-[1.63rem] overflow-hidden">
 						<ContentSlider data={data} sliderRef={sliderRef} />
 					</div>
 				</div>

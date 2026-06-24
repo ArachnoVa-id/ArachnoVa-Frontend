@@ -29,13 +29,13 @@ export default function ProjectCardGrid({ projects, autoOpenId, onAutoOpenDone, 
   if (!projects?.length) return null;
 
   return (
-    <section className="w-full bg-white-MainPage lg:py-[2.9rem] py-[7.8rem] lg:px-[5.6rem] px-[3.1rem]" id="project-cards">
-      <div data-aos="fade-down" className="text-center mb-[1.69rem]">
-        <p className="font-SourceSansProBold lg:text-[0.88rem] text-[2.4rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Our Projects</p>
-        <h2 className="font-SourceSansProBold lg:text-[1.35rem] text-[3.9rem] text-neutral-g lg:leading-[1.58rem] leading-[4.2rem] mt-[0.28rem]">Explore Our Work</h2>
+    <section className="w-full bg-white-MainPage lg:py-[4.6rem] py-[12.2rem] lg:px-[8.8rem] px-[4.9rem]" id="project-cards">
+      <div data-aos="fade-down" className="text-center mb-[2.6rem]">
+        <p className="font-SourceSansProBold lg:text-[1.37rem] text-[3.7rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Our Projects</p>
+        <h2 className="font-SourceSansProBold lg:text-[2.1rem] text-[6.1rem] text-neutral-g lg:leading-[2.4rem] leading-[6.6rem] mt-[0.44rem]">Explore Our Work</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[0.84rem]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1.31rem]">
         {projects.map((project, i) => {
           const hasDesktop = project.desktopImages?.length > 0 || project.imageDesktop;
           const hasMobile = project.mobileImages?.length > 0 || project.imageMobile;
@@ -46,7 +46,7 @@ export default function ProjectCardGrid({ projects, autoOpenId, onAutoOpenDone, 
               onClick={(e) => openProject(project, e)}
               data-aos="fade-up"
               data-aos-delay={(i % 4) * 100}
-              className="group bg-white rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-[0.17rem] cursor-pointer"
+              className="group bg-white rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-[0.26rem] cursor-pointer"
             >
               <div className="relative w-full aspect-[824.28/426.9] bg-gray-50">
                 {hasDesktop && (
@@ -56,15 +56,15 @@ export default function ProjectCardGrid({ projects, autoOpenId, onAutoOpenDone, 
                 )}
                 {hasMobile && (
                   <img src={project.imageMobile || project.mobileImages[0]} alt=""
-                    className="absolute w-[22%] aspect-[245/485] rounded-[0.34rem] shadow-lg -bottom-[2%] left-[4%]"
+                    className="absolute w-[22%] aspect-[245/485] rounded-[0.52rem] shadow-lg -bottom-[2%] left-[4%]"
                     draggable="false" loading="lazy" />
                 )}
               </div>
-              <div className="p-[0.56rem] pt-[0.84rem]">
-                <h3 className="font-SourceSansProBold lg:text-[0.53rem] text-[1.97rem] text-neutral-g group-hover:text-LightBlue-d transition-colors truncate">
+              <div className="p-[0.88rem] pt-[1.31rem]">
+                <h3 className="font-SourceSansProBold lg:text-[0.82rem] text-[3.1rem] text-neutral-g group-hover:text-LightBlue-d transition-colors truncate">
                   {project.title}
                 </h3>
-                <p className="font-SourceSansProSemibold lg:text-[0.41rem] text-[1.58rem] text-neutral-e mt-[0.17rem] line-clamp-2 lg:leading-[0.68rem] leading-[2.2rem]">
+                <p className="font-SourceSansProSemibold lg:text-[0.64rem] text-[2.4rem] text-neutral-e mt-[0.26rem] line-clamp-2 lg:leading-[1.05rem] leading-[3.5rem]">
                   {project.description}
                 </p>
               </div>

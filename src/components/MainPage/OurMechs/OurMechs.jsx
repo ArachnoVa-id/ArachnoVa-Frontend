@@ -61,15 +61,15 @@ const OurMechs = () => {
 	};
 	return (
 		<section className="relative flex flex-col w-full lg:aspect-[1920/1147] max-lg:aspect-[430/3808] justify-center items-center bg-white-MainPage  overflow-hidden">
-			<div className="w-[39.7rem] h-[25.2rem] hidden lg:flex flex-col gap-y-[1.17rem]">
-				<div data-aos="fade-up" className="w-[16.0rem] flex flex-col">
-					<p className="font-SourceSansProBold text-[0.59rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+			<div className="w-[61.7rem] h-[39.2rem] hidden lg:flex flex-col gap-y-[1.82rem]">
+				<div data-aos="fade-up" className="w-[24.8rem] flex flex-col">
+					<p className="font-SourceSansProBold text-[0.91rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
 						Simple Steps, Remarkable Solutions
 					</p>
-					<h1 className="font-SourceSansProBold text-[1.03rem] text-neutral-g leading-[0.88rem] mt-[0.29rem]">
+					<h1 className="font-SourceSansProBold text-[1.6rem] text-neutral-g leading-[1.37rem] mt-[0.46rem]">
 						How Our Mechanism Can <br /> Help You Build Your Dream Website
 					</h1>
-					<p className="font-SourceSansProSemibold text-[0.59rem] text-neutral-e mt-[0.59rem]">
+					<p className="font-SourceSansProSemibold text-[0.91rem] text-neutral-e mt-[0.91rem]">
 						Anda dapat membangun situs web impian Anda dengan mekanisme kami
 						yang sederhana dan efektif. Dengan beberapa langkah tersebut, Kami
 						akan mengeksekusi projects Anda secara detail dan tepat sesuai
@@ -86,7 +86,7 @@ const OurMechs = () => {
 							Description="Tahapan awal untuk memulai proses kolaborasi  dengan melakukan identifikasi kebutuhan dan tujuan."
 							Icon={
 								<>
-									<div className="relative w-[1.12rem] aspect-[21/17]">
+									<div className="relative w-[1.75rem] aspect-[21/17]">
 										<Image
 											src="/image/OurMechs/icon-1.png"
 											draggable="false"
@@ -105,7 +105,7 @@ const OurMechs = () => {
 							Description="Tata cara eksekusi dan proses produksi dalam progres pengerjaan projects secara berkala. "
 							Icon={
 								<>
-									<div className="relative w-[0.88rem] aspect-[1/1]">
+									<div className="relative w-[1.37rem] aspect-[1/1]">
 										<Image
 											src="/image/OurMechs/icon-2.png"
 											draggable="false"
@@ -124,7 +124,7 @@ const OurMechs = () => {
 							Description="Masa penyelesaian projects dan perjanjian akhir serta diskusi pemeliharaan berkelanjutan"
 							Icon={
 								<>
-									<div className="relative w-[0.88rem] aspect-[1/1]">
+									<div className="relative w-[1.37rem] aspect-[1/1]">
 										<Image
 											src="/image/OurMechs/icon-3.png"
 											draggable="false"
@@ -143,7 +143,7 @@ const OurMechs = () => {
 							Description="Layanan yang kami tawarkan setelah masa pengerjaan projects telah usai "
 							Icon={
 								<>
-									<div className="relative w-[0.88rem] aspect-[1/1]">
+									<div className="relative w-[1.37rem] aspect-[1/1]">
 										<Image
 											src="/image/OurMechs/icon-4.png"
 											draggable="false"
@@ -191,29 +191,29 @@ const OurMechs = () => {
 				</div>
 			</div>
 			{/* Mobile Version */}
-			<div className="w-fit h-fit flex items-center flex-col lg:hidden gap-y-[7.8rem]">
+			<div className="w-fit h-fit flex items-center flex-col lg:hidden gap-y-[12.2rem]">
 				<div
 					data-aos="fade-up"
-					className="w-[51.0rem] lg:hidden flex flex-col gap-y-[1.05rem]"
+					className="w-[79.4rem] lg:hidden flex flex-col gap-y-[1.63rem]"
 				>
-					<p className="font-SourceSansProBold text-[2.4rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+					<p className="font-SourceSansProBold text-[3.7rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
 						Simple Steps, Remarkable Solutions
 					</p>
-					<h1 className="font-SourceSansProBold text-[3.9rem] text-neutral-g leading-[3.9rem] mt-[0.29rem]">
+					<h1 className="font-SourceSansProBold text-[6.1rem] text-neutral-g leading-[6.1rem] mt-[0.46rem]">
 						How Our Mechanism Can <br /> Help You Build Your Dream Website
 					</h1>
-					<p className="font-SourceSansProSemibold text-[2.4rem] text-neutral-e mt-[0.59rem]">
+					<p className="font-SourceSansProSemibold text-[3.7rem] text-neutral-e mt-[0.91rem]">
 						Dengan ArachnoVa, Anda dapat membangun situs web impian Anda.
 						Mekanisme kami sederhana dan efektif, Anda memberi tahu kami apa
 						yang Anda inginkan, dan kami mewujudkannya
 					</p>
 				</div>
-				<div className="flex flex-col w-fit h-[429.6rem] justify-between items-center">
+				<div className="flex flex-col w-fit h-[668.3rem] justify-between items-center">
 					<div
 						data-aos="fade-up"
 						className="relative flex flex-col w-fit h-fit justify-center items-center"
 					>
-						<div className="w-[67.9rem] aspect-[621/632] z-[0] absolute -left-[16.9rem] -bottom-[5.6rem]">
+						<div className="w-[105.6rem] aspect-[621/632] z-[0] absolute -left-[26.2rem] -bottom-[8.8rem]">
 							<Image
 								src="/image/OurMechs/bg-mobile-left.png"
 								alt="bg"
@@ -222,7 +222,7 @@ const OurMechs = () => {
 								className="object-contain"
 							/>
 						</div>
-						<div className="w-[73.5rem] aspect-[598/600] z-[0] absolute -right-[28.1rem] top-[2.8rem]">
+						<div className="w-[114.4rem] aspect-[598/600] z-[0] absolute -right-[43.8rem] top-[4.4rem]">
 							<Image
 								src="/image/OurMechs/bg-mobile-right.png"
 								alt="bg"
@@ -236,7 +236,7 @@ const OurMechs = () => {
 							Description="Tahapan awal untuk memulai proses kolaborasi  dengan melakukan identifikasi kebutuhan dan tujuan."
 							Icon={
 								<>
-									<div className="relative w-[3.7rem] aspect-[21/17]">
+									<div className="relative w-[5.7rem] aspect-[21/17]">
 										<Image
 											src="/image/OurMechs/icon-1.png"
 											draggable="false"
@@ -255,7 +255,7 @@ const OurMechs = () => {
 						data-aos="fade-up"
 						className="relative flex flex-col w-fit h-fit justify-center items-center"
 					>
-						<div className="w-[67.9rem] aspect-[621/632] z-[0] absolute -left-[16.9rem] -bottom-[5.6rem]">
+						<div className="w-[105.6rem] aspect-[621/632] z-[0] absolute -left-[26.2rem] -bottom-[8.8rem]">
 							<Image
 								src="/image/OurMechs/bg-mobile-left.png"
 								alt="bg"
@@ -264,7 +264,7 @@ const OurMechs = () => {
 								className="object-contain"
 							/>
 						</div>
-						<div className="w-[73.5rem] aspect-[598/600] z-[0] absolute -right-[28.1rem] top-[2.8rem]">
+						<div className="w-[114.4rem] aspect-[598/600] z-[0] absolute -right-[43.8rem] top-[4.4rem]">
 							<Image
 								src="/image/OurMechs/bg-mobile-right.png"
 								alt="bg"
@@ -278,7 +278,7 @@ const OurMechs = () => {
 							Description="Tata cara eksekusi dan proses produksi dalam progres pengerjaan projects secara berkala.	"
 							Icon={
 								<>
-									<div className="relative w-[3.7rem] aspect-[1/1]">
+									<div className="relative w-[5.7rem] aspect-[1/1]">
 										<Image
 											src="/image/OurMechs/icon-2.png"
 											draggable="false"
@@ -297,7 +297,7 @@ const OurMechs = () => {
 						data-aos="fade-up"
 						className="relative flex flex-col w-fit h-fit justify-center items-center"
 					>
-						<div className="w-[67.9rem] aspect-[621/632] z-[0] absolute -left-[16.9rem] -bottom-[5.6rem]">
+						<div className="w-[105.6rem] aspect-[621/632] z-[0] absolute -left-[26.2rem] -bottom-[8.8rem]">
 							<Image
 								src="/image/OurMechs/bg-mobile-left.png"
 								alt="bg"
@@ -306,7 +306,7 @@ const OurMechs = () => {
 								className="object-contain"
 							/>
 						</div>
-						<div className="w-[73.5rem] aspect-[598/600] z-[0] absolute -right-[28.1rem] top-[2.8rem]">
+						<div className="w-[114.4rem] aspect-[598/600] z-[0] absolute -right-[43.8rem] top-[4.4rem]">
 							<Image
 								src="/image/OurMechs/bg-mobile-right.png"
 								alt="bg"
@@ -320,7 +320,7 @@ const OurMechs = () => {
 							Description="Masa penyelesaian projects dan perjanjian akhir serta diskusi pemeliharaan berkelanjutan."
 							Icon={
 								<>
-									<div className="relative w-[3.7rem] aspect-[1/1]">
+									<div className="relative w-[5.7rem] aspect-[1/1]">
 										<Image
 											src="/image/OurMechs/icon-3.png"
 											draggable="false"
@@ -339,7 +339,7 @@ const OurMechs = () => {
 						data-aos="fade-up"
 						className="relative flex flex-col w-fit h-fit justify-center items-center"
 					>
-						<div className="w-[67.9rem] aspect-[621/632] z-[0] absolute -left-[16.9rem] -bottom-[5.6rem]">
+						<div className="w-[105.6rem] aspect-[621/632] z-[0] absolute -left-[26.2rem] -bottom-[8.8rem]">
 							<Image
 								src="/image/OurMechs/bg-mobile-left.png"
 								alt="bg"
@@ -348,7 +348,7 @@ const OurMechs = () => {
 								className="object-contain"
 							/>
 						</div>
-						<div className="w-[73.5rem] aspect-[598/600] z-[0] absolute -right-[28.1rem] top-[2.8rem]">
+						<div className="w-[114.4rem] aspect-[598/600] z-[0] absolute -right-[43.8rem] top-[4.4rem]">
 							<Image
 								src="/image/OurMechs/bg-mobile-right.png"
 								alt="bg"
@@ -362,7 +362,7 @@ const OurMechs = () => {
 							Description="Masa penyelesaian projects dan perjanjian akhir serta diskusi pemeliharaan berkelanjutan."
 							Icon={
 								<>
-									<div className="relative w-[3.4rem] aspect-[1/1]">
+									<div className="relative w-[5.3rem] aspect-[1/1]">
 										<Image
 											src="/image/OurMechs/icon-4.png"
 											draggable="false"

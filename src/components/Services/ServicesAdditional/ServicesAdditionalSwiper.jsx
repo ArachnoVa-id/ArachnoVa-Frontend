@@ -9,13 +9,13 @@ const ServicesAdditionalSwiper = ({ image }) => {
   return (
     <div
       className="flex justify-center items-center
-                 lg:gap-[0.23rem]
-                 gap-[0.52rem]"
+                 lg:gap-[0.36rem]
+                 gap-[0.81rem]"
     >
       <div
         className="text-[#9CADB4]
-                     lg:w-[1.17rem]
-                     w-[2.7rem]"
+                     lg:w-[1.82rem]
+                     w-[4.3rem]"
       >
         <BsFillCaretLeftFill
           size={"100%"}
@@ -27,13 +27,13 @@ const ServicesAdditionalSwiper = ({ image }) => {
       </div>
       <div
         className="flex justify-center items-center bg-[#FBFCFD] border-border
-                   lg:w-[16.0rem] lg:h-[9.3rem] lg:rounded-[0.44rem] lg:border-[0.09rem] lg:shadow-[0px_2px_19px_-2px_rgba(0,0,0,0.15)
-                   w-[44.5rem] h-[25.6rem] rounded-[1.31rem] border-[0.2rem] shadow-[0px_8px_84px_-10px_rgba(0,0,0,0.15)"
+                   lg:w-[24.9rem] lg:h-[14.5rem] lg:rounded-[0.68rem] lg:border-[0.14rem] lg:shadow-[0px_3px_29px_-4px_rgba(0,0,0,0.15)
+                   w-[69.2rem] h-[39.9rem] rounded-[2.0rem] border-[0.31rem] shadow-[0px_13px_130px_-16px_rgba(0,0,0,0.15)"
       >
         <Swiper
           className="overflow-hidden border-border
-                     lg:w-[15.4rem] lg:rounded-[0.29rem] lg:border-[0.06rem]
-                     w-[42.6rem] rounded-[1.05rem] border-[0.13rem]"
+                     lg:w-[24.0rem] lg:rounded-[0.46rem] lg:border-[0.09rem]
+                     w-[66.3rem] rounded-[1.63rem] border-[0.2rem]"
           slidesPerView={1}
           spaceBetween={5}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
@@ -57,8 +57,8 @@ const ServicesAdditionalSwiper = ({ image }) => {
       </div>
       <div
         className="text-[#9CADB4]
-                   lg:w-[1.17rem]
-                   w-[2.7rem]"
+                   lg:w-[1.82rem]
+                   w-[4.3rem]"
       >
         <BsFillCaretRightFill
           size={"100%"}
