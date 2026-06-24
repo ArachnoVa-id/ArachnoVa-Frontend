@@ -1,5 +1,5 @@
 const NavItem = ({ Menu, href, path }) => {
-  const isActive = path === href || (href !== "/" && path.startsWith(href));
+  const isActive = path ? (path === href || (href !== "/" && path.startsWith(href))) : false;
   return (
     <li className="relative">
       <a

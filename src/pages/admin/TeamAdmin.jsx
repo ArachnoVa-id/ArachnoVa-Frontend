@@ -102,17 +102,16 @@ export default function TeamAdmin() {
       const data = await res.json();
       if (data.image) {
         change(i, "image", data.image);
-        toast("Profile image fetched from LinkedIn", "success");
+        toast("Profile image fetched", "success");
       }
       if (data.name && (!member.name || member.name.startsWith("John") || member.name.startsWith("Jane") || member.name.includes("Doe"))) {
         change(i, "name", data.name);
-        toast("Name auto-filled from LinkedIn", "success");
+        toast(data.image ? "Name and image fetched" : "Name auto-filled", "success");
       }
-      if (!data.image && !data.name) {
-        toast(data.error || "Could not fetch data. Try pasting the image URL manually.", "error");
-      }
-      if (!data.image && data.name) {
-        toast("Name found, but profile image is private. Upload manually.", "info");
+      if (!data.image) {
+        // Open LinkedIn in new tab so user can copy image URL
+        window.open(member.linkedin, "_blank");
+        toast("LinkedIn opened in new tab. Right-click the profile photo → Copy Image Address → paste below", "info", 5000);
       }
     } catch (e) {
       toast("Error: " + e.message, "error");
