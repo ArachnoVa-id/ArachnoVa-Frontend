@@ -29,58 +29,29 @@ const AboutUs = () => {
       </div>
 
       <div className="relative w-full max-w-[75rem] mx-auto z-10 lg:px-[5vw] px-[5.581vw]">
-        {/* Asymmetrical grid: header on left, brand panel extends right */}
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-[3vw]">
-          {/* Left column: header + Get In Touch */}
-          <div className="lg:col-span-5 flex flex-col justify-between lg:pb-[5vw]">
-            {/* Header - left aligned */}
-            <div data-aos="fade-right" className="lg:mt-[4vw]">
+          {/* Left main: header + brand panel stacked */}
+          <div className="lg:col-span-8 lg:space-y-[3vw]">
+            {/* Header */}
+            <div data-aos="fade-right">
               <p className="font-SourceSansProBold lg:text-[1.3rem] text-[4.2rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
                 Who We Are
               </p>
               <h1 className="font-SourceSansProBold lg:text-[2.4rem] text-[7.0rem] text-neutral-g lg:mt-[0.3rem]">
                 About ArachnoVa
               </h1>
-              <p className="font-SourceSansProSemibold lg:text-[0.9rem] text-[3.5vw] text-neutral-e lg:mt-[0.8rem] lg:max-w-[22rem] lg:leading-[1.5rem]">
-                We craft digital experiences that blend creativity with technical excellence.
-              </p>
             </div>
 
-            {/* Get In Touch - shifted left/offset */}
-            <div data-aos="fade-up" className="lg:mt-[6vw] lg:ml-[-2vw]">
-              <div className="lg:w-[20rem] lg:p-[1.8rem] p-[9.3rem] bg-white lg:rounded-[0.8rem] rounded-[4.7rem] lg:border border-border shadow-[0_10px_40px_-10px_rgba(71,85,105,0.2)]">
-                <h2 className="font-SourceSansProBold lg:text-[1.3rem] text-[7.0rem] text-neutral-g">Get In Touch</h2>
-                <p className="font-SourceSansProSemibold lg:text-[0.75rem] text-[4.2rem] text-neutral-e lg:mt-[0.2rem] lg:mb-[1rem] mb-[5.6rem]">
-                  Let&apos;s Connect and Create Together
-                </p>
-                <div className="flex lg:gap-x-[0.8rem] gap-x-[5.6rem]">
-                  <SocialMediaIcon Icon={<IoIosMail size="22px" className="text-white" />} href={email} />
-                  <SocialMediaIcon Icon={<FaInstagram size="20px" className="text-white" />} href={instagram} />
-                  <SocialMediaIcon Icon={<FaWhatsapp size="20px" className="text-white" />} href={whatsapp} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right column: Brand panel - shifted to extend right */}
-          <div className="lg:col-span-7 lg:mt-[2vw]" data-aos="fade-left">
-            <div className="relative">
-              {/* Blur decorations */}
-              <div className="absolute -left-[12vw] -bottom-[8vw] lg:w-[30vw] w-[50vw] aspect-[433/235] z-0 lg:flex hidden pointer-events-none">
+            {/* Brand panel */}
+            <div data-aos="fade-up" className="relative">
+              <div className="absolute -left-[8vw] -bottom-[6vw] lg:w-[25vw] w-[40vw] aspect-[433/235] z-0 lg:flex hidden pointer-events-none">
                 <Image src="/image/AboutUs/blur-left.png" alt="blur" draggable="false" fill className="object-contain" />
               </div>
-              <div className="absolute -right-[8vw] -top-[15vw] lg:w-[25vw] w-[40vw] aspect-[225/321] z-0 lg:flex hidden pointer-events-none">
-                <Image src="/image/AboutUs/blur-right.png" alt="blur" draggable="false" fill className="object-contain" />
-              </div>
-
-              {/* Brand panel */}
-              <div
-                className="relative lg:w-[44rem] w-[90.7rem] lg:p-[2.5rem] p-[5rem] flex flex-col items-center lg:rounded-[0.8rem] rounded-[3.7rem] lg:border border-white z-10 lg:ml-[2vw]"
+              <div className="relative lg:w-[44rem] w-[90.7rem] lg:p-[2.5rem] p-[5rem] flex flex-col items-center lg:rounded-[0.8rem] rounded-[3.7rem] lg:border border-white z-10"
                 style={{
                   background: "rgba(241, 245, 249, 0.50)",
                   boxShadow: "0px 25px 50px -12px rgba(71, 85, 105, 0.25)",
-                }}
-              >
+                }}>
                 <div className="absolute lg:top-[0.6rem] top-[3rem] lg:left-[0.6rem] left-[3rem] flex lg:gap-x-[0.4rem] gap-x-[2.8rem]">
                   <div className="lg:w-[0.6rem] w-[2.8rem] aspect-[1/1] rounded-full" style={{ background: "linear-gradient(135deg, #FECDD3 0%, #FDA4AF 100%)", boxShadow: "0px 1px 2px -1px #FECDD3, 0px 1px 3px 0px #FECDD3" }} />
                   <div className="lg:w-[0.6rem] w-[2.8rem] aspect-[1/1] rounded-full" style={{ background: "linear-gradient(135deg, #FDE68A 0%, #FCD34D 100%)", boxShadow: "0px 1px 2px -1px #FDE68A, 0px 1px 3px 0px #FDE68A" }} />
@@ -96,6 +67,21 @@ const AboutUs = () => {
                 <p className="lg:w-[38rem] w-[82.8rem] font-SourceSansProSemibold lg:text-[0.9rem] text-[4.2rem] text-neutral-g lg:leading-[1.6rem] leading-[5rem] text-center">
                   {Description}
                 </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right sidebar: Get In Touch vertical */}
+          <div className="lg:col-span-4 lg:flex lg:items-center lg:justify-center">
+            <div data-aos="fade-left" className="lg:w-[16rem] lg:p-[1.8rem] p-[9.3rem] bg-white lg:rounded-[0.8rem] rounded-[4.7rem] lg:border border-border shadow-[0_10px_40px_-10px_rgba(71,85,105,0.2)] lg:flex lg:flex-col lg:items-center">
+              <h2 className="font-SourceSansProBold lg:text-[1.1rem] text-[7.0rem] text-neutral-g lg:text-center">Get In Touch</h2>
+              <p className="font-SourceSansProSemibold lg:text-[0.7rem] text-[4.2rem] text-neutral-e lg:text-center lg:mt-[0.3rem] lg:mb-[1.5rem] mb-[5.6rem]">
+                Let's Connect
+              </p>
+              <div className="flex lg:flex-col lg:gap-y-[0.8rem] gap-x-[5.6rem] lg:items-center">
+                <SocialMediaIcon Icon={<IoIosMail size="22px" className="text-white" />} href={email} />
+                <SocialMediaIcon Icon={<FaInstagram size="20px" className="text-white" />} href={instagram} />
+                <SocialMediaIcon Icon={<FaWhatsapp size="20px" className="text-white" />} href={whatsapp} />
               </div>
             </div>
           </div>
