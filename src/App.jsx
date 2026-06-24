@@ -15,6 +15,7 @@ import ProjectsAdmin from "@/pages/admin/ProjectsAdmin";
 import PricingAdmin from "@/pages/admin/PricingAdmin";
 import RedirectsAdmin from "@/pages/admin/RedirectsAdmin";
 import TeamAdmin from "@/pages/admin/TeamAdmin";
+import SettingsAdmin from "@/pages/admin/SettingsAdmin";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="pricing" element={<PricingAdmin />} />
           <Route path="redirects" element={<RedirectsAdmin />} />
           <Route path="team" element={<TeamAdmin />} />
+          <Route path="settings" element={<SettingsAdmin />} />
         </Route>
         <Route path="*" element={
           <>

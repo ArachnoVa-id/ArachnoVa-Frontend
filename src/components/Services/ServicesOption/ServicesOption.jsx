@@ -4,10 +4,10 @@ import "aos/dist/aos.css";
 import Image from "@/components/ui/Img";
 
 function CheckIcon() {
-  return <div className="w-6 h-6 sm:w-7 sm:h-7"><Image src="/image/OurServices/green-check.svg" alt="✓" width={36} height={36} style={{ width: "100%", height: "auto" }} /></div>;
+  return <div className="w-6 h-6 sm:w-7 sm:h-7 mx-auto"><Image src="/image/OurServices/green-check.svg" alt="✓" width={36} height={36} style={{ width: "100%", height: "auto" }} /></div>;
 }
 function CrossIcon() {
-  return <div className="w-6 h-6 sm:w-7 sm:h-7"><Image src="/image/OurServices/red-cross.svg" alt="✗" width={28} height={28} style={{ width: "100%", height: "auto" }} /></div>;
+  return <div className="w-6 h-6 sm:w-7 sm:h-7 mx-auto"><Image src="/image/OurServices/red-cross.svg" alt="✗" width={28} height={28} style={{ width: "100%", height: "auto" }} /></div>;
 }
 
 function renderValue(val, feature) {
