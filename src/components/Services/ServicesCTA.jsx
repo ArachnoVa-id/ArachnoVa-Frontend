@@ -1,4 +1,7 @@
+import { useSettings } from "@/context/DataContext";
+
 const ServicesCTA = () => {
+  const settings = useSettings();
   return (
     <section
       className="relative w-full flex flex-col justify-center items-center bg-white-MainPage text-black

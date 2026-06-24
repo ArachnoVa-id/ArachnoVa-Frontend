@@ -87,33 +87,42 @@ apiRouter.get("/linkedin-image", async (req, res) => {
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
+    "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
   ];
-  const agent = agents[Math.floor(Math.random() * agents.length)];
 
-  try {
-    const response = await fetch(url, {
-      headers: {
-        "User-Agent": agent,
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.5",
-        "Referer": "https://www.google.com/",
-        "DNT": "1",
-      },
-    });
-    const html = await response.text();
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const agent = agents[attempt % agents.length];
+    try {
+      const response = await fetch(url, {
+        headers: {
+          "User-Agent": agent,
+          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+          "Accept-Language": "en-US,en;q=0.5",
+          "Referer": attempt === 0 ? "https://www.google.com/" : "https://www.linkedin.com/",
+          "DNT": "1",
+        },
+      });
+      const html = await response.text();
+      if (!html || html.length < 500) continue;
 
-    const patterns = [
-      /<meta[^>]+property="og:image"[^>]+content="([^"]+)"/,
-      /<meta[^>]+content="([^"]+)"[^>]+property="og:image"/,
-      /class="profile-photo[^"]*"[^>]*src="([^"]+)"/,
-      /"profilePictureUrl":"([^"]+)"/,
-    ];
-    for (const pattern of patterns) {
-      const match = html.match(pattern);
-      if (match) return res.json({ image: match[1].replace(/&amp;/g, "&") });
+      const patterns = [
+        /<meta[^>]+property="og:image"[^>]+content="([^"]+)"/,
+        /<meta[^>]+content="([^"]+)"[^>]+property="og:image"/,
+        /"profilePictureUrl"\s*:\s*"([^"]+)"/,
+        /profile-displayphoto[^"]*"[^>]*src="([^"]+)"/,
+      ];
+      for (const pattern of patterns) {
+        const match = html.match(pattern);
+        if (match) return res.json({ image: match[1].replace(/&amp;/g, "&") });
+      }
+      // If we got HTML but no image, the profile may truly not have one
+      if (html.includes("profile-displayphoto")) continue;
+      if (attempt < 2) continue; // retry with different UA
+    } catch (e) {
+      if (attempt < 2) continue; // retry on error
+      return res.status(500).json({ error: e.message });
     }
-    return res.status(404).json({ error: "LinkedIn profile image not found (profile may be private or require login)", hint: "Use the Upload button to set the image manually" });
-  } catch (e) {
-    return res.status(500).json({ error: e.message });
   }
+  return res.status(404).json({ error: "Could not fetch LinkedIn profile image", hint: "Use Upload button to set manually" });
 });

@@ -165,6 +165,10 @@ export default function TeamAdmin() {
                       </button>
                     </div>
 
+                    {/* Personal Website */}
+                    <input value={m.website || ""} onChange={(e) => change(idx, "website", e.target.value)}
+                      placeholder="Personal website URL" className="w-full px-2 py-1 border border-gray-200 rounded-lg text-[10px] font-mono" />
+
                     {/* Project picker */}
                     <ProjectPicker selected={m.projectIds || []} onChange={(ids) => change(idx, "projectIds", ids)} projects={projects} />
 

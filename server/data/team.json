@@ -1,17 +1,137 @@
 [
-  { "name": "John Doe", "role": "CEO", "image": "", "linkedin": "", "type": "internal", "projectIds": [] },
-  { "name": "Jane Smith", "role": "Advisor", "image": "", "linkedin": "", "type": "internal", "projectIds": [] },
-  { "name": "Bob Johnson", "role": "Digital Marketing Specialist", "image": "", "linkedin": "", "type": "internal", "projectIds": [] },
-  { "name": "Alice Williams", "role": "Software Engineer", "image": "", "linkedin": "", "type": "collaborator", "projectIds": [] },
-  { "name": "Charlie Brown", "role": "Software Engineer", "image": "", "linkedin": "", "type": "collaborator", "projectIds": [] },
-  { "name": "Diana Prince", "role": "Software Engineer", "image": "", "linkedin": "", "type": "collaborator", "projectIds": [] },
-  { "name": "Eve Davis", "role": "AI Researcher", "image": "", "linkedin": "", "type": "collaborator", "projectIds": [] },
-  { "name": "Frank Miller", "role": "AI Researcher", "image": "", "linkedin": "", "type": "collaborator", "projectIds": [] },
-  { "name": "Grace Lee", "role": "Software Engineer", "image": "", "linkedin": "", "type": "collaborator", "projectIds": [] },
-  { "name": "Henry Wilson", "role": "Project Manager", "image": "", "linkedin": "", "type": "collaborator", "projectIds": [] },
-  { "name": "Ivy Taylor", "role": "Software Engineer", "image": "", "linkedin": "", "type": "collaborator", "projectIds": [] },
-  { "name": "Jack Anderson", "role": "Frontend Engineer", "image": "", "linkedin": "", "type": "collaborator", "projectIds": [] },
-  { "name": "Kate Thomas", "role": "AI Engineer", "image": "", "linkedin": "", "type": "collaborator", "projectIds": [] },
-  { "name": "Leo Garcia", "role": "Frontend Engineer", "image": "", "linkedin": "", "type": "collaborator", "projectIds": [] },
-  { "name": "Mia Martinez", "role": "Frontend Engineer", "image": "", "linkedin": "", "type": "collaborator", "projectIds": [] }
+  {
+    "name": "John Doe",
+    "role": "CEO",
+    "image": "",
+    "linkedin": "",
+    "type": "internal",
+    "projectIds": [],
+    "website": ""
+  },
+  {
+    "name": "Jane Smith",
+    "role": "Advisor",
+    "image": "",
+    "linkedin": "",
+    "type": "internal",
+    "projectIds": [],
+    "website": ""
+  },
+  {
+    "name": "Bob Johnson",
+    "role": "Digital Marketing Specialist",
+    "image": "",
+    "linkedin": "",
+    "type": "internal",
+    "projectIds": [],
+    "website": ""
+  },
+  {
+    "name": "Alice Williams",
+    "role": "Software Engineer",
+    "image": "",
+    "linkedin": "",
+    "type": "collaborator",
+    "projectIds": [],
+    "website": ""
+  },
+  {
+    "name": "Charlie Brown",
+    "role": "Software Engineer",
+    "image": "",
+    "linkedin": "",
+    "type": "collaborator",
+    "projectIds": [],
+    "website": ""
+  },
+  {
+    "name": "Diana Prince",
+    "role": "Software Engineer",
+    "image": "",
+    "linkedin": "",
+    "type": "collaborator",
+    "projectIds": [],
+    "website": ""
+  },
+  {
+    "name": "Eve Davis",
+    "role": "AI Researcher",
+    "image": "",
+    "linkedin": "",
+    "type": "collaborator",
+    "projectIds": [],
+    "website": ""
+  },
+  {
+    "name": "Frank Miller",
+    "role": "AI Researcher",
+    "image": "",
+    "linkedin": "",
+    "type": "collaborator",
+    "projectIds": [],
+    "website": ""
+  },
+  {
+    "name": "Grace Lee",
+    "role": "Software Engineer",
+    "image": "",
+    "linkedin": "",
+    "type": "collaborator",
+    "projectIds": [],
+    "website": ""
+  },
+  {
+    "name": "Henry Wilson",
+    "role": "Project Manager",
+    "image": "",
+    "linkedin": "",
+    "type": "collaborator",
+    "projectIds": [],
+    "website": ""
+  },
+  {
+    "name": "Ivy Taylor",
+    "role": "Software Engineer",
+    "image": "",
+    "linkedin": "",
+    "type": "collaborator",
+    "projectIds": [],
+    "website": ""
+  },
+  {
+    "name": "Jack Anderson",
+    "role": "Frontend Engineer",
+    "image": "",
+    "linkedin": "",
+    "type": "collaborator",
+    "projectIds": [],
+    "website": ""
+  },
+  {
+    "name": "Kate Thomas",
+    "role": "AI Engineer",
+    "image": "",
+    "linkedin": "",
+    "type": "collaborator",
+    "projectIds": [],
+    "website": ""
+  },
+  {
+    "name": "Leo Garcia",
+    "role": "Frontend Engineer",
+    "image": "",
+    "linkedin": "",
+    "type": "collaborator",
+    "projectIds": [],
+    "website": ""
+  },
+  {
+    "name": "Mia Martinez",
+    "role": "Frontend Engineer",
+    "image": "",
+    "linkedin": "",
+    "type": "collaborator",
+    "projectIds": [],
+    "website": ""
+  }
 ]
