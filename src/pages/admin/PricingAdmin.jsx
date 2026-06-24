@@ -82,7 +82,7 @@ export default function PricingAdmin() {
                   <input value={plan.name} onChange={(e) => updatePlanField(pi, "name", e.target.value)}
                     className="w-full text-center font-semibold text-gray-900 bg-transparent border-none focus:outline-none" />
                   <button onClick={() => removePlan(pi)}
-                    className="absolute -top-1 -right-1 text-red-400 hover:text-red-600 text-xs bg-white rounded-full w-4 h-4 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">✕</button>
+                    className="absolute -top-2 -right-2 text-red-400 hover:text-red-600 bg-white rounded-full w-5 h-5 flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition hover:shadow-md">✕</button>
                 </th>
               ))}
             </tr>
