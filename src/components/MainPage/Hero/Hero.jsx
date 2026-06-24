@@ -80,23 +80,25 @@ export default function Hero() {
 
         <div className="aspect-[537/366] w-[28.0rem] border-2 border-[#F1F5F9] rounded-[0.62rem]  relative font-ConsolasRegular ">
           <div className="bg-white opacity-60 w-full h-full absolute rounded-[0.62rem] backdrop-blur-3xl"></div>
-          <div
-            className="absolute aspect-[419/96] w-[21.8rem] bg-white opacity-90 rounded-[0.62rem] -bottom-[3.0rem] -right-[4.0rem] text-[1.0rem]  flex items-center border-2 border-border font-ConsolasBold"
-            data-aos="fade-left"
-          >
-            <Image
-              alt=""
-              src="/image/Hero/3ColorButton.png"
-              className="w-[3.0rem] h-[1.0rem] top-[0.4rem] left-[0.7rem] absolute"
-              draggable="false"
-              width={100}
-              height={100}
-            />
-            <div className="flex gap-x-[0.1rem] pt-[1.0rem] whitespace-nowrap ml-[0.8rem]">
-              <TerminalTyper speed={60} startDelay={300} />
+          {codeDone && (
+            <div
+              className="absolute aspect-[419/96] w-[21.8rem] bg-white opacity-90 rounded-[0.62rem] -bottom-[3.0rem] -right-[4.0rem] text-[1.0rem]  flex items-center border-2 border-border font-ConsolasBold"
+              data-aos="fade-left"
+            >
+              <Image
+                alt=""
+                src="/image/Hero/3ColorButton.png"
+                className="w-[3.0rem] h-[1.0rem] top-[0.4rem] left-[0.7rem] absolute"
+                draggable="false"
+                width={100}
+                height={100}
+              />
+              <div className="flex gap-x-[0.1rem] pt-[1.0rem] whitespace-nowrap ml-[0.8rem]">
+                <TerminalTyper speed={60} startDelay={300} />
+              </div>
             </div>
-          </div>
-          <div className="px-[1.0rem] py-[2.0rem] text-[1.05rem]/[1.15rem] relative">
+          )}
+          <div className="px-[1.2rem] py-[2.0rem] text-[1.05rem]/[1.15rem] relative">
             <Image
               alt=""
               src="/image/Hero/3ColorButton.png"
@@ -149,20 +151,22 @@ export default function Hero() {
         </a>
 
         <div className="bg-white opacity-90 w-[80.0rem] h-[60.0rem] rounded-lg border-2 border-[#F1F5F9]  relative font-ConsolasRegular ">
-          <div className="absolute w-[60.0rem] h-[13.0rem]  bg-white opacity-90 rounded-md -bottom-[6.0rem] -right-[4.0rem] text-[3.0rem] border-2 border-border font-ConsolasBold  ">
-            <Image
-              alt=""
-              src="/image/Hero/3ColorButton.png"
-              className="w-[10.0rem] h-[3.0rem] top-[0.9rem] left-[0.7rem] absolute"
-              draggable="false"
-              width={100}
-              height={100}
-            />
-            <div className="flex items-center text-[2.6rem] gap-x-[0.06rem] pt-[5.0rem] whitespace-nowrap ml-[2.0rem]">
-              <TerminalTyper speed={80} startDelay={300} />
+          {codeDone && (
+            <div className="absolute w-[60.0rem] h-[13.0rem]  bg-white opacity-90 rounded-md -bottom-[6.0rem] -right-[4.0rem] text-[3.0rem] border-2 border-border font-ConsolasBold  ">
+              <Image
+                alt=""
+                src="/image/Hero/3ColorButton.png"
+                className="w-[10.0rem] h-[3.0rem] top-[0.9rem] left-[0.7rem] absolute"
+                draggable="false"
+                width={100}
+                height={100}
+              />
+              <div className="flex items-center text-[2.6rem] gap-x-[0.06rem] pt-[5.0rem] whitespace-nowrap ml-[2.0rem]">
+                <TerminalTyper speed={80} startDelay={300} />
+              </div>
             </div>
-          </div>
-          <div className="px-[1.0rem] py-[4.0rem] text-[3.0rem]/[4.0rem] relative ">
+          )}
+          <div className="px-[1.5rem] py-[4.0rem] text-[3.0rem]/[4.0rem] relative ">
             <Image
               alt=""
               src="/image/Hero/3ColorButton.png"
