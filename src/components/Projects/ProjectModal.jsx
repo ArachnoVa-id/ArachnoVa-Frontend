@@ -14,7 +14,9 @@ function SlideTrack({ images, idx, goTo, className, style, vertical }) {
 
   if (!images.length) return null;
 
+  const n = images.length;
   const axis = vertical ? "y" : "x";
+  const slidePct = 100 / n;
 
   const onStart = (e) => {
     const val = axis === "y" ? e.touches[0].clientY : e.touches[0].clientX;
@@ -28,8 +30,9 @@ function SlideTrack({ images, idx, goTo, className, style, vertical }) {
   };
   const onEnd = () => {
     setTouching(false);
-    if (delta > 40) goTo(idx - 1);
-    else if (delta < -40) goTo(idx + 1);
+    const thresh = 40;
+    if (delta > thresh) goTo(idx - 1);
+    else if (delta < -thresh) goTo(idx + 1);
     setDelta(0);
   };
 
@@ -39,18 +42,26 @@ function SlideTrack({ images, idx, goTo, className, style, vertical }) {
     else goTo(idx - 1);
   };
 
-  const translate = vertical
-    ? `translateY(${touching ? delta - idx * 100 : -idx * 100}%)`
-    : `translateX(${touching ? delta - idx * 100 : -idx * 100}%)`;
+  const trackPct = touching ? (delta / (axis === "y" ? window.innerHeight : window.innerWidth)) * 100 : 0;
+  const offset = trackPct - idx * slidePct;
 
   return (
     <div className={`overflow-hidden ${className}`} style={style}
       onTouchStart={onStart} onTouchMove={onMove} onTouchEnd={onEnd}
       onWheel={onWheel}>
-      <div className={`flex ${vertical ? "flex-col" : ""} transition-transform duration-300 ease-out ${vertical ? "w-full" : "h-full"}`}
-        style={{ transform: translate }}>
+      <div className="flex transition-transform duration-300 ease-out"
+        style={{
+          [vertical ? "flexDirection" : ""]: vertical ? "column" : undefined,
+          width: vertical ? "100%" : `${n * 100}%`,
+          height: vertical ? `${n * 100}%` : "100%",
+          transform: vertical ? `translateY(${offset}%)` : `translateX(${offset}%)`,
+        }}>
         {images.map((src, i) => (
-          <div key={i} className={`${vertical ? "w-full min-h-full" : "min-w-full h-full"} flex items-center justify-center`}>
+          <div key={i} className="flex items-center justify-center"
+            style={{
+              width: vertical ? "100%" : `${slidePct}%`,
+              height: vertical ? `${slidePct}%` : "100%",
+            }}>
             <img src={src} alt="" className="w-full h-full object-cover select-none pointer-events-none" draggable="false" />
           </div>
         ))}
