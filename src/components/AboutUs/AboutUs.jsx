@@ -41,7 +41,7 @@ const AboutUs = () => {
 				/>
 			</div>
 			<div
-				className="w-fit flex flex-col items-center gap-y-[clamp(0.2rem,0.417vw,0.6rem)] lg:mt-[clamp(0.68rem,4.271vw,6.15rem)] mt-[clamp(2.4rem,15.0vw,21.6rem)]"
+				className="w-fit flex flex-col items-center gap-y-[clamp(0.2rem,0.417vw,0.6rem)] lg:mt-[clamp(4rem,8vw,6rem)] mt-[clamp(2.4rem,15.0vw,21.6rem)]"
 				data-aos="fade-down"
 			>
 				<p className="font-SourceSansProBold lg:text-[clamp(0.5rem,1.563vw,2.25rem)] text-[clamp(0.67rem,4.186vw,6.03rem)] lg:leading-[clamp(0.25rem,1.563vw,2.25rem)] leading-[clamp(0.67rem,4.186vw,6.03rem)] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
