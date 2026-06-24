@@ -10,19 +10,15 @@ export default function MarqueeCarousel({ images, direction = "left" }) {
     const speed = 20;
     let animId;
     let pos = 0;
+    const singleWidth = container.scrollWidth / 2;
 
     const step = () => {
       pos += direction === "left" ? -0.5 : 0.5;
+
+      if (direction === "left" && pos <= -singleWidth) pos = 0;
+      if (direction === "right" && pos >= 0) pos = -singleWidth;
+
       container.style.transform = `translateX(${pos}px)`;
-
-      const totalWidth = container.scrollWidth;
-      const viewWidth = container.parentElement?.clientWidth || window.innerWidth;
-      const threshold = direction === "left" ? -(totalWidth - viewWidth) - 50 : 50;
-
-      if ((direction === "left" && pos <= threshold) || (direction === "right" && pos >= threshold)) {
-        pos = 0;
-      }
-
       animId = requestAnimationFrame(step);
     };
 
@@ -32,10 +28,12 @@ export default function MarqueeCarousel({ images, direction = "left" }) {
 
   if (!images?.length) return null;
 
+  const doubled = [...images, ...images];
+
   return (
     <div className="overflow-hidden w-full">
       <div ref={containerRef} className="flex gap-[clamp(0.2rem,0.5vw,0.72rem)] will-change-transform" style={{ width: "max-content" }}>
-        {images.map((src, i) => (
+        {doubled.map((src, i) => (
           <div key={i} className="flex-shrink-0 lg:w-[clamp(2.24rem,14.0vw,20.16rem)] w-[clamp(7.2rem,45.0vw,50rem)] aspect-[4/3] rounded-lg overflow-hidden border border-border shadow-sm">
             <img src={src} alt="" className="w-full h-full object-cover" draggable="false" loading="lazy" />
           </div>
