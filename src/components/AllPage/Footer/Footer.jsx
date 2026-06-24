@@ -1,17 +1,11 @@
 import FooterItem from "./FooterItem";
-import { AiOutlineCopyright } import { useSettings } from "@/context/DataContext";
-from "react-icons/ai";
-import { FaLinkedin } import { useSettings } from "@/context/DataContext";
-from "react-icons/fa";
-import { AiFillInstagram } import { useSettings } from "@/context/DataContext";
-from "react-icons/ai";
-import { PiWhatsappLogoFill } import { useSettings } from "@/context/DataContext";
-from "react-icons/pi";
+import { AiOutlineCopyright } from "react-icons/ai";
+import { FaLinkedin } from "react-icons/fa";
+import { AiFillInstagram } from "react-icons/ai";
+import { PiWhatsappLogoFill } from "react-icons/pi";
 import Image from "@/components/ui/Img";
 
-const settings = useSettings();
-	const Footer = () => {
-	const settings = useSettings();
+const Footer = () => {
 	const year = new Date().getFullYear();
 	return (
 		<>
@@ -65,19 +59,19 @@ const settings = useSettings();
 						<a href="https://www.linkedin.com/company/arachnova-id/">
 							<FaLinkedin
 								size="25px"
-								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
+								className="text-neutral-a hover:text-neutral-e transition-all duration-500 ease-in-out"
 							/>
 						</a>
 						<a href="https://www.instagram.com/arachnova.id/">
 							<AiFillInstagram
 								size="25px"
-								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
+								className="text-neutral-a hover:text-neutral-e transition-all duration-500 ease-in-out"
 							/>
 						</a>
-						<a href="{settings?.whatsapp || "https://wa.me/6287882832538"}">
+						<a href="https://wa.me/6287882832538">
 							<PiWhatsappLogoFill
 								size="25px"
-								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
+								className="text-neutral-a hover:text-neutral-e transition-all duration-500 ease-in-out"
 							/>
 						</a>
 					</div>
@@ -85,19 +79,19 @@ const settings = useSettings();
 						<a href="https://www.linkedin.com/company/arachnova-id/">
 							<FaLinkedin
 								size="100px"
-								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
+								className="text-neutral-a hover:text-neutral-e transition-all duration-500 ease-in-out"
 							/>
 						</a>
 						<a href="https://www.instagram.com/arachnova.id/">
 							<AiFillInstagram
 								size="100px"
-								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
+								className="text-neutral-a hover:text-neutral-e transition-all duration-500 ease-in-out"
 							/>
 						</a>
-						<a href="{settings?.whatsapp || "https://wa.me/6287882832538"}">
+						<a href="https://wa.me/6287882832538">
 							<PiWhatsappLogoFill
 								size="115px"
-								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
+								className="text-neutral-a hover:text-neutral-e transition-all duration-500 ease-in-out"
 							/>
 						</a>
 					</div>

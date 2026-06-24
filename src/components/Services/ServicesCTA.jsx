@@ -32,7 +32,7 @@ const ServicesCTA = () => {
           </div>
         </div>
         <a
-          href="{settings?.whatsapp || "https://wa.me/6287882832538"}"
+          href={settings?.whatsapp || "https://wa.me/6287882832538"}
           className="flex justify-center items-center bg-black hover:scale-[110%] transition-all duration-500 ease-in-out
                      lg:w-[13.6rem] lg:h-[2.8rem] lg:rounded-[0.26rem] lg:hover:translate-y-[-5px]
                      w-[53.3rem] h-[11.4rem] rounded-[1.16rem] hover:translate-y-[-18px]"

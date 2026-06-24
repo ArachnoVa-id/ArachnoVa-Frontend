@@ -33,7 +33,7 @@ export default function PricingAdmin() {
   const addPlan = () => update((p) => ({
     ...p, plans: [...(p.plans || []), {
       name: "New Plan", price: "", priceNote: "", popular: false,
-      cta: "{settings?.whatsapp || "https://wa.me/6287882832538"}", ctaText: "Pilih Paket",
+      cta: "https://wa.me/6287882832538", ctaText: "Pilih Paket",
       subtitle: "", values: (p.featureRows || []).map(() => "")
     }]
   }));

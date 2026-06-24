@@ -11,7 +11,6 @@ import NavItemMobile from "./NavItemMobile";
 const Navbar = () => {
 	const settings = useSettings();
 	const path = useLocation().pathname;
-	const settings = useSettings();
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<>
@@ -56,12 +55,12 @@ const Navbar = () => {
 				</div>
 				{isOpen ? (
 					<>
-						<NavItemMobile href="{settings?.whatsapp || "https://wa.me/6287882832538"}" />
+						<NavItemMobile href={settings?.whatsapp || "https://wa.me/6287882832538"} />
 					</>
 				) : (
 					<></>
 				)}
-				<Button Text="Contact Us" href="{settings?.whatsapp || "https://wa.me/6287882832538"}" />
+				<Button Text="Contact Us" href={settings?.whatsapp || "https://wa.me/6287882832538"} />
 			</nav>
 		</>
 	);

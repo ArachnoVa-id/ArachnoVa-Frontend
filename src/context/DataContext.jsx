@@ -12,7 +12,7 @@ const defaults = {
   products: { title: "", subtitle: "", items: [] },
   redirects: [],
   team: [],
-  settings: { whatsapp: "{settings?.whatsapp || "https://wa.me/6287882832538"}", email: "mailto:arachnova.id@gmail.com", instagram: "https://www.instagram.com/arachnova.id/", linkedin: "https://www.linkedin.com/company/arachnova-id/" },
+  settings: { whatsapp: "https://wa.me/6287882832538", email: "mailto:arachnova.id@gmail.com", instagram: "https://www.instagram.com/arachnova.id/", linkedin: "https://www.linkedin.com/company/arachnova-id/" },
 };
 
 function authHeaders(forWrite) {
