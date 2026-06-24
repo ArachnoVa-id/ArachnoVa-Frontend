@@ -1,12 +1,17 @@
-import { useSettings } from "/context/DataContext";
 import FooterItem from "./FooterItem";
-import { AiOutlineCopyright } from "react-icons/ai";
-import { FaLinkedin } from "react-icons/fa";
-import { AiFillInstagram } from "react-icons/ai";
-import { PiWhatsappLogoFill } from "react-icons/pi";
+import { AiOutlineCopyright } import { useSettings } from "@/context/DataContext";
+from "react-icons/ai";
+import { FaLinkedin } import { useSettings } from "@/context/DataContext";
+from "react-icons/fa";
+import { AiFillInstagram } import { useSettings } from "@/context/DataContext";
+from "react-icons/ai";
+import { PiWhatsappLogoFill } import { useSettings } from "@/context/DataContext";
+from "react-icons/pi";
 import Image from "@/components/ui/Img";
 
-const Footer = () => {
+const settings = useSettings();
+	const Footer = () => {
+	const settings = useSettings();
 	const year = new Date().getFullYear();
 	return (
 		<>
@@ -69,7 +74,7 @@ const Footer = () => {
 								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
 							/>
 						</a>
-						<a href="https://wa.me/6287882832538">
+						<a href="{settings?.whatsapp || "https://wa.me/6287882832538"}">
 							<PiWhatsappLogoFill
 								size="25px"
 								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
@@ -89,7 +94,7 @@ const Footer = () => {
 								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
 							/>
 						</a>
-						<a href="https://wa.me/6287882832538">
+						<a href="{settings?.whatsapp || "https://wa.me/6287882832538"}">
 							<PiWhatsappLogoFill
 								size="115px"
 								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"

@@ -1,4 +1,3 @@
-import { useSettings } from "/context/DataContext";
 import Image from "@/components/ui/Img";
 import { useEffect, useState } from "react";
 import AOS from "aos";
@@ -10,6 +9,7 @@ import WebPattern from "@/components/ui/WebPattern";
 export default function Hero() {
   const [codeDone, setCodeDone] = useState(false);
 
+  const settings = useSettings();
   useEffect(() => {
     AOS.init({
       duration: 1500,
@@ -61,7 +61,7 @@ export default function Hero() {
           </div>
           <div className="py-[2vh] flex gap-[1.0rem]">
             <a
-              href="https://wa.me/6287882832538"
+              href="{settings?.whatsapp || "https://wa.me/6287882832538"}"
               className="aspect-[167/46] w-[8.7rem] rounded-[0.4rem] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white text-[0.8rem] flex justify-center items-center hover:translate-y-[-3px] transition-all duration-500 ease-in-out "
             >
               Start Your Project
@@ -136,7 +136,7 @@ export default function Hero() {
         </div>
 
         <a
-          href="https://wa.me/6287882832538"
+          href="{settings?.whatsapp || "https://wa.me/6287882832538"}"
           className="w-[80.0rem] h-[8.0rem] mt-[4.0rem] my-[2.5rem] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white rounded-md text-[3.0rem] flex justify-center items-center hover:translate-y-[-3px] transition-all duration-500 ease-in-out "
         >
           Start Your Project

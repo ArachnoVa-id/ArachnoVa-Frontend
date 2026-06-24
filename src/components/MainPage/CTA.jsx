@@ -1,11 +1,13 @@
-import { useSettings } from "/context/DataContext";
 import Image from "@/components/ui/Img";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 
+const settings = useSettings();
+	
 export default function CTA() {
-	useEffect(() => {
+	const settings = useSettings();
+  useEffect(() => {
 		AOS.init({
 			duration: 1500,
 		});
@@ -30,7 +32,7 @@ export default function CTA() {
 					<p>Let&apos;s Start Crafting Your Website Today</p>
 				</div>
 				<a
-					href="https://wa.me/6287882832538"
+					href="{settings?.whatsapp || "https://wa.me/6287882832538"}"
 					data-aos="fade-up"
 					className="bg-black w-[13.6rem] text-white aspect-[262/54] flex justify-center items-center rounded-[0.26rem] font-SourceSansProSemibold mt-[3.0rem] text-[1.04rem] hover:bg-neutral-e duration-500"
 				>
@@ -48,7 +50,7 @@ export default function CTA() {
 					<p>Let&apos;s Start Crafting Your Website Today</p>
 				</div>
 				<a
-					href="https://wa.me/6287882832538"
+					href="{settings?.whatsapp || "https://wa.me/6287882832538"}"
 					data-aos="fade-up"
 					className="bg-black w-[53.3rem] aspect-[229/49] text-white rounded-lg flex justify-center items-center font-SourceSansProSemibold mt-[8.0rem] text-[4.5rem] hover:bg-neutral-e duration-500"
 				>

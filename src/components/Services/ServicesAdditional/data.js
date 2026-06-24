@@ -8,7 +8,7 @@ const data = [
       "/image/OurServices/ServicesAdditional/artikel-cms-1.png",
       "/image/OurServices/ServicesAdditional/instagram-api-1.png",
     ],
-    demo: "https://wa.me/6287882832538",
+    demo: "{settings?.whatsapp || "https://wa.me/6287882832538"}",
   },
   {
     key: 2,
@@ -19,7 +19,7 @@ const data = [
       "/image/OurServices/ServicesAdditional/artikel-cms-1.png",
       "/image/OurServices/ServicesAdditional/instagram-api-1.png",
     ],
-    demo: "https://wa.me/6287882832538",
+    demo: "{settings?.whatsapp || "https://wa.me/6287882832538"}",
   },
   {
     key: 3,
@@ -30,7 +30,7 @@ const data = [
       "/image/OurServices/ServicesAdditional/artikel-cms-1.png",
       "/image/OurServices/ServicesAdditional/instagram-api-1.png",
     ],
-    demo: "https://wa.me/6287882832538",
+    demo: "{settings?.whatsapp || "https://wa.me/6287882832538"}",
   },
   {
     key: 4,
@@ -41,7 +41,7 @@ const data = [
       "/image/OurServices/ServicesAdditional/artikel-cms-1.png",
       "/image/OurServices/ServicesAdditional/instagram-api-1.png",
     ],
-    demo: "https://wa.me/6287882832538",
+    demo: "{settings?.whatsapp || "https://wa.me/6287882832538"}",
   },
   {
     key: 5,
@@ -52,7 +52,7 @@ const data = [
       "/image/OurServices/ServicesAdditional/artikel-cms-1.png",
       "/image/OurServices/ServicesAdditional/instagram-api-1.png",
     ],
-    demo: "https://wa.me/6287882832538",
+    demo: "{settings?.whatsapp || "https://wa.me/6287882832538"}",
   },
 ];
 

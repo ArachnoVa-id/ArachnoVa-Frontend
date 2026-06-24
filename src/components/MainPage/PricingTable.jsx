@@ -39,6 +39,7 @@ function renderValue(val) {
 export default function PricingTable({ data }) {
   const { title, subtitle, featureRows, plans } = data || {};
 
+  const settings = useSettings();
   useEffect(() => {
     AOS.init({ duration: 1500 });
   }, []);
@@ -108,7 +109,7 @@ export default function PricingTable({ data }) {
               {plans.map((plan, i) => (
                 <div key={i} className="p-[1.2rem] text-center border-t border-border border-r last:border-r-0">
                   <a
-                    href={plan.cta || "https://wa.me/6287882832538"}
+                    href={plan.cta || "{settings?.whatsapp || "https://wa.me/6287882832538"}"}
                     className="inline-block font-InterBold lg:text-[0.83rem] text-neutral-a bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] px-[1.5rem] py-[0.6rem] rounded-[0.4rem] hover:translate-y-[-2px] transition-all duration-300"
                   >
                     {plan.ctaText || "Pilih Paket"}
@@ -135,7 +136,7 @@ export default function PricingTable({ data }) {
                 ))}
               </div>
               <a
-                href={plan.cta || "https://wa.me/6287882832538"}
+                href={plan.cta || "{settings?.whatsapp || "https://wa.me/6287882832538"}"}
                 className="block text-center font-InterBold text-[3.5rem] text-neutral-a bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] py-[2.5rem] rounded-[1.5rem] mt-[4.0rem]"
               >
                 {plan.ctaText || "Pilih Paket"}

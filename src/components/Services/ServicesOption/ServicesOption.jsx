@@ -23,6 +23,7 @@ const headCell = "px-3 py-3 border-b border-r border-[#E2E8F0] text-center";
 export default function ServicesOption({ data }) {
   const { title, subtitle, featureRows, plans } = data || {};
 
+  const settings = useSettings();
   useEffect(() => { AOS.init({ duration: 1500 }); }, []);
 
   if (!plans || plans.length === 0) return null;
@@ -77,7 +78,7 @@ export default function ServicesOption({ data }) {
                 <td className={cell} />
                 {plans.map((plan, pi) => (
                   <td key={pi} className="px-3 py-3 text-center">
-                    <a href={plan.cta || "https://wa.me/6287882832538"} className="inline-flex items-center justify-center bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white text-xs font-InterBold px-3 py-1.5 rounded-md hover:scale-105 transition-transform">
+                    <a href={plan.cta || "{settings?.whatsapp || "https://wa.me/6287882832538"}"} className="inline-flex items-center justify-center bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white text-xs font-InterBold px-3 py-1.5 rounded-md hover:scale-105 transition-transform">
                       {plan.ctaText || "Pilih Paket"}
                     </a>
                   </td>
@@ -103,7 +104,7 @@ export default function ServicesOption({ data }) {
                   <span>{renderValue(plan.values?.[ri], feature)}</span>
                 </div>
               ))}
-              <a href={plan.cta || "https://wa.me/6287882832538"} className="block text-center mt-4 bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white font-InterBold text-sm py-2.5 rounded-lg">
+              <a href={plan.cta || "{settings?.whatsapp || "https://wa.me/6287882832538"}"} className="block text-center mt-4 bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white font-InterBold text-sm py-2.5 rounded-lg">
                 {plan.ctaText || "Pilih Paket"}
               </a>
             </div>

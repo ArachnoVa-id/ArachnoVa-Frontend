@@ -1,24 +1,27 @@
-import { useSettings } from "/context/DataContext";
 "use client";
 
-import { IoIosMail } from "react-icons/io";
+import { IoIosMail } import { useSettings } from "@/context/DataContext";
+from "react-icons/io";
 import SocialMediaIcon from "./SocialMediaIcon";
-import { FaInstagram } from "react-icons/fa";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaInstagram } import { useSettings } from "@/context/DataContext";
+from "react-icons/fa";
+import { FaWhatsapp } import { useSettings } from "@/context/DataContext";
+from "react-icons/fa";
 import Image from "@/components/ui/Img";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const AboutUs = () => {
-	useEffect(() => {
+	const settings = useSettings();
+  useEffect(() => {
 		AOS.init({
 			duration: 1500,
 		});
 	}, []);
 	const email = "mailto:arachnova.id@gmail.com";
 	const instagram = "https://www.instagram.com/arachnova.id/";
-	const whatsapp = "https://wa.me/6287882832538";
+	const whatsapp = "{settings?.whatsapp || "https://wa.me/6287882832538"}";
 	const Description =
 		"ArachnoVa adalah perusahaan yang berfokus pada penyediaan layanan desain dan pengembangan website profesional. Dengan tim yang memiliki kompetensi teknis mendalam di bidang teknologi informasi, kami berkomitmen untuk menghadirkan solusi web inovatif yang kreatif, responsif, dan sesuai dengan kebutuhan setiap klien.";
 	return (
