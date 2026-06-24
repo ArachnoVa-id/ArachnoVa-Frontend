@@ -3,10 +3,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ProjectModal from "./ProjectModal";
 
-export default function ProjectCardGrid({ projects, autoOpenId, onAutoOpenDone }) {
+export default function ProjectCardGrid({ projects, autoOpenId, onAutoOpenDone, cardRefs: externalRefs }) {
   const [selected, setSelected] = useState(null);
   const [originRect, setOriginRect] = useState(null);
-  const cardRefs = useRef({});
+  const internalRefs = useRef({});
+  const cardRefs = externalRefs || internalRefs;
 
   useEffect(() => {
     AOS.init({ duration: 1000 });

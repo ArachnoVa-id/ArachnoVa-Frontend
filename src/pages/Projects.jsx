@@ -16,6 +16,7 @@ function shuffle(arr) {
 export default function ProjectsPage() {
   const [projects] = useCollection("projects");
   const gridRef = useRef(null);
+  const cardRefs = useRef({});
   const [autoOpenId, setAutoOpenId] = useState(null);
 
   const imageData = shuffle(
@@ -35,8 +36,9 @@ export default function ProjectsPage() {
   );
 
   const handleCarouselClick = useCallback((projectId) => {
-    if (gridRef.current) {
-      gridRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    const el = cardRefs.current[projectId];
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
       const wait = () => {
         setAutoOpenId(projectId);
         window.removeEventListener("scrollend", wait);
@@ -86,7 +88,7 @@ export default function ProjectsPage() {
       </section>
 
       <div ref={gridRef}>
-        <ProjectCardGrid projects={projects} autoOpenId={autoOpenId} onAutoOpenDone={() => setAutoOpenId(null)} />
+        <ProjectCardGrid projects={projects} autoOpenId={autoOpenId} onAutoOpenDone={() => setAutoOpenId(null)} cardRefs={cardRefs} />
       </div>
     </>
   );
