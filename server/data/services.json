@@ -1,6 +1,7 @@
 [
   {
     "key": 1,
+    "productTag": "compro",
     "icon": "/image/OurServices/ServicesHero/icon-profilingpage.png",
     "title": "Company Profile",
     "description": "Website profiling yang menyajikan informasi lengkap perusahaan, organisasi, atau institusi. Multi-page dengan navigasi profesional, cocok untuk branding dan credibility. Menampilkan profil, visi misi, layanan, portofolio, dan kontak dalam satu platform yang elegan.",
@@ -15,6 +16,7 @@
   },
   {
     "key": 2,
+    "productTag": "erp",
     "icon": "/image/OurServices/ServicesHero/icon-customweb.png",
     "title": "ERP",
     "description": "Sistem terintegrasi untuk mengelola operasional bisnis secara end-to-end. Meliputi dashboard manajemen, database inventory, laporan keuangan, manajemen SDM, dan modul-modul khusus sesuai kebutuhan enterprise Anda.",
@@ -26,6 +28,7 @@
   },
   {
     "key": 3,
+    "productTag": "wa-apps",
     "icon": "/image/OurServices/ServicesHero/icon-landingpage.png",
     "title": "WhatsApp Apps",
     "description": "Aplikasi berbasis WhatsApp API untuk automation dan optimalisasi komunikasi bisnis. Fitur broadcast, chatbot otomatis, order management, CRM integration, dan customer service yang terintegrasi penuh.",

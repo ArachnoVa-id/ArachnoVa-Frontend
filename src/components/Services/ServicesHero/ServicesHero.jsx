@@ -9,8 +9,6 @@ import OptionButton from "./OptionButton";
 import { useState } from "react";
 import ServiceDetails from "./ServiceDetails";
 
-const productTagMap = { 1: "compro", 2: "erp", 3: "wa-apps" };
-
 const ServicesHero = () => {
   const [data] = useCollection("services");
   const [projects] = useCollection("projects");
@@ -105,7 +103,6 @@ const ServicesHero = () => {
           </div>
 
           {data?.map((svc) => {
-            const tag = productTagMap[svc.key];
             const imgs = projects
               .filter((p) => p.product === tag)
               .flatMap((p) => p.desktopImages || [])

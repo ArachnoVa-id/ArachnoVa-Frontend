@@ -7,38 +7,52 @@ const productLabels = {
   "wa-apps": "WhatsApp Apps",
 };
 
-function SlideTrack({ images, idx, goTo, className, style }) {
+function SlideTrack({ images, idx, goTo, className, style, vertical }) {
   const touchStart = useRef(0);
+  const touchAxis = useRef("x");
   const [touching, setTouching] = useState(false);
-  const [deltaX, setDeltaX] = useState(0);
+  const [delta, setDelta] = useState(0);
 
   if (!images.length) return null;
 
-  const onStart = (e) => { touchStart.current = e.touches[0].clientX; setTouching(true); setDeltaX(0); };
-  const onMove = (e) => { setDeltaX(e.touches[0].clientX - touchStart.current); };
+  const axis = vertical ? "y" : "x";
+
+  const onStart = (e) => {
+    touchAxis.current = axis;
+    const val = axis === "y" ? e.touches[0].clientY : e.touches[0].clientX;
+    touchStart.current = val;
+    setTouching(true);
+    setDelta(0);
+  };
+  const onMove = (e) => {
+    const val = axis === "y" ? e.touches[0].clientY : e.touches[0].clientX;
+    setDelta(val - touchStart.current);
+  };
   const onEnd = () => {
     setTouching(false);
-    if (deltaX > 40) goTo(idx - 1);
-    else if (deltaX < -40) goTo(idx + 1);
-    setDeltaX(0);
+    if (delta > 40) goTo(idx - 1);
+    else if (delta < -40) goTo(idx + 1);
+    setDelta(0);
   };
 
   const onWheel = (e) => {
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-      e.preventDefault();
-      if (e.deltaX > 0) goTo(idx + 1);
-      else goTo(idx - 1);
-    }
+    e.preventDefault();
+    if (e.deltaY > 0 || e.deltaX > 0) goTo(idx + 1);
+    else goTo(idx - 1);
   };
+
+  const translate = vertical
+    ? `translateY(${touching ? delta - idx * 100 : -idx * 100}%)`
+    : `translateX(${touching ? delta - idx * 100 : -idx * 100}%)`;
 
   return (
     <div className={`overflow-hidden ${className}`} style={style}
       onTouchStart={onStart} onTouchMove={onMove} onTouchEnd={onEnd}
       onWheel={onWheel}>
-      <div className="flex transition-transform duration-300 ease-out h-full"
-        style={{ transform: `translateX(${touching ? deltaX - idx * 100 : -idx * 100}%)` }}>
+      <div className={`flex ${vertical ? "flex-col" : ""} transition-transform duration-300 ease-out ${vertical ? "w-full" : "h-full"}`}
+        style={{ transform: translate }}>
         {images.map((src, i) => (
-          <div key={i} className="min-w-full h-full flex items-center justify-center">
+          <div key={i} className={`${vertical ? "w-full min-h-full" : "min-w-full h-full"} flex items-center justify-center`}>
             <img src={src} alt="" className="w-full h-full object-cover select-none pointer-events-none" draggable="false" />
           </div>
         ))}
@@ -128,8 +142,8 @@ export default function ProjectModal({ project, onClose, originEl }) {
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === "Escape") handleClose();
-      if (e.key === "ArrowLeft") { e.preventDefault(); goTo(imgIdx - 1); }
-      if (e.key === "ArrowRight") { e.preventDefault(); goTo(imgIdx + 1); }
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); goTo(imgIdx - 1); }
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); goTo(imgIdx + 1); }
     };
     window.addEventListener("keydown", handleKey);
     document.body.style.overflow = "hidden";
@@ -209,7 +223,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
                   {showMobile && hasMobile && (
                     <SlideTrack images={mobileImages} idx={imgIdx} goTo={goTo}
                       className="absolute w-[26%] aspect-[245/485] rounded-[0.8rem] shadow-xl"
-                      style={{ bottom: "2%", left: "1%" }}
+                      style={{ bottom: "2%", left: "1%" }} vertical
                     />
                   )}
                 </div>
