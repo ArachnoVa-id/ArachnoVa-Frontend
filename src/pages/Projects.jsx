@@ -35,9 +35,14 @@ export default function ProjectsPage() {
   );
 
   const handleCarouselClick = useCallback((projectId) => {
-    setAutoOpenId(projectId);
     if (gridRef.current) {
       gridRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      const wait = () => {
+        setAutoOpenId(projectId);
+        window.removeEventListener("scrollend", wait);
+      };
+      window.addEventListener("scrollend", wait, { once: true });
+      setTimeout(() => setAutoOpenId(projectId), 700);
     }
   }, []);
 
