@@ -1,0 +1,42 @@
+{
+  "title": "Unlocking Possibilities",
+  "subtitle": "Explore the Range of Websites We Craft",
+  "items": [
+    {
+      "id": "landing-page",
+      "title": "Landing Page",
+      "description": "Halaman tunggal yang fokus pada satu tujuan: mengonversi pengunjung. Cocok untuk campaign, event, atau peluncuran produk dengan desain yang memukau dan pesan yang jelas.",
+      "variant": "Left",
+      "href": "/services#ServicesLandingPage",
+      "slideImages": [
+        "/image/OurProducts/LandingPage-1.png",
+        "/image/OurProducts/LandingPage-2.png",
+        "/image/OurProducts/LandingPage-3.png"
+      ]
+    },
+    {
+      "id": "profiling",
+      "title": "Profiling",
+      "description": "Website multi-halaman yang menyajikan informasi lengkap tentang perusahaan, organisasi, atau event. Dibangun dengan navigasi yang intuitif dan tata letak yang profesional.",
+      "variant": "Right",
+      "href": "/services#ServicesProfiling",
+      "slideImages": [
+        "/image/OurProducts/KPUFTHero.svg",
+        "/image/OurProducts/KPUFTInfoCalon.svg",
+        "/image/OurProducts/KPUFTTentangKami.svg"
+      ]
+    },
+    {
+      "id": "custom-web",
+      "title": "Custom Web",
+      "description": "Website dengan fungsionalitas khusus yang dirancang sesuai kebutuhan unik Anda. Dashboard, sistem registrasi, database integration, dan fitur kompleks lainnya.",
+      "variant": "Left",
+      "href": "/services#ServicesCustomWeb",
+      "slideImages": [
+        "/image/OurProducts/TropoTable.svg",
+        "/image/OurProducts/TropoRegis.svg",
+        "/image/OurProducts/CustomWeb-1.png"
+      ]
+    }
+  ]
+}

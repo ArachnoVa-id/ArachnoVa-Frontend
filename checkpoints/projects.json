@@ -1,0 +1,223 @@
+[
+  {
+    "id": 1,
+    "type": 2,
+    "product": "compro",
+    "title": "EzParenting",
+    "description": "EzParenting adalah sebuah platform yang bertujuan untuk menemani perjalanan orang tua dalam mengoptimalkan perkembangan anak-anak mereka dari usia 0-5 tahun pertama kehidupan melalui pendidikan dan solusi praktis.",
+    "imageDesktop": "/uploads/1782270880962-cp1v1n.png",
+    "imageMobile": "/uploads/1782270907233-0iymtf.png",
+    "link": "https://www.ezparenting.id/",
+    "desktopImages": [
+      "/uploads/1782270880962-cp1v1n.png",
+      "/uploads/1782270884772-4swqu8.png",
+      "/uploads/1782270889135-mne7ut.png"
+    ],
+    "mobileImages": [
+      "/uploads/1782270907233-0iymtf.png",
+      "/uploads/1782270911471-oqiaw3.png",
+      "/uploads/1782270917083-zs9vrr.png"
+    ]
+  },
+  {
+    "id": 2,
+    "type": 1,
+    "product": "erp",
+    "title": "PT Solusi Cerdas Sampah",
+    "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+    "imageDesktop": "/uploads/1782271157435-ubuj5l.png",
+    "imageMobile": "/uploads/1782271171191-0du5xk.png",
+    "link": "https://example.com/project-beta",
+    "desktopImages": [
+      "/uploads/1782271157435-ubuj5l.png",
+      "/uploads/1782271154796-ya85fi.png",
+      "/uploads/1782271160485-br3gqu.png"
+    ],
+    "mobileImages": [
+      "/uploads/1782271171191-0du5xk.png",
+      "/uploads/1782271175589-4b9173.png",
+      "/uploads/1782271179647-rbgh4d.png",
+      "/uploads/1782271182404-auq995.png",
+      "/uploads/1782271185046-nt1n74.png",
+      "/uploads/1782271188151-4v1d7o.png"
+    ]
+  },
+  {
+    "id": 3,
+    "type": 2,
+    "product": "erp",
+    "title": "Roetix",
+    "description": "Roetix adalah sistem manajemen event yang membantu memudahkan Event Organizer untuk melakukan perencanaan, pendaftaran, dan monitoring dalam satu ekosistem digital",
+    "imageDesktop": "/uploads/1782271912809-5kpcwr.png",
+    "imageMobile": "/uploads/1782272021501-ei2ma3.png",
+    "link": "https://roetix.com/",
+    "desktopImages": [
+      "/uploads/1782271912809-5kpcwr.png",
+      "/uploads/1782271918272-5r4zte.png",
+      "/uploads/1782271921358-3ectgw.png",
+      "/uploads/1782271924916-nfz76m.png",
+      "/uploads/1782272012206-0hstrm.png"
+    ],
+    "mobileImages": [
+      "/uploads/1782272021501-ei2ma3.png",
+      "/uploads/1782272024794-cabdl4.png",
+      "/uploads/1782272028752-tgeczo.png",
+      "/uploads/1782272035745-aj3zpt.png"
+    ]
+  },
+  {
+    "id": 4,
+    "type": 1,
+    "product": "wa-apps",
+    "title": "Yutaka Villa",
+    "description": "Villa Sekipan adalah desain arsitektur Jepang mengharmoniskan estetika tradisional dengan kenyamanan modern",
+    "imageDesktop": "/uploads/1782272457071-rmjgtn.png",
+    "imageMobile": "/uploads/1782272478275-999gaa.png",
+    "link": "https://example.com/project-delta",
+    "desktopImages": [
+      "/uploads/1782272457071-rmjgtn.png",
+      "/uploads/1782272460208-5dv3wp.png",
+      "/uploads/1782272463106-4j8rda.png",
+      "/uploads/1782272466244-uqf9v4.png"
+    ],
+    "mobileImages": [
+      "/uploads/1782272478275-999gaa.png",
+      "/uploads/1782272481460-cxos9d.png",
+      "/uploads/1782272485002-2vis4q.png",
+      "/uploads/1782272514078-2sn3vt.png"
+    ]
+  },
+  {
+    "id": 5,
+    "type": 2,
+    "product": "compro",
+    "title": "PT Selo Putra Sakti",
+    "description": "Sistem manajemen perawatan truk dan alat berat yang membantu penjadwalan servis, monitoring bengkel, serta pengelolaan suku cadang.",
+    "imageDesktop": "/uploads/1782273552619-kropht.png",
+    "imageMobile": "/uploads/1782273565998-v9ik84.png",
+    "link": "https://example.com/project-epsilon",
+    "desktopImages": [
+      "/uploads/1782273552619-kropht.png",
+      "/uploads/1782273555524-plw3zx.png",
+      "/uploads/1782273558229-9i0y89.png",
+      "/uploads/1782273579903-rxwrp5.png"
+    ],
+    "mobileImages": [
+      "/uploads/1782273565998-v9ik84.png",
+      "/uploads/1782273584068-5yimel.png",
+      "/uploads/1782273593247-igq24s.png",
+      "/uploads/1782273597604-iwklg5.png"
+    ]
+  },
+  {
+    "id": 11,
+    "type": 2,
+    "product": "compro",
+    "title": "Lustrum DTETI 2023",
+    "description": "Nam libero tempore cum soluta nobis est eligendi.",
+    "imageDesktop": "/uploads/1782275127085-gf150l.png",
+    "imageMobile": "",
+    "link": "https://example.com/project-lambda",
+    "desktopImages": [
+      "/uploads/1782275127085-gf150l.png",
+      "/uploads/1782275130727-xo0wh3.png",
+      "/uploads/1782275136967-kcvxaf.png",
+      "/uploads/1782275141910-ul3b0z.png"
+    ],
+    "mobileImages": []
+  },
+  {
+    "id": 6,
+    "type": 1,
+    "product": "compro",
+    "title": "TetiPendence",
+    "description": "Sed ut perspiciatis unde omnis iste natus error.",
+    "imageDesktop": "/uploads/1782275201467-67w2jo.png",
+    "imageMobile": "",
+    "link": "https://example.com/project-zeta",
+    "desktopImages": [
+      "/uploads/1782275201467-67w2jo.png",
+      "/uploads/1782275205464-aup88q.png",
+      "/uploads/1782275210343-katvgo.png",
+      "/uploads/1782275217628-4niyvj.png"
+    ],
+    "mobileImages": []
+  },
+  {
+    "id": 7,
+    "type": 2,
+    "product": "erp",
+    "title": "Troposfer Competition",
+    "description": "Nemo enim ipsam voluptatem quia voluptas sit.",
+    "imageDesktop": "/uploads/1782275264800-7sgi9b.png",
+    "imageMobile": "",
+    "link": "https://example.com/project-eta",
+    "desktopImages": [
+      "/uploads/1782275264800-7sgi9b.png",
+      "/uploads/1782275268298-v53jwe.png",
+      "/uploads/1782275273050-jkiup4.png",
+      "/uploads/1782275277137-5lw87d.png"
+    ],
+    "mobileImages": []
+  },
+  {
+    "id": 8,
+    "type": 1,
+    "product": "compro",
+    "title": "Enforian Award",
+    "description": "Neque porro quisquam est qui dolorem ipsum.",
+    "imageDesktop": "/uploads/1782275343335-dzs85o.png",
+    "imageMobile": "",
+    "link": "https://example.com/project-theta",
+    "desktopImages": [
+      "/uploads/1782275343335-dzs85o.png",
+      "/uploads/1782275347951-0daa2p.png",
+      "/uploads/1782275352168-6xyunc.png",
+      "/uploads/1782275356607-pp8pyg.png"
+    ],
+    "mobileImages": []
+  },
+  {
+    "id": 9,
+    "type": 2,
+    "product": "compro",
+    "title": "PT Difa Mahakarya",
+    "description": "DIFA Soil Stabilizer adalah bahan aditif yang diproduksi oleh PT. DIFA Mahakarya sejak tahun 2008 untuk memaksimalkan ikatan semen tanah (soil cement).",
+    "imageDesktop": "/uploads/1782275963672-gtkodf.png",
+    "imageMobile": "/uploads/1782275985665-ncfebe.png",
+    "link": "https://difa.co/",
+    "desktopImages": [
+      "/uploads/1782275963672-gtkodf.png",
+      "/uploads/1782275967545-jbw69i.png",
+      "/uploads/1782275971210-iqfexe.png",
+      "/uploads/1782275975335-kg6el3.png",
+      "/uploads/1782275981895-0rypa1.png"
+    ],
+    "mobileImages": [
+      "/uploads/1782275985665-ncfebe.png",
+      "/uploads/1782275990511-pteg5b.png"
+    ]
+  },
+  {
+    "id": 10,
+    "type": 1,
+    "product": "erp",
+    "title": "PKM Recaping",
+    "description": "Recipe Collection for Pet with Integrated Guidance: Buku resep pakan anjing yang terintegrasi media audio visual dan kalkulator nutrisi sebagai implementasi teknologi digital. Menyediakan produk buku resep pakan hewan 3 in 1 yang pertama di Indonesia yang mencakup buku fisik, kalkulator nutrisi, dan video tutorial.",
+    "imageDesktop": "/uploads/1782276594738-ksq0qb.png",
+    "imageMobile": "/uploads/1782276613557-xefstj.png",
+    "link": "https://example.com/project-kappa",
+    "desktopImages": [
+      "/uploads/1782276594738-ksq0qb.png",
+      "/uploads/1782276599178-r599gp.png",
+      "/uploads/1782276602398-mjij04.png",
+      "/uploads/1782276606125-nase8g.png",
+      "/uploads/1782276650619-tmge2d.png"
+    ],
+    "mobileImages": [
+      "/uploads/1782276613557-xefstj.png",
+      "/uploads/1782276634654-cbxl4t.png",
+      "/uploads/1782276646762-gxn936.png"
+    ]
+  }
+]

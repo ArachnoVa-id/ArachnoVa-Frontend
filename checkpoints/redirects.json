@@ -1,0 +1,7 @@
+[
+  { "path": "/academy/booklet", "redirect": "https://www.figma.com/slides/AdcmoUcleIzn8gtGFtvEYK/Booklet-ArachnoVa-Academy-(BasPro)?node-id=2-439&t=e8wXSkLiHTiR4HfQ-1" },
+  { "path": "/academy/evaluation", "redirect": "https://forms.gle/YWGea3bFusN9hc5E8" },
+  { "path": "/academy", "redirect": "https://forms.gle/47BD69dSta8wDPrV8" },
+  { "path": "/client-evaluation", "redirect": "https://forms.gle/JiMFkhp88KmL1xR89" },
+  { "path": "/open-recruitment", "redirect": "https://forms.gle/sTQDcQKCpXgfa2b79" }
+]

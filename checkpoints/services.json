@@ -1,0 +1,38 @@
+[
+  {
+    "key": 1,
+    "icon": "/image/OurServices/ServicesHero/icon-profilingpage.png",
+    "title": "Company Profile",
+    "description": "Website profiling yang menyajikan informasi lengkap perusahaan, organisasi, atau institusi. Multi-page dengan navigasi profesional, cocok untuk branding dan credibility. Menampilkan profil, visi misi, layanan, portofolio, dan kontak dalam satu platform yang elegan.",
+    "images": [
+      "/image/OurProducts/KMTETI1.png",
+      "/image/OurProducts/KMTETI2.png",
+      "/image/OurProducts/KMTETI3.png",
+      "/image/OurProducts/KMTETI4.png",
+      "/image/OurProducts/KMTETI5.png",
+      "/image/OurProducts/KMTETI6.png"
+    ]
+  },
+  {
+    "key": 2,
+    "icon": "/image/OurServices/ServicesHero/icon-customweb.png",
+    "title": "ERP",
+    "description": "Sistem terintegrasi untuk mengelola operasional bisnis secara end-to-end. Meliputi dashboard manajemen, database inventory, laporan keuangan, manajemen SDM, dan modul-modul khusus sesuai kebutuhan enterprise Anda.",
+    "images": [
+      "/image/OurProducts/TropoTable.svg",
+      "/image/OurProducts/TropoRegis.svg",
+      "/image/OurProducts/CustomWeb-1.png"
+    ]
+  },
+  {
+    "key": 3,
+    "icon": "/image/OurServices/ServicesHero/icon-landingpage.png",
+    "title": "WhatsApp Apps",
+    "description": "Aplikasi berbasis WhatsApp API untuk automation dan optimalisasi komunikasi bisnis. Fitur broadcast, chatbot otomatis, order management, CRM integration, dan customer service yang terintegrasi penuh.",
+    "images": [
+      "/image/OurProducts/LandingPage-1.png",
+      "/image/OurProducts/LandingPage-2.png",
+      "/image/OurProducts/LandingPage-3.png"
+    ]
+  }
+]
