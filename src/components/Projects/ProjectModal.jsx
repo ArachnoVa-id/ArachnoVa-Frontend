@@ -1,16 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { IoMdClose, IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 
-export default function ProjectModal({ project, onClose, originRect }) {
+export default function ProjectModal({ project, onClose, originEl }) {
   const [desktopIdx, setDesktopIdx] = useState(0);
   const [mobileIdx, setMobileIdx] = useState(0);
   const [phase, setPhase] = useState("start");
   const cardRef = useRef(null);
-  const [showOverlay, setShowOverlay] = useState(true);
+  const originRect = useRef(null);
 
-  const originEl = originRect?.el || null;
-  const desktopStart = originRect?.desktopRect || null;
-  const mobileStart = originRect?.mobileRect || null;
+  if (!originRect.current && originEl) {
+    originRect.current = originEl.getBoundingClientRect();
+  }
 
   const desktopImages = project?.desktopImages?.filter(Boolean) || [project?.imageDesktop].filter(Boolean);
   const mobileImages = project?.mobileImages?.filter(Boolean) || [project?.imageMobile].filter(Boolean);
@@ -22,21 +22,19 @@ export default function ProjectModal({ project, onClose, originRect }) {
   const prevMobile = () => setMobileIdx((i) => (i > 0 ? i - 1 : mobileImages.length - 1));
   const nextMobile = () => setMobileIdx((i) => (i < mobileImages.length - 1 ? i + 1 : 0));
 
-  const cardOrigin = originEl?.getBoundingClientRect?.() || null;
-
   useEffect(() => {
-    if (!cardOrigin) { setPhase("open"); return; }
+    if (!originRect.current) { setPhase("open"); return; }
     const maxW = Math.min(window.innerWidth * 0.9, 1024);
     const finalLeft = (window.innerWidth - maxW) / 2;
     const finalTop = Math.max(window.innerHeight * 0.05, 20);
-    const finalH = window.innerHeight * 0.9;
+    const finalHeight = window.innerHeight * 0.9;
 
     requestAnimationFrame(() => {
       if (!cardRef.current) return;
-      cardRef.current.style.top = cardOrigin.top + "px";
-      cardRef.current.style.left = cardOrigin.left + "px";
-      cardRef.current.style.width = cardOrigin.width + "px";
-      cardRef.current.style.height = cardOrigin.height + "px";
+      cardRef.current.style.top = originRect.current.top + "px";
+      cardRef.current.style.left = originRect.current.left + "px";
+      cardRef.current.style.width = originRect.current.width + "px";
+      cardRef.current.style.height = originRect.current.height + "px";
       cardRef.current.style.borderRadius = "12px";
 
       requestAnimationFrame(() => {
@@ -45,28 +43,33 @@ export default function ProjectModal({ project, onClose, originRect }) {
         cardRef.current.style.top = finalTop + "px";
         cardRef.current.style.left = finalLeft + "px";
         cardRef.current.style.width = maxW + "px";
-        cardRef.current.style.height = finalH + "px";
+        cardRef.current.style.height = finalHeight + "px";
         cardRef.current.style.borderRadius = "12px";
         setPhase("expanding");
-        setTimeout(() => { setShowOverlay(false); setPhase("open"); }, 400);
+        setTimeout(() => setPhase("images-enter"), 150);
+        setTimeout(() => setPhase("content-show"), 350);
+        setTimeout(() => setPhase("open"), 500);
       });
     });
   }, []);
 
   const handleClose = () => {
-    setShowOverlay(true);
+    setPhase("closing-text");
     setTimeout(() => {
-      if (cardRef.current && cardOrigin) {
-        cardRef.current.style.transition = "all 0.2s ease, border-radius 0.2s ease";
-        cardRef.current.style.top = cardOrigin.top + "px";
-        cardRef.current.style.left = cardOrigin.left + "px";
-        cardRef.current.style.width = cardOrigin.width + "px";
-        cardRef.current.style.height = cardOrigin.height + "px";
-        cardRef.current.style.borderRadius = "12px";
-        setPhase("exiting");
-      }
-      setTimeout(onClose, 200);
-    }, 200);
+      setPhase("closing-images");
+      setTimeout(() => {
+        if (cardRef.current && originRect.current) {
+          cardRef.current.style.transition = "all 0.2s ease, border-radius 0.2s ease";
+          cardRef.current.style.top = originRect.current.top + "px";
+          cardRef.current.style.left = originRect.current.left + "px";
+          cardRef.current.style.width = originRect.current.width + "px";
+          cardRef.current.style.height = originRect.current.height + "px";
+          cardRef.current.style.borderRadius = "12px";
+          setPhase("exiting");
+        }
+        setTimeout(onClose, 200);
+      }, 150);
+    }, 150);
   };
 
   useEffect(() => {
@@ -82,23 +85,28 @@ export default function ProjectModal({ project, onClose, originRect }) {
 
   if (!project) return null;
 
-  const startStyle = cardOrigin ? {
+  const startStyle = originRect.current ? {
     position: "fixed", zIndex: 200,
-    top: cardOrigin.top + "px",
-    left: cardOrigin.left + "px",
-    width: cardOrigin.width + "px",
-    height: cardOrigin.height + "px",
-    borderRadius: "12px", overflow: "hidden", background: "white",
+    top: originRect.current.top + "px",
+    left: originRect.current.left + "px",
+    width: originRect.current.width + "px",
+    height: originRect.current.height + "px",
+    borderRadius: "12px",
+    overflow: "hidden", background: "white",
     boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
   } : {
     position: "fixed", zIndex: 200,
-    top: "5%", left: "5%", width: "90%", height: "90%",
-    borderRadius: "12px", overflow: "hidden", background: "white",
+    top: "5%", left: "5%",
+    width: "90%", height: "90%",
+    borderRadius: "12px",
+    overflow: "hidden", background: "white",
     boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
   };
 
-  const imagesVisible = phase !== "start";
-  const contentVisible = phase === "open" || phase === "expanding";
+  const imgEntered = phase !== "start" && phase !== "expanding";
+  const contentVisible = phase === "content-show" || phase === "open";
+  const contentClosing = phase === "closing-text" || phase === "closing-images" || phase === "exiting";
+  const imgClosing = phase === "closing-images" || phase === "exiting";
 
   return (
     <>
@@ -106,46 +114,14 @@ export default function ProjectModal({ project, onClose, originRect }) {
         style={{ opacity: phase === "start" ? 0 : 1, transition: "opacity 0.3s ease" }} />
 
       <div ref={cardRef} style={startStyle}>
-        {/* Overlay images - fly from card positions to center of modal */}
-        {showOverlay && desktopStart && (
-          <img src={desktopImages[desktopIdx]} alt=""
-            className="fixed z-[201] rounded-lg shadow-lg"
+        <div className="h-full flex flex-col overflow-y-auto">
+          {/* Header - fades in after images */}
+          <div className="flex items-center justify-between p-4 border-b border-border shrink-0"
             style={{
-              left: desktopStart.left, top: desktopStart.top,
-              width: desktopStart.width, height: desktopStart.height,
-              transition: "all 0.35s cubic-bezier(0.22, 1, 0.36, 1)",
-              ...(phase === "expanding" || phase === "open" ? {
-                left: "50%", top: "40%",
-                width: "clamp(12rem, 60%, 40rem)",
-                height: "auto",
-                transform: "translate(-50%, -50%)",
-              } : {}),
-            }}
-          />
-        )}
-        {showOverlay && mobileStart && (
-          <img src={mobileImages[mobileIdx]} alt=""
-            className="fixed z-[201] rounded-lg shadow-lg"
-            style={{
-              left: mobileStart.left, top: mobileStart.top,
-              width: mobileStart.width, height: mobileStart.height,
-              transition: "all 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.05s",
-              ...(phase === "expanding" || phase === "open" ? {
-                left: "50%", top: "65%",
-                width: "clamp(6rem, 20%, 12rem)",
-                height: "auto",
-                transform: "translate(-50%, -50%)",
-              } : {}),
-            }}
-          />
-        )}
-
-        {/* Main content - fades in after images settle */}
-        <div className="h-full flex flex-col overflow-y-auto" style={{
-          opacity: phase === "open" ? 1 : 0,
-          transition: "opacity 0.25s ease 0.25s",
-        }}>
-          <div className="flex items-center justify-between p-4 border-b border-border shrink-0">
+              opacity: contentClosing ? 0 : (contentVisible ? 1 : 0),
+              transform: contentClosing ? "translateY(-10px)" : (contentVisible ? "translateY(0)" : "translateY(10px)"),
+              transition: "opacity 0.2s ease, transform 0.25s ease",
+            }}>
             <div className="min-w-0">
               <h2 className="text-xl font-bold text-neutral-g truncate">{project.title}</h2>
               {project.link && (
@@ -155,9 +131,14 @@ export default function ProjectModal({ project, onClose, originRect }) {
             <button onClick={handleClose} className="text-gray-400 hover:text-gray-600 p-1 shrink-0 ml-2"><IoMdClose size={24} /></button>
           </div>
 
+          {/* Images - staggered entry */}
           <div className={`p-4 grid gap-4 ${hasDesktop && hasMobile ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-1"}`}>
             {hasDesktop && (
-              <div>
+              <div style={{
+                opacity: imgClosing ? 0 : (imgEntered ? 1 : 0),
+                transform: imgClosing ? "scale(0.9)" : (imgEntered ? "scale(1)" : "scale(0.85)"),
+                transition: "opacity 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)",
+              }}>
                 <p className="text-xs font-medium text-gray-500 mb-2">Desktop ({desktopIdx + 1}/{desktopImages.length})</p>
                 <div className="relative bg-gray-100 rounded-xl overflow-hidden border border-border">
                   {desktopImages.length > 1 && (
@@ -171,7 +152,11 @@ export default function ProjectModal({ project, onClose, originRect }) {
               </div>
             )}
             {hasMobile && (
-              <div>
+              <div style={{
+                opacity: imgClosing ? 0 : (imgEntered ? 1 : 0),
+                transform: imgClosing ? "scale(0.9)" : (imgEntered ? "scale(1)" : "scale(0.85)"),
+                transition: "opacity 0.3s ease 0.08s, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.08s",
+              }}>
                 <p className="text-xs font-medium text-gray-500 mb-2">Mobile ({mobileIdx + 1}/{mobileImages.length})</p>
                 <div className="relative bg-gray-100 rounded-xl overflow-hidden border border-border max-w-[280px] mx-auto">
                   {mobileImages.length > 1 && (
@@ -186,8 +171,13 @@ export default function ProjectModal({ project, onClose, originRect }) {
             )}
           </div>
 
+          {/* Description - fades in last */}
           {project.description && (
-            <div className="px-4 pb-4">
+            <div className="px-4 pb-4" style={{
+              opacity: contentClosing ? 0 : (contentVisible ? 1 : 0),
+              transform: contentClosing ? "translateY(-8px)" : (contentVisible ? "translateY(0)" : "translateY(12px)"),
+              transition: "opacity 0.25s ease, transform 0.3s ease",
+            }}>
               <p className="text-sm text-neutral-e leading-relaxed">{project.description}</p>
               <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 px-4 py-2 bg-gradient-to-r from-LightBlue-c to-LightBlue-d text-white text-sm font-InterBold rounded-lg hover:translate-y-[-0.1vw] transition-transform">
                 Visit Project

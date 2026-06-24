@@ -9,13 +9,13 @@ const ServicesAdditionalSwiper = ({ image }) => {
   return (
     <div
       className="flex justify-center items-center
-                 lg:gap-[0.2rem]
-                 gap-[0.2rem]"
+                 lg:gap-[clamp(0.2rem,0.417vw,0.6rem)]
+                 gap-[clamp(0.2rem,0.93vw,1.34rem)]"
     >
       <div
         className="text-[#9CADB4]
-                     lg:w-[0.33rem]
-                     w-[0.78rem]"
+                     lg:w-[clamp(0.33rem,2.083vw,3.0rem)]
+                     w-[clamp(0.78rem,4.884vw,7.03rem)]"
       >
         <BsFillCaretLeftFill
           size={"100%"}
@@ -27,13 +27,13 @@ const ServicesAdditionalSwiper = ({ image }) => {
       </div>
       <div
         className="flex justify-center items-center bg-[#FBFCFD] border-border
-                   lg:w-[4.56rem] lg:h-[2.66rem] lg:rounded-[0.2rem] lg:border-[3px] lg:shadow-[0px_4px_40px_-5px_rgba(0,0,0,0.15)
-                   w-[12.65rem] h-[7.29rem] rounded-[0.37rem] border-[7px] shadow-[0px_18px_179px_-22px_rgba(0,0,0,0.15)"
+                   lg:w-[clamp(4.56rem,28.49vw,41.03rem)] lg:h-[clamp(2.66rem,16.615vw,23.93rem)] lg:rounded-[clamp(0.2rem,0.781vw,1.12rem)] lg:border-[0.156vw] lg:shadow-[0px_0.208vw_2.083vw_-0.26vw_rgba(0,0,0,0.15)
+                   w-[clamp(12.65rem,79.07vw,50rem)] h-[clamp(7.29rem,45.581vw,50rem)] rounded-[clamp(0.37rem,2.326vw,3.35rem)] border-[0.349vw] shadow-[0px_0.93vw_9.302vw_-1.163vw_rgba(0,0,0,0.15)"
       >
         <Swiper
           className="overflow-hidden border-border
-                     lg:w-[4.38rem] lg:rounded-[0.2rem] lg:border-[2px]
-                     w-[12.13rem] rounded-[0.3rem] border-[4px]"
+                     lg:w-[clamp(4.38rem,27.396vw,39.45rem)] lg:rounded-[clamp(0.2rem,0.521vw,0.75rem)] lg:border-[0.104vw]
+                     w-[clamp(12.13rem,75.814vw,50rem)] rounded-[clamp(0.3rem,1.86vw,2.68rem)] border-[0.233vw]"
           slidesPerView={1}
           spaceBetween={5}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
@@ -57,8 +57,8 @@ const ServicesAdditionalSwiper = ({ image }) => {
       </div>
       <div
         className="text-[#9CADB4]
-                   lg:w-[0.33rem]
-                   w-[0.78rem]"
+                   lg:w-[clamp(0.33rem,2.083vw,3.0rem)]
+                   w-[clamp(0.78rem,4.884vw,7.03rem)]"
       >
         <BsFillCaretRightFill
           size={"100%"}
