@@ -76,7 +76,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
 
   if (!project) return null;
 
-  const startStyle = originRect ? {
+  const startStyle = originRect.current ? {
     position: "fixed",
     zIndex: 200,
     top: originRect.current.top + "px",
