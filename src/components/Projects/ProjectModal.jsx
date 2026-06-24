@@ -9,7 +9,6 @@ const productLabels = {
 
 function SlideTrack({ images, idx, goTo, className, style, vertical }) {
   const touchStart = useRef(0);
-  const touchAxis = useRef("x");
   const [touching, setTouching] = useState(false);
   const [delta, setDelta] = useState(0);
 
@@ -18,7 +17,6 @@ function SlideTrack({ images, idx, goTo, className, style, vertical }) {
   const axis = vertical ? "y" : "x";
 
   const onStart = (e) => {
-    touchAxis.current = axis;
     const val = axis === "y" ? e.touches[0].clientY : e.touches[0].clientX;
     touchStart.current = val;
     setTouching(true);
@@ -75,27 +73,25 @@ export default function ProjectModal({ project, onClose, originEl }) {
   const hasDesktop = desktopImages.length > 0;
   const hasMobile = mobileImages.length > 0;
 
-  const [showDesktop, setShowDesktop] = useState(true);
-  const [showMobile, setShowMobile] = useState(true);
+  const views = [];
+  if (hasDesktop) views.push("desktop");
+  if (hasMobile) views.push("mobile");
 
-  const allImages = [];
-  const count = Math.max(desktopImages.length, mobileImages.length, 1);
-  for (let i = 0; i < count; i++) {
-    allImages.push({
-      desktop: desktopImages[i % desktopImages.length],
-      mobile: mobileImages[i % mobileImages.length],
-    });
-  }
-
-  const [imgIdx, setImgIdx] = useState(0);
+  const [view, setView] = useState(views[0] || null);
+  const [desktopIdx, setDesktopIdx] = useState(0);
+  const [mobileIdx, setMobileIdx] = useState(0);
+  const activeIdx = view === "desktop" ? desktopIdx : mobileIdx;
+  const activeImages = view === "desktop" ? desktopImages : mobileImages;
 
   const productLabel = productLabels[project?.product] || project?.product || "";
   const domain = project?.link ? project.link.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "") : "";
 
   const goTo = (next) => {
-    if (next < 0) next = allImages.length - 1;
-    if (next >= allImages.length) next = 0;
-    setImgIdx(next);
+    const setter = view === "desktop" ? setDesktopIdx : setMobileIdx;
+    const imgs = view === "desktop" ? desktopImages : mobileImages;
+    if (next < 0) next = imgs.length - 1;
+    if (next >= imgs.length) next = 0;
+    setter(next);
   };
 
   useEffect(() => {
@@ -142,8 +138,8 @@ export default function ProjectModal({ project, onClose, originEl }) {
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === "Escape") handleClose();
-      if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); goTo(imgIdx - 1); }
-      if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); goTo(imgIdx + 1); }
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); goTo(activeIdx - 1); }
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); goTo(activeIdx + 1); }
     };
     window.addEventListener("keydown", handleKey);
     document.body.style.overflow = "hidden";
@@ -151,7 +147,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
       window.removeEventListener("keydown", handleKey);
       document.body.style.overflow = "";
     };
-  }, [imgIdx]);
+  }, [activeIdx, view]);
 
   if (!project) return null;
 
@@ -210,36 +206,59 @@ export default function ProjectModal({ project, onClose, originEl }) {
             </div>
           </div>
 
+          {/* View toggle */}
+          {views.length > 1 && (
+            <div className="flex justify-center shrink-0 bg-gray-50 border-b border-border">
+              <div className="flex p-1 gap-1">
+                {views.map(v => (
+                  <button key={v} onClick={() => setView(v)}
+                    className={`px-5 py-1.5 text-xs uppercase tracking-[0.08em] font-semibold rounded-lg transition-all ${
+                      view === v
+                        ? "bg-LightBlue-c text-white shadow-sm"
+                        : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+                    }`}>
+                    {v === "desktop" ? "Desktop" : "Mobile"}
+                    <span className="ml-1.5 text-[0.5rem] opacity-60">({(v === "desktop" ? desktopImages : mobileImages).length})</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Image area */}
           <div className="flex-1 overflow-hidden select-none relative bg-gray-50">
-            <div className="w-full h-full flex items-center justify-center p-[2%]">
-              {hasDesktop || hasMobile ? (
-                <div className="relative w-full h-full flex items-center justify-center">
-                  {showDesktop && hasDesktop && (
-                    <SlideTrack images={desktopImages} idx={imgIdx} goTo={goTo}
-                      className="w-[95%] aspect-[669/376] rounded-xl shadow-xl"
-                    />
-                  )}
-                  {showMobile && hasMobile && (
-                    <SlideTrack images={mobileImages} idx={imgIdx} goTo={goTo}
-                      className="absolute w-[26%] aspect-[245/485] rounded-[0.8rem] shadow-xl"
-                      style={{ bottom: "2%", left: "1%" }} vertical
-                    />
-                  )}
-                </div>
-              ) : (
-                <span className="text-gray-400 text-sm italic">No images</span>
-              )}
-            </div>
+            {view === "desktop" ? (
+              /* Desktop mockup */
+              <div className="w-full h-full flex items-center justify-center p-[3%]">
+                <SlideTrack images={desktopImages} idx={desktopIdx} goTo={(n) => {
+                  const imgs = desktopImages;
+                  if (n < 0) n = imgs.length - 1;
+                  if (n >= imgs.length) n = 0;
+                  setDesktopIdx(n);
+                }} className="w-full h-full rounded-xl shadow-xl" />
+              </div>
+            ) : view === "mobile" ? (
+              /* Phone mockup - centered */
+              <div className="w-full h-full flex items-center justify-center p-[8%]">
+                <SlideTrack images={mobileImages} idx={mobileIdx} goTo={(n) => {
+                  const imgs = mobileImages;
+                  if (n < 0) n = imgs.length - 1;
+                  if (n >= imgs.length) n = 0;
+                  setMobileIdx(n);
+                }} className="h-full w-auto aspect-[245/485] rounded-[0.8rem] shadow-xl" vertical />
+              </div>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm italic">No images</div>
+            )}
 
             {/* Arrows */}
-            {allImages.length > 1 && (
+            {activeImages.length > 1 && (
               <>
-                <button onClick={(e) => { e.stopPropagation(); goTo(imgIdx - 1); }}
+                <button onClick={(e) => { e.stopPropagation(); goTo(activeIdx - 1); }}
                   className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/80 hover:bg-white rounded-full shadow-md transition text-gray-700 z-10">
                   <IoMdArrowBack size={16} />
                 </button>
-                <button onClick={(e) => { e.stopPropagation(); goTo(imgIdx + 1); }}
+                <button onClick={(e) => { e.stopPropagation(); goTo(activeIdx + 1); }}
                   className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/80 hover:bg-white rounded-full shadow-md transition text-gray-700 z-10">
                   <IoMdArrowForward size={16} />
                 </button>
@@ -247,38 +266,14 @@ export default function ProjectModal({ project, onClose, originEl }) {
             )}
 
             {/* Dots */}
-            {allImages.length > 1 && (
+            {activeImages.length > 1 && (
               <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-[0.35rem]">
-                {allImages.map((_, i) => (
-                  <button key={i} onClick={(e) => { e.stopPropagation(); setImgIdx(i); }}
-                    className={`w-[0.4rem] h-[0.4rem] rounded-full transition-all duration-300 ${i === imgIdx ? "bg-LightBlue-c scale-150" : "bg-gray-400/60 hover:bg-gray-500/80"}`} />
+                {activeImages.map((_, i) => (
+                  <button key={i} onClick={(e) => { e.stopPropagation(); goTo(i); }}
+                    className={`w-[0.4rem] h-[0.4rem] rounded-full transition-all duration-300 ${i === activeIdx ? "bg-LightBlue-c scale-150" : "bg-gray-400/60 hover:bg-gray-500/80"}`} />
                 ))}
               </div>
             )}
-
-            {/* View toggles */}
-            <div className="absolute top-3 right-3 flex gap-1.5 z-10">
-              {hasDesktop && (
-                <button onClick={() => setShowDesktop(v => !v)}
-                  className={`px-2 py-0.5 text-[0.55rem] uppercase tracking-[0.08em] rounded-md transition-all font-medium ${
-                    showDesktop
-                      ? "bg-LightBlue-c text-white shadow-sm"
-                      : "bg-white/70 text-gray-500 hover:bg-white/90"
-                  }`}>
-                  Desktop
-                </button>
-              )}
-              {hasMobile && (
-                <button onClick={() => setShowMobile(v => !v)}
-                  className={`px-2 py-0.5 text-[0.55rem] uppercase tracking-[0.08em] rounded-md transition-all font-medium ${
-                    showMobile
-                      ? "bg-LightBlue-c text-white shadow-sm"
-                      : "bg-white/70 text-gray-500 hover:bg-white/90"
-                  }`}>
-                  Mobile
-                </button>
-              )}
-            </div>
           </div>
 
           {/* Description */}

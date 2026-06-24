@@ -38,7 +38,6 @@ export default function PortoSection({ projects, services }) {
     setProjectIndex((i) => i - 1);
   };
 
-  const swipeRef = useRef(null);
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
 
@@ -63,6 +62,13 @@ export default function PortoSection({ projects, services }) {
 
   return (
     <section className="w-full bg-white-MainPage lg:py-[5vw] py-[13.953vw] overflow-hidden">
+      <style>{`
+        @keyframes scroll-up {
+          from { transform: translateY(25%); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+        .phone-scroll-in { animation: scroll-up 0.5s ease-out; }
+      `}</style>
       {/* Desktop */}
       <div className="max-lg:hidden mx-auto w-[65rem]">
         <div className="grid grid-cols-[20rem_1fr] gap-x-[2vw]">
@@ -158,16 +164,13 @@ export default function PortoSection({ projects, services }) {
                     key={projectIndex}
                     src={currentProject.imageMobile}
                     alt=""
-                    className="w-full"
+                    className="w-full phone-scroll-in"
                     draggable="false"
-                    style={{
-                      animation: "none",
-                      transform: "translateY(0)",
-                    }}
                   />
                 ) : null}
               </div>
             </div>
+          </div>
         </div>
       </div>
 
@@ -188,7 +191,7 @@ export default function PortoSection({ projects, services }) {
         </div>
 
         {currentProject && (
-          <div className="relative w-full">
+          <div className="relative w-full" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
             <div className="overflow-hidden rounded-[3vw] bg-border p-[0.5vw] shadow-md">
               <div className="flex transition-transform duration-400 ease-in-out" style={{ transform: `translateX(-${projectIndex * 100}%)` }}>
                 {filtered.map((p, i) => (
