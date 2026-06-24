@@ -102,15 +102,13 @@ export default function TeamAdmin() {
       const data = await res.json();
       if (data.image) {
         change(i, "image", data.image);
-        toast("Profile image fetched", "success");
-      } else if (data.name) {
-        toast("Name found, but no image available", "info");
-      } else {
-        toast(data.error || "Could not fetch data", "error");
+        toast(data.avatar ? "Generated avatar from name" : "Profile image fetched", "success");
       }
-      if (data.name && (!member.name || member.name.startsWith("John") || member.name.startsWith("Jane"))) {
+      if (data.name && (!member.name || member.name.startsWith("John") || member.name.startsWith("Jane") || member.name.includes("Doe"))) {
         change(i, "name", data.name);
-        if (!data.image) toast("Name auto-filled from LinkedIn", "success");
+        toast("Name auto-filled from LinkedIn", "success");
+      } else if (!data.image && !data.name) {
+        toast(data.error || "Could not fetch data", "error");
       }
     } catch (e) {
       toast("Error: " + e.message, "error");

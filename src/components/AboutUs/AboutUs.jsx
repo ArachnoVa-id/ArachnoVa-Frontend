@@ -71,17 +71,15 @@ const AboutUs = () => {
             </div>
           </div>
 
-          {/* Right sidebar: Get In Touch vertical */}
-          <div className="lg:col-span-4 lg:flex lg:items-center lg:justify-center">
-            <div data-aos="fade-left" className="lg:w-[16rem] lg:p-[1.8rem] p-[9.3rem] bg-white lg:rounded-[0.8rem] rounded-[4.7rem] lg:border border-border shadow-[0_10px_40px_-10px_rgba(71,85,105,0.2)] lg:flex lg:flex-col lg:items-center">
-              <h2 className="font-SourceSansProBold lg:text-[1.1rem] text-[7.0rem] text-neutral-g lg:text-center">Get In Touch</h2>
-              <p className="font-SourceSansProSemibold lg:text-[0.7rem] text-[4.2rem] text-neutral-e lg:text-center lg:mt-[0.3rem] lg:mb-[1.5rem] mb-[5.6rem]">
-                Let's Connect
-              </p>
-              <div className="flex lg:flex-col lg:gap-y-[0.8rem] gap-x-[5.6rem] lg:items-center">
-                <SocialMediaIcon Icon={<IoIosMail size="22px" className="text-white" />} href={email} />
-                <SocialMediaIcon Icon={<FaInstagram size="20px" className="text-white" />} href={instagram} />
-                <SocialMediaIcon Icon={<FaWhatsapp size="20px" className="text-white" />} href={whatsapp} />
+          {/* Right sidebar: Get In Touch - minimal */}
+          <div className="lg:col-span-4 lg:flex lg:flex-col lg:items-center lg:justify-center lg:gap-y-[1.5rem]">
+            <div data-aos="fade-left" className="lg:flex lg:flex-col lg:items-center lg:gap-y-[1.2rem]">
+              <h2 className="font-SourceSansProBold lg:text-[1.3rem] text-[7.0rem] text-neutral-g">Get In Touch</h2>
+              <p className="font-SourceSansProSemibold lg:text-[0.8rem] text-[4.2rem] text-neutral-e">Let's Connect</p>
+              <div className="flex lg:flex-col lg:gap-y-[0.8rem] gap-x-[5.6rem] lg:items-center lg:mt-[0.5rem]">
+                <SocialMediaIcon Icon={<IoIosMail size="32px" className="text-white" />} href={email} />
+                <SocialMediaIcon Icon={<FaInstagram size="30px" className="text-white" />} href={instagram} />
+                <SocialMediaIcon Icon={<FaWhatsapp size="30px" className="text-white" />} href={whatsapp} />
               </div>
             </div>
           </div>

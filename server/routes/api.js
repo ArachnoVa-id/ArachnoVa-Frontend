@@ -74,7 +74,7 @@ apiRouter.put("/all", requireKey, (req, res) => {
   res.json({ ok: true });
 });
 
-// LinkedIn profile image fetcher
+// LinkedIn profile image fetcher (uses ui-avatars as reliable fallback)
 apiRouter.get("/linkedin-image", async (req, res) => {
   const { url } = req.query;
   if (!url || !url.includes("linkedin.com/in/")) {
@@ -83,63 +83,64 @@ apiRouter.get("/linkedin-image", async (req, res) => {
   const username = url.match(/linkedin\.com\/in\/([^/?#]+)/)?.[1];
   if (!username) return res.status(400).json({ error: "Could not extract username" });
 
+  // Try to derive name from URL username: "yitzhakmanalu" -> "Yitzhak Manalu"
+  const derivedName = username
+    .replace(/[-_]/g, " ")
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+    .trim();
+
+  // Try scraping with retry
   const agents = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
     "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
   ];
 
   let name = null;
+  let image = null;
 
   for (let attempt = 0; attempt < 3; attempt++) {
-    const agent = agents[attempt % agents.length];
     try {
       const response = await fetch(url, {
         headers: {
-          "User-Agent": agent,
-          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-          "Accept-Language": "en-US,en;q=0.5",
-          "Referer": attempt === 0 ? "https://www.google.com/" : "https://www.linkedin.com/",
-          "DNT": "1",
+          "User-Agent": agents[attempt],
+          "Accept": "text/html,application/xhtml+xml",
+          "Accept-Language": "en-US,en;q=0.9",
         },
       });
       const html = await response.text();
       if (!html || html.length < 500) continue;
 
-      // Extract name from title or og:title
+      // Name
       if (!name) {
-        const titleMatch = html.match(/<title>([^<]+)\s*\|?\s*LinkedIn/i);
-        if (titleMatch) name = titleMatch[1].trim();
+        const t = html.match(/<title>([^<]+?)\s*(?:\|.*)?LinkedIn/i);
+        if (t) name = t[1].trim();
         if (!name) {
-          const ogTitleMatch = html.match(/<meta[^>]+property="og:title"[^>]+content="([^"]+)"/);
-          if (ogTitleMatch) name = ogTitleMatch[1].trim();
+          const og = html.match(/<meta[^>]+property="og:title"[^>]+content="([^"]+)"/);
+          if (og) name = og[1].trim();
         }
       }
-
-      // Extract image
-      const imgPatterns = [
-        /<meta[^>]+property="og:image"[^>]+content="([^"]+)"/,
-        /<meta[^>]+content="([^"]+)"[^>]+property="og:image"/,
-        /"profilePictureUrl"\s*:\s*"([^"]+)"/,
-        /profile-displayphoto[^"]*"[^>]*src="([^"]+)"/,
-      ];
-      for (const pattern of imgPatterns) {
-        const match = html.match(pattern);
-        if (match) {
-          const result = { image: match[1].replace(/&amp;/g, "&") };
-          if (name) result.name = name;
-          return res.json(result);
-        }
+      // Image
+      if (!image) {
+        const imgMatch = html.match(/<meta[^>]+property="og:image"[^>]+content="([^"]+)"/)
+          || html.match(/<meta[^>]+content="([^"]+)"[^>]+property="og:image"/)
+          || html.match(/"profilePictureUrl"\s*:\s*"([^"]+)"/);
+        if (imgMatch) image = imgMatch[1].replace(/&amp;/g, "&");
       }
-      if (html.includes("profile-displayphoto")) continue;
-      if (attempt < 2) continue;
-    } catch (e) {
-      if (attempt < 2) continue;
-      return res.status(500).json({ error: e.message });
+      if (name && image) break;
+    } catch {
+      // ignore and fall back
     }
   }
-  if (name) return res.json({ name });
-  return res.status(404).json({ error: "Could not fetch LinkedIn data", hint: "Use Upload button to set manually" });
+
+  const resultName = name || derivedName;
+
+  if (image) {
+    return res.json({ image, name: resultName });
+  }
+
+  // Fallback: generate avatar from name via ui-avatars
+  const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(resultName)}&background=0891B2&color=fff&size=400&bold=true`;
+  return res.json({ image: avatarUrl, name: resultName, avatar: true });
 });
