@@ -27,10 +27,10 @@ export default function ProjectsPage() {
         <title>Our Projects | ArachnoVa</title>
       </Helmet>
 
-      <section className="relative w-full bg-white-MainPage lg:pt-[5vw] pt-[22vw] lg:pb-[1vw] pb-[5vw] h-screen overflow-hidden flex flex-col justify-center">
+      <section className="relative w-full bg-white-MainPage lg:pt-[clamp(0.8rem,5.0vw,7.2rem)] pt-[clamp(3.52rem,22.0vw,31.68rem)] lg:pb-[clamp(0.2rem,1.0vw,1.44rem)] pb-[clamp(0.8rem,5.0vw,7.2rem)] h-screen overflow-hidden flex flex-col justify-center">
         {/* Decorative blur shape */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <svg className="absolute lg:w-[40vw] w-[80vw] lg:top-[2vw] top-[10vw] lg:left-[30vw] left-[10vw]" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: "blur(60px)" }}>
+          <svg className="absolute lg:w-[clamp(6.4rem,40.0vw,50rem)] w-[clamp(12.8rem,80.0vw,50rem)] lg:top-[clamp(0.32rem,2.0vw,2.88rem)] top-[clamp(1.6rem,10.0vw,14.4rem)] lg:left-[clamp(4.8rem,30.0vw,43.2rem)] left-[clamp(1.6rem,10.0vw,14.4rem)]" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: "blur(60px)" }}>
             <path d="M300 0C450 0 550 50 600 150C650 250 600 350 500 380C400 410 200 420 100 350C0 280 -50 150 50 80C150 10 200 0 300 0Z" fill="url(#blobGrad)" opacity="0.3" />
             <defs>
               <linearGradient id="blobGrad" x1="0" y1="0" x2="1" y2="1">
@@ -43,17 +43,17 @@ export default function ProjectsPage() {
         </div>
 
         <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none lg:mt-[-2vw]">
-          <div className="text-center bg-white/90 lg:py-[1vw] py-[3vw] lg:px-[3vw] px-[6vw] rounded-xl shadow-[0_0.5vw_2vw_rgba(0,0,0,0.08)] backdrop-blur-md">
-            <p className="font-SourceSansProBold lg:text-[1.3vw] text-[4.186vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+          <div className="text-center bg-white/90 lg:py-[clamp(0.2rem,1.0vw,1.44rem)] py-[clamp(0.48rem,3.0vw,4.32rem)] lg:px-[clamp(0.48rem,3.0vw,4.32rem)] px-[clamp(0.96rem,6.0vw,8.64rem)] rounded-xl shadow-[0_0.5vw_2vw_rgba(0,0,0,0.08)] backdrop-blur-md">
+            <p className="font-SourceSansProBold lg:text-[clamp(0.5rem,1.3vw,1.87rem)] text-[clamp(0.67rem,4.186vw,6.03rem)] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
               Our Projects
             </p>
-            <h2 className="font-SourceSansProBold lg:text-[2vw] text-[6.977vw] text-neutral-g lg:leading-[2.8vw] leading-[7.5vw] mt-[0.3vw]">
+            <h2 className="font-SourceSansProBold lg:text-[clamp(0.5rem,2.0vw,2.88rem)] text-[clamp(1.12rem,6.977vw,8rem)] text-neutral-g lg:leading-[clamp(0.45rem,2.8vw,4.03rem)] leading-[clamp(1.2rem,7.5vw,10.8rem)] mt-[clamp(0.2rem,0.3vw,0.43rem)]">
               Explore Our Work
             </h2>
           </div>
         </div>
 
-        <div className="flex flex-col gap-[0.15vw] relative z-[5]">
+        <div className="flex flex-col gap-[clamp(0.2rem,0.15vw,0.22rem)] relative z-[5]">
           {Array.from({ length: rowCount }).map((_, i) => (
             <MarqueeCarousel
               key={i}

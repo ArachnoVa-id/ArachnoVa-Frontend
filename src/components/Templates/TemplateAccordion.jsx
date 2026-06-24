@@ -23,27 +23,27 @@ const TemplateAccordion = ({ number, title, image }) => {
     <div className="w-full text-black">
       <div
         className="flex flex-col w-full border-border
-                   lg:border-[0.156vw] lg:rounded-[0.833vw] lg:shadow-[0_0.26vw_1.042vw_-0.156vw_rgba(0,0,0,0.15)]
-                   border-[0.6977vw] rounded-[2.7907vw] shadow-[0_0.69767vw_4.65116vw_-0.69767vw_rgba(0,0,0,0.15)]"
+                   lg:border-[0.156vw] lg:rounded-[clamp(0.2rem,0.833vw,1.2rem)] lg:shadow-[0_0.26vw_1.042vw_-0.156vw_rgba(0,0,0,0.15)]
+                   border-[0.6977vw] rounded-[clamp(0.45rem,2.7907vw,4.02rem)] shadow-[0_0.69767vw_4.65116vw_-0.69767vw_rgba(0,0,0,0.15)]"
       >
         <div
           onClick={() => setToggle(!toggle)}
           className="flex justify-between items-center w-full cursor-pointer
-                     lg:px-[2.083vw] lg:py-[1.042vw]
-                     px-[4.65116vw] py-[3.5vw]"
+                     lg:px-[clamp(0.33rem,2.083vw,3.0rem)] lg:py-[clamp(0.2rem,1.042vw,1.5rem)]
+                     px-[clamp(0.74rem,4.65116vw,6.7rem)] py-[clamp(0.56rem,3.5vw,5.04rem)]"
         >
           <div
             className="w-full flex items-center font-SourceSansProBold text-neutral-g
-                       lg:gap-[1.25vw] lg:text-[1.25vw]
-                       gap-[2.32558vw] text-[4.18605vw]"
+                       lg:gap-[clamp(0.2rem,1.25vw,1.8rem)] lg:text-[clamp(0.5rem,1.25vw,1.8rem)]
+                       gap-[clamp(0.37rem,2.32558vw,3.35rem)] text-[clamp(0.67rem,4.18605vw,6.03rem)]"
           >
             <p>{number.toString()}.</p>
             <p>{title}</p>
           </div>
           <div
             className="aspect-square
-                       lg:w-[1.25vw]
-                       w-[5.34884vw]"
+                       lg:w-[clamp(0.2rem,1.25vw,1.8rem)]
+                       w-[clamp(0.86rem,5.34884vw,7.7rem)]"
           >
             {toggle ? (
               <IoIosArrowUp size={"100%"} />
@@ -55,26 +55,26 @@ const TemplateAccordion = ({ number, title, image }) => {
         <Collapse isOpened={toggle}>
           <div
             className="flex flex-col justify-center items-center w-full
-                       lg:gap-[1.042vw] lg:pb-[2.083vw] lg:px-[2.083vw]
-                       gap-[3.25581vw] pb-[4.65116vw] px-[4.65116vw]"
+                       lg:gap-[clamp(0.2rem,1.042vw,1.5rem)] lg:pb-[clamp(0.33rem,2.083vw,3.0rem)] lg:px-[clamp(0.33rem,2.083vw,3.0rem)]
+                       gap-[clamp(0.52rem,3.25581vw,4.69rem)] pb-[clamp(0.74rem,4.65116vw,6.7rem)] px-[clamp(0.74rem,4.65116vw,6.7rem)]"
           >
             <div
               className="bg-border w-full
-                         lg:h-[0.104vw] lg:rounded-[0.104vw]
-                         h-[0.465116vw] rounded-[0.465116vw]"
+                         lg:h-[clamp(0.2rem,0.104vw,0.15rem)] lg:rounded-[clamp(0.2rem,0.104vw,0.15rem)]
+                         h-[clamp(0.2rem,0.465116vw,0.67rem)] rounded-[clamp(0.2rem,0.465116vw,0.67rem)]"
             ></div>
             <div
               className="flex flex-wrap 
-                         lg:flex-row lg:justify-between lg:w-[65.677vw] lg:gap-[1.042vw]
-                         flex-col justify-center w-full gap-[2.790698vw]"
+                         lg:flex-row lg:justify-between lg:w-[clamp(10.51rem,65.677vw,50rem)] lg:gap-[clamp(0.2rem,1.042vw,1.5rem)]
+                         flex-col justify-center w-full gap-[clamp(0.45rem,2.790698vw,4.02rem)]"
             >
               {image?.map((image) => {
                 return (
                   <div
                     key={image.key}
                     className="flex flex-col overflow-hidden
-                               lg:w-[32.292vw]
-                               w-[81.39535vw]"
+                               lg:w-[clamp(5.17rem,32.292vw,46.5rem)]
+                               w-[clamp(13.02rem,81.39535vw,50rem)]"
                   >
                     <div
                       className="w-full border-border overflow-hidden
@@ -92,14 +92,14 @@ const TemplateAccordion = ({ number, title, image }) => {
                     </div>
                     <div
                       className="w-full flex justify-center items-center bg-[#F4F4F4] border-border 
-                                 lg:h-[1.615vw] lg:border-[0.052vw] lg:border-t-0 lg:rounded-b-[0.208vw]
-                                 h-[5.348837vw] border-[0.23256vw] border-t-0 rounded-b-[0.930233vw]
+                                 lg:h-[clamp(0.26rem,1.615vw,2.33rem)] lg:border-[0.052vw] lg:border-t-0 lg:rounded-b-[0.208vw]
+                                 h-[clamp(0.86rem,5.348837vw,7.7rem)] border-[0.23256vw] border-t-0 rounded-b-[0.930233vw]
                                  "
                     >
                       <p
                         className="font-SourceSansProSemibold text-neutral-g
-                                   lg:text-[0.938vw]
-                                   text-[2.7907vw]"
+                                   lg:text-[clamp(0.5rem,0.938vw,1.35rem)]
+                                   text-[clamp(0.5rem,2.7907vw,4.02rem)]"
                       >
                         {image.caption}
                       </p>

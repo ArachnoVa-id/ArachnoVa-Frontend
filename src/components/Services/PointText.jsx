@@ -4,16 +4,16 @@ const PointText = ({ Title, Description, Icon, Variant }) => {
 	const Left =
 		Variant === "left" ? (
 			<div className="flex flex-col">
-				<h1 className="font-SourceSansProSemibold text-[1.042vw] text-neutral-g">
+				<h1 className="font-SourceSansProSemibold text-[clamp(0.5rem,1.042vw,1.5rem)] text-neutral-g">
 					{Title}
 				</h1>
-				<p className="font-SourceSansProSemibold text-[0.938vw] text-neutral-e">
+				<p className="font-SourceSansProSemibold text-[clamp(0.5rem,0.938vw,1.35rem)] text-neutral-e">
 					{Description}
 				</p>
 			</div>
 		) : (
 			<>
-				<div className="relative lg:w-[3.646vw] w-[12.558vw] aspect-[1/1]">
+				<div className="relative lg:w-[clamp(0.58rem,3.646vw,5.25rem)] w-[clamp(2.01rem,12.558vw,18.08rem)] aspect-[1/1]">
 					<Image
 						src={Icon}
 						alt="icon"
@@ -27,7 +27,7 @@ const PointText = ({ Title, Description, Icon, Variant }) => {
 	const Right =
 		Variant === "left" ? (
 			<>
-				<div className="relative w-[3.646vw] aspect-[1/1]">
+				<div className="relative w-[clamp(0.58rem,3.646vw,5.25rem)] aspect-[1/1]">
 					<Image
 						src={Icon}
 						alt="icon"
@@ -39,10 +39,10 @@ const PointText = ({ Title, Description, Icon, Variant }) => {
 			</>
 		) : (
 			<div className="flex flex-col">
-				<h1 className="font-SourceSansProSemibold lg:text-[1.042vw] text-[4.186vw] text-neutral-g">
+				<h1 className="font-SourceSansProSemibold lg:text-[clamp(0.5rem,1.042vw,1.5rem)] text-[clamp(0.67rem,4.186vw,6.03rem)] text-neutral-g">
 					{Title}
 				</h1>
-				<p className="font-SourceSansProSemibold lg:text-[0.938vw] text-[3.488vw] text-neutral-e">
+				<p className="font-SourceSansProSemibold lg:text-[clamp(0.5rem,0.938vw,1.35rem)] text-[clamp(0.56rem,3.488vw,5.02rem)] text-neutral-e">
 					{Description}
 				</p>
 			</div>
@@ -50,7 +50,7 @@ const PointText = ({ Title, Description, Icon, Variant }) => {
 	const Position = Variant === "left" ? "justify-end text-right" : "";
 	return (
 		<div
-			className={`w-full lg:h-[3.646vw] h-fit flex flex-row items-start lg:gap-x-[0.938vw] gap-x-[2.558vw] lg:my-[0] my-[2.326vw] ${Position}`}
+			className={`w-full lg:h-[clamp(0.58rem,3.646vw,5.25rem)] h-fit flex flex-row items-start lg:gap-x-[clamp(0.2rem,0.938vw,1.35rem)] gap-x-[clamp(0.41rem,2.558vw,3.68rem)] lg:my-[0] my-[clamp(0.37rem,2.326vw,3.35rem)] ${Position}`}
 		>
 			{Left}
 			{Right}

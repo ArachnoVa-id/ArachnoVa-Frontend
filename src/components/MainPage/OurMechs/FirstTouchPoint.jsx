@@ -17,10 +17,10 @@ const FirstTouchPoint = () => {
   return (
     <>
       <div
-        className="relative w-[31.458vw] h-[31.354vw] lg:flex hidden flex-col justify-center items-center"
+        className="relative w-[clamp(5.03rem,31.458vw,45.3rem)] h-[clamp(5.02rem,31.354vw,45.15rem)] lg:flex hidden flex-col justify-center items-center"
         data-aos="fade-left"
       >
-        <div className="absolute w-[55vw] aspect-[1037/1070] z-[9] -right-[10vw] -top-[20vw]">
+        <div className="absolute w-[clamp(8.8rem,55.0vw,50rem)] aspect-[1037/1070] z-[9] -right-[clamp(1.6rem,10.0vw,14.4rem)] -top-[clamp(3.2rem,20.0vw,28.8rem)]">
           <Image
             src="/image/OurMechs/bg-right.png"
             alt="bg"
@@ -33,7 +33,7 @@ const FirstTouchPoint = () => {
           Title="Contact Us"
           List={
             <>
-              <li className="pb-[0.2vw]">
+              <li className="pb-[clamp(0.2rem,0.2vw,0.29rem)]">
                 Client menghubungi admin melalui DM Instagram maupun Whatsapp
                 atau Email yang tertera{" "}
               </li>
@@ -54,7 +54,7 @@ const FirstTouchPoint = () => {
           Title="Consultation"
           List={
             <>
-              <li className="pb-[0.4vw]">
+              <li className="pb-[clamp(0.2rem,0.4vw,0.58rem)]">
                 Admin akan menanyakan keperluan mendasar dan saran yang sesuai
                 dengan kebutuhan client.
               </li>
@@ -65,37 +65,37 @@ const FirstTouchPoint = () => {
             </>
           }
           Icon={<IoChatbubbles size="1.042vw" className="text-[#1AB0C8]" />}
-          Position="absolute top-[9.583vw] left-[13.177vw] z-[20]"
+          Position="absolute top-[clamp(1.53rem,9.583vw,13.8rem)] left-[clamp(2.11rem,13.177vw,18.97rem)] z-[20]"
           Variant="Left"
         />
         <Content
           Title="Pre-Execution"
           List={
             <>
-              <li className="mt-[1.8vw]">
+              <li className="mt-[clamp(0.29rem,1.8vw,2.59rem)]">
                 Apabila berkeinginan untuk mempertimbangkan langkah yang lebih
                 lanjut, admin dan client dapat menjadwalkan online meeting.{" "}
               </li>
             </>
           }
           Icon={<IoFolder size="1.042vw" className="text-[#1AB0C8]" />}
-          Position="absolute left-[2.969vw] bottom-0 z-[30]"
+          Position="absolute left-[clamp(0.48rem,2.969vw,4.28rem)] bottom-0 z-[30]"
         />
       </div>
       {/* Mobile Version */}
       <div
-        className="relative w-fit h-[143.721vw] flex lg:hidden flex-col justify-between "
+        className="relative w-fit h-[clamp(23.0rem,143.721vw,50rem)] flex lg:hidden flex-col justify-between "
         data-aos="fade-left"
       >
         <Content
           Title="Contact Us"
           List={
             <>
-              <li className="text-[3vw] mb-[1.5vw]">
+              <li className="text-[clamp(0.5rem,3.0vw,4.32rem)] mb-[clamp(0.24rem,1.5vw,2.16rem)]">
                 Client menghubungi admin melalui DM Instagram maupun Whatsapp
                 atau Email yang tertera{" "}
               </li>
-              <li className="text-[3vw]">
+              <li className="text-[clamp(0.5rem,3.0vw,4.32rem)]">
                 Client dapat menanyakan terlebih dahulu hal yang ingin di
                 diskusikan sebelum memesan.
               </li>
@@ -111,7 +111,7 @@ const FirstTouchPoint = () => {
           Title="Consultation"
           List={
             <>
-              <li className="pb-[0.8vw]">
+              <li className="pb-[clamp(0.2rem,0.8vw,1.15rem)]">
                 Admin akan menanyakan keperluan mendasar dan saran yang sesuai
                 dengan kebutuhan client.
               </li>
@@ -128,7 +128,7 @@ const FirstTouchPoint = () => {
           Title="Pre-Execution"
           List={
             <>
-             <li className="mt-[1.8vw] text-[3.5vw]">
+             <li className="mt-[clamp(0.29rem,1.8vw,2.59rem)] text-[clamp(0.56rem,3.5vw,5.04rem)]">
                 Apabila berkeinginan untuk mempertimbangkan langkah yang lebih
                 lanjut, admin dan client dapat menjadwalkan online meeting.{" "}
               </li>

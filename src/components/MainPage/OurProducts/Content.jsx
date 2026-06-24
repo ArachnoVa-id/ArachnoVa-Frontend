@@ -43,7 +43,7 @@ const Content = ({ data, totalSlide, variant, aos }) => {
 		<>
 			<div
 				data-aos={aos}
-				className="flex justify-around items-center lg:w-[40.729vw] w-[90.698vw] lg:h-[20.833vw] h-[45.581vw] z-10"
+				className="flex justify-around items-center lg:w-[clamp(6.52rem,40.729vw,50rem)] w-[clamp(14.51rem,90.698vw,50rem)] lg:h-[clamp(3.33rem,20.833vw,30.0rem)] h-[clamp(7.29rem,45.581vw,50rem)] z-10"
 			>
 				<BsFillCaretLeftFill
 					size={size}
@@ -51,10 +51,10 @@ const Content = ({ data, totalSlide, variant, aos }) => {
 					onClick={handlePrevious}
 				/>
 				<div
-					className="flex justify-center items-center lg:w-[35.729vw] w-[79.07vw] lg:h-[20.833vw] h-[45.581vw] bg-[#FBFCFD] lg:rounded-[0.781vw] rounded-[2.326vw] border-solid border-border lg:border-[0.156vw] border-[0.349vw]"
+					className="flex justify-center items-center lg:w-[clamp(5.72rem,35.729vw,50rem)] w-[clamp(12.65rem,79.07vw,50rem)] lg:h-[clamp(3.33rem,20.833vw,30.0rem)] h-[clamp(7.29rem,45.581vw,50rem)] bg-[#FBFCFD] lg:rounded-[clamp(0.2rem,0.781vw,1.12rem)] rounded-[clamp(0.37rem,2.326vw,3.35rem)] border-solid border-border lg:border-[0.156vw] border-[0.349vw]"
 					style={{ boxShadow: "0px 4px 40px -5px rgba(0, 0, 0, 0.15)" }}
 				>
-					<div className="flex justify-center items-center object-cover lg:w-[34.167vw] w-[75.814vw] lg:h-[19.271vw] h-[42.326vw] lg:rounded-[0.521vw] rounded-[1.86vw] overflow-hidden">
+					<div className="flex justify-center items-center object-cover lg:w-[clamp(5.47rem,34.167vw,49.2rem)] w-[clamp(12.13rem,75.814vw,50rem)] lg:h-[clamp(3.08rem,19.271vw,27.75rem)] h-[clamp(6.77rem,42.326vw,50rem)] lg:rounded-[clamp(0.2rem,0.521vw,0.75rem)] rounded-[clamp(0.3rem,1.86vw,2.68rem)] overflow-hidden">
 						<ContentSlider data={data} sliderRef={sliderRef} />
 					</div>
 				</div>

@@ -34,11 +34,11 @@ export default function MarqueeCarousel({ images, direction = "left" }) {
 
   return (
     <div ref={wrapperRef} className="overflow-hidden w-full">
-      <div ref={containerRef} className="flex gap-[0.5vw] will-change-transform" style={{ width: "max-content" }}>
+      <div ref={containerRef} className="flex gap-[clamp(0.2rem,0.5vw,0.72rem)] will-change-transform" style={{ width: "max-content" }}>
         {tripled.map((src, i) => (
           <div
             key={i}
-            className="flex-shrink-0 lg:w-[14vw] w-[45vw] aspect-[4/3] rounded-lg overflow-hidden border border-border shadow-sm"
+            className="flex-shrink-0 lg:w-[clamp(2.24rem,14.0vw,20.16rem)] w-[clamp(7.2rem,45.0vw,50rem)] aspect-[4/3] rounded-lg overflow-hidden border border-border shadow-sm"
           >
             <img
               src={src}
