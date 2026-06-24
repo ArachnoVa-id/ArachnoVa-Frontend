@@ -1,3 +1,4 @@
+import { useSettings } from "/context/DataContext";
 const ServicesCTA = () => {
   return (
     <section

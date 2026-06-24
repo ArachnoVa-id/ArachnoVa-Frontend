@@ -7,6 +7,7 @@ const navItems = [
   { to: "/admin/pricing", label: "Services", icon: "⚙️" },
   { to: "/admin/redirects", label: "Redirects", icon: "🔀" },
   { to: "/admin/team", label: "Team", icon: "👥" },
+  { to: "/admin/settings", label: "Settings", icon: "⚡" },
 ];
 
 export default function AdminLayout() {

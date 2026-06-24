@@ -1,3 +1,4 @@
+import { useSettings } from "/context/DataContext";
 "use client";
 
 import Image from "@/components/ui/Img";

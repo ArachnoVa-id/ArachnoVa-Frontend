@@ -1,3 +1,4 @@
+import { useSettings } from "/context/DataContext";
 import FooterItem from "./FooterItem";
 import { AiOutlineCopyright } from "react-icons/ai";
 import { FaLinkedin } from "react-icons/fa";
@@ -6,6 +7,7 @@ import { PiWhatsappLogoFill } from "react-icons/pi";
 import Image from "@/components/ui/Img";
 
 const Footer = () => {
+	const year = new Date().getFullYear();
 	return (
 		<>
 			<div className="flex lg:flex-row flex-col lg:justify-around justify-between items-center w-full lg:min-h-[12.7rem] min-h-[123.3rem] lg:p-0 pt-[14.0rem] pb-[9.8rem] bg-LightBlue-c">
@@ -31,7 +33,7 @@ const Footer = () => {
 						<div className="flex flex-row items-center justify-center">
 							<AiOutlineCopyright size="15px" className="text-neutral-a" />
 							<p className="font-InterSemibold text-neutral-a text-[0.83rem]">
-								2024 ArachnoVa. All Rights Reserved
+								{year} ArachnoVa. All Rights Reserved
 							</p>
 						</div>
 					</div>
@@ -47,7 +49,7 @@ const Footer = () => {
 				<div className="lg:hidden flex flex-row items-center justify-center">
 					<AiOutlineCopyright size="67px" className="text-neutral-a" />
 					<p className="font-InterSemibold text-neutral-a text-[4.2rem]">
-						2024 ArachnoVa. All Rights Reserved
+						{year} ArachnoVa. All Rights Reserved
 					</p>
 				</div>
 				<div className="flex flex-col lg:w-[5.8rem] w-[25.8rem] justify-center lg:items-end items-center gap-y-[0.42rem]">

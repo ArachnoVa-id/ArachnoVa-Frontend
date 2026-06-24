@@ -1,3 +1,4 @@
+import { useSettings } from "/context/DataContext";
 "use client";
 
 import { useLocation } from "react-router-dom";
