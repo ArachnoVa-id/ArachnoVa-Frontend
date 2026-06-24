@@ -47,9 +47,9 @@ export default function PortoSection({ projects }) {
           </p>
         </div>
 
-        <div className="flex items-center gap-x-[2vw] w-[75rem]">
+        <div className="grid grid-cols-[20rem_1fr] gap-x-[2vw] w-[65rem] items-center">
           {/* Left: Product type cards */}
-          <div className="flex flex-col gap-[0.8vw] w-[20rem] shrink-0">
+          <div className="flex flex-col gap-[0.8vw]">
             {productTypes.map((pt) => {
               const count = projects.filter((p) => p.product === pt.key).length;
               const isActive = active === pt.key;
@@ -77,7 +77,7 @@ export default function PortoSection({ projects }) {
           </div>
 
           {/* Right: Portfolio preview - smaller */}
-          <div className="flex-1 relative max-w-[38rem]">
+          <div className="relative">
             {currentProject && (
               <div className="bg-border p-[0.12rem] rounded-[0.5rem]">
                 <div className="relative bg-[#FBFCFD] shadow-md rounded-[0.5rem] overflow-hidden">
@@ -110,8 +110,8 @@ export default function PortoSection({ projects }) {
               </div>
             )}
             {currentProject?.imageMobile && (
-              <div className="bg-border absolute aspect-[303/514] z-[3] w-[13rem] p-[0.15rem] shadow-md rounded-[0.3rem] -bottom-[2vh] -right-[2rem] flex flex-col">
-                <div className="relative w-full h-full bg-white rounded-[0.3rem] overflow-hidden">
+              <div className="bg-border absolute aspect-[303/514] z-[3] w-[10.4rem] p-[0.15rem] shadow-md rounded-xl -bottom-[2.4vh] -right-[2rem] flex flex-col">
+                <div className="relative w-full h-full bg-white rounded-xl overflow-hidden">
                   <img src={currentProject.imageMobile} alt="" className="w-full" draggable="false" />
                 </div>
               </div>
