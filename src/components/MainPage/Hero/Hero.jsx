@@ -82,7 +82,7 @@ export default function Hero() {
           <div className="bg-white opacity-60 w-full h-full absolute rounded-[0.62rem] backdrop-blur-3xl"></div>
           {codeDone && (
             <div
-              className="absolute aspect-[419/96] w-[21.8rem] bg-white opacity-90 rounded-[0.62rem] -bottom-[3.0rem] -right-[4.0rem] text-[1.0rem]  flex items-center border-2 border-border font-ConsolasBold"
+               className="absolute aspect-[419/96] w-[24rem] bg-white opacity-90 rounded-[0.62rem] -bottom-[3.0rem] -right-[4.0rem] text-[1.0rem]  flex items-center border-2 border-border font-ConsolasBold"
               data-aos="fade-left"
             >
               <Image

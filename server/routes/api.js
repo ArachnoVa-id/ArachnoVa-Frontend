@@ -73,3 +73,33 @@ apiRouter.put("/all", requireKey, (req, res) => {
   });
   res.json({ ok: true });
 });
+
+// LinkedIn profile image fetcher
+apiRouter.get("/linkedin-image", async (req, res) => {
+  const { url } = req.query;
+  if (!url || !url.includes("linkedin.com/in/")) {
+    return res.status(400).json({ error: "Invalid LinkedIn URL" });
+  }
+  try {
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml",
+      },
+    });
+    const html = await response.text();
+    // Extract og:image from meta tags
+    const match = html.match(/<meta[^>]+property="og:image"[^>]+content="([^"]+)"/);
+    if (match) {
+      return res.json({ image: match[1] });
+    }
+    // Try alternate pattern
+    const match2 = html.match(/<meta[^>]+content="([^"]+)"[^>]+property="og:image"/);
+    if (match2) {
+      return res.json({ image: match2[1] });
+    }
+    return res.status(404).json({ error: "No profile image found" });
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
+});
