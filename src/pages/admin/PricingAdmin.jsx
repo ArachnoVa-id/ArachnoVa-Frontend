@@ -85,7 +85,7 @@ export default function PricingAdmin() {
                 </th>
               ))}
             </tr>
-            <!-- Subtitle -->
+            {/* Subtitle */}
             <tr className="bg-gray-50/30">
               <th className="text-left px-4 py-2 text-xs font-medium text-gray-500 border-b border-r border-gray-200">Subtitle</th>
               {local.plans?.map((plan, pi) => (
