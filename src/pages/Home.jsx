@@ -8,6 +8,7 @@ import CTA from "@/components/MainPage/CTA";
 export default function Home() {
   const [pricing] = useCollection("pricing");
   const [projects] = useCollection("projects");
+  const [services] = useCollection("services");
 
   return (
     <>
@@ -16,7 +17,7 @@ export default function Home() {
       </Helmet>
       <Hero />
       <div className="w-full lg:h-[0.06rem] h-[0.23rem] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />
-      <PortoSection projects={projects} />
+      <PortoSection projects={projects} services={services} />
       <div className="w-full lg:h-[0.06rem] h-[0.23rem] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />
       <ServicesOption data={pricing} />
       <div className="w-full lg:h-[0.06rem] h-[0.23rem] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />

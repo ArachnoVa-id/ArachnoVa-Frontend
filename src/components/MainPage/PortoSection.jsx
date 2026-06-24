@@ -3,13 +3,15 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaArrowRight, FaArrowLeft, FaArrowRight as FaArrowRightIcon } from "react-icons/fa";
 
-const productTypes = [
+const defaultTypes = [
   { key: "compro", label: "Company Profile", short: "ComPro" },
   { key: "erp", label: "Enterprise System", short: "ERP" },
   { key: "wa-apps", label: "WhatsApp Apps", short: "WA Apps" },
 ];
 
-export default function PortoSection({ projects }) {
+const productTagMap = { 1: "compro", 2: "erp", 3: "wa-apps" };
+
+export default function PortoSection({ projects, services }) {
   const [active, setActive] = useState("compro");
   const [projectIndex, setProjectIndex] = useState(0);
   const trackRef = useRef(null);
@@ -17,6 +19,13 @@ export default function PortoSection({ projects }) {
   useEffect(() => {
     AOS.init({ duration: 1500 });
   }, []);
+
+  const productTypes = services?.length ? services.map((s) => ({
+    key: productTagMap[s.key] || defaultTypes[s.key - 1]?.key || "compro",
+    label: s.title,
+    short: s.title.split(" ")[0] || s.title,
+    icon: s.icon,
+  })) : defaultTypes;
 
   const filtered = projects.filter((p) => p.product === active);
   const totalInCategory = filtered.length;
@@ -62,6 +71,11 @@ export default function PortoSection({ projects }) {
                       isActive ? "border-LightBlue-d bg-LightBlue-d/5 shadow-md" : "border-[#C3D4DB] bg-white hover:shadow-md hover:border-LightBlue-c/30"
                     }`}
                   >
+                    {pt.icon && (
+                      <div className="w-[2.6rem] flex items-center justify-center shrink-0">
+                        <img src={pt.icon} alt="" className="w-full h-auto" draggable="false" />
+                      </div>
+                    )}
                     <div className="flex flex-col gap-y-[0.2vw] flex-1 justify-center">
                       <p className={`font-SourceSansProBold text-[1.05rem] transition-all duration-500 ${
                         isActive ? "text-LightBlue-e" : "text-neutral-g"
