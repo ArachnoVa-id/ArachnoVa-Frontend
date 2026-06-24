@@ -9,8 +9,6 @@ const defaultTypes = [
   { key: "wa-apps", label: "WhatsApp Apps", short: "WA Apps" },
 ];
 
-const productTagMap = { 1: "compro", 2: "erp", 3: "wa-apps" };
-
 export default function PortoSection({ projects, services }) {
   const [active, setActive] = useState("compro");
   const [projectIndex, setProjectIndex] = useState(0);
@@ -21,7 +19,7 @@ export default function PortoSection({ projects, services }) {
   }, []);
 
   const productTypes = services?.length ? services.map((s) => ({
-    key: productTagMap[s.key] || defaultTypes[s.key - 1]?.key || "compro",
+    key: s.productTag || s.key,
     label: s.title,
     short: s.title.split(" ")[0] || s.title,
     icon: s.icon,

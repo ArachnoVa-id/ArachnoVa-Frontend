@@ -104,7 +104,7 @@ const ServicesHero = () => {
 
           {data?.map((svc) => {
             const imgs = projects
-              .filter((p) => p.product === tag)
+              .filter((p) => p.product === svc.productTag)
               .flatMap((p) => p.desktopImages || [])
               .filter(Boolean);
             return (

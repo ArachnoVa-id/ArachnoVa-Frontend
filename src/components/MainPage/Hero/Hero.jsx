@@ -82,7 +82,7 @@ export default function Hero() {
           <div className="bg-white w-full h-full absolute rounded-[0.62rem]"></div>
           {codeDone && (
             <div
-               className="absolute aspect-[419/96] w-[24rem] bg-[#252526] rounded-[0.62rem] -bottom-[3.0rem] -right-[4.0rem] text-[1.0rem] flex items-center border-2 border-[#3C3C3C] font-ConsolasBold"
+               className="absolute aspect-[419/96] w-[24rem] bg-white rounded-[0.62rem] -bottom-[3.0rem] -right-[4.0rem] text-[1.0rem] flex items-center border-2 border-[#E2E8F0] font-ConsolasBold"
               data-aos="fade-left"
             >
               <Image
@@ -150,9 +150,9 @@ export default function Hero() {
           </div>
         </a>
 
-        <div className="bg-[#1E1E1E] w-[80.0rem] h-[60.0rem] rounded-lg relative font-ConsolasRegular overflow-hidden">
+        <div className="bg-white w-[80.0rem] h-[60.0rem] rounded-lg relative font-ConsolasRegular overflow-hidden">
           {codeDone && (
-            <div className="absolute w-[60.0rem] h-[13.0rem] bg-[#252526] rounded-md -bottom-[6.0rem] -right-[4.0rem] text-[3.0rem] border-2 border-[#3C3C3C] font-ConsolasBold">
+            <div className="absolute w-[60.0rem] h-[13.0rem] bg-white rounded-md -bottom-[6.0rem] -right-[4.0rem] text-[3.0rem] border-2 border-[#E2E8F0] font-ConsolasBold">
               <Image
                 alt=""
                 src="/image/Hero/3ColorButton.png"
