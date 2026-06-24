@@ -1,3 +1,4 @@
+import { useSettings } from "@/context/DataContext";
 import { FaLinkedin } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 import { PiWhatsappLogoFill } from "react-icons/pi";
@@ -6,6 +7,7 @@ import Image from "@/components/ui/Img";
 
 const Footer = () => {
   const year = new Date().getFullYear();
+  const s = useSettings();
   return (
     <footer className="w-full bg-LightBlue-c">
       <div className="max-w-[70rem] mx-auto lg:px-[2rem] px-[5.581vw] lg:py-[2.5rem] py-[8vw]">
@@ -33,11 +35,11 @@ const Footer = () => {
           <div className="text-center lg:text-left lg:mb-0 mb-[5vw]">
             <h4 className="font-InterBold lg:text-[0.8rem] text-[3.5vw] text-neutral-a/70 uppercase tracking-wider mb-[0.8rem]">Contact</h4>
             <div className="space-y-[0.4rem]">
-              <a href="mailto:arachnova.id@gmail.com" className="block font-InterSemibold lg:text-[0.85rem] text-[3.5vw] text-neutral-a hover:text-white/70 transition-colors">
-                arach nova.id@gmail.com
+              <a href={s.email} className="block font-InterSemibold lg:text-[0.85rem] text-[3.5vw] text-neutral-a hover:text-white/70 transition-colors">
+                {s.email.replace("mailto:", "")}
               </a>
-              <a href="https://wa.me/6287882832538" className="block font-InterSemibold lg:text-[0.85rem] text-[3.5vw] text-neutral-a hover:text-white/70 transition-colors">
-                +62 878-8283-2538
+              <a href={s.whatsapp} className="block font-InterSemibold lg:text-[0.85rem] text-[3.5vw] text-neutral-a hover:text-white/70 transition-colors">
+                {s.whatsapp.replace("https://wa.me/", "+")}
               </a>
             </div>
           </div>
@@ -46,13 +48,13 @@ const Footer = () => {
           <div className="text-center lg:text-left">
             <h4 className="font-InterBold lg:text-[0.8rem] text-[3.5vw] text-neutral-a/70 uppercase tracking-wider mb-[0.8rem]">Follow Us</h4>
             <div className="flex justify-center lg:justify-start gap-x-[0.8rem]">
-              <a href="https://www.linkedin.com/company/arachnova-id/" className="w-[2.2rem] h-[2.2rem] rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition-all duration-300">
+              <a href={s.linkedin} className="w-[2.2rem] h-[2.2rem] rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition-all duration-300">
                 <FaLinkedin size="1rem" className="text-neutral-a" />
               </a>
-              <a href="https://www.instagram.com/arachnova.id/" className="w-[2.2rem] h-[2.2rem] rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition-all duration-300">
+              <a href={s.instagram} className="w-[2.2rem] h-[2.2rem] rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition-all duration-300">
                 <AiFillInstagram size="1rem" className="text-neutral-a" />
               </a>
-              <a href="https://wa.me/6287882832538" className="w-[2.2rem] h-[2.2rem] rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition-all duration-300">
+              <a href={s.whatsapp} className="w-[2.2rem] h-[2.2rem] rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition-all duration-300">
                 <PiWhatsappLogoFill size="1rem" className="text-neutral-a" />
               </a>
             </div>
