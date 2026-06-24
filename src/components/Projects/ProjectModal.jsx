@@ -7,15 +7,17 @@ const productLabels = {
   "wa-apps": "WhatsApp Apps",
 };
 
-function SwipeImages({ images }) {
+function MockupPreview({ images, mobileImages }) {
   const [idx, setIdx] = useState(0);
   const touchStart = useRef(0);
   const [touching, setTouching] = useState(false);
   const [deltaX, setDeltaX] = useState(0);
 
+  const count = Math.max(images?.length || 1, mobileImages?.length || 1);
+
   const goTo = (next) => {
-    if (next < 0) next = images.length - 1;
-    if (next >= images.length) next = 0;
+    if (next < 0) next = count - 1;
+    if (next >= count) next = 0;
     setIdx(next);
   };
 
@@ -28,22 +30,43 @@ function SwipeImages({ images }) {
     setDeltaX(0);
   };
 
+  const desktopSrc = images?.[idx % images.length];
+  const mobileSrc = mobileImages?.[idx % mobileImages.length];
+
+  if (!desktopSrc && !mobileSrc) return null;
+
   return (
     <div className="flex flex-col min-h-0 flex-1">
       <div className="flex-1 rounded-lg overflow-hidden border border-border relative select-none bg-gray-50 min-h-0"
         onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
         <div className="flex h-full transition-transform duration-300 ease-out"
           style={{ transform: `translateX(${touching ? deltaX - idx * 100 : -idx * 100}%)` }}>
-          {images.map((src, i) => (
-            <div key={i} className="min-w-full h-full flex items-center justify-center bg-gray-50">
-              <img src={src} alt="" className="max-h-full max-w-full object-contain select-none pointer-events-none" draggable="false" />
-            </div>
-          ))}
+          {Array.from({ length: count }).map((_, i) => {
+            const ds = images?.[i % images.length];
+            const ms = mobileImages?.[i % mobileImages.length];
+            return (
+              <div key={i} className="min-w-full h-full flex items-center justify-center bg-gray-50 p-[3%]">
+                <div className="relative w-full h-full max-h-full max-w-full flex items-center justify-center">
+                  {ds && (
+                    <img src={ds} alt=""
+                      className="w-[80%] aspect-[669/376] rounded-lg shadow-lg object-cover"
+                      draggable="false" />
+                  )}
+                  {ms && (
+                    <img src={ms} alt=""
+                      className="absolute w-[22%] aspect-[245/485] rounded-[0.6rem] shadow-lg object-cover"
+                      style={{ bottom: "-5%", left: "2%" }}
+                      draggable="false" />
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
-      {images.length > 1 && (
+      {count > 1 && (
         <div className="flex items-center justify-center gap-[0.35rem] mt-[0.4rem] shrink-0">
-          {images.map((_, i) => (
+          {Array.from({ length: count }).map((_, i) => (
             <button key={i} onClick={() => setIdx(i)}
               className={`w-[0.4rem] h-[0.4rem] rounded-full transition-all duration-300 ${i === idx ? "bg-LightBlue-c scale-150" : "bg-gray-300 hover:bg-gray-400"}`} />
           ))}
@@ -189,13 +212,13 @@ export default function ProjectModal({ project, onClose, originEl }) {
             </div>
           </div>
 
-          {/* Body — no scroll */}
+          {/* Body */}
           <div className="flex-1 flex flex-col lg:flex-row overflow-hidden min-h-0">
-            {/* Left — images */}
-            <div className="lg:w-[60%] p-4 pb-3 flex flex-col gap-3 overflow-hidden min-h-0">
-              {hasDesktop && <SwipeImages images={desktopImages} />}
-              {hasMobile && <SwipeImages images={mobileImages} />}
-              {!hasDesktop && !hasMobile && (
+            {/* Left — mockup preview with swipe */}
+            <div className="lg:w-[60%] p-4 pb-3 flex flex-col overflow-hidden min-h-0">
+              {hasDesktop || hasMobile ? (
+                <MockupPreview images={desktopImages} mobileImages={mobileImages} />
+              ) : (
                 <div className="flex-1 flex items-center justify-center text-gray-400 text-sm italic">
                   No images available
                 </div>
