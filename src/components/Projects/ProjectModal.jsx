@@ -98,8 +98,8 @@ export default function ProjectModal({ project, onClose, originEl }) {
     if (!originRect.current) { setPhase("open"); return; }
     const maxW = Math.min(window.innerWidth * 0.9, 680);
     const finalLeft = (window.innerWidth - maxW) / 2;
-    const finalTop = Math.max(window.innerHeight * 0.025, 10);
-    const finalHeight = window.innerHeight * 0.95;
+    const finalTop = Math.max(window.innerHeight * 0.04, 15);
+    const finalHeight = Math.min(window.innerHeight * 0.65, window.innerWidth * 0.75);
 
     requestAnimationFrame(() => {
       if (!cardRef.current) return;
@@ -209,16 +209,16 @@ export default function ProjectModal({ project, onClose, originEl }) {
           {/* View toggle */}
           {views.length > 1 && (
             <div className="flex justify-center shrink-0 bg-gray-50 border-b border-border">
-              <div className="flex p-1 gap-1">
+              <div className="flex p-0.5 gap-0.5">
                 {views.map(v => (
                   <button key={v} onClick={() => setView(v)}
-                    className={`px-5 py-1.5 text-xs uppercase tracking-[0.08em] font-semibold rounded-lg transition-all ${
+                    className={`px-4 py-1 text-xs uppercase tracking-[0.08em] font-semibold rounded-md transition-all ${
                       view === v
                         ? "bg-LightBlue-c text-white shadow-sm"
                         : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
                     }`}>
                     {v === "desktop" ? "Desktop" : "Mobile"}
-                    <span className="ml-1.5 text-[0.5rem] opacity-60">({(v === "desktop" ? desktopImages : mobileImages).length})</span>
+                    <span className="ml-1 text-[0.5rem] opacity-60">({(v === "desktop" ? desktopImages : mobileImages).length})</span>
                   </button>
                 ))}
               </div>
@@ -228,8 +228,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
           {/* Image area */}
           <div className="flex-1 overflow-hidden select-none relative bg-gray-50">
             {view === "desktop" ? (
-              /* Desktop mockup */
-              <div className="w-full h-full flex items-center justify-center p-[3%]">
+              <div className="w-full h-full flex items-center justify-center p-[1%]">
                 <SlideTrack images={desktopImages} idx={desktopIdx} goTo={(n) => {
                   const imgs = desktopImages;
                   if (n < 0) n = imgs.length - 1;
@@ -238,8 +237,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
                 }} className="w-full h-full rounded-xl shadow-xl" />
               </div>
             ) : view === "mobile" ? (
-              /* Phone mockup - centered */
-              <div className="w-full h-full flex items-center justify-center p-[8%]">
+              <div className="w-full h-full flex items-center justify-center p-[5%]">
                 <SlideTrack images={mobileImages} idx={mobileIdx} goTo={(n) => {
                   const imgs = mobileImages;
                   if (n < 0) n = imgs.length - 1;
