@@ -5,24 +5,22 @@ import ProjectModal from "./ProjectModal";
 
 export default function ProjectCardGrid({ projects, autoOpenId, onAutoOpenDone, cardRefs: externalRefs }) {
   const [selected, setSelected] = useState(null);
-  const [originRect, setOriginRect] = useState(null);
+  const [originEl, setOriginEl] = useState(null);
   const internalRefs = useRef({});
   const cardRefs = externalRefs || internalRefs;
 
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
+  useEffect(() => { AOS.init({ duration: 1000 }); }, []);
 
   useEffect(() => {
     if (autoOpenId && cardRefs.current[autoOpenId]) {
-      setOriginRect(cardRefs.current[autoOpenId]);
+      setOriginEl(cardRefs.current[autoOpenId]);
       setSelected(projects.find((p) => p.id === autoOpenId));
       onAutoOpenDone?.();
     }
   }, [autoOpenId, projects]);
 
   const openProject = (project, e) => {
-    if (e?.currentTarget) setOriginRect(e.currentTarget);
+    if (e?.currentTarget) setOriginEl(e.currentTarget);
     setSelected(project);
   };
 
@@ -48,20 +46,31 @@ export default function ProjectCardGrid({ projects, autoOpenId, onAutoOpenDone, 
               data-aos-delay={(i % 4) * 100}
               className="group bg-white rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-[0.3rem] cursor-pointer"
             >
-              {(hasDesktop || hasMobile) && (
+              {hasDesktop && hasMobile ? (
+                /* Both: stacked preview */
                 <div className="relative w-full aspect-[824.28/426.9] bg-gray-50">
-                  {hasDesktop && (
-                    <img src={project.imageDesktop || project.desktopImages[0]} alt=""
-                      className="desktop-card-img absolute w-[80%] aspect-[669/376] rounded-lg shadow-lg right-0 top-[5%]"
-                      draggable="false" loading="lazy" />
-                  )}
-                  {hasMobile && (
-                    <img src={project.imageMobile || project.mobileImages[0]} alt=""
-                      className="mobile-card-img absolute w-[22%] aspect-[245/485] rounded-[0.6rem] shadow-lg -bottom-[2%] left-[4%]"
-                      draggable="false" loading="lazy" />
-                  )}
+                  <img src={project.imageDesktop || project.desktopImages[0]} alt=""
+                    className="absolute w-[80%] aspect-[669/376] rounded-lg shadow-lg right-0 top-[5%]"
+                    draggable="false" loading="lazy" />
+                  <img src={project.imageMobile || project.mobileImages[0]} alt=""
+                    className="absolute w-[22%] aspect-[245/485] rounded-[0.6rem] shadow-lg -bottom-[2%] left-[4%]"
+                    draggable="false" loading="lazy" />
                 </div>
-              )}
+              ) : hasDesktop ? (
+                /* Desktop only: full width */
+                <div className="relative w-full aspect-[824.28/426.9] bg-gray-50 flex items-center justify-center p-[3%]">
+                  <img src={project.imageDesktop || project.desktopImages[0]} alt=""
+                    className="w-full h-full object-contain rounded-lg shadow-lg"
+                    draggable="false" loading="lazy" />
+                </div>
+              ) : hasMobile ? (
+                /* Mobile only: centered */
+                <div className="relative w-full aspect-[824.28/426.9] bg-gray-50 flex items-center justify-center p-[5%]">
+                  <img src={project.imageMobile || project.mobileImages[0]} alt=""
+                    className="h-full w-auto rounded-lg shadow-lg"
+                    draggable="false" loading="lazy" />
+                </div>
+              ) : null}
               <div className="p-[1.0rem] pt-[1.5rem]">
                 <h3 className="font-SourceSansProBold lg:text-[0.94rem] text-[3.5rem] text-neutral-g group-hover:text-LightBlue-d transition-colors truncate">
                   {project.title}
@@ -78,8 +87,8 @@ export default function ProjectCardGrid({ projects, autoOpenId, onAutoOpenDone, 
       {selected && (
         <ProjectModal
           project={selected}
-          originEl={originRect}
-          onClose={() => { setSelected(null); setOriginRect(null); }}
+          originEl={originEl}
+          onClose={() => { setSelected(null); setOriginEl(null); }}
         />
       )}
     </section>

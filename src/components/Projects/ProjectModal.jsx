@@ -1,9 +1,62 @@
 import { useState, useEffect, useRef } from "react";
-import { IoMdClose, IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
+import { IoMdClose } from "react-icons/io";
+
+function SwipeImages({ images, label }) {
+  const [idx, setIdx] = useState(0);
+  const trackRef = useRef(null);
+  const touchStart = useRef(0);
+  const [touching, setTouching] = useState(false);
+  const [deltaX, setDeltaX] = useState(0);
+
+  if (!images.length) return null;
+
+  const goTo = (next) => {
+    if (next < 0) next = images.length - 1;
+    if (next >= images.length) next = 0;
+    setIdx(next);
+  };
+
+  const onTouchStart = (e) => {
+    touchStart.current = e.touches[0].clientX;
+    setTouching(true);
+    setDeltaX(0);
+  };
+  const onTouchMove = (e) => {
+    setDeltaX(e.touches[0].clientX - touchStart.current);
+  };
+  const onTouchEnd = () => {
+    setTouching(false);
+    if (deltaX > 50) goTo(idx - 1);
+    else if (deltaX < -50) goTo(idx + 1);
+    setDeltaX(0);
+  };
+
+  return (
+    <div>
+      <div className="bg-gray-100 rounded-xl overflow-hidden border border-border relative select-none"
+        onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+        <div ref={trackRef} className="flex transition-transform duration-300 ease-out"
+          style={{ transform: `translateX(${touching ? deltaX - idx * 100 : -idx * 100}%)` }}>
+          {images.map((src, i) => (
+            <div key={i} className="min-w-full flex items-center justify-center bg-gray-100">
+              <img src={src} alt="" className="w-full h-auto select-none pointer-events-none" draggable="false" />
+            </div>
+          ))}
+        </div>
+      </div>
+      {images.length > 1 && (
+        <div className="flex items-center justify-center gap-[0.4rem] mt-[0.5rem]">
+          {images.map((_, i) => (
+            <button key={i} onClick={() => setIdx(i)}
+              className={`w-[0.5rem] h-[0.5rem] rounded-full transition-all duration-300 ${i === idx ? "bg-LightBlue-c scale-125" : "bg-gray-300 hover:bg-gray-400"}`} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function ProjectModal({ project, onClose, originEl }) {
-  const [desktopIdx, setDesktopIdx] = useState(0);
-  const [mobileIdx, setMobileIdx] = useState(0);
   const [phase, setPhase] = useState("start");
   const cardRef = useRef(null);
   const originRect = useRef(null);
@@ -17,14 +70,9 @@ export default function ProjectModal({ project, onClose, originEl }) {
   const hasDesktop = desktopImages.length > 0;
   const hasMobile = mobileImages.length > 0;
 
-  const prevDesktop = () => setDesktopIdx((i) => (i > 0 ? i - 1 : desktopImages.length - 1));
-  const nextDesktop = () => setDesktopIdx((i) => (i < desktopImages.length - 1 ? i + 1 : 0));
-  const prevMobile = () => setMobileIdx((i) => (i > 0 ? i - 1 : mobileImages.length - 1));
-  const nextMobile = () => setMobileIdx((i) => (i < mobileImages.length - 1 ? i + 1 : 0));
-
   useEffect(() => {
     if (!originRect.current) { setPhase("open"); return; }
-    const maxW = Math.min(window.innerWidth * 0.9, 1024);
+    const maxW = Math.min(window.innerWidth * 0.9, 1100);
     const finalLeft = (window.innerWidth - maxW) / 2;
     const finalTop = Math.max(window.innerHeight * 0.05, 20);
     const finalHeight = window.innerHeight * 0.9;
@@ -66,22 +114,14 @@ export default function ProjectModal({ project, onClose, originEl }) {
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === "Escape") handleClose();
-      if (e.key === "ArrowLeft") { e.preventDefault(); prevDesktop(); }
-      if (e.key === "ArrowRight") { e.preventDefault(); nextDesktop(); }
     };
     window.addEventListener("keydown", handleKey);
     document.body.style.overflow = "hidden";
-
-    const autoAdvance = setInterval(() => {
-      if (desktopImages.length > 1) nextDesktop();
-    }, 4000);
-
     return () => {
       window.removeEventListener("keydown", handleKey);
       document.body.style.overflow = "";
-      clearInterval(autoAdvance);
     };
-  }, [desktopIdx, mobileIdx]);
+  }, []);
 
   if (!project) return null;
 
@@ -111,82 +151,41 @@ export default function ProjectModal({ project, onClose, originEl }) {
 
   return (
     <>
-      {/* Backdrop */}
-      <div
-        className="fixed inset-0 z-[199] bg-black/40 backdrop-blur-sm"
+      <div className="fixed inset-0 z-[199] bg-black/40 backdrop-blur-sm"
         onClick={handleClose}
-        style={{
-          opacity: phase === "start" ? 0 : 1,
-          transition: "opacity 0.3s ease",
-        }}
-      />
+        style={{ opacity: phase === "start" ? 0 : 1, transition: "opacity 0.3s ease" }} />
 
-      {/* Expanding card */}
       <div ref={cardRef} style={startStyle}>
-        <div className="h-full flex flex-col overflow-y-auto" style={{ opacity: phase === "start" ? 0 : 1, transition: "opacity 0.2s ease 0.15s" }}>
+        <div className="h-full flex flex-col" style={{ opacity: phase === "start" ? 0 : 1, transition: "opacity 0.2s ease 0.15s" }}>
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-border shrink-0">
-            <div className="min-w-0">
-              <h2 className="text-xl font-bold text-neutral-g truncate">{project.title}</h2>
+            <h2 className="text-xl font-bold text-neutral-g truncate">{project.title}</h2>
+            <div className="flex items-center gap-3 shrink-0">
               {project.link && (
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-sm text-LightBlue-c hover:underline truncate block">{project.link}</a>
+                <a href={project.link} target="_blank" rel="noopener noreferrer"
+                  className="px-3 py-1.5 bg-gradient-to-r from-LightBlue-c to-LightBlue-d text-white text-sm font-InterBold rounded-lg hover:translate-y-[-1px] transition-transform">
+                  Visit Project
+                </a>
               )}
+              <button onClick={handleClose} className="text-gray-400 hover:text-gray-600 p-1"><IoMdClose size={24} /></button>
             </div>
-            <button onClick={handleClose} className="text-gray-400 hover:text-gray-600 p-1 shrink-0 ml-2"><IoMdClose size={24} /></button>
           </div>
 
-          {/* Images */}
-          <div className={`p-4 grid gap-6 ${hasDesktop && hasMobile ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-1"}`}>
-            {hasDesktop && (
-              <div>
-                <p className="text-xs font-medium text-gray-500 mb-2">Desktop ({desktopIdx + 1}/{desktopImages.length})</p>
-                <div className="flex items-center gap-2">
-                  {desktopImages.length > 1 && (
-                    <button onClick={prevDesktop} className="shrink-0 w-8 h-8 flex items-center justify-center bg-white border border-border rounded-full shadow-sm hover:shadow-md hover:bg-gray-50 transition text-gray-600">
-                      <IoMdArrowBack size={16} />
-                    </button>
-                  )}
-                  <div className="flex-1 bg-gray-100 rounded-xl overflow-hidden border border-border min-w-0">
-                    <img src={desktopImages[desktopIdx]} alt="" className="w-full h-auto" draggable="false" />
-                  </div>
-                  {desktopImages.length > 1 && (
-                    <button onClick={nextDesktop} className="shrink-0 w-8 h-8 flex items-center justify-center bg-white border border-border rounded-full shadow-sm hover:shadow-md hover:bg-gray-50 transition text-gray-600">
-                      <IoMdArrowForward size={16} />
-                    </button>
-                  )}
-                </div>
-              </div>
-            )}
-            {hasMobile && (
-              <div>
-                <p className="text-xs font-medium text-gray-500 mb-2">Mobile ({mobileIdx + 1}/{mobileImages.length})</p>
-                <div className="flex items-center gap-2 justify-center">
-                  {mobileImages.length > 1 && (
-                    <button onClick={prevMobile} className="shrink-0 w-8 h-8 flex items-center justify-center bg-white border border-border rounded-full shadow-sm hover:shadow-md hover:bg-gray-50 transition text-gray-600">
-                      <IoMdArrowBack size={16} />
-                    </button>
-                  )}
-                  <div className="bg-gray-100 rounded-xl overflow-hidden border border-border max-w-[500px] w-full">
-                    <img src={mobileImages[mobileIdx]} alt="" className="w-full h-auto" draggable="false" />
-                  </div>
-                  {mobileImages.length > 1 && (
-                    <button onClick={nextMobile} className="shrink-0 w-8 h-8 flex items-center justify-center bg-white border border-border rounded-full shadow-sm hover:shadow-md hover:bg-gray-50 transition text-gray-600">
-                      <IoMdArrowForward size={16} />
-                    </button>
-                  )}
-                </div>
+          {/* Body: images left, desc right */}
+          <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+            {/* Left: Images */}
+            <div className="lg:w-[60%] p-4 overflow-y-auto flex flex-col gap-4">
+              {hasDesktop && <SwipeImages images={desktopImages} label="Desktop" />}
+              {hasMobile && <SwipeImages images={mobileImages} label="Mobile" />}
+            </div>
+
+            {/* Right: Description */}
+            {project.description && (
+              <div className="lg:w-[40%] p-4 overflow-y-auto border-t lg:border-t-0 lg:border-l border-border">
+                <p className="text-sm text-neutral-e leading-relaxed whitespace-pre-line">{project.description}</p>
               </div>
             )}
           </div>
-
-          {project.description && (
-            <div className="px-4 pb-4">
-              <p className="text-sm text-neutral-e leading-relaxed">{project.description}</p>
-              <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 px-4 py-2 bg-gradient-to-r from-LightBlue-c to-LightBlue-d text-white text-sm font-InterBold rounded-lg hover:translate-y-[-2px] transition-transform">
-                Visit Project
-              </a>
-            </div>
-          )}
         </div>
       </div>
     </>

@@ -110,7 +110,7 @@ export default function PortoSection({ projects }) {
               </div>
             )}
             {currentProject?.imageMobile && (
-              <div className="bg-border absolute aspect-[303/514] z-[3] w-[10.4rem] p-[0.15rem] shadow-md rounded-xl -bottom-[2.4vh] -right-[2rem] flex flex-col">
+              <div className="bg-border absolute aspect-[303/514] z-[3] w-[12rem] p-[0.15rem] shadow-md rounded-xl -bottom-[3.1vh] -right-[2rem] flex flex-col">
                 <div className="relative w-full h-full bg-white rounded-xl overflow-hidden">
                   <img src={currentProject.imageMobile} alt="" className="w-full" draggable="false" />
                 </div>
