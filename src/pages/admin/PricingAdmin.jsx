@@ -85,6 +85,16 @@ export default function PricingAdmin() {
                 </th>
               ))}
             </tr>
+            <!-- Subtitle -->
+            <tr className="bg-gray-50/30">
+              <th className="text-left px-4 py-2 text-xs font-medium text-gray-500 border-b border-r border-gray-200">Subtitle</th>
+              {local.plans?.map((plan, pi) => (
+                <th key={pi} className="px-3 py-2 border-b border-r border-gray-200 text-center">
+                  <input value={plan.subtitle || ""} onChange={(e) => updatePlanField(pi, "subtitle", e.target.value)}
+                    placeholder="Plan description" className="w-full text-center text-xs border border-gray-200 rounded px-1 py-1 focus:outline-none" />
+                </th>
+              ))}
+            </tr>
             <tr className="bg-gray-50/50">
               <th className="text-left px-4 py-2 text-xs font-medium text-gray-500 border-b border-r border-gray-200">Price</th>
               {local.plans?.map((plan, pi) => (

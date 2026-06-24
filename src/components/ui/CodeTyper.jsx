@@ -1,71 +1,66 @@
 import { useState, useEffect } from "react";
 
 const codeData = [
-  // Line 1: import "./globals.css";
   [
-    { c: "#0151EC", t: "import " },
-    { c: "#8131B2", t: '"./globals.css";' },
+    { c: "#569CD6", t: "import " },
+    { c: "#CE9178", t: '"./globals.css";' },
   ],
-  // Line 2: import { ArachnoVa } from "./api/provider";
   [
-    { c: "#0151EC", t: "import " },
-    { c: "#1E293B", t: "{ " },
-    { c: "#1CA7BD", t: "ArachnoVa" },
-    { c: "#1E293B", t: " } from " },
-    { c: "#8131B2", t: '"./api/provider";' },
+    { c: "#569CD6", t: "import " },
+    { c: "#D4D4D4", t: "{ " },
+    { c: "#4FC1FF", t: "ArachnoVa" },
+    { c: "#D4D4D4", t: " } from " },
+    { c: "#CE9178", t: '"./api/provider";' },
   ],
-  // Line 3: &nbsp; (empty)
   [
-    { c: "#1E293B", t: "\u00A0" },
+    { c: "#D4D4D4", t: "\u00A0" },
   ],
-  // Line 4: export default
   [
-    { c: "#0151EC", t: "export default" },
+    { c: "#569CD6", t: "export default" },
   ],
-  // Line 5: <div className="Welcome to ArachnoVa">
   [
-    { c: "#1E293B", t: '<div ' },
-    { c: "#0151EC", t: "className" },
-    { c: "#1E293B", t: '="' },
-    { c: "#8131B2", t: "Welcome to ArachnoVa" },
-    { c: "#1E293B", t: '">' },
+    { c: "#D4D4D4", t: "<" },
+    { c: "#DCDCAA", t: "div" },
+    { c: "#D4D4D4", t: " " },
+    { c: "#9CDCFE", t: "className" },
+    { c: "#D4D4D4", t: '="' },
+    { c: "#CE9178", t: "Welcome to ArachnoVa" },
+    { c: "#D4D4D4", t: '">' },
   ],
-  // Line 6:   <div className="content">
   [
-    { c: "#1E293B", t: '\u00A0 <div ' },
-    { c: "#0151EC", t: "className" },
-    { c: "#1E293B", t: '="' },
-    { c: "#8131B2", t: "content" },
-    { c: "#1E293B", t: '">' },
+    { c: "#D4D4D4", t: "\u00A0 <" },
+    { c: "#DCDCAA", t: "div" },
+    { c: "#D4D4D4", t: " " },
+    { c: "#9CDCFE", t: "className" },
+    { c: "#D4D4D4", t: '="' },
+    { c: "#CE9178", t: "content" },
+    { c: "#D4D4D4", t: '">' },
   ],
-  // Line 7:   {
   [
-    { c: "#1E293B", t: "\u00A0 {" },
+    { c: "#D4D4D4", t: "\u00A0 {" },
   ],
-  // Line 8:     "Your web design partner"
   [
-    { c: "#1E293B", t: "\u00A0\u00A0 " },
-    { c: "#8131B2", t: '"Your web design partner"' },
+    { c: "#D4D4D4", t: "\u00A0\u00A0 " },
+    { c: "#CE9178", t: '"Your web design partner"' },
   ],
-  // Line 9:   }
   [
-    { c: "#1E293B", t: "\u00A0 }" },
+    { c: "#D4D4D4", t: "\u00A0 }" },
   ],
-  // Line 10:   </div>
   [
-    { c: "#1E293B", t: "\u00A0 </div>" },
+    { c: "#D4D4D4", t: "\u00A0 " },
+    { c: "#DCDCAA", t: "</div>" },
   ],
-  // Line 11:   <img src="img/herofix.png"/>
   [
-    { c: "#1E293B", t: "\u00A0 <" },
-    { c: "#0151EC", t: "img" },
-    { c: "#1E293B", t: ' src="' },
-    { c: "#8131B2", t: "img/herofix.png" },
-    { c: "#1E293B", t: '"/>' },
+    { c: "#D4D4D4", t: "\u00A0 <" },
+    { c: "#DCDCAA", t: "img" },
+    { c: "#D4D4D4", t: " " },
+    { c: "#9CDCFE", t: "src" },
+    { c: "#D4D4D4", t: '="' },
+    { c: "#CE9178", t: "img/herofix.png" },
+    { c: "#D4D4D4", t: '"/>' },
   ],
-  // Line 12: </div>
   [
-    { c: "#1E293B", t: "</div>" },
+    { c: "#DCDCAA", t: "</div>" },
   ],
 ];
 
