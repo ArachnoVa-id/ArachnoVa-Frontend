@@ -91,6 +91,8 @@ apiRouter.get("/linkedin-image", async (req, res) => {
     "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
   ];
 
+  let name = null;
+
   for (let attempt = 0; attempt < 3; attempt++) {
     const agent = agents[attempt % agents.length];
     try {
@@ -106,23 +108,38 @@ apiRouter.get("/linkedin-image", async (req, res) => {
       const html = await response.text();
       if (!html || html.length < 500) continue;
 
-      const patterns = [
+      // Extract name from title or og:title
+      if (!name) {
+        const titleMatch = html.match(/<title>([^<]+)\s*\|?\s*LinkedIn/i);
+        if (titleMatch) name = titleMatch[1].trim();
+        if (!name) {
+          const ogTitleMatch = html.match(/<meta[^>]+property="og:title"[^>]+content="([^"]+)"/);
+          if (ogTitleMatch) name = ogTitleMatch[1].trim();
+        }
+      }
+
+      // Extract image
+      const imgPatterns = [
         /<meta[^>]+property="og:image"[^>]+content="([^"]+)"/,
         /<meta[^>]+content="([^"]+)"[^>]+property="og:image"/,
         /"profilePictureUrl"\s*:\s*"([^"]+)"/,
         /profile-displayphoto[^"]*"[^>]*src="([^"]+)"/,
       ];
-      for (const pattern of patterns) {
+      for (const pattern of imgPatterns) {
         const match = html.match(pattern);
-        if (match) return res.json({ image: match[1].replace(/&amp;/g, "&") });
+        if (match) {
+          const result = { image: match[1].replace(/&amp;/g, "&") };
+          if (name) result.name = name;
+          return res.json(result);
+        }
       }
-      // If we got HTML but no image, the profile may truly not have one
       if (html.includes("profile-displayphoto")) continue;
-      if (attempt < 2) continue; // retry with different UA
+      if (attempt < 2) continue;
     } catch (e) {
-      if (attempt < 2) continue; // retry on error
+      if (attempt < 2) continue;
       return res.status(500).json({ error: e.message });
     }
   }
-  return res.status(404).json({ error: "Could not fetch LinkedIn profile image", hint: "Use Upload button to set manually" });
+  if (name) return res.json({ name });
+  return res.status(404).json({ error: "Could not fetch LinkedIn data", hint: "Use Upload button to set manually" });
 });
