@@ -46,7 +46,7 @@ const Navbar = () => {
 						</div>
 					</a>
 				</div>
-				<div className="w-fit h-fit block lg:hidden">
+				<div className="w-fit h-fit lg:hidden">
 					<Hamburger
 						toggled={isOpen}
 						toggle={setIsOpen}
@@ -54,13 +54,11 @@ const Navbar = () => {
 						size={22}
 					/>
 				</div>
-				{isOpen ? (
-					<>
-						<NavItemMobile href={settings?.whatsapp || "https://wa.me/6287882832538"} />
-					</>
-				) : (
-					<></>
-				)}
+				<NavItemMobile
+					href={settings?.whatsapp || "https://wa.me/6287882832538"}
+					isOpen={isOpen}
+					onClose={() => setIsOpen(false)}
+				/>
 				<Button Text="Contact Us" href={settings?.whatsapp || "https://wa.me/6287882832538"} />
 			</nav>
 		</>

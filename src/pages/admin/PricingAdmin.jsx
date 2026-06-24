@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import { useCollection } from "@/context/DataContext";
+import { useToast } from "@/components/ui/Toast";
 import { FiTrash2 } from "react-icons/fi";
 
 export default function PricingAdmin() {
   const [pricing, setPricing] = useCollection("pricing");
   const [local, setLocal] = useState(null);
   const [dirty, setDirty] = useState(false);
+  const toast = useToast();
 
   useEffect(() => {
     if (pricing && !local) setLocal(JSON.parse(JSON.stringify(pricing)));
   }, [pricing]);
 
-  const save = () => { setPricing(local); setDirty(false); };
+  const save = () => { setPricing(local); setDirty(false); toast("Services pricing saved", "success"); };
 
   const update = (fn) => { setLocal((prev) => { setDirty(true); return fn(prev); }); };
 

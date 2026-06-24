@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useCollection } from "@/context/DataContext";
+import { useToast } from "@/components/ui/Toast";
 
 export default function SettingsAdmin() {
   const [settings, setSettings] = useCollection("settings");
   const [local, setLocal] = useState(null);
   const [dirty, setDirty] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const toast = useToast();
 
   useEffect(() => {
     if (settings && !local) setLocal({ ...settings });
@@ -18,8 +19,7 @@ export default function SettingsAdmin() {
   const save = () => {
     setSettings(local);
     setDirty(false);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+    toast("Settings saved", "success");
   };
 
   if (!local) return null;
@@ -30,7 +30,6 @@ export default function SettingsAdmin() {
         <h2 className="text-xl font-bold text-gray-900">Contact Settings</h2>
         <div className="flex items-center gap-3">
           {dirty && <span className="text-xs text-amber-600 font-medium">Unsaved</span>}
-          {saved && <span className="text-xs text-green-600 font-medium">Saved!</span>}
           <button onClick={save} className={`px-4 py-1.5 text-sm rounded-lg font-medium transition ${dirty ? "bg-green-600 text-white hover:bg-green-700" : "bg-gray-100 text-gray-400 cursor-not-allowed"}`} disabled={!dirty}>Save</button>
         </div>
       </div>

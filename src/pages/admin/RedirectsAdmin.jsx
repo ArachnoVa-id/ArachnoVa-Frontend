@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
 import { useCollection } from "@/context/DataContext";
+import { useToast } from "@/components/ui/Toast";
 
 export default function RedirectsAdmin() {
   const [redirects, setRedirects] = useCollection("redirects");
   const [local, setLocal] = useState(null);
   const [dirty, setDirty] = useState(false);
+  const toast = useToast();
 
   useEffect(() => {
     if (redirects && !local) setLocal(JSON.parse(JSON.stringify(redirects)));
   }, [redirects]);
 
-  const save = () => { setRedirects(local); setDirty(false); };
+  const save = () => { setRedirects(local); setDirty(false); toast("Redirects saved", "success"); };
 
   const update = (fn) => {
     setLocal((prev) => { setDirty(true); return fn(prev); });
