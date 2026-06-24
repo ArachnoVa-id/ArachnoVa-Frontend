@@ -1,26 +1,39 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ProjectModal from "./ProjectModal";
 
-export default function ProjectCardGrid({ projects }) {
+export default function ProjectCardGrid({ projects, autoOpenId, onAutoOpenDone }) {
   const [selected, setSelected] = useState(null);
+  const [originRect, setOriginRect] = useState(null);
+  const cardRefs = useRef({});
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
+  useEffect(() => {
+    if (autoOpenId && cardRefs.current[autoOpenId]) {
+      const rect = cardRefs.current[autoOpenId].getBoundingClientRect();
+      setOriginRect(rect);
+      setSelected(projects.find((p) => p.id === autoOpenId));
+      onAutoOpenDone?.();
+    }
+  }, [autoOpenId, projects]);
+
+  const openProject = (project, e) => {
+    const rect = e?.currentTarget?.getBoundingClientRect?.();
+    if (rect) setOriginRect(rect);
+    setSelected(project);
+  };
+
   if (!projects?.length) return null;
 
   return (
-    <section className="w-full bg-white-MainPage lg:py-[clamp(0.83rem,5.208vw,7.5rem)] py-[clamp(2.23rem,13.953vw,20.09rem)] lg:px-[clamp(1.6rem,10.0vw,14.4rem)] px-[clamp(0.89rem,5.581vw,8.04rem)]">
+    <section className="w-full bg-white-MainPage lg:py-[clamp(0.83rem,5.208vw,7.5rem)] py-[clamp(2.23rem,13.953vw,20.09rem)] lg:px-[clamp(1.6rem,10.0vw,14.4rem)] px-[clamp(0.89rem,5.581vw,8.04rem)]" id="project-cards">
       <div data-aos="fade-down" className="text-center mb-[clamp(0.48rem,3.0vw,4.32rem)]">
-        <p className="font-SourceSansProBold lg:text-[clamp(0.5rem,1.563vw,2.25rem)] text-[clamp(0.67rem,4.186vw,6.03rem)] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
-          Our Projects
-        </p>
-        <h2 className="font-SourceSansProBold lg:text-[clamp(0.5rem,2.396vw,3.45rem)] text-[clamp(1.12rem,6.977vw,8rem)] text-neutral-g lg:leading-[clamp(0.45rem,2.8vw,4.03rem)] leading-[clamp(1.2rem,7.5vw,10.8rem)] mt-[clamp(0.2rem,0.5vw,0.72rem)]">
-          Explore Our Work
-        </h2>
+        <p className="font-SourceSansProBold lg:text-[clamp(0.5rem,1.563vw,2.25rem)] text-[clamp(0.67rem,4.186vw,6.03rem)] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Our Projects</p>
+        <h2 className="font-SourceSansProBold lg:text-[clamp(0.5rem,2.396vw,3.45rem)] text-[clamp(1.12rem,6.977vw,8rem)] text-neutral-g lg:leading-[clamp(0.45rem,2.8vw,4.03rem)] leading-[clamp(1.2rem,7.5vw,10.8rem)] mt-[clamp(0.2rem,0.5vw,0.72rem)]">Explore Our Work</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[clamp(0.24rem,1.5vw,2.16rem)]">
@@ -30,7 +43,8 @@ export default function ProjectCardGrid({ projects }) {
           return (
             <div
               key={project.id || i}
-              onClick={() => setSelected(project)}
+              ref={(el) => { cardRefs.current[project.id] = el; }}
+              onClick={(e) => openProject(project, e)}
               data-aos="fade-up"
               data-aos-delay={(i % 4) * 100}
               className="group bg-white rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-[clamp(0.1rem,0.3vw,0.43rem)] cursor-pointer"
@@ -60,7 +74,13 @@ export default function ProjectCardGrid({ projects }) {
         })}
       </div>
 
-      {selected && <ProjectModal project={selected} onClose={() => setSelected(null)} />}
+      {selected && (
+        <ProjectModal
+          project={selected}
+          originRect={originRect}
+          onClose={() => { setSelected(null); setOriginRect(null); }}
+        />
+      )}
     </section>
   );
 }

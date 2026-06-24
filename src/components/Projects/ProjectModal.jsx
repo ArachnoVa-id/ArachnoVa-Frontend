@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { IoMdClose, IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 
-export default function ProjectModal({ project, onClose }) {
+export default function ProjectModal({ project, onClose, originRect }) {
   const [desktopIdx, setDesktopIdx] = useState(0);
   const [mobileIdx, setMobileIdx] = useState(0);
+  const [animating, setAnimating] = useState(true);
+  const [closing, setClosing] = useState(false);
 
   const desktopImages = project?.desktopImages?.filter(Boolean) || [project?.imageDesktop].filter(Boolean);
   const mobileImages = project?.mobileImages?.filter(Boolean) || [project?.imageMobile].filter(Boolean);
@@ -16,8 +18,13 @@ export default function ProjectModal({ project, onClose }) {
   const nextMobile = () => setMobileIdx((i) => (i < mobileImages.length - 1 ? i + 1 : 0));
 
   useEffect(() => {
+    const timer = setTimeout(() => setAnimating(false), 50);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
     const handleKey = (e) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") handleClose();
       if (e.key === "ArrowLeft") { e.preventDefault(); prevDesktop(); }
       if (e.key === "ArrowRight") { e.preventDefault(); nextDesktop(); }
     };
@@ -26,11 +33,50 @@ export default function ProjectModal({ project, onClose }) {
     return () => { window.removeEventListener("keydown", handleKey); document.body.style.overflow = ""; };
   }, [desktopIdx, mobileIdx]);
 
+  const handleClose = () => {
+    setClosing(true);
+    setTimeout(onClose, 200);
+  };
+
   if (!project) return null;
 
+  const startX = originRect?.left || window.innerWidth / 2;
+  const startY = originRect?.top || window.innerHeight / 2;
+  const startW = originRect?.width || 0;
+  const startH = originRect?.height || 0;
+
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onClick={onClose}>
-      <div className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+      onClick={handleClose}
+      style={{
+        animation: closing ? "fadeOut 0.2s ease" : "fadeIn 0.2s ease",
+      }}
+    >
+      <style>{`
+        @keyframes modalIn {
+          0% { transform: scale(0.3) translate(${(startX + startW / 2) - window.innerWidth / 2}px, ${(startY + startH / 2) - window.innerHeight / 2}px); opacity: 0; }
+          100% { transform: scale(1) translate(0, 0); opacity: 1; }
+        }
+        @keyframes modalOut {
+          0% { transform: scale(1) translate(0, 0); opacity: 1; }
+          100% { transform: scale(0.3) translate(${(startX + startW / 2) - window.innerWidth / 2}px, ${(startY + startH / 2) - window.innerHeight / 2}px); opacity: 0; }
+        }
+        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+        @keyframes fadeOut { 0% { opacity: 1; } 100% { opacity: 0; } }
+      `}</style>
+      <div
+        className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          animation: closing
+            ? "modalOut 0.25s ease forwards"
+            : animating
+            ? "modalIn 0.3s ease"
+            : "none",
+          transformOrigin: `${startX + startW / 2}px ${startY + startH / 2}px`,
+        }}
+      >
         <div className="flex items-center justify-between p-4 border-b border-border">
           <div>
             <h2 className="text-xl font-bold text-neutral-g">{project.title}</h2>
@@ -38,7 +84,7 @@ export default function ProjectModal({ project, onClose }) {
               <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-sm text-LightBlue-c hover:underline">{project.link}</a>
             )}
           </div>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 p-1"><IoMdClose size={24} /></button>
+          <button onClick={handleClose} className="text-gray-400 hover:text-gray-600 p-1"><IoMdClose size={24} /></button>
         </div>
 
         <div className={`p-4 grid gap-4 ${hasDesktop && hasMobile ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-1"}`}>
@@ -56,7 +102,6 @@ export default function ProjectModal({ project, onClose }) {
               </div>
             </div>
           )}
-
           {hasMobile && (
             <div>
               <p className="text-xs font-medium text-gray-500 mb-2">Mobile ({mobileIdx + 1}/{mobileImages.length})</p>
