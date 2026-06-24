@@ -83,41 +83,62 @@ apiRouter.get("/linkedin-image", async (req, res) => {
   const username = url.match(/linkedin\.com\/in\/([^/?#]+)/)?.[1];
   if (!username) return res.status(400).json({ error: "Could not extract username" });
 
-  const agents = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
-  ];
+  const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+  const headers = {
+    "User-Agent": UA,
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://www.google.com/",
+  };
 
   let name = null;
   let image = null;
 
-  for (let attempt = 0; attempt < 2; attempt++) {
+  for (let attempt = 0; attempt < 3; attempt++) {
     try {
-      const response = await fetch(url, {
-        headers: {
-          "User-Agent": agents[attempt],
-          "Accept": "text/html,application/xhtml+xml",
-          "Accept-Language": "en-US,en;q=0.9",
-        },
-      });
-      const html = await response.text();
-      if (!html || html.length < 500) continue;
+      // Warm-up: visit a public LinkedIn page first to establish session
+      if (attempt === 1) {
+        await fetch("https://www.linkedin.com/jobs/", { headers });
+        await new Promise((r) => setTimeout(r, 500));
+      }
+      if (attempt === 2) {
+        await fetch("https://www.linkedin.com/feed/", { headers });
+        await new Promise((r) => setTimeout(r, 500));
+      }
 
+      const response = await fetch(url, { headers });
+      const html = await response.text();
+      if (!html || html.length < 1000) continue;
+
+      // Extract name from JSON-LD or title
+      if (!name) {
+        const ld = html.match(/<script[^>]+type="application\/ld\+json"[^>]*>([^<]+)/);
+        if (ld) {
+          try { const j = JSON.parse(ld[1]); name = j.name; } catch {}
+        }
+      }
       if (!name) {
         const t = html.match(/<title>([^<]+?)\s*(?:\|.*)?LinkedIn/i);
         if (t) name = t[1].trim();
       }
+      // Extract image from JSON-LD, meta, or embedded data
+      if (!image && name) {
+        const ld = html.match(/<script[^>]+type="application\/ld\+json"[^>]*>([^<]+)/);
+        if (ld) {
+          try { const j = JSON.parse(ld[1]); if (j.image) image = j.image; } catch {}
+        }
+      }
       if (!image) {
         const m = html.match(/<meta[^>]+property="og:image"[^>]+content="([^"]+)"/)
           || html.match(/<meta[^>]+content="([^"]+)"[^>]+property="og:image"/)
-          || html.match(/"profilePictureUrl"\s*:\s*"([^"]+)"/);
-        if (m) image = m[1].replace(/&amp;/g, "&");
+          || html.match(/("profilePictureUrl")\s*:\s*"([^"]+)"/);
+        if (m) image = (m[2] || m[1]).replace(/&amp;/g, "&");
       }
-      if (name && image) break;
+      if (name || image) break;
     } catch {}
   }
 
   if (image) return res.json({ image, name: name || undefined });
   if (name) return res.json({ name });
-  return res.status(404).json({ error: "LinkedIn profile is private or requires login", hint: "Open the profile in your browser, right-click the profile photo → 'Copy image address', then paste it here" });
+  return res.status(404).json({ error: "LinkedIn profile is not accessible from server", hint: "Open the profile in your browser, right-click the profile photo → 'Copy image address', then paste it here" });
 });
