@@ -7,7 +7,7 @@ const productLabels = {
   "wa-apps": "WhatsApp Apps",
 };
 
-function SlideTrack({ images, idx, goTo, className }) {
+function SlideTrack({ images, idx, goTo, className, style }) {
   const touchStart = useRef(0);
   const [touching, setTouching] = useState(false);
   const [deltaX, setDeltaX] = useState(0);
@@ -32,7 +32,7 @@ function SlideTrack({ images, idx, goTo, className }) {
   };
 
   return (
-    <div className={`overflow-hidden ${className}`}
+    <div className={`overflow-hidden ${className}`} style={style}
       onTouchStart={onStart} onTouchMove={onMove} onTouchEnd={onEnd}
       onWheel={onWheel}>
       <div className="flex transition-transform duration-300 ease-out h-full"
@@ -60,6 +60,9 @@ export default function ProjectModal({ project, onClose, originEl }) {
   const mobileImages = project?.mobileImages?.filter(Boolean) || [project?.imageMobile].filter(Boolean);
   const hasDesktop = desktopImages.length > 0;
   const hasMobile = mobileImages.length > 0;
+
+  const [showDesktop, setShowDesktop] = useState(true);
+  const [showMobile, setShowMobile] = useState(true);
 
   const allImages = [];
   const count = Math.max(desktopImages.length, mobileImages.length, 1);
@@ -198,15 +201,12 @@ export default function ProjectModal({ project, onClose, originEl }) {
             <div className="w-full h-full flex items-center justify-center p-[2%]">
               {hasDesktop || hasMobile ? (
                 <div className="relative w-full h-full flex items-center justify-center">
-                  {/* Desktop mockup frame */}
-                  {hasDesktop && (
+                  {showDesktop && hasDesktop && (
                     <SlideTrack images={desktopImages} idx={imgIdx} goTo={goTo}
                       className="w-[95%] aspect-[669/376] rounded-xl shadow-xl"
                     />
                   )}
-
-                  {/* Phone mockup frame */}
-                  {hasMobile && (
+                  {showMobile && hasMobile && (
                     <SlideTrack images={mobileImages} idx={imgIdx} goTo={goTo}
                       className="absolute w-[26%] aspect-[245/485] rounded-[0.8rem] shadow-xl"
                       style={{ bottom: "2%", left: "1%" }}
@@ -241,6 +241,30 @@ export default function ProjectModal({ project, onClose, originEl }) {
                 ))}
               </div>
             )}
+
+            {/* View toggles */}
+            <div className="absolute top-3 right-3 flex gap-1.5 z-10">
+              {hasDesktop && (
+                <button onClick={() => setShowDesktop(v => !v)}
+                  className={`px-2 py-0.5 text-[0.55rem] uppercase tracking-[0.08em] rounded-md transition-all font-medium ${
+                    showDesktop
+                      ? "bg-LightBlue-c text-white shadow-sm"
+                      : "bg-white/70 text-gray-500 hover:bg-white/90"
+                  }`}>
+                  Desktop
+                </button>
+              )}
+              {hasMobile && (
+                <button onClick={() => setShowMobile(v => !v)}
+                  className={`px-2 py-0.5 text-[0.55rem] uppercase tracking-[0.08em] rounded-md transition-all font-medium ${
+                    showMobile
+                      ? "bg-LightBlue-c text-white shadow-sm"
+                      : "bg-white/70 text-gray-500 hover:bg-white/90"
+                  }`}>
+                  Mobile
+                </button>
+              )}
+            </div>
           </div>
 
           {/* Description */}
