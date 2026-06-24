@@ -78,13 +78,23 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="aspect-[537/366] w-[28.0rem] border-2 border-[#E2E8F0] rounded-[0.62rem] relative font-ConsolasRegular overflow-hidden">
-          <div className="bg-white w-full h-full absolute rounded-[0.62rem]"></div>
+        <div className="relative">
+          <div className="aspect-[537/366] w-[28.0rem] border-2 border-[#E2E8F0] rounded-[0.62rem] font-ConsolasRegular overflow-hidden">
+            <div className="bg-white w-full h-full absolute rounded-[0.62rem]"></div>
+            <div className="px-[1.2rem] py-[2.0rem] text-[1.05rem]/[1.15rem] relative">
+              <Image
+                alt=""
+                src="/image/Hero/3ColorButton.png"
+                className="w-[3.0rem] h-[1.0rem] top-[0.5rem] left-[0.7rem] absolute"
+                draggable="false"
+                width={100}
+                height={100}
+              />
+              <CodeTyper speed={70} className="min-h-[13.0rem]" onDone={() => setCodeDone(true)} />
+            </div>
+          </div>
           {codeDone && (
-            <div
-               className="absolute aspect-[419/96] w-[24rem] bg-white rounded-[0.62rem] -bottom-[3.0rem] -right-[4.0rem] text-[1.0rem] flex items-center border-2 border-[#E2E8F0] font-ConsolasBold"
-              data-aos="fade-left"
-            >
+            <div className="absolute aspect-[419/96] w-[24rem] bg-white rounded-[0.62rem] -bottom-[1.5rem] -right-[1.0rem] text-[1.0rem] flex items-center border-2 border-[#E2E8F0] font-ConsolasBold shadow-md">
               <Image
                 alt=""
                 src="/image/Hero/3ColorButton.png"
@@ -98,17 +108,6 @@ export default function Hero() {
               </div>
             </div>
           )}
-          <div className="px-[1.2rem] py-[2.0rem] text-[1.05rem]/[1.15rem] relative">
-            <Image
-              alt=""
-              src="/image/Hero/3ColorButton.png"
-              className="w-[3.0rem] h-[1.0rem] top-[0.5rem] left-[0.7rem] absolute"
-              draggable="false"
-              width={100}
-              height={100}
-            />
-            <CodeTyper speed={70} className="min-h-[13.0rem]" onDone={() => setCodeDone(true)} />
-          </div>
         </div>
       </div>
 
@@ -150,9 +149,22 @@ export default function Hero() {
           </div>
         </a>
 
-        <div className="bg-white w-[80.0rem] h-[60.0rem] rounded-lg relative font-ConsolasRegular overflow-hidden">
+        <div className="relative">
+          <div className="bg-white w-[80.0rem] h-[60.0rem] rounded-lg font-ConsolasRegular overflow-hidden">
+            <div className="px-[1.5rem] py-[4.0rem] text-[3.0rem]/[4.0rem] relative ">
+              <Image
+                alt=""
+                src="/image/Hero/3ColorButton.png"
+                className="w-[8.0rem] h-[3.0rem] top-[0.5rem] left-[0.7rem] absolute"
+                draggable="false"
+                width={100}
+                height={100}
+              />
+              <CodeTyper speed={100} className="min-h-[40.0rem]" onDone={() => setCodeDone(true)} />
+            </div>
+          </div>
           {codeDone && (
-            <div className="absolute w-[60.0rem] h-[13.0rem] bg-white rounded-md -bottom-[6.0rem] -right-[4.0rem] text-[3.0rem] border-2 border-[#E2E8F0] font-ConsolasBold">
+            <div className="absolute w-[60.0rem] h-[13.0rem] bg-white rounded-md -bottom-[3.0rem] -right-[2.0rem] text-[3.0rem] border-2 border-[#E2E8F0] font-ConsolasBold shadow-md">
               <Image
                 alt=""
                 src="/image/Hero/3ColorButton.png"
@@ -166,17 +178,6 @@ export default function Hero() {
               </div>
             </div>
           )}
-          <div className="px-[1.5rem] py-[4.0rem] text-[3.0rem]/[4.0rem] relative ">
-            <Image
-              alt=""
-              src="/image/Hero/3ColorButton.png"
-              className="w-[8.0rem] h-[3.0rem] top-[0.5rem] left-[0.7rem] absolute"
-              draggable="false"
-              width={100}
-              height={100}
-            />
-            <CodeTyper speed={100} className="min-h-[40.0rem]" onDone={() => setCodeDone(true)} />
-          </div>
         </div>
       </div>
     </section>
