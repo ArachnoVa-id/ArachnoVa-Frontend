@@ -45,22 +45,31 @@ export default function ProjectModal({ project, onClose, originEl }) {
         cardRef.current.style.width = maxW + "px";
         cardRef.current.style.height = finalHeight + "px";
         cardRef.current.style.borderRadius = "12px";
-        setPhase("open");
+        setPhase("expanding");
+        setTimeout(() => setPhase("images-enter"), 150);
+        setTimeout(() => setPhase("content-show"), 350);
+        setTimeout(() => setPhase("open"), 500);
       });
     });
   }, []);
 
   const handleClose = () => {
-    if (cardRef.current && originRect.current) {
-      cardRef.current.style.transition = "all 0.2s ease, border-radius 0.2s ease";
-      cardRef.current.style.top = originRect.current.top + "px";
-      cardRef.current.style.left = originRect.current.left + "px";
-      cardRef.current.style.width = originRect.current.width + "px";
-      cardRef.current.style.height = originRect.current.height + "px";
-      cardRef.current.style.borderRadius = "12px";
-      setPhase("exiting");
-    }
-    setTimeout(onClose, 200);
+    setPhase("closing-text");
+    setTimeout(() => {
+      setPhase("closing-images");
+      setTimeout(() => {
+        if (cardRef.current && originRect.current) {
+          cardRef.current.style.transition = "all 0.2s ease, border-radius 0.2s ease";
+          cardRef.current.style.top = originRect.current.top + "px";
+          cardRef.current.style.left = originRect.current.left + "px";
+          cardRef.current.style.width = originRect.current.width + "px";
+          cardRef.current.style.height = originRect.current.height + "px";
+          cardRef.current.style.borderRadius = "12px";
+          setPhase("exiting");
+        }
+        setTimeout(onClose, 200);
+      }, 150);
+    }, 150);
   };
 
   useEffect(() => {
@@ -77,46 +86,42 @@ export default function ProjectModal({ project, onClose, originEl }) {
   if (!project) return null;
 
   const startStyle = originRect.current ? {
-    position: "fixed",
-    zIndex: 200,
+    position: "fixed", zIndex: 200,
     top: originRect.current.top + "px",
     left: originRect.current.left + "px",
     width: originRect.current.width + "px",
     height: originRect.current.height + "px",
     borderRadius: "12px",
-    overflow: "hidden",
-    background: "white",
+    overflow: "hidden", background: "white",
     boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
   } : {
-    position: "fixed",
-    zIndex: 200,
-    top: "5%",
-    left: "5%",
-    width: "90%",
-    height: "90%",
+    position: "fixed", zIndex: 200,
+    top: "5%", left: "5%",
+    width: "90%", height: "90%",
     borderRadius: "12px",
-    overflow: "hidden",
-    background: "white",
+    overflow: "hidden", background: "white",
     boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
   };
 
+  const imgEntered = phase !== "start" && phase !== "expanding";
+  const contentVisible = phase === "content-show" || phase === "open";
+  const contentClosing = phase === "closing-text" || phase === "closing-images" || phase === "exiting";
+  const imgClosing = phase === "closing-images" || phase === "exiting";
+
   return (
     <>
-      {/* Backdrop */}
-      <div
-        className="fixed inset-0 z-[199] bg-black/40 backdrop-blur-sm"
-        onClick={handleClose}
-        style={{
-          opacity: phase === "start" ? 0 : 1,
-          transition: "opacity 0.3s ease",
-        }}
-      />
+      <div className="fixed inset-0 z-[199] bg-black/40 backdrop-blur-sm" onClick={handleClose}
+        style={{ opacity: phase === "start" ? 0 : 1, transition: "opacity 0.3s ease" }} />
 
-      {/* Expanding card */}
       <div ref={cardRef} style={startStyle}>
-        <div className="h-full flex flex-col overflow-y-auto" style={{ opacity: phase === "start" ? 0 : 1, transition: "opacity 0.2s ease 0.15s" }}>
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-border shrink-0">
+        <div className="h-full flex flex-col overflow-y-auto">
+          {/* Header - fades in after images */}
+          <div className="flex items-center justify-between p-4 border-b border-border shrink-0"
+            style={{
+              opacity: contentClosing ? 0 : (contentVisible ? 1 : 0),
+              transform: contentClosing ? "translateY(-10px)" : (contentVisible ? "translateY(0)" : "translateY(10px)"),
+              transition: "opacity 0.2s ease, transform 0.25s ease",
+            }}>
             <div className="min-w-0">
               <h2 className="text-xl font-bold text-neutral-g truncate">{project.title}</h2>
               {project.link && (
@@ -126,10 +131,14 @@ export default function ProjectModal({ project, onClose, originEl }) {
             <button onClick={handleClose} className="text-gray-400 hover:text-gray-600 p-1 shrink-0 ml-2"><IoMdClose size={24} /></button>
           </div>
 
-          {/* Images */}
+          {/* Images - staggered entry */}
           <div className={`p-4 grid gap-4 ${hasDesktop && hasMobile ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-1"}`}>
             {hasDesktop && (
-              <div>
+              <div style={{
+                opacity: imgClosing ? 0 : (imgEntered ? 1 : 0),
+                transform: imgClosing ? "scale(0.9)" : (imgEntered ? "scale(1)" : "scale(0.85)"),
+                transition: "opacity 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)",
+              }}>
                 <p className="text-xs font-medium text-gray-500 mb-2">Desktop ({desktopIdx + 1}/{desktopImages.length})</p>
                 <div className="relative bg-gray-100 rounded-xl overflow-hidden border border-border">
                   {desktopImages.length > 1 && (
@@ -143,7 +152,11 @@ export default function ProjectModal({ project, onClose, originEl }) {
               </div>
             )}
             {hasMobile && (
-              <div>
+              <div style={{
+                opacity: imgClosing ? 0 : (imgEntered ? 1 : 0),
+                transform: imgClosing ? "scale(0.9)" : (imgEntered ? "scale(1)" : "scale(0.85)"),
+                transition: "opacity 0.3s ease 0.08s, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.08s",
+              }}>
                 <p className="text-xs font-medium text-gray-500 mb-2">Mobile ({mobileIdx + 1}/{mobileImages.length})</p>
                 <div className="relative bg-gray-100 rounded-xl overflow-hidden border border-border max-w-[280px] mx-auto">
                   {mobileImages.length > 1 && (
@@ -158,8 +171,13 @@ export default function ProjectModal({ project, onClose, originEl }) {
             )}
           </div>
 
+          {/* Description - fades in last */}
           {project.description && (
-            <div className="px-4 pb-4">
+            <div className="px-4 pb-4" style={{
+              opacity: contentClosing ? 0 : (contentVisible ? 1 : 0),
+              transform: contentClosing ? "translateY(-8px)" : (contentVisible ? "translateY(0)" : "translateY(12px)"),
+              transition: "opacity 0.25s ease, transform 0.3s ease",
+            }}>
               <p className="text-sm text-neutral-e leading-relaxed">{project.description}</p>
               <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 px-4 py-2 bg-gradient-to-r from-LightBlue-c to-LightBlue-d text-white text-sm font-InterBold rounded-lg hover:translate-y-[-0.1vw] transition-transform">
                 Visit Project
