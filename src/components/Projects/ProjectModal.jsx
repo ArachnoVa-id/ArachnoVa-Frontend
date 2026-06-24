@@ -98,8 +98,8 @@ export default function ProjectModal({ project, onClose, originEl }) {
     if (!originRect.current) { setPhase("open"); return; }
     const maxW = Math.min(window.innerWidth * 0.9, 680);
     const finalLeft = (window.innerWidth - maxW) / 2;
-    const finalTop = Math.max(window.innerHeight * 0.04, 15);
-    const finalHeight = Math.min(window.innerHeight * 0.65, window.innerWidth * 0.75);
+    const finalHeight = Math.min(window.innerHeight * 0.78, 680);
+    const finalTop = Math.max((window.innerHeight - finalHeight) / 2, 10);
 
     requestAnimationFrame(() => {
       if (!cardRef.current) return;
@@ -237,7 +237,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
                 }} className="w-full h-full rounded-xl shadow-xl" />
               </div>
             ) : view === "mobile" ? (
-              <div className="w-full h-full flex items-center justify-center p-[5%]">
+              <div className="w-full h-full flex items-center justify-center p-[2%]">
                 <SlideTrack images={mobileImages} idx={mobileIdx} goTo={(n) => {
                   const imgs = mobileImages;
                   if (n < 0) n = imgs.length - 1;

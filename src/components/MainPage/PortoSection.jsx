@@ -46,12 +46,11 @@ export default function PortoSection({ projects, services }) {
   const currentOffset = isDragging ? baseOffset - drag.current.offset * pctPerPx : baseOffset;
 
   const onTouchStart = (e) => {
-    const el = e.currentTarget;
-    const track = el.querySelector('[data-carousel-track]');
+    const track = e.currentTarget.querySelector('[data-carousel-track]');
     drag.current.active = true;
     drag.current.startX = e.touches[0].clientX;
     drag.current.offset = 0;
-    drag.current.containerW = track ? track.clientWidth : el.clientWidth || 1;
+    drag.current.containerW = track ? track.clientWidth : e.currentTarget.clientWidth || 1;
     setIsDragging(true);
     setDragOffset(0);
   };
@@ -83,13 +82,6 @@ export default function PortoSection({ projects, services }) {
     setProjectIndex(0);
   };
 
-  const slideAttrs = {
-    onTouchStart,
-    onTouchMove,
-    onTouchEnd,
-    onMouseDown: (e) => e.preventDefault(),
-  };
-
   return (
     <section className="w-full bg-white-MainPage lg:py-[5vw] py-[13.953vw] overflow-hidden">
       <style>{`
@@ -98,7 +90,6 @@ export default function PortoSection({ projects, services }) {
           to { transform: translateY(0); }
         }
         .phone-scroll-in { animation: scroll-up 0.5s ease-out; }
-        .no-select { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
       `}</style>
       {/* Desktop */}
       <div className="max-lg:hidden mx-auto w-[65rem]">
@@ -153,7 +144,11 @@ export default function PortoSection({ projects, services }) {
           {/* Right: Portfolio preview */}
           <div className="relative self-center">
             {currentProject && (
-              <div className="bg-border p-[0.12rem] rounded-[0.5rem] touch-none no-select" {...slideAttrs}>
+              <div className="bg-border p-[0.12rem] rounded-[0.5rem]"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
                 <div className="relative bg-[#FBFCFD] shadow-md rounded-[0.5rem] overflow-hidden">
                   <div
                     data-carousel-track
@@ -222,15 +217,19 @@ export default function PortoSection({ projects, services }) {
         </div>
 
         {currentProject && (
-          <div className="relative w-full touch-none no-select" {...slideAttrs}>
-            <div className="overflow-hidden rounded-[3vw] bg-border p-[0.5vw] shadow-md">
+          <div className="relative w-full"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
+            <div className="overflow-hidden rounded-[3vw] bg-LightBlue-c/10 p-[0.5vw] shadow-sm">
               <div data-carousel-track className="flex" style={{
                 transform: `translateX(-${currentOffset}%)`,
                 transition: isDragging ? "none" : "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
               }}>
                 {filtered.map((p, i) => (
-                  <div key={i} className="w-full flex-shrink-0 bg-[#FBFCFD]">
-                    <div className="aspect-[390/228] bg-[#FBFCFD]">
+                  <div key={i} className="w-full flex-shrink-0">
+                    <div className="aspect-[390/228]">
                       <img src={p.imageDesktop} alt="" className="w-full h-full object-cover" draggable="false" />
                     </div>
                   </div>
