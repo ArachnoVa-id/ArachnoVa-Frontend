@@ -56,10 +56,12 @@ function ProjectPicker({ selected, onChange, projects }) {
 }
 
 const MemberCard = memo(({ member, idx, onUpdate, onUpload, onFetchLinkedIn, onRemove, fetchingLi, projects, gradientColor }) => {
+  const [urlInput, setUrlInput] = useState("");
   const change = (field, val) => onUpdate(idx, field, val);
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
-      <div className="relative w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden cursor-pointer group" onClick={() => onUpload(idx)}>
+      {/* Avatar */}
+      <div className="relative w-16 h-16 mx-auto mb-1 rounded-full overflow-hidden cursor-pointer group" onClick={() => onUpload(idx)}>
         {member.image ? <img src={member.image} alt="" className="w-full h-full object-cover" /> : (
           <div className={`w-full h-full bg-gradient-to-br ${gradientColor} flex items-center justify-center text-white text-lg font-bold`}>
             {member.name?.charAt(0) || "?"}
@@ -67,6 +69,16 @@ const MemberCard = memo(({ member, idx, onUpdate, onUpload, onFetchLinkedIn, onR
         )}
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-white text-[10px] rounded-full"><FiUpload size={14} /></div>
       </div>
+
+      {/* Image URL paste + Upload button */}
+      <div className="flex gap-1 mb-1.5">
+        <input value={urlInput} onChange={(e) => setUrlInput(e.target.value)}
+          placeholder="Paste image URL..." className="flex-1 px-2 py-1 border border-gray-200 rounded-lg text-[10px] font-mono" />
+        <button onClick={() => { if (urlInput) { change("image", urlInput); setUrlInput(""); } }}
+          className="px-1.5 py-1 bg-gray-100 text-gray-600 rounded-lg text-[10px] hover:bg-gray-200">Set</button>
+        <button onClick={() => onUpload(idx)} className="px-1.5 py-1 bg-blue-50 text-blue-600 rounded-lg text-[10px] hover:bg-blue-100 flex items-center"><FiUpload size={12} /></button>
+      </div>
+
       <div className="space-y-1.5">
         <input defaultValue={member.name} onBlur={(e) => change("name", e.target.value)}
           placeholder="Name" className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-xs text-center font-medium" />
