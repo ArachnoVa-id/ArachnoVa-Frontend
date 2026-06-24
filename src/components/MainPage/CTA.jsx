@@ -1,3 +1,4 @@
+import { useSettings } from "@/context/DataContext";
 import Image from "@/components/ui/Img";
 import AOS from "aos";
 import "aos/dist/aos.css";

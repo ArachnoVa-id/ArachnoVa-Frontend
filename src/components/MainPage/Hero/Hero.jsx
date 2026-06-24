@@ -1,3 +1,4 @@
+import { useSettings } from "@/context/DataContext";
 import Image from "@/components/ui/Img";
 import { useEffect, useState } from "react";
 import AOS from "aos";
