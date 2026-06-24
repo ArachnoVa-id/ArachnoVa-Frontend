@@ -26,11 +26,13 @@ export default function ProjectModal({ project, onClose, originRect }) {
 
   useEffect(() => {
     requestAnimationFrame(() => {
-      if (contentRef.current) {
-        contentRef.current.style.transition = "transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease";
-        contentRef.current.style.transform = "scale(1) translate(0, 0)";
-        contentRef.current.style.opacity = "1";
-      }
+      requestAnimationFrame(() => {
+        if (contentRef.current) {
+          contentRef.current.style.transition = "transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease";
+          contentRef.current.style.transform = "scale(1) translate(0, 0)";
+          contentRef.current.style.opacity = "1";
+        }
+      });
     });
     setPhase("open");
   }, []);
