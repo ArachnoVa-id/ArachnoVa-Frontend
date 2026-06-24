@@ -57,13 +57,13 @@ export default function PortoSection({ projects }) {
                 <div
                   key={pt.key}
                   onClick={() => switchCategory(pt.key)}
-                  className={`w-full h-[5.5rem] flex flex-row p-[1.2vw] gap-x-[1vw] rounded-[0.6rem] cursor-pointer border-[0.1rem] transition-all duration-300 ${
-                    isActive ? "border-LightBlue-c shadow-sm" : "border-border bg-white hover:shadow-sm"
+                  className={`w-full h-[5.5rem] flex flex-row p-[1.2vw] gap-x-[1vw] rounded-[0.6rem] cursor-pointer border-[0.15rem] transition-all duration-300 ${
+                    isActive ? "border-LightBlue-d bg-LightBlue-d/5 shadow-md" : "border-[#C3D4DB] bg-white hover:shadow-md hover:border-LightBlue-c/30"
                   }`}
                 >
                   <div className="flex flex-col gap-y-[0.3vw] flex-1 justify-center">
-                    <p className={`font-SourceSansProBold text-[1.1rem] transition-all duration-500 ${
-                      isActive ? "bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]" : "text-neutral-g"
+                    <p className={`font-SourceSansProBold text-[1.15rem] transition-all duration-500 ${
+                      isActive ? "text-LightBlue-e" : "text-neutral-g"
                     }`}>
                       {pt.label}
                     </p>
