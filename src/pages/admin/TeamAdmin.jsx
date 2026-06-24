@@ -103,8 +103,14 @@ export default function TeamAdmin() {
       if (data.image) {
         change(i, "image", data.image);
         toast("Profile image fetched", "success");
+      } else if (data.name) {
+        toast("Name found, but no image available", "info");
       } else {
-        toast(data.error || "Could not fetch image", "error");
+        toast(data.error || "Could not fetch data", "error");
+      }
+      if (data.name && (!member.name || member.name.startsWith("John") || member.name.startsWith("Jane"))) {
+        change(i, "name", data.name);
+        if (!data.image) toast("Name auto-filled from LinkedIn", "success");
       }
     } catch (e) {
       toast("Error: " + e.message, "error");
