@@ -13,8 +13,6 @@ function SwipeImages({ images }) {
   const [touching, setTouching] = useState(false);
   const [deltaX, setDeltaX] = useState(0);
 
-  if (!images.length) return null;
-
   const goTo = (next) => {
     if (next < 0) next = images.length - 1;
     if (next >= images.length) next = 0;
@@ -31,23 +29,23 @@ function SwipeImages({ images }) {
   };
 
   return (
-    <div>
-      <div className="rounded-lg overflow-hidden border border-zinc-700/60 relative select-none"
+    <div className="flex flex-col min-h-0 flex-1">
+      <div className="flex-1 rounded-lg overflow-hidden border border-border relative select-none bg-gray-50 min-h-0"
         onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
-        <div className="flex transition-transform duration-300 ease-out"
+        <div className="flex h-full transition-transform duration-300 ease-out"
           style={{ transform: `translateX(${touching ? deltaX - idx * 100 : -idx * 100}%)` }}>
           {images.map((src, i) => (
-            <div key={i} className="min-w-full flex items-center justify-center bg-zinc-800/50">
-              <img src={src} alt="" className="w-full h-auto select-none pointer-events-none" draggable="false" />
+            <div key={i} className="min-w-full h-full flex items-center justify-center bg-gray-50">
+              <img src={src} alt="" className="max-h-full max-w-full object-contain select-none pointer-events-none" draggable="false" />
             </div>
           ))}
         </div>
       </div>
       {images.length > 1 && (
-        <div className="flex items-center justify-center gap-[0.35rem] mt-[0.6rem]">
+        <div className="flex items-center justify-center gap-[0.35rem] mt-[0.4rem] shrink-0">
           {images.map((_, i) => (
             <button key={i} onClick={() => setIdx(i)}
-              className={`w-[0.4rem] h-[0.4rem] rounded-full transition-all duration-300 ${i === idx ? "bg-LightBlue-c scale-150" : "bg-zinc-600 hover:bg-zinc-400"}`} />
+              className={`w-[0.4rem] h-[0.4rem] rounded-full transition-all duration-300 ${i === idx ? "bg-LightBlue-c scale-150" : "bg-gray-300 hover:bg-gray-400"}`} />
           ))}
         </div>
       )}
@@ -73,7 +71,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
 
   useEffect(() => {
     if (!originRect.current) { setPhase("open"); return; }
-    const maxW = Math.min(window.innerWidth * 0.9, 1100);
+    const maxW = Math.min(window.innerWidth * 0.9, 1024);
     const finalLeft = (window.innerWidth - maxW) / 2;
     const finalTop = Math.max(window.innerHeight * 0.05, 20);
     const finalHeight = window.innerHeight * 0.9;
@@ -134,8 +132,8 @@ export default function ProjectModal({ project, onClose, originEl }) {
         height: originRect.current.height + "px",
         borderRadius: "12px",
         overflow: "hidden",
-        background: "#18181B",
-        boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)",
+        background: "white",
+        boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
       }
     : {
         position: "fixed",
@@ -146,72 +144,70 @@ export default function ProjectModal({ project, onClose, originEl }) {
         height: "90%",
         borderRadius: "12px",
         overflow: "hidden",
-        background: "#18181B",
-        boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)",
+        background: "white",
+        boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
       };
 
   return (
     <>
-      <div className="fixed inset-0 z-[199] bg-black/60 backdrop-blur-sm"
+      <div className="fixed inset-0 z-[199] bg-black/40 backdrop-blur-sm"
         onClick={handleClose}
         style={{ opacity: phase === "start" ? 0 : 1, transition: "opacity 0.3s ease" }} />
 
       <div ref={cardRef} style={startStyle}>
-        <div className="h-full flex flex-col text-zinc-100"
+        <div className="h-full flex flex-col"
           style={{ opacity: phase === "start" ? 0 : 1, transition: "opacity 0.2s ease 0.15s" }}>
 
-          {/* Header — gallery metadata bar */}
-          <div className="flex items-center justify-between px-5 py-3 border-b border-zinc-800 shrink-0 min-h-0">
-            <div className="flex items-center gap-3 min-w-0 truncate">
+          {/* Header */}
+          <div className="flex items-start justify-between px-5 pt-4 pb-3 border-b border-border shrink-0">
+            <div className="min-w-0 mr-4">
               {productLabel && (
-                <span className="text-[0.65rem] uppercase tracking-[0.12em] text-zinc-500 font-medium shrink-0">
+                <span className="text-[0.65rem] uppercase tracking-[0.12em] text-gray-400 font-medium">
                   {productLabel}
                 </span>
               )}
+              <h2 className="text-xl font-SourceSansProBold text-neutral-g truncate leading-tight mt-0.5">
+                {project.title}
+              </h2>
               {domain && (
                 <a href={project.link} target="_blank" rel="noopener noreferrer"
-                  className="text-[0.65rem] uppercase tracking-[0.12em] text-zinc-400 hover:text-LightBlue-c transition-colors truncate shrink-0">
+                  className="text-xs text-LightBlue-c hover:underline truncate block mt-0.5">
                   {domain}
                 </a>
               )}
             </div>
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex items-center gap-3 shrink-0 mt-0.5">
               {project.link && (
                 <a href={project.link} target="_blank" rel="noopener noreferrer"
-                  className="px-3 py-1.5 bg-gradient-to-r from-LightBlue-c to-LightBlue-d text-white text-xs font-InterBold rounded-lg hover:brightness-110 transition-all">
+                  className="px-3 py-1.5 bg-gradient-to-r from-LightBlue-c to-LightBlue-d text-white text-xs font-InterBold rounded-lg hover:translate-y-[-1px] transition-transform">
                   Visit Project
                 </a>
               )}
-              <button onClick={handleClose} className="text-zinc-500 hover:text-zinc-300 p-1 transition-colors">
-                <IoMdClose size={20} />
+              <button onClick={handleClose} className="text-gray-400 hover:text-gray-600 p-1 transition-colors">
+                <IoMdClose size={22} />
               </button>
             </div>
           </div>
 
-          {/* Body */}
-          <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
-            {/* Left — gallery images */}
-            <div className="lg:w-[60%] p-5 overflow-y-auto flex flex-col gap-5">
+          {/* Body — no scroll */}
+          <div className="flex-1 flex flex-col lg:flex-row overflow-hidden min-h-0">
+            {/* Left — images */}
+            <div className="lg:w-[60%] p-4 pb-3 flex flex-col gap-3 overflow-hidden min-h-0">
               {hasDesktop && <SwipeImages images={desktopImages} />}
               {hasMobile && <SwipeImages images={mobileImages} />}
               {!hasDesktop && !hasMobile && (
-                <div className="flex items-center justify-center h-full text-zinc-600 text-sm italic">
+                <div className="flex-1 flex items-center justify-center text-gray-400 text-sm italic">
                   No images available
                 </div>
               )}
             </div>
 
-            {/* Right — gallery label card */}
+            {/* Right — description */}
             {project.description && (
-              <div className="lg:w-[40%] overflow-y-auto border-t lg:border-t-0 lg:border-l border-zinc-800 p-5">
-                <div className="bg-zinc-800/60 rounded-lg p-5 border border-zinc-700/40">
-                  <h2 className="text-lg font-SourceSansProBold text-white mb-3 leading-snug">
-                    {project.title}
-                  </h2>
-                  <p className="text-sm text-zinc-400 leading-[1.7] whitespace-pre-line">
-                    {project.description}
-                  </p>
-                </div>
+              <div className="lg:w-[40%] overflow-hidden border-t lg:border-t-0 lg:border-l border-border p-5 flex items-start">
+                <p className="text-sm text-neutral-e leading-relaxed whitespace-pre-line overflow-y-auto max-h-full">
+                  {project.description}
+                </p>
               </div>
             )}
           </div>
