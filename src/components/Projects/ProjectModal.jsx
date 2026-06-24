@@ -1,11 +1,51 @@
 import { useState, useEffect, useRef } from "react";
-import { IoMdClose } from "react-icons/io";
+import { IoMdClose, IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 
 const productLabels = {
   compro: "Company Profile",
   erp: "ERP System",
   "wa-apps": "WhatsApp Apps",
 };
+
+function SlideTrack({ images, idx, goTo, className }) {
+  const touchStart = useRef(0);
+  const [touching, setTouching] = useState(false);
+  const [deltaX, setDeltaX] = useState(0);
+
+  if (!images.length) return null;
+
+  const onStart = (e) => { touchStart.current = e.touches[0].clientX; setTouching(true); setDeltaX(0); };
+  const onMove = (e) => { setDeltaX(e.touches[0].clientX - touchStart.current); };
+  const onEnd = () => {
+    setTouching(false);
+    if (deltaX > 40) goTo(idx - 1);
+    else if (deltaX < -40) goTo(idx + 1);
+    setDeltaX(0);
+  };
+
+  const onWheel = (e) => {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      e.preventDefault();
+      if (e.deltaX > 0) goTo(idx + 1);
+      else goTo(idx - 1);
+    }
+  };
+
+  return (
+    <div className={`overflow-hidden ${className}`}
+      onTouchStart={onStart} onTouchMove={onMove} onTouchEnd={onEnd}
+      onWheel={onWheel}>
+      <div className="flex transition-transform duration-300 ease-out h-full"
+        style={{ transform: `translateX(${touching ? deltaX - idx * 100 : -idx * 100}%)` }}>
+        {images.map((src, i) => (
+          <div key={i} className="min-w-full h-full flex items-center justify-center">
+            <img src={src} alt="" className="w-full h-full object-cover select-none pointer-events-none" draggable="false" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function ProjectModal({ project, onClose, originEl }) {
   const [phase, setPhase] = useState("start");
@@ -18,6 +58,8 @@ export default function ProjectModal({ project, onClose, originEl }) {
 
   const desktopImages = project?.desktopImages?.filter(Boolean) || [project?.imageDesktop].filter(Boolean);
   const mobileImages = project?.mobileImages?.filter(Boolean) || [project?.imageMobile].filter(Boolean);
+  const hasDesktop = desktopImages.length > 0;
+  const hasMobile = mobileImages.length > 0;
 
   const allImages = [];
   const count = Math.max(desktopImages.length, mobileImages.length, 1);
@@ -29,9 +71,6 @@ export default function ProjectModal({ project, onClose, originEl }) {
   }
 
   const [imgIdx, setImgIdx] = useState(0);
-  const touchStart = useRef(0);
-  const [touching, setTouching] = useState(false);
-  const [deltaX, setDeltaX] = useState(0);
 
   const productLabel = productLabels[project?.product] || project?.product || "";
   const domain = project?.link ? project.link.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "") : "";
@@ -40,15 +79,6 @@ export default function ProjectModal({ project, onClose, originEl }) {
     if (next < 0) next = allImages.length - 1;
     if (next >= allImages.length) next = 0;
     setImgIdx(next);
-  };
-
-  const onTouchStart = (e) => { touchStart.current = e.touches[0].clientX; setTouching(true); setDeltaX(0); };
-  const onTouchMove = (e) => { setDeltaX(e.touches[0].clientX - touchStart.current); };
-  const onTouchEnd = () => {
-    setTouching(false);
-    if (deltaX > 50) goTo(imgIdx - 1);
-    else if (deltaX < -50) goTo(imgIdx + 1);
-    setDeltaX(0);
   };
 
   useEffect(() => {
@@ -93,40 +123,33 @@ export default function ProjectModal({ project, onClose, originEl }) {
   };
 
   useEffect(() => {
-    const handleKey = (e) => { if (e.key === "Escape") handleClose(); };
+    const handleKey = (e) => {
+      if (e.key === "Escape") handleClose();
+      if (e.key === "ArrowLeft") { e.preventDefault(); goTo(imgIdx - 1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); goTo(imgIdx + 1); }
+    };
     window.addEventListener("keydown", handleKey);
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", handleKey);
       document.body.style.overflow = "";
     };
-  }, []);
+  }, [imgIdx]);
 
   if (!project) return null;
 
   const startStyle = originRect.current
     ? {
-        position: "fixed",
-        zIndex: 200,
-        top: originRect.current.top + "px",
-        left: originRect.current.left + "px",
-        width: originRect.current.width + "px",
-        height: originRect.current.height + "px",
-        borderRadius: "12px",
-        overflow: "hidden",
-        background: "white",
+        position: "fixed", zIndex: 200,
+        top: originRect.current.top + "px", left: originRect.current.left + "px",
+        width: originRect.current.width + "px", height: originRect.current.height + "px",
+        borderRadius: "12px", overflow: "hidden", background: "white",
         boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
       }
     : {
-        position: "fixed",
-        zIndex: 200,
-        top: "2.5%",
-        left: "50%",
-        width: "min(90vw, 680px)",
-        height: "95%",
-        borderRadius: "16px",
-        overflow: "hidden",
-        background: "white",
+        position: "fixed", zIndex: 200, top: "2.5%", left: "50%",
+        width: "min(90vw, 680px)", height: "95%", borderRadius: "16px",
+        overflow: "hidden", background: "white",
         boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
         transform: "translateX(-50%)",
       };
@@ -150,7 +173,8 @@ export default function ProjectModal({ project, onClose, originEl }) {
               <div className="min-w-0">
                 <p className="text-sm font-semibold text-neutral-g leading-tight truncate">{project.title}</p>
                 {domain && (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-[0.65rem] text-LightBlue-c hover:underline truncate block leading-tight">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer"
+                    className="text-[0.65rem] text-LightBlue-c hover:underline truncate block leading-tight">
                     {domain}
                   </a>
                 )}
@@ -169,35 +193,44 @@ export default function ProjectModal({ project, onClose, originEl }) {
             </div>
           </div>
 
-          {/* Image area — transparent bg, mockups fill space */}
-          <div className="flex-1 overflow-hidden select-none relative bg-gray-50"
-            onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
-            <div className="flex h-full transition-transform duration-300 ease-out"
-              style={{ transform: `translateX(${touching ? deltaX - imgIdx * 100 : -imgIdx * 100}%)` }}>
-              {allImages.map((pair, i) => (
-                <div key={i} className="min-w-full h-full flex items-center justify-center">
-                  {pair.desktop && pair.mobile ? (
-                    <div className="relative w-full h-full flex items-center justify-center p-[2%]">
-                      <img src={pair.desktop} alt=""
-                        className="w-[95%] aspect-[669/376] rounded-xl shadow-xl object-cover"
-                        draggable="false" />
-                      <img src={pair.mobile} alt=""
-                        className="absolute w-[26%] aspect-[245/485] rounded-[0.8rem] shadow-xl object-cover"
-                        style={{ bottom: "2%", left: "1%" }}
-                        draggable="false" />
-                    </div>
-                  ) : pair.desktop ? (
-                    <img src={pair.desktop} alt="" className="w-full h-full object-contain p-[1%]" draggable="false" />
-                  ) : pair.mobile ? (
-                    <div className="flex items-center justify-center w-full h-full p-[5%]">
-                      <img src={pair.mobile} alt="" className="h-full w-auto rounded-xl shadow-xl" draggable="false" />
-                    </div>
-                  ) : (
-                    <div className="text-gray-400 text-sm italic">No image</div>
+          {/* Image area */}
+          <div className="flex-1 overflow-hidden select-none relative bg-gray-50">
+            <div className="w-full h-full flex items-center justify-center p-[2%]">
+              {hasDesktop || hasMobile ? (
+                <div className="relative w-full h-full flex items-center justify-center">
+                  {/* Desktop mockup frame */}
+                  {hasDesktop && (
+                    <SlideTrack images={desktopImages} idx={imgIdx} goTo={goTo}
+                      className="w-[95%] aspect-[669/376] rounded-xl shadow-xl"
+                    />
+                  )}
+
+                  {/* Phone mockup frame */}
+                  {hasMobile && (
+                    <SlideTrack images={mobileImages} idx={imgIdx} goTo={goTo}
+                      className="absolute w-[26%] aspect-[245/485] rounded-[0.8rem] shadow-xl"
+                      style={{ bottom: "2%", left: "1%" }}
+                    />
                   )}
                 </div>
-              ))}
+              ) : (
+                <span className="text-gray-400 text-sm italic">No images</span>
+              )}
             </div>
+
+            {/* Arrows */}
+            {allImages.length > 1 && (
+              <>
+                <button onClick={(e) => { e.stopPropagation(); goTo(imgIdx - 1); }}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/80 hover:bg-white rounded-full shadow-md transition text-gray-700 z-10">
+                  <IoMdArrowBack size={16} />
+                </button>
+                <button onClick={(e) => { e.stopPropagation(); goTo(imgIdx + 1); }}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/80 hover:bg-white rounded-full shadow-md transition text-gray-700 z-10">
+                  <IoMdArrowForward size={16} />
+                </button>
+              </>
+            )}
 
             {/* Dots */}
             {allImages.length > 1 && (
