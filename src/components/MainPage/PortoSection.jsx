@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaArrowRight, FaArrowLeft, FaArrowRight as FaArrowRightIcon } from "react-icons/fa";
@@ -37,6 +37,24 @@ export default function PortoSection({ projects, services }) {
     if (projectIndex <= 0) return;
     setProjectIndex((i) => i - 1);
   };
+
+  const swipeRef = useRef(null);
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+
+  const handleTouchStart = useCallback((e) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  }, []);
+
+  const handleTouchEnd = useCallback((e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    const dy = e.changedTouches[0].clientY - touchStartY.current;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      if (dx < 0) nextProject();
+      else prevProject();
+    }
+  }, []);
 
   const switchCategory = (key) => {
     setActive(key);
@@ -98,7 +116,11 @@ export default function PortoSection({ projects, services }) {
           {/* Right: Portfolio preview */}
           <div className="relative self-center">
             {currentProject && (
-              <div className="bg-border p-[0.12rem] rounded-[0.5rem]">
+              <div
+                className="bg-border p-[0.12rem] rounded-[0.5rem]"
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+              >
                 <div className="relative bg-[#FBFCFD] shadow-md rounded-[0.5rem] overflow-hidden">
                   <div ref={trackRef} className="flex transition-transform duration-400 ease-in-out" style={{ transform: `translateX(-${projectIndex * 100}%)` }}>
                     {filtered.map((p, i) => (
@@ -128,14 +150,24 @@ export default function PortoSection({ projects, services }) {
                 </div>
               </div>
             )}
-            {currentProject?.imageMobile && (
-              <div key={projectIndex} className="bg-border absolute aspect-[303/514] z-[3] w-[12rem] p-[0.15rem] shadow-md rounded-xl -bottom-[3.1vh] -right-[2rem] flex flex-col transition-all duration-300">
-                <div className="relative w-full h-full bg-white rounded-xl overflow-hidden">
-                  <img src={currentProject.imageMobile} alt="" className="w-full transition-opacity duration-300" draggable="false" />
-                </div>
+            {/* Mobile mockup: vertical scroll on each nav + fade if no image */}
+            <div className={`bg-border absolute aspect-[303/514] z-[3] w-[12rem] p-[0.15rem] shadow-md rounded-xl -bottom-[3.1vh] -right-[2rem] flex flex-col transition-all duration-500 ${currentProject?.imageMobile ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+              <div className="relative w-full h-full bg-white rounded-xl overflow-hidden">
+                {currentProject?.imageMobile ? (
+                  <img
+                    key={projectIndex}
+                    src={currentProject.imageMobile}
+                    alt=""
+                    className="w-full"
+                    draggable="false"
+                    style={{
+                      animation: "none",
+                      transform: "translateY(0)",
+                    }}
+                  />
+                ) : null}
               </div>
-            )}
-          </div>
+            </div>
         </div>
       </div>
 

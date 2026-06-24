@@ -115,11 +115,13 @@ export default function TeamAdmin() {
     setFetchingLi(null);
   };
 
-  const Section = ({ title, type, icon: Icon, color }) => {
-    const items = local.filter((m) => type === "all" ? true : m.type === type);
+  if (!local) return null;
+
+  const renderGroup = (type, title, color) => {
+    const items = local.filter((m) => m.type === type);
     const indices = items.map((m) => local.indexOf(m));
     return (
-      <div className="mb-8">
+      <div className="mb-8" key={type}>
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
             <span className={`w-2 h-2 rounded-full ${color}`} />
@@ -136,48 +138,32 @@ export default function TeamAdmin() {
             {indices.map((idx) => {
               const m = local[idx];
               return (
-                <div key={idx} className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
-                  {/* Avatar */}
+                <div key={m.id || idx} className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
                   <div className="relative w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden cursor-pointer group" onClick={() => handleUpload(idx)}>
-                    {m.image ? (
-                      <img src={m.image} alt="" className="w-full h-full object-cover" />
-                    ) : (
+                    {m.image ? <img src={m.image} alt="" className="w-full h-full object-cover" /> : (
                       <div className={`w-full h-full bg-gradient-to-br ${gradientColors[idx % gradientColors.length]} flex items-center justify-center text-white text-lg font-bold`}>
                         {m.name?.charAt(0) || "?"}
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-white text-[10px] rounded-full">
-                      <FiUpload size={14} />
-                    </div>
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-white text-[10px] rounded-full"><FiUpload size={14} /></div>
                   </div>
-
                   <div className="space-y-1.5">
                     <input value={m.name} onChange={(e) => change(idx, "name", e.target.value)}
                       placeholder="Name" className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-xs text-center font-medium" />
                     <input value={m.role} onChange={(e) => change(idx, "role", e.target.value)}
                       placeholder="Role" className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-xs text-center" />
-
-                    {/* LinkedIn */}
                     <div className="flex gap-1">
                       <input value={m.linkedin || ""} onChange={(e) => change(idx, "linkedin", e.target.value)}
                         placeholder="LinkedIn URL" className="flex-1 px-2 py-1 border border-gray-200 rounded-lg text-[10px] font-mono" />
                       <button onClick={() => fetchLinkedInImage(idx)} disabled={fetchingLi === idx}
-                        className="px-1.5 py-1 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 disabled:opacity-50 flex items-center"
-                        title="Fetch profile pic from LinkedIn">
+                        className="px-1.5 py-1 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 disabled:opacity-50 flex items-center" title="Fetch profile pic from LinkedIn">
                         {fetchingLi === idx ? <span className="text-[10px]">...</span> : <FiLinkedin size={12} />}
                       </button>
                     </div>
-
-                    {/* Personal Website */}
                     <input value={m.website || ""} onChange={(e) => change(idx, "website", e.target.value)}
                       placeholder="Personal website URL" className="w-full px-2 py-1 border border-gray-200 rounded-lg text-[10px] font-mono" />
-
-                    {/* Project picker */}
                     <ProjectPicker selected={m.projectIds || []} onChange={(ids) => change(idx, "projectIds", ids)} projects={projects} />
-
-                    <button onClick={() => remove(idx)} className="w-full text-xs text-red-500 hover:bg-red-50 py-1.5 rounded-lg flex items-center justify-center gap-1">
-                      <FiX size={12} /> Remove
-                    </button>
+                    <button onClick={() => remove(idx)} className="w-full text-xs text-red-500 hover:bg-red-50 py-1.5 rounded-lg flex items-center justify-center gap-1"><FiX size={12} /> Remove</button>
                   </div>
                 </div>
               );
@@ -187,8 +173,6 @@ export default function TeamAdmin() {
       </div>
     );
   };
-
-  if (!local) return null;
 
   return (
     <div>
@@ -201,9 +185,8 @@ export default function TeamAdmin() {
           </button>
         </div>
       </div>
-
-      <Section title="Internal Team" type="internal" color="bg-blue-500" />
-      <Section title="Collaborator Team" type="collaborator" color="bg-green-500" />
+      {renderGroup("internal", "Internal Team", "bg-blue-500")}
+      {renderGroup("collaborator", "Collaborator Team", "bg-green-500")}
     </div>
   );
 }
