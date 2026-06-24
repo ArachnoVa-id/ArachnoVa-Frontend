@@ -10,7 +10,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "start": "node server/index.js",
-    "lint": "eslint src/"
+    "lint": "eslint src/ --ext .js,.jsx"
   },
   "dependencies": {
     "@nextui-org/react": "^2.4.6",

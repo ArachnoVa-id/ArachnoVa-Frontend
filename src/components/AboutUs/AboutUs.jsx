@@ -11,7 +11,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const AboutUs = () => {
-	const settings = useSettings();
   useEffect(() => {
 		AOS.init({
 			duration: 1500,
