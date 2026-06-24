@@ -109,7 +109,7 @@ const ServicesHero = () => {
                 selected={state}
                 title={data.title}
                 description={data.description}
-                image={data.image}
+                image={data.images}
               />
             );
           })}
