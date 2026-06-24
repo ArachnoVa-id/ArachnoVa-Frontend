@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 
 const codeData = [
-  [{ c: "#0151EC", w: ['import ', '"./globals.css";'] }],
-  [{ c: "#1E293B", w: ['import { '] }, { c: "#1CA7BD", w: ['ArachnoVa'] }, { c: "#1E293B", w: [' } from '] }, { c: "#8131B2", w: ['"./api/provider";'] }],
-  [{ c: "#1E293B", w: ['\u00A0'] }],
-  [{ c: "#0151EC", w: ['export default'] }],
-  [{ c: "#1E293B", w: ['<div className="'] }, { c: "#8131B2", w: ['Welcome to ArachnoVa'] }, { c: "#1E293B", w: ['">'] }],
-  [{ c: "#1E293B", w: ['\u00A0 <div className="'] }, { c: "#8131B2", w: ['content'] }, { c: "#1E293B", w: ['">'] }],
-  [{ c: "#8131B2", w: ['\u00A0 \u00A0 "Your web design partner"'] }],
-  [{ c: "#1E293B", w: ['\u00A0 </div>'] }],
-  [{ c: "#1E293B", w: ['\u00A0 <img src="img/herofix.png"/>'] }],
-  [{ c: "#1E293B", w: ['</div>'] }],
+  [{ c: "#569CD6", w: ["import "] }, { c: "#CE9178", w: ['"' , "./globals.css", '"', ";"] }],
+  [{ c: "#569CD6", w: ["import { "] }, { c: "#9CDCFE", w: ["ArachnoVa"] }, { c: "#569CD6", w: [" } from "] }, { c: "#CE9178", w: ['"', "./api/provider", '"', ";"] }],
+  [],
+  [{ c: "#569CD6", w: ["export default"] }],
+  [{ c: "#DCDCAA", w: ["<div "] }, { c: "#9CDCFE", w: ["className"] }, { c: "#D4D4D4", w: ['="'] }, { c: "#CE9178", w: ["Welcome to ArachnoVa"] }, { c: "#D4D4D4", w: ['">'] }],
+  [{ c: "#D4D4D4", w: ["  "] }, { c: "#DCDCAA", w: ["<div "] }, { c: "#9CDCFE", w: ["className"] }, { c: "#D4D4D4", w: ['="'] }, { c: "#CE9178", w: ["content"] }, { c: "#D4D4D4", w: ['">'] }],
+  [{ c: "#CE9178", w: ['    "', "Your web design partner", '"'] }],
+  [{ c: "#DCDCAA", w: ["  </div>"] }],
+  [{ c: "#D4D4D4", w: ["  "] }, { c: "#DCDCAA", w: ["<img "] }, { c: "#9CDCFE", w: ["src"] }, { c: "#D4D4D4", w: ['="'] }, { c: "#CE9178", w: ["img/herofix.png"] }, { c: "#D4D4D4", w: ['"/>'] }],
+  [{ c: "#DCDCAA", w: ["</div>"] }],
 ];
 
 function flattenWords() {
@@ -31,13 +31,18 @@ function flattenWords() {
 }
 
 const flatLines = flattenWords();
+const totalLines = flatLines.length;
 
-export default function CodeTyper({ speed = 70, className }) {
+export default function CodeTyper({ speed = 70, className, onDone }) {
   const [lineIdx, setLineIdx] = useState(0);
   const [wordIdx, setWordIdx] = useState(0);
+  const doneRef = useState(false);
 
   useEffect(() => {
-    if (lineIdx >= flatLines.length) return;
+    if (lineIdx >= totalLines) {
+      onDone?.();
+      return;
+    }
     const maxW = flatLines[lineIdx].length;
     if (wordIdx < maxW) {
       const t = setTimeout(() => setWordIdx((v) => v + 1), speed);
@@ -48,7 +53,7 @@ export default function CodeTyper({ speed = 70, className }) {
       setWordIdx(0);
     }, speed * 2.5);
     return () => clearTimeout(t);
-  }, [lineIdx, wordIdx, speed]);
+  }, [lineIdx, wordIdx, speed, onDone]);
 
   return (
     <div className={className || ""}>
@@ -61,7 +66,7 @@ export default function CodeTyper({ speed = 70, className }) {
             {line.slice(0, max).map((word, wi) => (
               <span key={wi} style={{ color: word.color }}>{word.text}</span>
             ))}
-            {isLastLine && lineIdx < flatLines.length && (
+            {isLastLine && lineIdx < totalLines && (
               <span className="w-[0.05em] h-[1.1em] bg-LightBlue-c animate-pulse inline-block align-text-bottom ml-[0.05em]" />
             )}
           </p>

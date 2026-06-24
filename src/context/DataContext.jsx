@@ -12,6 +12,7 @@ const defaults = {
   products: { title: "", subtitle: "", items: [] },
   redirects: [],
   team: [],
+  settings: { whatsapp: "https://wa.me/6287882832538", email: "mailto:arachnova.id@gmail.com", instagram: "https://www.instagram.com/arachnova.id/", linkedin: "https://www.linkedin.com/company/arachnova-id/" },
 };
 
 function authHeaders(forWrite) {
@@ -93,4 +94,9 @@ export function useData() {
 export function useCollection(name) {
   const { data, update } = useData();
   return [data[name] ?? defaults[name], (val) => update(name, val)];
+}
+
+export function useSettings() {
+  const { data } = useData();
+  return data.settings || defaults.settings;
 }

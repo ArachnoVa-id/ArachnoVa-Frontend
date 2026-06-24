@@ -13,6 +13,7 @@ const collections = [
   "products",
   "redirects",
   "team",
+  "settings",
 ];
 
 function readData(name) {

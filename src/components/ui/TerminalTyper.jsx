@@ -1,44 +1,46 @@
 import { useState, useEffect } from "react";
 
-const parts = [
-  { text: ".\\arachnova-", color: "text-[#8131B2]" },
-  { text: "official-site", color: "text-[#0151EC]" },
-  { text: " > ", color: "text-[#1CA7BD]" },
-  { text: "npm run dev", color: "text-neutral-g" },
-];
+const prompt = ".\\arachnova-official-site > ";
+const cmd = "npm run dev";
+const full = prompt + cmd;
 
-const fullText = parts.map((p) => p.text).join("");
-
-export default function TerminalTyper({ speed = 50 }) {
-  const [chars, setChars] = useState(0);
-  const [done, setDone] = useState(false);
+export default function TerminalTyper({ speed = 50, startDelay = 0 }) {
+  const [phase, setPhase] = useState("waiting");
+  const [cmdChars, setCmdChars] = useState(0);
 
   useEffect(() => {
-    if (chars >= fullText.length) return setDone(true);
-    const t = setTimeout(() => setChars((v) => v + 1), speed);
+    if (phase !== "waiting") return;
+    const t = setTimeout(() => setPhase("prompt"), startDelay);
     return () => clearTimeout(t);
-  }, [chars, speed]);
+  }, [phase, startDelay]);
 
-  let consumed = 0;
-  const visible = [];
+  useEffect(() => {
+    if (phase !== "cmd") return;
+    if (cmdChars >= cmd.length) return;
+    const t = setTimeout(() => setCmdChars((v) => v + 1), speed);
+    return () => clearTimeout(t);
+  }, [phase, cmdChars, speed]);
 
-  for (const part of parts) {
-    const start = consumed;
-    const end = consumed + part.text.length;
-    consumed = end;
-    if (chars >= end) {
-      visible.push(<span key={start} className={part.color}>{part.text}</span>);
-    } else if (chars > start) {
-      visible.push(
-        <span key={start} className={part.color}>{part.text.slice(0, chars - start)}</span>
-      );
+  useEffect(() => {
+    if (phase === "prompt") {
+      const t = setTimeout(() => setPhase("cmd"), 400);
+      return () => clearTimeout(t);
     }
-  }
+  }, [phase]);
 
   return (
     <>
-      {visible}
-      {!done && (
+      {phase !== "waiting" && (
+        <>
+          <span className="text-[#8131B2]">{".\\arachnova-"}</span>
+          <span className="text-[#0151EC]">{"official-site"}</span>
+          <span className="text-[#1CA7BD]">{" > "}</span>
+        </>
+      )}
+      {phase === "cmd" && (
+        <span className="text-neutral-g">{cmd.slice(0, cmdChars)}</span>
+      )}
+      {phase === "cmd" && cmdChars < cmd.length && (
         <span className="w-[0.05em] h-[1.1em] bg-LightBlue-c animate-pulse inline-block align-text-bottom ml-[0.05em]" />
       )}
     </>

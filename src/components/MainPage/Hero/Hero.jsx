@@ -1,5 +1,5 @@
 import Image from "@/components/ui/Img";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import CodeTyper from "@/components/ui/CodeTyper";
@@ -7,6 +7,8 @@ import TerminalTyper from "@/components/ui/TerminalTyper";
 import WebPattern from "@/components/ui/WebPattern";
 
 export default function Hero() {
+  const [codeDone, setCodeDone] = useState(false);
+
   useEffect(() => {
     AOS.init({
       duration: 1500,
@@ -89,7 +91,7 @@ export default function Hero() {
               height={100}
             />
             <div className="flex gap-x-[0.1rem] pt-[1.0rem] whitespace-nowrap ml-[0.8rem]">
-              <TerminalTyper speed={60} />
+              <TerminalTyper speed={60} startDelay={300} />
             </div>
           </div>
           <div className="px-[1.0rem] py-[2.0rem] text-[1.05rem]/[1.15rem] relative">
@@ -101,7 +103,7 @@ export default function Hero() {
               width={100}
               height={100}
             />
-            <CodeTyper speed={70} className="min-h-[13.0rem]" />
+            <CodeTyper speed={70} className="min-h-[13.0rem]" onDone={() => setCodeDone(true)} />
           </div>
         </div>
       </div>
@@ -155,7 +157,7 @@ export default function Hero() {
               height={100}
             />
             <div className="flex items-center text-[2.6rem] gap-x-[0.06rem] pt-[5.0rem] whitespace-nowrap ml-[2.0rem]">
-              <TerminalTyper speed={80} />
+              <TerminalTyper speed={80} startDelay={300} />
             </div>
           </div>
           <div className="px-[1.0rem] py-[4.0rem] text-[3.0rem]/[4.0rem] relative ">
@@ -167,7 +169,7 @@ export default function Hero() {
               width={100}
               height={100}
             />
-            <CodeTyper speed={100} className="min-h-[40.0rem]" />
+            <CodeTyper speed={100} className="min-h-[40.0rem]" onDone={() => setCodeDone(true)} />
           </div>
         </div>
       </div>
