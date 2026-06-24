@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaArrowRight, FaArrowLeft, FaArrowRight as FaArrowRightIcon } from "react-icons/fa";
@@ -12,7 +12,9 @@ const defaultTypes = [
 export default function PortoSection({ projects, services }) {
   const [active, setActive] = useState("compro");
   const [projectIndex, setProjectIndex] = useState(0);
-  const trackRef = useRef(null);
+  const drag = useRef({ active: false, startX: 0, offset: 0, containerW: 1 });
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     AOS.init({ duration: 1500 });
@@ -29,35 +31,63 @@ export default function PortoSection({ projects, services }) {
   const totalInCategory = filtered.length;
   const currentProject = filtered[projectIndex] || filtered[0];
 
-  const nextProject = () => {
-    if (projectIndex >= totalInCategory - 1) return;
-    setProjectIndex((i) => i + 1);
-  };
-  const prevProject = () => {
-    if (projectIndex <= 0) return;
-    setProjectIndex((i) => i - 1);
+  const goNext = () => {
+    if (totalInCategory <= 1) return;
+    setProjectIndex((i) => (i >= totalInCategory - 1 ? 0 : i + 1));
   };
 
-  const touchStartX = useRef(0);
-  const touchStartY = useRef(0);
+  const goPrev = () => {
+    if (totalInCategory <= 1) return;
+    setProjectIndex((i) => (i <= 0 ? totalInCategory - 1 : i - 1));
+  };
 
-  const handleTouchStart = useCallback((e) => {
-    touchStartX.current = e.touches[0].clientX;
-    touchStartY.current = e.touches[0].clientY;
-  }, []);
+  const baseOffset = projectIndex * 100;
+  const pctPerPx = drag.current.containerW > 0 ? 100 / drag.current.containerW : 0;
+  const currentOffset = isDragging ? baseOffset - drag.current.offset * pctPerPx : baseOffset;
 
-  const handleTouchEnd = useCallback((e) => {
-    const dx = e.changedTouches[0].clientX - touchStartX.current;
-    const dy = e.changedTouches[0].clientY - touchStartY.current;
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-      if (dx < 0) nextProject();
-      else prevProject();
-    }
-  }, []);
+  const onTouchStart = (e) => {
+    const el = e.currentTarget;
+    const track = el.querySelector('[data-carousel-track]');
+    drag.current.active = true;
+    drag.current.startX = e.touches[0].clientX;
+    drag.current.offset = 0;
+    drag.current.containerW = track ? track.clientWidth : el.clientWidth || 1;
+    setIsDragging(true);
+    setDragOffset(0);
+  };
+
+  const onTouchMove = (e) => {
+    if (!drag.current.active) return;
+    e.preventDefault();
+    const dx = e.touches[0].clientX - drag.current.startX;
+    const maxDrag = drag.current.containerW * 0.45;
+    const clamped = Math.max(-maxDrag, Math.min(maxDrag, dx));
+    drag.current.offset = clamped;
+    setDragOffset(clamped);
+  };
+
+  const onTouchEnd = (e) => {
+    if (!drag.current.active) return;
+    drag.current.active = false;
+    const dx = e.changedTouches[0].clientX - drag.current.startX;
+    const threshold = drag.current.containerW * 0.2;
+    if (dx < -threshold) goNext();
+    else if (dx > threshold) goPrev();
+    setIsDragging(false);
+    drag.current.offset = 0;
+    setDragOffset(0);
+  };
 
   const switchCategory = (key) => {
     setActive(key);
     setProjectIndex(0);
+  };
+
+  const slideAttrs = {
+    onTouchStart,
+    onTouchMove,
+    onTouchEnd,
+    onMouseDown: (e) => e.preventDefault(),
   };
 
   return (
@@ -68,6 +98,7 @@ export default function PortoSection({ projects, services }) {
           to { transform: translateY(0); }
         }
         .phone-scroll-in { animation: scroll-up 0.5s ease-out; }
+        .no-select { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
       `}</style>
       {/* Desktop */}
       <div className="max-lg:hidden mx-auto w-[65rem]">
@@ -122,16 +153,19 @@ export default function PortoSection({ projects, services }) {
           {/* Right: Portfolio preview */}
           <div className="relative self-center">
             {currentProject && (
-              <div
-                className="bg-border p-[0.12rem] rounded-[0.5rem]"
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-              >
+              <div className="bg-border p-[0.12rem] rounded-[0.5rem] touch-none no-select" {...slideAttrs}>
                 <div className="relative bg-[#FBFCFD] shadow-md rounded-[0.5rem] overflow-hidden">
-                  <div ref={trackRef} className="flex transition-transform duration-400 ease-in-out" style={{ transform: `translateX(-${projectIndex * 100}%)` }}>
+                  <div
+                    data-carousel-track
+                    className="flex bg-[#FBFCFD]"
+                    style={{
+                      transform: `translateX(-${currentOffset}%)`,
+                      transition: isDragging ? "none" : "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                    }}
+                  >
                     {filtered.map((p, i) => (
-                      <div key={i} className="w-full flex-shrink-0">
-                        <div className="aspect-[16/10] w-full p-[0.5rem]">
+                      <div key={i} className="w-full flex-shrink-0 bg-[#FBFCFD]">
+                        <div className="aspect-[16/10] w-full p-[0.5rem] bg-[#FBFCFD]">
                           <img src={p.imageDesktop} alt="" className="w-full h-full object-cover rounded-md" draggable="false" />
                         </div>
                       </div>
@@ -139,16 +173,14 @@ export default function PortoSection({ projects, services }) {
                   </div>
                   {totalInCategory > 1 && (
                     <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-2 py-1 shadow-sm">
-                      <button onClick={prevProject} disabled={projectIndex === 0}
-                        className="text-gray-500 hover:text-LightBlue-c transition disabled:opacity-30 disabled:cursor-not-allowed">
+                      <button onClick={goPrev} className="text-gray-500 hover:text-LightBlue-c transition">
                         <FaArrowLeft size={11} />
                       </button>
                       {filtered.map((_, i) => (
                         <button key={i} onClick={() => setProjectIndex(i)}
                           className={`rounded-full transition-all ${i === projectIndex ? "bg-LightBlue-c w-[0.55rem] h-[0.55rem]" : "bg-gray-300 w-[0.35rem] h-[0.35rem]"}`} />
                       ))}
-                      <button onClick={nextProject} disabled={projectIndex >= totalInCategory - 1}
-                        className="text-gray-500 hover:text-LightBlue-c transition disabled:opacity-30 disabled:cursor-not-allowed">
+                      <button onClick={goNext} className="text-gray-500 hover:text-LightBlue-c transition">
                         <FaArrowRight size={11} />
                       </button>
                     </div>
@@ -156,7 +188,6 @@ export default function PortoSection({ projects, services }) {
                 </div>
               </div>
             )}
-            {/* Mobile mockup: vertical scroll on each nav */}
             {currentProject?.imageMobile && (
               <div className="bg-border absolute aspect-[303/514] z-[3] w-[12rem] p-[0.15rem] shadow-md rounded-xl -bottom-[3.1vh] -right-[2rem] flex flex-col">
                 <div className="relative w-full h-full bg-white rounded-xl overflow-hidden">
@@ -191,11 +222,14 @@ export default function PortoSection({ projects, services }) {
         </div>
 
         {currentProject && (
-          <div className="relative w-full" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+          <div className="relative w-full touch-none no-select" {...slideAttrs}>
             <div className="overflow-hidden rounded-[3vw] bg-border p-[0.5vw] shadow-md">
-              <div className="flex transition-transform duration-400 ease-in-out" style={{ transform: `translateX(-${projectIndex * 100}%)` }}>
+              <div data-carousel-track className="flex" style={{
+                transform: `translateX(-${currentOffset}%)`,
+                transition: isDragging ? "none" : "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+              }}>
                 {filtered.map((p, i) => (
-                  <div key={i} className="w-full flex-shrink-0">
+                  <div key={i} className="w-full flex-shrink-0 bg-[#FBFCFD]">
                     <div className="aspect-[390/228] bg-[#FBFCFD]">
                       <img src={p.imageDesktop} alt="" className="w-full h-full object-cover" draggable="false" />
                     </div>
@@ -212,11 +246,9 @@ export default function PortoSection({ projects, services }) {
                   ))}
                 </div>
                 <div className="flex justify-between mt-2">
-                  <button onClick={prevProject} disabled={projectIndex === 0}
-                    className="text-sm text-LightBlue-c disabled:opacity-30 disabled:cursor-not-allowed">← Prev</button>
+                  <button onClick={goPrev} className="text-sm text-LightBlue-c">← Prev</button>
                   <span className="text-xs text-gray-400">{projectIndex + 1}/{totalInCategory}</span>
-                  <button onClick={nextProject} disabled={projectIndex >= totalInCategory - 1}
-                    className="text-sm text-LightBlue-c disabled:opacity-30 disabled:cursor-not-allowed">Next →</button>
+                  <button onClick={goNext} className="text-sm text-LightBlue-c">Next →</button>
                 </div>
               </>
             )}
