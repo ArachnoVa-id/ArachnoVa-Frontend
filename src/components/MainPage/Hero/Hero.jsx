@@ -93,7 +93,7 @@ export default function Hero() {
                 width={100}
                 height={100}
               />
-              <div className="flex gap-x-[0.1rem] pt-[1.0rem] whitespace-nowrap ml-[0.8rem]">
+               <div className="flex gap-x-[0.1rem] pt-[1.0rem] whitespace-nowrap ml-[0.8rem] pr-[1.5rem]">
                 <TerminalTyper speed={60} startDelay={300} />
               </div>
             </div>
@@ -161,7 +161,7 @@ export default function Hero() {
                 width={100}
                 height={100}
               />
-              <div className="flex items-center text-[2.6rem] gap-x-[0.06rem] pt-[5.0rem] whitespace-nowrap ml-[2.0rem]">
+               <div className="flex items-center text-[2.6rem] gap-x-[0.06rem] pt-[5.0rem] whitespace-nowrap ml-[2.0rem] pr-[2rem]">
                 <TerminalTyper speed={80} startDelay={300} />
               </div>
             </div>

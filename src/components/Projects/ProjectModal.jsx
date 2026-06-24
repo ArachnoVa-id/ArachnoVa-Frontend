@@ -71,7 +71,16 @@ export default function ProjectModal({ project, onClose, originEl }) {
     };
     window.addEventListener("keydown", handleKey);
     document.body.style.overflow = "hidden";
-    return () => { window.removeEventListener("keydown", handleKey); document.body.style.overflow = ""; };
+
+    const autoAdvance = setInterval(() => {
+      if (desktopImages.length > 1) nextDesktop();
+    }, 4000);
+
+    return () => {
+      window.removeEventListener("keydown", handleKey);
+      document.body.style.overflow = "";
+      clearInterval(autoAdvance);
+    };
   }, [desktopIdx, mobileIdx]);
 
   if (!project) return null;
@@ -157,7 +166,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
                       <IoMdArrowBack size={16} />
                     </button>
                   )}
-                  <div className="bg-gray-100 rounded-xl overflow-hidden border border-border max-w-[280px] w-full">
+                  <div className="bg-gray-100 rounded-xl overflow-hidden border border-border max-w-[500px] w-full">
                     <img src={mobileImages[mobileIdx]} alt="" className="w-full h-auto" draggable="false" />
                   </div>
                   {mobileImages.length > 1 && (
