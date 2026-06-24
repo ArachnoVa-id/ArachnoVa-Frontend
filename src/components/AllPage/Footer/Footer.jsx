@@ -29,7 +29,7 @@ const Footer = () => {
 							</ul>
 						</div>
 						<div className="flex flex-row items-center justify-center">
-							<AiOutlineCopyright size="0.1125.59rem" className="text-neutral-a" />
+							<AiOutlineCopyright size="13px" className="text-neutral-a" />
 							<p className="font-InterSemibold text-neutral-a text-[0.5rem]">
 								2024 ArachnoVa. All Rights Reserved
 							</p>
@@ -45,7 +45,7 @@ const Footer = () => {
 					</ul>
 				</div>
 				<div className="lg:hidden flex flex-row items-center justify-center">
-					<AiOutlineCopyright size="4.223.2rem" className="text-neutral-a" />
+					<AiOutlineCopyright size="59px" className="text-neutral-a" />
 					<p className="font-InterSemibold text-neutral-a text-[0.67rem]">
 						2024 ArachnoVa. All Rights Reserved
 					</p>
@@ -57,19 +57,19 @@ const Footer = () => {
 					<div className="w-full lg:flex flex-row justify-between hidden">
 						<a href="https://www.linkedin.com/company/arachnova-id/">
 							<FaLinkedin
-								size="1.675.6rem"
+								size="23px"
 								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
 							/>
 						</a>
 						<a href="https://www.instagram.com/arachnova.id/">
 							<AiFillInstagram
-								size="1.675.6rem"
+								size="23px"
 								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
 							/>
 						</a>
 						<a href="https://wa.me/6287882832538">
 							<PiWhatsappLogoFill
-								size="1.675.6rem"
+								size="23px"
 								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
 							/>
 						</a>
@@ -77,19 +77,19 @@ const Footer = () => {
 					<div className="w-full lg:hidden flex flex-row justify-between items-center">
 						<a href="https://www.linkedin.com/company/arachnova-id/">
 							<FaLinkedin
-								size="6.334.8rem"
+								size="88px"
 								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
 							/>
 						</a>
 						<a href="https://www.instagram.com/arachnova.id/">
 							<AiFillInstagram
-								size="6.334.8rem"
+								size="88px"
 								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
 							/>
 						</a>
 						<a href="https://wa.me/6287882832538">
 							<PiWhatsappLogoFill
-								size="7.250.8rem"
+								size="101px"
 								className="text-neutral-a hover:text-neutral-d transition-all duration-500 ease-in-out"
 							/>
 						</a>
