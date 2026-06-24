@@ -78,9 +78,10 @@ export default function TeamSection({ members, projects }) {
                 {memberProjects.length > 0 && (
                   <div className="flex flex-wrap gap-1 mt-0.5">
                     {memberProjects.map((p) => (
-                      <span key={p.id} className="text-[10px] px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-500 border border-gray-200">
+                      <a key={p.id} href={`/projects?projectId=${p.id}`}
+                        className="text-[10px] px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-500 border border-gray-200 hover:bg-LightBlue-c hover:text-white hover:border-LightBlue-c transition-colors">
                         {p.title}
-                      </span>
+                      </a>
                     ))}
                   </div>
                 )}
@@ -124,7 +125,8 @@ export default function TeamSection({ members, projects }) {
               {memberProjects.length > 0 && (
                 <div className="flex flex-wrap gap-1 mt-1">
                   {memberProjects.map((p) => (
-                    <span key={p.id} className="text-[10px] px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-500 border border-gray-200">{p.title}</span>
+                    <a key={p.id} href={`/projects?projectId=${p.id}`}
+                      className="text-[10px] px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-500 border border-gray-200 hover:bg-LightBlue-c hover:text-white hover:border-LightBlue-c transition-colors">{p.title}</a>
                   ))}
                 </div>
               )}

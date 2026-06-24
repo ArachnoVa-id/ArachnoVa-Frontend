@@ -1,6 +1,7 @@
-import { useRef, useCallback, useState } from "react";
+import { useRef, useCallback, useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useCollection } from "@/context/DataContext";
+import { useLocation } from "react-router-dom";
 import MarqueeCarousel from "@/components/Projects/MarqueeCarousel";
 import ProjectCardGrid from "@/components/Projects/ProjectCardGrid";
 
@@ -18,6 +19,25 @@ export default function ProjectsPage() {
   const gridRef = useRef(null);
   const cardRefs = useRef({});
   const [autoOpenId, setAutoOpenId] = useState(null);
+  const location = useLocation();
+  const hasHandledQuery = useRef(false);
+
+  useEffect(() => {
+    if (hasHandledQuery.current) return;
+    const params = new URLSearchParams(location.search);
+    const pid = params.get("projectId");
+    if (pid) {
+      hasHandledQuery.current = true;
+      const id = Number(pid);
+      setTimeout(() => {
+        const el = cardRefs.current[id];
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "center" });
+          setTimeout(() => setAutoOpenId(id), 700);
+        }
+      }, 500);
+    }
+  }, [projects, location]);
 
   const imageData = shuffle(
     projects.flatMap((p) =>
