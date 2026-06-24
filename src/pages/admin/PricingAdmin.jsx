@@ -82,7 +82,7 @@ export default function PricingAdmin() {
                   <input value={plan.name} onChange={(e) => updatePlanField(pi, "name", e.target.value)}
                     className="w-full text-center font-semibold text-gray-900 bg-transparent border-none focus:outline-none" />
                   <button onClick={() => removePlan(pi)}
-                    className="absolute -top-2 -right-2 text-red-400 hover:text-red-600 bg-white rounded-full w-5 h-5 flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition hover:shadow-md">✕</button>
+                    className="absolute -top-3 -right-3 text-red-400 hover:text-red-600 bg-white rounded-full w-7 h-7 flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition hover:shadow-lg hover:scale-110 z-10"><FiTrash2 size={14} /></button>
                 </th>
               ))}
             </tr>
@@ -91,8 +91,8 @@ export default function PricingAdmin() {
               <th className="text-left px-4 py-2 text-xs font-medium text-gray-500 border-b border-r border-gray-200">Subtitle</th>
               {local.plans?.map((plan, pi) => (
                 <th key={pi} className="px-3 py-2 border-b border-r border-gray-200 text-center">
-                  <input value={plan.subtitle || ""} onChange={(e) => updatePlanField(pi, "subtitle", e.target.value)}
-                    placeholder="Plan description" className="w-full text-center text-xs border border-gray-200 rounded px-1 py-1 focus:outline-none" />
+                  <textarea value={plan.subtitle || ""} onChange={(e) => updatePlanField(pi, "subtitle", e.target.value)}
+                    placeholder="Plan description" rows={2} className="w-full text-center text-xs border border-gray-200 rounded px-1 py-1 focus:outline-none resize-none" />
                 </th>
               ))}
             </tr>
