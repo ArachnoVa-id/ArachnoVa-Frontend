@@ -150,9 +150,9 @@ export default function Hero() {
           </div>
         </a>
 
-        <div className="bg-white opacity-90 w-[80.0rem] h-[60.0rem] rounded-lg border-2 border-[#F1F5F9]  relative font-ConsolasRegular ">
+        <div className="bg-[#1E1E1E] w-[80.0rem] h-[60.0rem] rounded-lg relative font-ConsolasRegular overflow-hidden">
           {codeDone && (
-            <div className="absolute w-[60.0rem] h-[13.0rem]  bg-white opacity-90 rounded-md -bottom-[6.0rem] -right-[4.0rem] text-[3.0rem] border-2 border-border font-ConsolasBold  ">
+            <div className="absolute w-[60.0rem] h-[13.0rem] bg-[#252526] rounded-md -bottom-[6.0rem] -right-[4.0rem] text-[3.0rem] border-2 border-[#3C3C3C] font-ConsolasBold">
               <Image
                 alt=""
                 src="/image/Hero/3ColorButton.png"

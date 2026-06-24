@@ -38,7 +38,7 @@ export default function TerminalTyper({ speed = 50, startDelay = 0 }) {
         </>
       )}
       {phase === "cmd" && (
-        <span className="text-neutral-g">{cmd.slice(0, cmdChars)}</span>
+        <span className="text-[#D4D4D4]">{cmd.slice(0, cmdChars)}</span>
       )}
       {phase === "cmd" && cmdChars < cmd.length && (
         <span className="w-[0.05em] h-[1.1em] bg-LightBlue-c animate-pulse inline-block align-text-bottom ml-[0.05em]" />

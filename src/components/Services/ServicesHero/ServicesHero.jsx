@@ -9,8 +9,11 @@ import OptionButton from "./OptionButton";
 import { useState } from "react";
 import ServiceDetails from "./ServiceDetails";
 
+const productTagMap = { 1: "compro", 2: "erp", 3: "wa-apps" };
+
 const ServicesHero = () => {
   const [data] = useCollection("services");
+  const [projects] = useCollection("projects");
   const [state, setState] = useState(1);
   useEffect(() => {
     AOS.init({
@@ -101,15 +104,20 @@ const ServicesHero = () => {
             </div>
           </div>
 
-          {data?.map((data) => {
+          {data?.map((svc) => {
+            const tag = productTagMap[svc.key];
+            const imgs = projects
+              .filter((p) => p.product === tag)
+              .flatMap((p) => p.desktopImages || [])
+              .filter(Boolean);
             return (
               <ServiceDetails
-                key={data.key}
-                _key={data.key}
+                key={svc.key}
+                _key={svc.key}
                 selected={state}
-                title={data.title}
-                description={data.description}
-                image={data.images}
+                title={svc.title}
+                description={svc.description}
+                image={imgs}
               />
             );
           })}
