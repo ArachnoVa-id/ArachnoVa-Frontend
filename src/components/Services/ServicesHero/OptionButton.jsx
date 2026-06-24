@@ -12,12 +12,12 @@ const OptionButton = ({ _key, icon, text, selected }) => {
     <div
       className={`flex justify-start items-center bg-[#FAFDFF] 
                   ${bordercolor(_key, selected)}
-                  lg:min-w-[clamp(2.5rem,15.625vw,22.5rem)] lg:h-[clamp(0.75rem,4.688vw,6.75rem)] lg:p-[clamp(0.2rem,1.042vw,1.5rem)] lg:gap-[clamp(0.2rem,1.042vw,1.5rem)] lg:rounded-[clamp(0.2rem,0.781vw,1.12rem)] lg:border-[0.156vw] lg:shadow-[0px_0.469vw_1.042vw_-0.156vw_rgba(0,0,0,0.15)]
-                  min-w-0 h-auto p-[clamp(0.56rem,3.488vw,5.02rem)] rounded-[clamp(0.37rem,2.326vw,3.35rem)] border-[0.349vw] shadow-[0px_0.465vw_4.651vw_-0.698vw_rgba(0,0,0,0.15)]`}
+                  lg:min-w-[2.5rem] lg:h-[0.75rem] lg:p-[0.2rem] lg:gap-[0.2rem] lg:rounded-[0.2rem] lg:border-[3px] lg:shadow-[0px_9px_20px_-3px_rgba(0,0,0,0.15)]
+                  min-w-0 h-auto p-[0.56rem] rounded-[0.37rem] border-[7px] shadow-[0px_9px_89px_-13px_rgba(0,0,0,0.15)]`}
     >
       <div
-        className="lg:w-[clamp(0.42rem,2.604vw,3.75rem)]
-                   w-[clamp(1.45rem,9.07vw,13.06rem)]"
+        className="lg:w-[0.42rem]
+                   w-[1.45rem]"
       >
         <Image
           src={icon}
@@ -30,7 +30,7 @@ const OptionButton = ({ _key, icon, text, selected }) => {
       </div>
       <div
         className="font-SourceSansProBold text-neutral-g text-nowrap
-                   lg:text-[clamp(0.5rem,1.458vw,2.1rem)] lg:flex
+                   lg:text-[0.5rem] lg:flex
                    hidden"
       >
         {text}

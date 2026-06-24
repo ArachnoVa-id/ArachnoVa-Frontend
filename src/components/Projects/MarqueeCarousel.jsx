@@ -31,12 +31,12 @@ export default function MarqueeCarousel({ items, direction = "left", onItemClick
 
   return (
     <div className="overflow-hidden w-full">
-      <div ref={containerRef} className="flex gap-[clamp(0.2rem,0.5vw,0.72rem)] will-change-transform" style={{ width: "max-content" }}>
+      <div ref={containerRef} className="flex gap-[0.2rem] will-change-transform" style={{ width: "max-content" }}>
         {doubled.map((item, i) => (
           <div
             key={i}
             onClick={() => onItemClick?.(item.projectId)}
-            className="relative group flex-shrink-0 lg:w-[clamp(2.24rem,14.0vw,20.16rem)] w-[clamp(7.2rem,45.0vw,50rem)] aspect-[4/3] rounded-lg overflow-hidden border border-border shadow-sm cursor-pointer"
+            className="relative group flex-shrink-0 lg:w-[2.24rem] w-[7.2rem] aspect-[4/3] rounded-lg overflow-hidden border border-border shadow-sm cursor-pointer"
           >
             <img
               src={item.src}
