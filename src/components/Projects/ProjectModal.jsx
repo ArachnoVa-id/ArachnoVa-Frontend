@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { IoMdClose, IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 
 export default function ProjectModal({ project, onClose, originRect }) {
   const [desktopIdx, setDesktopIdx] = useState(0);
   const [mobileIdx, setMobileIdx] = useState(0);
-  const [animating, setAnimating] = useState(true);
-  const [closing, setClosing] = useState(false);
+  const [phase, setPhase] = useState("entering");
+  const contentRef = useRef(null);
 
   const desktopImages = project?.desktopImages?.filter(Boolean) || [project?.imageDesktop].filter(Boolean);
   const mobileImages = project?.mobileImages?.filter(Boolean) || [project?.imageMobile].filter(Boolean);
@@ -17,9 +17,22 @@ export default function ProjectModal({ project, onClose, originRect }) {
   const prevMobile = () => setMobileIdx((i) => (i > 0 ? i - 1 : mobileImages.length - 1));
   const nextMobile = () => setMobileIdx((i) => (i < mobileImages.length - 1 ? i + 1 : 0));
 
+  const calcTranslate = () => {
+    if (!originRect) return "0px, 0px";
+    const cx = originRect.left + originRect.width / 2;
+    const cy = originRect.top + originRect.height / 2;
+    return `${cx - window.innerWidth / 2}px, ${cy - window.innerHeight / 2}px`;
+  };
+
   useEffect(() => {
-    const timer = setTimeout(() => setAnimating(false), 50);
-    return () => clearTimeout(timer);
+    requestAnimationFrame(() => {
+      if (contentRef.current) {
+        contentRef.current.style.transition = "transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease";
+        contentRef.current.style.transform = "scale(1) translate(0, 0)";
+        contentRef.current.style.opacity = "1";
+      }
+    });
+    setPhase("open");
   }, []);
 
   useEffect(() => {
@@ -34,47 +47,31 @@ export default function ProjectModal({ project, onClose, originRect }) {
   }, [desktopIdx, mobileIdx]);
 
   const handleClose = () => {
-    setClosing(true);
+    setPhase("exiting");
+    if (contentRef.current) {
+      contentRef.current.style.transition = "transform 0.2s ease, opacity 0.2s ease";
+      contentRef.current.style.transform = `scale(0.3) translate(${calcTranslate()})`;
+      contentRef.current.style.opacity = "0";
+    }
     setTimeout(onClose, 200);
   };
 
   if (!project) return null;
 
-  const startX = originRect?.left || window.innerWidth / 2;
-  const startY = originRect?.top || window.innerHeight / 2;
-  const startW = originRect?.width || 0;
-  const startH = originRect?.height || 0;
-
   return (
     <div
       className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
       onClick={handleClose}
-      style={{
-        animation: closing ? "fadeOut 0.2s ease" : "fadeIn 0.2s ease",
-      }}
+      style={{ opacity: phase === "exiting" ? 0 : 1, transition: "opacity 0.2s ease" }}
     >
-      <style>{`
-        @keyframes modalIn {
-          0% { transform: scale(0.3) translate(${(startX + startW / 2) - window.innerWidth / 2}px, ${(startY + startH / 2) - window.innerHeight / 2}px); opacity: 0; }
-          100% { transform: scale(1) translate(0, 0); opacity: 1; }
-        }
-        @keyframes modalOut {
-          0% { transform: scale(1) translate(0, 0); opacity: 1; }
-          100% { transform: scale(0.3) translate(${(startX + startW / 2) - window.innerWidth / 2}px, ${(startY + startH / 2) - window.innerHeight / 2}px); opacity: 0; }
-        }
-        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
-        @keyframes fadeOut { 0% { opacity: 1; } 100% { opacity: 0; } }
-      `}</style>
       <div
+        ref={contentRef}
         className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
         style={{
-          animation: closing
-            ? "modalOut 0.25s ease forwards"
-            : animating
-            ? "modalIn 0.3s ease"
-            : "none",
-          transformOrigin: `${startX + startW / 2}px ${startY + startH / 2}px`,
+          transform: `scale(0.3) translate(${calcTranslate()})`,
+          opacity: 0,
+          transformOrigin: "center center",
         }}
       >
         <div className="flex items-center justify-between p-4 border-b border-border">
