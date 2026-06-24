@@ -19,15 +19,15 @@ const ServicesHero = () => {
   return (
     <section
       className="relative w-full lg:min-h-screen flex flex-col justify-center items-center bg-white-MainPage overflow-hidden
-                 lg:pb-[8.55rem]
-                 pb-[50rem]"
+                 lg:pb-[0.95rem]
+                 pb-[9.33rem]"
     >
       <div
         className="w-full
-                   lg:mt-[11.52rem]
-                   mt-[50rem] "
+                   lg:mt-[1.28rem]
+                   mt-[5.62rem] "
       >
-        <div className="absolute top-[6.15rem] w-full aspect-[1920/458] z-0 lg:flex hidden">
+        <div className="absolute top-[0.68rem] w-full aspect-[1920/458] z-0 lg:flex hidden">
           <Image
             src="/image/OurServices/ServicesHero/bg.png"
             alt="bg"
@@ -36,7 +36,7 @@ const ServicesHero = () => {
             className="object-contain"
           />
         </div>
-        <div className="absolute top-[25.06rem] w-full aspect-[430/195] z-0 lg:hidden">
+        <div className="absolute top-[2.78rem] w-full aspect-[430/195] z-0 lg:hidden">
           <Image
             src="/image/OurServices/ServicesHero/bg-mobile.png"
             alt="bg"
@@ -47,39 +47,39 @@ const ServicesHero = () => {
         </div>
         <div
           className="flex flex-col justify-center items-center
-	  			           lg:gap-[4.5rem]
-                     gap-[16.24rem]"
+	  			           lg:gap-[0.5rem]
+                     gap-[1.8rem]"
         >
           <div
             className="flex flex-col justify-center items-center
-                       lg:gap-[4.5rem]
-                       gap-[13.39rem]"
+                       lg:gap-[0.5rem]
+                       gap-[1.49rem]"
             data-aos="fade-down"
           >
             <div
               className="w-full flex flex-col justify-center items-center
                          lg:gap-0
-                         gap-[1.67rem]"
+                         gap-[0.2rem]"
             >
               <p
                 className="font-SourceSansProBold bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] from-[17.73%] to-[#84D4E1] to-[65.68%]
-                           lg:text-[2.25rem]
-                           text-[6.03rem]"
+                           lg:text-[0.5rem]
+                           text-[0.67rem]"
               >
                 What We Provide
               </p>
               <h1
                 className="font-SourceSansProBold text-neutral-g text-center
-                           lg:text-[3.45rem] lg:leading-[3.53rem] lg:w-auto
-                           text-[8rem] leading-[100%] w-[50rem]"
+                           lg:text-[0.5rem] lg:leading-[0.39rem] lg:w-auto
+                           text-[1.12rem] leading-[100%] w-[10.88rem]"
               >
                 Elevate Your Presence Online
               </h1>
             </div>
             <div
               className="flex
-				                 lg:gap-[4.5rem]
-                         gap-[13.39rem]"
+				                 lg:gap-[0.5rem]
+                         gap-[1.49rem]"
             >
               {data?.map((data) => {
                 return (
@@ -116,8 +116,8 @@ const ServicesHero = () => {
       </div>
       <div
         className="absolute bottom-0 w-full bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]
-                   lg:h-[0.07rem]
-                   h-[0.34rem]"
+                   lg:h-[0.2rem]
+                   h-[0.2rem]"
       ></div>
     </section>
   );

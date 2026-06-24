@@ -16,10 +16,10 @@ const FutureTouchPoints = () => {
   return (
     <>
       <div
-        className="relative w-[45.3rem] h-[45.15rem] lg:flex hidden flex-col justify-center items-center"
+        className="relative w-[5.03rem] h-[5.02rem] lg:flex hidden flex-col justify-center items-center"
         data-aos="fade-right"
       >
-        <div className="absolute w-[50rem] aspect-[1037/1070] z-[9] -right-[14.4rem] -top-[28.8rem]">
+        <div className="absolute w-[8.8rem] aspect-[1037/1070] z-[9] -right-[1.6rem] -top-[3.2rem]">
           <Image
             src="/image/OurMechs/bg-right.png"
             alt="bg"
@@ -36,7 +36,7 @@ const FutureTouchPoints = () => {
                 Kami bertanggung jawab terhadap problem yang muncul dalam
                 website{" "}
               </li>
-              <li className="mt-[0.58rem]">
+              <li className="mt-[0.2rem]">
                 Client berhak melaporkan bug apabila ditemukannya error atau
                 masalah pada website kami.
               </li>
@@ -47,13 +47,13 @@ const FutureTouchPoints = () => {
               <BsBugFill size="4px" className="text-[#1AB0C8]" />
             </>
           }
-          Position="absolute left-[5.25rem] top-0 z-[10]"
+          Position="absolute left-[0.58rem] top-0 z-[10]"
         />
         <Content
           Title="Upgrading"
           List={
             <>
-              <li className="mt-[1.15rem]">
+              <li className="mt-[0.2rem]">
                 Kami membuka kesempatan apabila Client menginginkan fitur
                 tambahan pada website
               </li>
@@ -62,26 +62,26 @@ const FutureTouchPoints = () => {
           Icon={
             <FaScrewdriverWrench size="4px" className="text-[#1AB0C8]" />
           }
-          Position="absolute top-[13.2rem] right-0 z-[20]"
+          Position="absolute top-[1.47rem] right-0 z-[20]"
           Variant="Left"
         />
         <Content
           Title="More Projects"
           List={
             <>
-              <li className="mt-[1.44rem]">
+              <li className="mt-[0.2rem]">
                 ArachnoVa selalu terbuka untuk kolaborasi dan project baru
                 selanjutnya
               </li>
             </>
           }
           Icon={<FaArchive size="4px" className="text-[#1AB0C8]" />}
-          Position="absolute right-[11.33rem] bottom-[0] z-[30]"
+          Position="absolute right-[1.26rem] bottom-[0] z-[30]"
         />
       </div>
 
       <div
-        className="w-fit h-[50rem] flex lg:hidden flex-col justify-between"
+        className="w-fit h-[23.0rem] flex lg:hidden flex-col justify-between"
         data-aos="fade-right"
       >
         <Content
@@ -92,7 +92,7 @@ const FutureTouchPoints = () => {
                 Kami bertanggung jawab terhadap problem yang muncul dalam
                 website{" "}
               </li>
-              <li className="mt-[0.58rem]">
+              <li className="mt-[0.2rem]">
                 Client berhak melaporkan bug apabila ditemukannya error atau
                 masalah pada website kami.
               </li>
@@ -100,7 +100,7 @@ const FutureTouchPoints = () => {
           }
           Icon={
             <>
-              <BsBugFill size="21px" className="text-[#1AB0C8]" />
+              <BsBugFill size="23px" className="text-[#1AB0C8]" />
             </>
           }
           Variant="Left"
@@ -109,27 +109,27 @@ const FutureTouchPoints = () => {
           Title="Upgrading"
           List={
             <>
-              <li className="mt-[1.15rem]">
+              <li className="mt-[0.2rem]">
                 Kami membuka kesempatan apabila Client menginginkan fitur
                 tambahan pada website
               </li>
             </>
           }
           Icon={
-            <FaScrewdriverWrench size="21px" className="text-[#1AB0C8]" />
+            <FaScrewdriverWrench size="23px" className="text-[#1AB0C8]" />
           }
         />
         <Content
           Title="More Projects"
           List={
             <>
-              <li className="mt-[1.15rem]">
+              <li className="mt-[0.2rem]">
                 ArachnoVa selalu terbuka untuk kolaborasi dan project baru
                 selanjutnya
               </li>
             </>
           }
-          Icon={<FaArchive size="21px" className="text-[#1AB0C8]" />}
+          Icon={<FaArchive size="23px" className="text-[#1AB0C8]" />}
           Variant="Left"
         />
       </div>

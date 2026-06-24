@@ -12,9 +12,9 @@ const Description = ({ Title, Description, Variant, href }) => {
 		return (
 			<a
 				href={href}
-				className="w-[50rem] aspect-[335/40] rounded-[2.68rem] flex lg:hidden items-center justify-center bg-gradient-to-br from-[#1AB0C8] to-[#179FB5] hover:translate-y-[-1px] transition-all duration-500 ease-in-out"
+				className="w-[12.47rem] aspect-[335/40] rounded-[0.3rem] flex lg:hidden items-center justify-center bg-gradient-to-br from-[#1AB0C8] to-[#179FB5] hover:translate-y-[-1px] transition-all duration-500 ease-in-out"
 			>
-				<p className="font-InterBold text-[4.69rem] text-neutral-a">
+				<p className="font-InterBold text-[0.52rem] text-neutral-a">
 					Learn More
 				</p>
 			</a>
@@ -24,13 +24,13 @@ const Description = ({ Title, Description, Variant, href }) => {
 	return (
 		<>
 			<div
-				className={`flex flex-col lg:w-[40.13rem] w-[50rem] ${VarianStyle} lg:gap-y-[0.75rem] gap-y-[4.69rem]`}
+				className={`flex flex-col lg:w-[4.46rem] w-[12.65rem] ${VarianStyle} lg:gap-y-[0.2rem] gap-y-[0.52rem]`}
 			>
-				<h2 className="font-SourceSansProBold lg:text-[2.63rem] text-[8rem] text-neutral-g">
+				<h2 className="font-SourceSansProBold lg:text-[0.5rem] text-[0.89rem] text-neutral-g">
 					{Title}
 				</h2>
 				<p
-					className={`font-SourceSansProSemibold lg:text-[1.5rem] text-[4.69rem] text-neutral-e ${paragraph}`}
+					className={`font-SourceSansProSemibold lg:text-[0.5rem] text-[0.52rem] text-neutral-e ${paragraph}`}
 				>
 					{Description}
 				</p>

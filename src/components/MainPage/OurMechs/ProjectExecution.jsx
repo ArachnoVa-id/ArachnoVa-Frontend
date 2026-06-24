@@ -16,10 +16,10 @@ const ProjectExecution = () => {
   return (
     <>
       <div
-        className="relative w-[45.3rem] h-[45.15rem] lg:flex hidden flex-col justify-center items-center"
+        className="relative w-[5.03rem] h-[5.02rem] lg:flex hidden flex-col justify-center items-center"
         data-aos="fade-right"
       >
-        <div className="absolute w-[50rem] aspect-[1037/1070] z-[9] -right-[14.4rem] -top-[28.8rem]">
+        <div className="absolute w-[8.8rem] aspect-[1037/1070] z-[9] -right-[1.6rem] -top-[3.2rem]">
           <Image
             src="/image/OurMechs/bg-right.png"
             alt="bg"
@@ -32,7 +32,7 @@ const ProjectExecution = () => {
           Title="Meeting"
           List={
             <>
-              <li className="mt-[1.44rem]">
+              <li className="mt-[0.2rem]">
                 Diadakan online meeting untuk interaksi yang mendetail antara
                 kedua belah pihak.
               </li>
@@ -49,41 +49,41 @@ const ProjectExecution = () => {
           Title="Aggrement"
           List={
             <>
-              <li className="mt-[0.72rem]">
+              <li className="mt-[0.2rem]">
                 Melakukan diskusi dan pertimbangan dalam projects
               </li>
-              <li className="mt-[0.58rem]">
+              <li className="mt-[0.2rem]">
                 Apabila mencapai kesepakatan, client dan PM akan menandatangani
                 MoU.
               </li>
             </>
           }
           Icon={<IoIosArchive size="4px" className="text-[#1AB0C8]" />}
-          Position="absolute top-[10.95rem] -left-[2.17rem] z-[20]"
+          Position="absolute top-[1.22rem] -left-[0.24rem] z-[20]"
           Variant="Left"
         />
         <Content
           Title="Production"
           List={
             <>
-              <li className="mt-[0.72rem]">
+              <li className="mt-[0.2rem]">
                 Saat proses pengerjaan, PM akan mengupdate progress dari project
                 secara berkala.
               </li>
-              <li className="mt-[0.58rem]">
+              <li className="mt-[0.2rem]">
                 Client juga berhak melakukan follow up terbaru dalam grup chat
                 yang dibentuk
               </li>
             </>
           }
           Icon={<IoSettings size="5px" className="text-[#1AB0C8]" />}
-          Position="absolute right-[2.92rem] bottom-[3.75rem] z-[30]"
+          Position="absolute right-[0.32rem] bottom-[0.42rem] z-[30]"
         />
       </div>
 
-      <div className="w-fit h-[50rem] flex lg:hidden flex-col justify-between" data-aos="fade-right">
+      <div className="w-fit h-[23.0rem] flex lg:hidden flex-col justify-between" data-aos="fade-right">
         <div
-          className="absolute w-[50rem] aspect-[1037/1070] z-[9] right-[0.7rem]"
+          className="absolute w-[6.4rem] aspect-[1037/1070] z-[9] right-[0.2rem]"
         >
           <Image
             src="/image/OurMechs/bg-right.png"
@@ -97,7 +97,7 @@ const ProjectExecution = () => {
           Title="Meeting"
           List={
             <>
-              <li className="mt-[4.32rem]">
+              <li className="mt-[0.48rem]">
                 Diadakan online meeting untuk interaksi yang mendetail antara
                 kedua belah pihak.
               </li>
@@ -105,7 +105,7 @@ const ProjectExecution = () => {
           }
           Icon={
             <>
-              <IoIosPeople size="29px" className="text-[#1AB0C8]" />
+              <IoIosPeople size="32px" className="text-[#1AB0C8]" />
             </>
           }
           Variant="Left"
@@ -114,32 +114,32 @@ const ProjectExecution = () => {
           Title="Aggrement"
           List={
             <>
-              <li className="mt-[0.72rem]">
+              <li className="mt-[0.2rem]">
                 Melakukan diskusi dan pertimbangan dalam projects
               </li>
-              <li className="mt-[1.01rem]">
+              <li className="mt-[0.2rem]">
                 Apabila mencapai kesepakatan, client dan PM akan menandatangani
                 MoU.
               </li>
             </>
           }
-          Icon={<IoIosArchive size="22px" className="text-[#1AB0C8]" />}
+          Icon={<IoIosArchive size="24px" className="text-[#1AB0C8]" />}
         />
         <Content
           Title="Production"
           List={
             <>
-             <li className="mt-[0.72rem]">
+             <li className="mt-[0.2rem]">
                 Saat proses pengerjaan, PM akan mengupdate progress dari project
                 secara berkala.
               </li>
-              <li className="mt-[0.58rem]">
+              <li className="mt-[0.2rem]">
                 Client juga berhak melakukan follow up terbaru dalam grup chat
                 yang dibentuk
               </li>
             </>
           }
-          Icon={<IoSettings size="21px" className="text-[#1AB0C8]" />}
+          Icon={<IoSettings size="23px" className="text-[#1AB0C8]" />}
           Variant="Left"
         />
       </div>

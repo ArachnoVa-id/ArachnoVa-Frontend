@@ -17,10 +17,10 @@ const FirstTouchPoint = () => {
   return (
     <>
       <div
-        className="relative w-[45.3rem] h-[45.15rem] lg:flex hidden flex-col justify-center items-center"
+        className="relative w-[5.03rem] h-[5.02rem] lg:flex hidden flex-col justify-center items-center"
         data-aos="fade-left"
       >
-        <div className="absolute w-[50rem] aspect-[1037/1070] z-[9] -right-[14.4rem] -top-[28.8rem]">
+        <div className="absolute w-[8.8rem] aspect-[1037/1070] z-[9] -right-[1.6rem] -top-[3.2rem]">
           <Image
             src="/image/OurMechs/bg-right.png"
             alt="bg"
@@ -33,7 +33,7 @@ const FirstTouchPoint = () => {
           Title="Contact Us"
           List={
             <>
-              <li className="pb-[0.29rem]">
+              <li className="pb-[0.2rem]">
                 Client menghubungi admin melalui DM Instagram maupun Whatsapp
                 atau Email yang tertera{" "}
               </li>
@@ -54,7 +54,7 @@ const FirstTouchPoint = () => {
           Title="Consultation"
           List={
             <>
-              <li className="pb-[0.58rem]">
+              <li className="pb-[0.2rem]">
                 Admin akan menanyakan keperluan mendasar dan saran yang sesuai
                 dengan kebutuhan client.
               </li>
@@ -65,37 +65,37 @@ const FirstTouchPoint = () => {
             </>
           }
           Icon={<IoChatbubbles size="4px" className="text-[#1AB0C8]" />}
-          Position="absolute top-[13.8rem] left-[18.97rem] z-[20]"
+          Position="absolute top-[1.53rem] left-[2.11rem] z-[20]"
           Variant="Left"
         />
         <Content
           Title="Pre-Execution"
           List={
             <>
-              <li className="mt-[2.59rem]">
+              <li className="mt-[0.29rem]">
                 Apabila berkeinginan untuk mempertimbangkan langkah yang lebih
                 lanjut, admin dan client dapat menjadwalkan online meeting.{" "}
               </li>
             </>
           }
           Icon={<IoFolder size="4px" className="text-[#1AB0C8]" />}
-          Position="absolute left-[4.28rem] bottom-0 z-[30]"
+          Position="absolute left-[0.48rem] bottom-0 z-[30]"
         />
       </div>
       {/* Mobile Version */}
       <div
-        className="relative w-fit h-[50rem] flex lg:hidden flex-col justify-between "
+        className="relative w-fit h-[23.0rem] flex lg:hidden flex-col justify-between "
         data-aos="fade-left"
       >
         <Content
           Title="Contact Us"
           List={
             <>
-              <li className="text-[4.32rem] mb-[2.16rem]">
+              <li className="text-[0.5rem] mb-[0.24rem]">
                 Client menghubungi admin melalui DM Instagram maupun Whatsapp
                 atau Email yang tertera{" "}
               </li>
-              <li className="text-[4.32rem]">
+              <li className="text-[0.5rem]">
                 Client dapat menanyakan terlebih dahulu hal yang ingin di
                 diskusikan sebelum memesan.
               </li>
@@ -103,7 +103,7 @@ const FirstTouchPoint = () => {
           }
           Icon={
             <>
-              <IoCall size="16px" className="text-[#1AB0C8]" />
+              <IoCall size="18px" className="text-[#1AB0C8]" />
             </>
           }
         />
@@ -111,7 +111,7 @@ const FirstTouchPoint = () => {
           Title="Consultation"
           List={
             <>
-              <li className="pb-[1.15rem]">
+              <li className="pb-[0.2rem]">
                 Admin akan menanyakan keperluan mendasar dan saran yang sesuai
                 dengan kebutuhan client.
               </li>
@@ -121,20 +121,20 @@ const FirstTouchPoint = () => {
               </li>
             </>
           }
-          Icon={<IoChatbubbles size="16px" className="text-[#1AB0C8]" />}
+          Icon={<IoChatbubbles size="18px" className="text-[#1AB0C8]" />}
           Variant="Left"
         />
         <Content
           Title="Pre-Execution"
           List={
             <>
-             <li className="mt-[2.59rem] text-[5.04rem]">
+             <li className="mt-[0.29rem] text-[0.56rem]">
                 Apabila berkeinginan untuk mempertimbangkan langkah yang lebih
                 lanjut, admin dan client dapat menjadwalkan online meeting.{" "}
               </li>
             </>
           }
-          Icon={<IoFolder size="16px" className="text-[#1AB0C8]" />}
+          Icon={<IoFolder size="18px" className="text-[#1AB0C8]" />}
         />
       </div>
     </>

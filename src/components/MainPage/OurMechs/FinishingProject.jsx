@@ -16,10 +16,10 @@ const FinishingProject = () => {
   return (
     <>
       <div
-        className="relative w-[45.3rem] h-[45.15rem] lg:flex hidden flex-col justify-center items-center"
+        className="relative w-[5.03rem] h-[5.02rem] lg:flex hidden flex-col justify-center items-center"
         data-aos="fade-left"
       >
-        <div className="absolute w-[50rem] aspect-[1037/1070] z-[9] -right-[14.4rem] -top-[28.8rem]">
+        <div className="absolute w-[8.8rem] aspect-[1037/1070] z-[9] -right-[1.6rem] -top-[3.2rem]">
           <Image
             src="/image/OurMechs/bg-right.png"
             alt="bg"
@@ -32,7 +32,7 @@ const FinishingProject = () => {
           Title="Deployment"
           List={
             <>
-              <li className="mt-[0.86rem]">
+              <li className="mt-[0.2rem]">
                 Sebelum melakukan deployment, akan dilakukan online meet untuk
                 proses penyelesaian kesepakatan.{" "}
               </li>
@@ -46,7 +46,7 @@ const FinishingProject = () => {
               />
             </>
           }
-          Position="absolute left-[10.12rem] top-0 z-[10]"
+          Position="absolute left-[1.12rem] top-0 z-[10]"
         />
         <Content
           Title="Handover"
@@ -55,14 +55,14 @@ const FinishingProject = () => {
               <li>
                 Panduan singkat kepada client untuk prosedur pengelolaan website
               </li>
-              <li className="mt-[0.58rem]">
+              <li className="mt-[0.2rem]">
                 Memberikan pemahaman yang jelas kepada client dalam pengelolaan
                 teknis yang diperlukan.
               </li>
             </>
           }
           Icon={<BsBoxFill size="4px" className="text-[#1AB0C8]" />}
-          Position="absolute top-[14.55rem] -left-[1.05rem] z-[20]"
+          Position="absolute top-[1.62rem] -left-[0.2rem] z-[20]"
           Variant="Left"
         />
         <Content
@@ -74,7 +74,7 @@ const FinishingProject = () => {
                 Pemeliharan website yang bersifat teknis masih menjadi tanggung
                 jawab kami
               </li>
-              <li className="mt-[0.58rem]">
+              <li className="mt-[0.2rem]">
                 {" "}
                 Client dapat menghubungi kami apabila memiliki problem
                 yang terjadi dari website kami
@@ -82,19 +82,19 @@ const FinishingProject = () => {
             </>
           }
           Icon={<FaLaptopCode size="4px" className="text-[#1AB0C8]" />}
-          Position="absolute right-[2.92rem] bottom-[1.88rem] z-[30]"
+          Position="absolute right-[0.32rem] bottom-[0.21rem] z-[30]"
         />
       </div>
 
       <div
-        className="w-fit h-[50rem] flex lg:hidden flex-col justify-between"
+        className="w-fit h-[23.0rem] flex lg:hidden flex-col justify-between"
         data-aos="fade-left"
       >
         <Content
           Title="Deployment"
           List={
             <>
-              <li className="mt-[0.86rem]">
+              <li className="mt-[0.2rem]">
                 Sebelum melakukan deployment, akan dilakukan online meet untuk
                 proses penyelesaian kesepakatan.{" "}
               </li>
@@ -103,7 +103,7 @@ const FinishingProject = () => {
           Icon={
             <>
               <BsFillCloudArrowUpFill
-                size="19px"
+                size="21px"
                 className="text-[#1AB0C8]"
               />
             </>
@@ -116,13 +116,13 @@ const FinishingProject = () => {
               <li>
                 Panduan singkat kepada client untuk prosedur pengelolaan website
               </li>
-              <li className="mt-[0.58rem]">
+              <li className="mt-[0.2rem]">
                 Memberikan pemahaman yang jelas kepada client dalam pengelolaan
                 teknis yang diperlukan.
               </li>
             </>
           }
-          Icon={<BsBoxFill size="21px" className="text-[#1AB0C8]" />}
+          Icon={<BsBoxFill size="23px" className="text-[#1AB0C8]" />}
           Variant="Left"
         />
         <Content
@@ -134,14 +134,14 @@ const FinishingProject = () => {
                 Pemeliharan website yang bersifat teknis masih menjadi tanggung
                 jawab kami
               </li>
-              <li className="mt-[0.58rem]">
+              <li className="mt-[0.2rem]">
                 {" "}
                 Client dapat menghubungi kami apabila memiliki problem
                 yang terjadi dari website kami
               </li>
             </>
           }
-          Icon={<FaLaptopCode size="21px" className="text-[#1AB0C8]" />}
+          Icon={<FaLaptopCode size="23px" className="text-[#1AB0C8]" />}
         />
       </div>
     </>

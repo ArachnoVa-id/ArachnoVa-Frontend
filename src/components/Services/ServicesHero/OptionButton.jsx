@@ -12,12 +12,12 @@ const OptionButton = ({ _key, icon, text, selected }) => {
     <div
       className={`flex justify-start items-center bg-[#FAFDFF] 
                   ${bordercolor(_key, selected)}
-                  lg:min-w-[22.5rem] lg:h-[6.75rem] lg:p-[1.5rem] lg:gap-[1.5rem] lg:rounded-[1.12rem] lg:border-[0.037rem] lg:shadow-[0px_2px_4px_-1px_rgba(0,0,0,0.15)]
-                  min-w-0 h-auto p-[5.02rem] rounded-[3.35rem] border-[0.082rem] shadow-[0px_2px_17px_-3px_rgba(0,0,0,0.15)]`}
+                  lg:min-w-[2.5rem] lg:h-[0.75rem] lg:p-[0.2rem] lg:gap-[0.2rem] lg:rounded-[0.2rem] lg:border-[0.041rem] lg:shadow-[0px_2px_4px_-1px_rgba(0,0,0,0.15)]
+                  min-w-0 h-auto p-[0.56rem] rounded-[0.37rem] border-[0.09rem] shadow-[0px_2px_20px_-3px_rgba(0,0,0,0.15)]`}
     >
       <div
-        className="lg:w-[3.75rem]
-                   w-[13.06rem]"
+        className="lg:w-[0.42rem]
+                   w-[1.45rem]"
       >
         <Image
           src={icon}
@@ -30,7 +30,7 @@ const OptionButton = ({ _key, icon, text, selected }) => {
       </div>
       <div
         className="font-SourceSansProBold text-neutral-g text-nowrap
-                   lg:text-[2.1rem] lg:flex
+                   lg:text-[0.5rem] lg:flex
                    hidden"
       >
         {text}
