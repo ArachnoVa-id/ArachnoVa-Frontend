@@ -1,13 +1,14 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useData } from "@/context/DataContext";
+import { FiGrid, FiFolder, FiServer, FiShuffle, FiUsers, FiSliders } from "react-icons/fi";
 
 const navItems = [
-  { to: "/admin", label: "Dashboard", icon: "📊", end: true },
-  { to: "/admin/projects", label: "Projects", icon: "📁" },
-  { to: "/admin/pricing", label: "Services", icon: "⚙️" },
-  { to: "/admin/redirects", label: "Redirects", icon: "🔀" },
-  { to: "/admin/team", label: "Team", icon: "👥" },
-  { to: "/admin/settings", label: "Settings", icon: "⚡" },
+  { to: "/admin", label: "Dashboard", icon: FiGrid, end: true },
+  { to: "/admin/projects", label: "Projects", icon: FiFolder },
+  { to: "/admin/pricing", label: "Services", icon: FiServer },
+  { to: "/admin/redirects", label: "Redirects", icon: FiShuffle },
+  { to: "/admin/team", label: "Team", icon: FiUsers },
+  { to: "/admin/settings", label: "Settings", icon: FiSliders },
 ];
 
 export default function AdminLayout() {
@@ -42,7 +43,7 @@ export default function AdminLayout() {
                     }`
                   }
                 >
-                  <span className="text-lg leading-none">{item.icon}</span>
+                  <item.icon size={16} />
                   <span className="mt-0.5 whitespace-nowrap">{item.label}</span>
                 </NavLink>
               ))}

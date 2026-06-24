@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useCollection } from "@/context/DataContext";
+import { FiTrash2 } from "react-icons/fi";
 
 export default function PricingAdmin() {
   const [pricing, setPricing] = useCollection("pricing");
