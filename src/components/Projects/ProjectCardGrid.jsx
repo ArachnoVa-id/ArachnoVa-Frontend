@@ -15,16 +15,14 @@ export default function ProjectCardGrid({ projects, autoOpenId, onAutoOpenDone, 
 
   useEffect(() => {
     if (autoOpenId && cardRefs.current[autoOpenId]) {
-      const rect = cardRefs.current[autoOpenId].getBoundingClientRect();
-      setOriginRect(rect);
+      setOriginRect(cardRefs.current[autoOpenId]);
       setSelected(projects.find((p) => p.id === autoOpenId));
       onAutoOpenDone?.();
     }
   }, [autoOpenId, projects]);
 
   const openProject = (project, e) => {
-    const rect = e?.currentTarget?.getBoundingClientRect?.();
-    if (rect) setOriginRect(rect);
+    if (e?.currentTarget) setOriginRect(e.currentTarget);
     setSelected(project);
   };
 
@@ -78,7 +76,7 @@ export default function ProjectCardGrid({ projects, autoOpenId, onAutoOpenDone, 
       {selected && (
         <ProjectModal
           project={selected}
-          originRect={originRect}
+          originEl={originRect}
           onClose={() => { setSelected(null); setOriginRect(null); }}
         />
       )}

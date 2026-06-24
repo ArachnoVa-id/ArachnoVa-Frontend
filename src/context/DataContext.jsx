@@ -29,15 +29,16 @@ export function DataProvider({ children }) {
   const [auth, setAuth] = useState(() => sessionStorage.getItem("cms_auth") === "true");
 
   const fetchAll = useCallback(async () => {
+    setLoading(true);
     try {
       const res = await fetch(`${API_BASE}/api/all`);
-      console.log("CMS API response status:", res.status);
       if (!res.ok) throw new Error(`API unavailable (${res.status})`);
       const json = await res.json();
-      console.log("CMS API projects count:", json?.projects?.length);
       setData((prev) => ({ ...prev, ...json }));
     } catch (e) {
       console.warn("CMS API unavailable, using default data:", e.message);
+      setTimeout(fetchAll, 3000);
+      return;
     } finally {
       setLoading(false);
     }

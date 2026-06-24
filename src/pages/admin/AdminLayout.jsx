@@ -10,7 +10,7 @@ const navItems = [
 ];
 
 export default function AdminLayout() {
-  const { auth, logout } = useData();
+  const { auth, logout, loading } = useData();
   const navigate = useNavigate();
 
   if (!auth) {
@@ -23,12 +23,10 @@ export default function AdminLayout() {
       <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
-            {/* Left: brand */}
             <div className="flex items-center gap-3">
               <h1 className="font-bold text-base text-gray-900">CMS Admin</h1>
             </div>
 
-            {/* Center: nav icons */}
             <nav className="flex items-center gap-1">
               {navItems.map((item) => (
                 <NavLink
@@ -49,7 +47,6 @@ export default function AdminLayout() {
               ))}
             </nav>
 
-            {/* Right: logout */}
             <button
               onClick={() => { logout(); navigate("/admin/login"); }}
               className="text-xs text-red-500 hover:text-red-700 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-colors font-medium"
@@ -61,7 +58,13 @@ export default function AdminLayout() {
       </header>
 
       <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
-        <Outlet />
+        {loading ? (
+          <div className="flex items-center justify-center h-64">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
+          </div>
+        ) : (
+          <Outlet />
+        )}
       </main>
     </div>
   );

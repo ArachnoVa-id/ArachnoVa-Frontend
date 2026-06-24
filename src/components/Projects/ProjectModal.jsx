@@ -1,11 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { IoMdClose, IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 
-export default function ProjectModal({ project, onClose, originRect }) {
+export default function ProjectModal({ project, onClose, originEl }) {
   const [desktopIdx, setDesktopIdx] = useState(0);
   const [mobileIdx, setMobileIdx] = useState(0);
   const [phase, setPhase] = useState("start");
   const cardRef = useRef(null);
+  const originRect = useRef(null);
+
+  if (!originRect.current && originEl) {
+    originRect.current = originEl.getBoundingClientRect();
+  }
 
   const desktopImages = project?.desktopImages?.filter(Boolean) || [project?.imageDesktop].filter(Boolean);
   const mobileImages = project?.mobileImages?.filter(Boolean) || [project?.imageMobile].filter(Boolean);
@@ -18,7 +23,7 @@ export default function ProjectModal({ project, onClose, originRect }) {
   const nextMobile = () => setMobileIdx((i) => (i < mobileImages.length - 1 ? i + 1 : 0));
 
   useEffect(() => {
-    if (!originRect) { setPhase("open"); return; }
+    if (!originRect.current) { setPhase("open"); return; }
     const maxW = Math.min(window.innerWidth * 0.9, 1024);
     const finalLeft = (window.innerWidth - maxW) / 2;
     const finalTop = Math.max(window.innerHeight * 0.05, 20);
@@ -26,10 +31,10 @@ export default function ProjectModal({ project, onClose, originRect }) {
 
     requestAnimationFrame(() => {
       if (!cardRef.current) return;
-      cardRef.current.style.top = originRect.top + "px";
-      cardRef.current.style.left = originRect.left + "px";
-      cardRef.current.style.width = originRect.width + "px";
-      cardRef.current.style.height = originRect.height + "px";
+      cardRef.current.style.top = originRect.current.top + "px";
+      cardRef.current.style.left = originRect.current.left + "px";
+      cardRef.current.style.width = originRect.current.width + "px";
+      cardRef.current.style.height = originRect.current.height + "px";
       cardRef.current.style.borderRadius = "12px";
 
       requestAnimationFrame(() => {
@@ -46,12 +51,12 @@ export default function ProjectModal({ project, onClose, originRect }) {
   }, []);
 
   const handleClose = () => {
-    if (cardRef.current && originRect) {
+    if (cardRef.current && originRect.current) {
       cardRef.current.style.transition = "all 0.2s ease, border-radius 0.2s ease";
-      cardRef.current.style.top = originRect.top + "px";
-      cardRef.current.style.left = originRect.left + "px";
-      cardRef.current.style.width = originRect.width + "px";
-      cardRef.current.style.height = originRect.height + "px";
+      cardRef.current.style.top = originRect.current.top + "px";
+      cardRef.current.style.left = originRect.current.left + "px";
+      cardRef.current.style.width = originRect.current.width + "px";
+      cardRef.current.style.height = originRect.current.height + "px";
       cardRef.current.style.borderRadius = "12px";
       setPhase("exiting");
     }
@@ -74,10 +79,10 @@ export default function ProjectModal({ project, onClose, originRect }) {
   const startStyle = originRect ? {
     position: "fixed",
     zIndex: 200,
-    top: originRect.top + "px",
-    left: originRect.left + "px",
-    width: originRect.width + "px",
-    height: originRect.height + "px",
+    top: originRect.current.top + "px",
+    left: originRect.current.left + "px",
+    width: originRect.current.width + "px",
+    height: originRect.current.height + "px",
     borderRadius: "12px",
     overflow: "hidden",
     background: "white",
