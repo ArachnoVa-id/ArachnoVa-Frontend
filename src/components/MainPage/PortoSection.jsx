@@ -64,8 +64,8 @@ export default function PortoSection({ projects, services }) {
     <section className="w-full bg-white-MainPage lg:py-[5vw] py-[13.953vw] overflow-hidden">
       <style>{`
         @keyframes scroll-up {
-          from { transform: translateY(25%); opacity: 0; }
-          to { transform: translateY(0); opacity: 1; }
+          from { transform: translateY(25%); }
+          to { transform: translateY(0); }
         }
         .phone-scroll-in { animation: scroll-up 0.5s ease-out; }
       `}</style>
@@ -156,10 +156,10 @@ export default function PortoSection({ projects, services }) {
                 </div>
               </div>
             )}
-            {/* Mobile mockup: vertical scroll on each nav + fade if no image */}
-            <div className={`bg-border absolute aspect-[303/514] z-[3] w-[12rem] p-[0.15rem] shadow-md rounded-xl -bottom-[3.1vh] -right-[2rem] flex flex-col transition-all duration-500 ${currentProject?.imageMobile ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-              <div className="relative w-full h-full bg-white rounded-xl overflow-hidden">
-                {currentProject?.imageMobile ? (
+            {/* Mobile mockup: vertical scroll on each nav */}
+            {currentProject?.imageMobile && (
+              <div className="bg-border absolute aspect-[303/514] z-[3] w-[12rem] p-[0.15rem] shadow-md rounded-xl -bottom-[3.1vh] -right-[2rem] flex flex-col">
+                <div className="relative w-full h-full bg-white rounded-xl overflow-hidden">
                   <img
                     key={projectIndex}
                     src={currentProject.imageMobile}
@@ -167,9 +167,9 @@ export default function PortoSection({ projects, services }) {
                     className="w-full phone-scroll-in"
                     draggable="false"
                   />
-                ) : null}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
