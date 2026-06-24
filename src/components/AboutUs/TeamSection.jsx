@@ -25,9 +25,9 @@ export default function TeamSection({ members }) {
         </h2>
       </div>
 
-      <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8 items-center justify-center">
+      <div className="hidden md:flex flex-wrap justify-center gap-8">
         {members.map((member, i) => (
-          <article key={i} className="flex flex-col gap-4 group">
+          <article key={i} className="flex flex-col gap-4 group w-72">
             <figure className="relative overflow-hidden rounded-2xl border border-gray-200/80 bg-gray-50 shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:border-purple-200">
               {member.image ? (
                 <img alt={member.name} src={member.image}
