@@ -18,8 +18,11 @@ export default function ProjectsPage() {
   const allImages = shuffle(
     projects.flatMap((p) => [...(p.desktopImages || [])]).filter(Boolean)
   );
-
   const rowCount = 6;
+  const chunkSize = Math.ceil(allImages.length / rowCount);
+  const imageChunks = Array.from({ length: rowCount }, (_, i) =>
+    allImages.slice(i * chunkSize, (i + 1) * chunkSize)
+  );
 
   return (
     <>
@@ -54,10 +57,10 @@ export default function ProjectsPage() {
         </div>
 
         <div className="flex flex-col gap-[clamp(0.2rem,0.15vw,0.22rem)] relative z-[5]">
-          {Array.from({ length: rowCount }).map((_, i) => (
+          {imageChunks.map((chunk, i) => (
             <MarqueeCarousel
               key={i}
-              images={allImages}
+              images={chunk}
               direction={i % 2 === 0 ? "left" : "right"}
             />
           ))}
