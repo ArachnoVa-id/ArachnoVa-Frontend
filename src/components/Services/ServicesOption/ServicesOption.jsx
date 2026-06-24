@@ -50,7 +50,7 @@ export default function ServicesOption({ data }) {
           <div data-aos="fade-up" className="flex bg-[#FAFDFF] border-[#E2E8F0] lg:border-[0.156vw] lg:rounded-[clamp(0.2rem,1.042vw,1.5rem)] lg:shadow-[0_0.573vw_1.042vw_-0.521vw_rgba(0,0,0,0.25)] border-[0.465vw] rounded-[clamp(0.6rem,3.721vw,5.36rem)] shadow-[0_1.395vw_4.651vw_-2.326vw_rgba(0,0,0,0.15)]">
             {/* Feature labels column */}
             <div className="flex flex-col border-[#E2E8F0] lg:border-r-[0.052vw] lg:w-[clamp(3.0rem,18.75vw,27.0rem)] border-r-[0.233vw] w-[clamp(4.91rem,30.698vw,44.21rem)]">
-              <div className="flex flex-col justify-center items-start border-[#E2E8F0] lg:border-b-[0.052vw] lg:h-[clamp(1.88rem,11.719vw,16.88rem)] lg:p-[clamp(0.27rem,1.667vw,2.4rem)] lg:gap-[clamp(0.2rem,0.625vw,0.9rem)] border-b-[0.233vw] h-[clamp(9.67rem,60.465vw,50rem)] p-[clamp(0.74rem,4.651vw,6.7rem)] gap-[clamp(0.6rem,3.721vw,5.36rem)]">
+              <div className="flex flex-col justify-center items-start border-[#E2E8F0] lg:border-b-[0.052vw] lg:h-[clamp(1.88rem,5.859vwvw,16.88rem)] lg:p-[clamp(0.27rem,1.667vw,2.4rem)] lg:gap-[clamp(0.2rem,0.625vw,0.9rem)] border-b-[0.233vw] h-[clamp(9.67rem,30.233vwvw,50rem)] p-[clamp(0.74rem,4.651vw,6.7rem)] gap-[clamp(0.6rem,3.721vw,5.36rem)]">
                 <div className="font-SourceSansProBold text-neutral-g leading-[125%] lg:text-[clamp(0.5rem,1.25vw,1.8rem)] text-[clamp(0.74rem,4.651vw,6.7rem)]">
                   Spesifikasi Layanan
                 </div>
@@ -58,13 +58,13 @@ export default function ServicesOption({ data }) {
                   Pilih Paket yang Sesuai untuk Kebutuhan Anda
                 </div>
               </div>
-              <div className="flex flex-col justify-center border-[#E2E8F0] lg:p-[clamp(0.27rem,1.667vw,2.4rem)] lg:border-b-[0.052vw] lg:h-[clamp(1.02rem,6.406vw,9.22rem)] p-[clamp(0.74rem,4.651vw,6.7rem)] border-b-[0.233vw] h-[clamp(4.61rem,28.837vw,41.53rem)]">
+              <div className="flex flex-col justify-center border-[#E2E8F0] lg:p-[clamp(0.27rem,1.667vw,2.4rem)] lg:border-b-[0.052vw] lg:h-[clamp(1.02rem,3.203vwvw,9.22rem)] p-[clamp(0.74rem,4.651vw,6.7rem)] border-b-[0.233vw] h-[clamp(4.61rem,14.418vwvw,41.53rem)]">
                 <div className="font-InterBold text-transparent bg-clip-text bg-gradient-to-r from-[#0893D4] via-[#44C4D9] to-[#159E8D] lg:text-[clamp(0.5rem,1.25vw,1.8rem)] text-[clamp(0.67rem,4.186vw,6.03rem)]">
                   Harga
                 </div>
               </div>
               {featureRows?.map((feature, i) => (
-                <div key={i} className="flex flex-col justify-center border-[#E2E8F0] font-InterSemibold lg:p-[clamp(0.27rem,1.667vw,2.4rem)] lg:border-b-[0.052vw] lg:h-[clamp(0.67rem,4.167vw,6.0rem)] lg:text-[clamp(0.5rem,0.938vw,1.35rem)] p-[clamp(0.74rem,4.651vw,6.7rem)] border-b-[0.233vw] h-[clamp(2.98rem,18.605vw,26.79rem)] text-[clamp(0.6rem,3.721vw,5.36rem)]">
+                <div key={i} className="flex flex-col justify-center border-[#E2E8F0] font-InterSemibold lg:p-[clamp(0.27rem,1.667vw,2.4rem)] lg:border-b-[0.052vw] lg:h-[clamp(0.67rem,2.083vwvw,6.0rem)] lg:text-[clamp(0.5rem,0.938vw,1.35rem)] p-[clamp(0.74rem,4.651vw,6.7rem)] border-b-[0.233vw] h-[clamp(2.98rem,9.303vwvw,26.79rem)] text-[clamp(0.6rem,3.721vw,5.36rem)]">
                   {feature}
                 </div>
               ))}
@@ -74,7 +74,7 @@ export default function ServicesOption({ data }) {
             {plans.map((plan, pi) => (
               <div key={pi} className={`flex flex-col border-[#E2E8F0] relative ${pi < plans.length - 1 ? "lg:border-r-[0.052vw] border-r-[0.233vw]" : ""} lg:w-[clamp(3.0rem,18.75vw,27.0rem)] w-[clamp(5.06rem,31.628vw,45.54rem)]`}>
                 {/* Header */}
-                <div className="flex flex-col items-center border-[#E2E8F0] relative lg:border-b-[0.052vw] lg:h-[clamp(1.88rem,11.719vw,16.88rem)] lg:p-[clamp(0.23rem,1.458vw,2.1rem)] lg:gap-[clamp(0.23rem,1.458vw,2.1rem)] border-b-[0.233vw] h-[clamp(9.67rem,60.465vw,50rem)] px-[clamp(0.74rem,4.651vw,6.7rem)] py-[clamp(1.04rem,6.512vw,9.38rem)] gap-[clamp(0.6rem,3.721vw,5.36rem)]">
+                <div className="flex flex-col items-center border-[#E2E8F0] relative lg:border-b-[0.052vw] lg:h-[clamp(1.88rem,5.859vwvw,16.88rem)] lg:p-[clamp(0.23rem,1.458vw,2.1rem)] lg:gap-[clamp(0.23rem,1.458vw,2.1rem)] border-b-[0.233vw] h-[clamp(9.67rem,30.233vwvw,50rem)] px-[clamp(0.74rem,4.651vw,6.7rem)] py-[clamp(1.04rem,6.512vw,9.38rem)] gap-[clamp(0.6rem,3.721vw,5.36rem)]">
                   <div className="w-full h-full relative">
                     <div className="flex flex-col justify-center items-center relative lg:gap-0 gap-[clamp(0.2rem,0.93vw,1.34rem)]">
                       <div className="font-SourceSansProBold text-center text-neutral-g lg:text-[clamp(0.5rem,1.458vw,2.1rem)] text-[clamp(0.67rem,4.186vw,6.03rem)]">
@@ -85,7 +85,7 @@ export default function ServicesOption({ data }) {
                       </div>
                     </div>
                     <div className="absolute bottom-0 w-full flex justify-center">
-                      <a href={plan.cta || "https://wa.me/6287882832538"} className="flex justify-center items-center bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] hover:translate-y-[-0.417vw] hover:scale-[110%] transition-all duration-500 ease-in-out lg:h-[clamp(0.38rem,2.396vw,3.45rem)] lg:w-[clamp(2.53rem,15.833vw,22.8rem)] lg:rounded-[clamp(0.2rem,0.417vw,0.6rem)] h-[clamp(1.49rem,9.302vw,13.39rem)] w-[clamp(3.57rem,22.326vw,32.15rem)] rounded-[clamp(0.3rem,1.86vw,2.68rem)]">
+                      <a href={plan.cta || "https://wa.me/6287882832538"} className="flex justify-center items-center bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] hover:translate-y-[-0.417vw] hover:scale-[110%] transition-all duration-500 ease-in-out lg:h-[clamp(0.38rem,1.198vwvw,3.45rem)] lg:w-[clamp(2.53rem,15.833vw,22.8rem)] lg:rounded-[clamp(0.2rem,0.417vw,0.6rem)] h-[clamp(1.49rem,4.651vwvw,13.39rem)] w-[clamp(3.57rem,22.326vw,32.15rem)] rounded-[clamp(0.3rem,1.86vw,2.68rem)]">
                         <p className="font-InterBold text-neutral-a lg:text-[clamp(0.5rem,0.833vw,1.2rem)] text-[clamp(0.52rem,3.256vw,4.69rem)]">{plan.ctaText || "Pilih Paket"}</p>
                       </a>
                     </div>
@@ -93,7 +93,7 @@ export default function ServicesOption({ data }) {
                 </div>
 
                 {/* Price */}
-                <div className="flex flex-col justify-center items-center border-[#E2E8F0] lg:p-[clamp(0.27rem,1.667vw,2.4rem)] lg:border-b-[0.052vw] lg:h-[clamp(1.02rem,6.406vw,9.22rem)] border-b-[0.233vw] h-[clamp(4.61rem,28.837vw,41.53rem)]">
+                <div className="flex flex-col justify-center items-center border-[#E2E8F0] lg:p-[clamp(0.27rem,1.667vw,2.4rem)] lg:border-b-[0.052vw] lg:h-[clamp(1.02rem,3.203vwvw,9.22rem)] border-b-[0.233vw] h-[clamp(4.61rem,14.418vwvw,41.53rem)]">
                   <div className="font-InterBold text-transparent bg-clip-text bg-gradient-to-r from-[#0893D4] via-[#44C4D9] to-[#159E8D] lg:text-[clamp(0.5rem,1.458vw,2.1rem)] text-[clamp(0.67rem,4.186vw,6.03rem)]">
                     {plan.priceNote && <div className="font-InterSemibold text-neutral-d lg:text-[clamp(0.5rem,0.729vw,1.05rem)] lg:leading-[200%] text-[clamp(0.5rem,2.791vw,4.02rem)] leading-[125%]">{plan.priceNote}</div>}
                     {plan.price}
@@ -104,7 +104,7 @@ export default function ServicesOption({ data }) {
                 {featureRows?.map((feature, fi) => {
                   const val = plan.values?.[fi];
                   return (
-                    <div key={fi} className="flex flex-col justify-center items-center border-[#E2E8F0] font-InterSemibold lg:p-[clamp(0.27rem,1.667vw,2.4rem)] lg:border-b-[0.052vw] lg:h-[clamp(0.67rem,4.167vw,6.0rem)] lg:text-[clamp(0.5rem,0.938vw,1.35rem)] border-b-[0.233vw] h-[clamp(2.98rem,18.605vw,26.79rem)] text-[clamp(0.52rem,3.256vw,4.69rem)] text-center">
+                    <div key={fi} className="flex flex-col justify-center items-center border-[#E2E8F0] font-InterSemibold lg:p-[clamp(0.27rem,1.667vw,2.4rem)] lg:border-b-[0.052vw] lg:h-[clamp(0.67rem,2.083vwvw,6.0rem)] lg:text-[clamp(0.5rem,0.938vw,1.35rem)] border-b-[0.233vw] h-[clamp(2.98rem,9.303vwvw,26.79rem)] text-[clamp(0.52rem,3.256vw,4.69rem)] text-center">
                       {renderValue(val, feature)}
                     </div>
                   );

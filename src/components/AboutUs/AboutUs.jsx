@@ -21,7 +21,7 @@ const AboutUs = () => {
 	const Description =
 		"ArachnoVa adalah perusahaan yang berfokus pada penyediaan layanan desain dan pengembangan website profesional. Dengan tim yang memiliki kompetensi teknis mendalam di bidang teknologi informasi, kami berkomitmen untuk menghadirkan solusi web inovatif yang kreatif, responsif, dan sesuai dengan kebutuhan setiap klien.";
 	return (
-		<section className="relative w-full lg:min-h-[clamp(16.67rem,104.167vw,50rem)] min-h-[clamp(66.12rem,413.256vw,50rem)] flex flex-col justify-around items-center bg-white-MainPage">
+		<section className="relative w-full lg:min-h-[clamp(16.67rem,104.167vw,50rem)] flex flex-col justify-around items-center bg-white-MainPage lg:pb-[clamp(2rem,5vw,4rem)] pb-[clamp(5rem,15vw,10rem)]">
 			<div className="absolute top-[clamp(0.68rem,4.271vw,6.15rem)] w-full aspect-[1920/458] z-0 lg:flex hidden">
 				<Image
 					src="/image/OurServices/ServicesHero/bg.png"
@@ -140,7 +140,7 @@ const AboutUs = () => {
 			</div>
 			<div
 				data-aos="fade-down"
-				className="flex lg:flex-row flex-col justify-between lg:items-center items-start lg:w-[clamp(6.5rem,40.625vw,50rem)] w-[clamp(14.51rem,90.698vw,50rem)] lg:aspect-[702/111] aspect-[390/253] lg:p-[clamp(0.33rem,2.083vw,3.0rem)] p-[clamp(1.49rem,9.302vw,13.39rem)] bg-white lg:rounded-[clamp(0.2rem,1.042vw,1.5rem)] rounded-[clamp(0.74rem,4.651vw,6.7rem)] lg:border-[0.156vw] border-[0.698vw] border-border lg:mb-[clamp(0.42rem,2.604vw,3.75rem)]"
+				className="flex lg:flex-row flex-col justify-between lg:items-center items-start lg:w-[clamp(6.5rem,40.625vw,50rem)] w-[clamp(14.51rem,90.698vw,50rem)] lg:p-[clamp(0.33rem,2.083vw,3.0rem)] p-[clamp(1.49rem,9.302vw,13.39rem)] bg-white lg:rounded-[clamp(0.2rem,1.042vw,1.5rem)] rounded-[clamp(0.74rem,4.651vw,6.7rem)] lg:border-[0.156vw] border-[0.698vw] border-border lg:mb-[clamp(0.42rem,2.604vw,3.75rem)]"
 				style={{ boxShadow: "0px 10px 40px -10px rgba(71, 85, 105, 0.25)" }}
 			>
 				<div className="lg:w-[clamp(2.46rem,15.35vw,22.1rem)] w-[clamp(9.82rem,61.395vw,50rem)] flex flex-col items-start justify-center">
