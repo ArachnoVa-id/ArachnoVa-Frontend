@@ -39,45 +39,52 @@ export default function PortoSection({ projects }) {
   return (
     <section className="w-full bg-white-MainPage lg:py-[5vw] py-[13.953vw] overflow-hidden">
       {/* Desktop */}
-      <div className="max-lg:hidden flex flex-col items-center w-full">
-        <div className="text-center">
-          <p className="font-SourceSansProBold lg:text-[1.6rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Our Tractions</p>
-          <p className="text-neutral-e text-[1rem] font-SourceSansProSemibold mt-[0.5rem] mb-[2vw] max-w-[50rem]">
-            ArachnoVa telah berpengalaman dalam pembuatan website mencakup aspek Frontend, Backend, dan desain UI.
-          </p>
-        </div>
+      <div className="max-lg:hidden mx-auto w-[65rem]">
+        <div className="grid grid-cols-[20rem_1fr] gap-x-[2vw]">
+          {/* Left: Title + Product type cards + More Projects */}
+          <div className="flex flex-col">
+            <div className="mb-[1.5vw]">
+              <p className="font-SourceSansProBold text-[1.6rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Our Tractions</p>
+              <p className="text-neutral-e text-[0.9rem] font-SourceSansProSemibold mt-[0.3rem] leading-snug">
+                ArachnoVa telah berpengalaman dalam pembuatan website mencakup aspek Frontend, Backend, dan desain UI.
+              </p>
+            </div>
 
-        <div className="grid grid-cols-[20rem_1fr] gap-x-[2vw] w-[65rem] items-center">
-          {/* Left: Product type cards */}
-          <div className="flex flex-col gap-[0.8vw]">
-            {productTypes.map((pt) => {
-              const count = projects.filter((p) => p.product === pt.key).length;
-              const isActive = active === pt.key;
-              return (
-                <div
-                  key={pt.key}
-                  onClick={() => switchCategory(pt.key)}
-                  className={`w-full h-[5.5rem] flex flex-row p-[1.2vw] gap-x-[1vw] rounded-[0.6rem] cursor-pointer border-[0.15rem] transition-all duration-300 ${
-                    isActive ? "border-LightBlue-d bg-LightBlue-d/5 shadow-md" : "border-[#C3D4DB] bg-white hover:shadow-md hover:border-LightBlue-c/30"
-                  }`}
-                >
-                  <div className="flex flex-col gap-y-[0.3vw] flex-1 justify-center">
-                    <p className={`font-SourceSansProBold text-[1.15rem] transition-all duration-500 ${
-                      isActive ? "text-LightBlue-e" : "text-neutral-g"
-                    }`}>
-                      {pt.label}
-                    </p>
-                    <p className="font-SourceSansProSemibold text-[0.7rem] text-neutral-d">
-                      {count} project{count > 1 ? "s" : ""}
-                    </p>
+            <div className="flex flex-col gap-[0.6vw]">
+              {productTypes.map((pt) => {
+                const count = projects.filter((p) => p.product === pt.key).length;
+                const isActive = active === pt.key;
+                return (
+                  <div
+                    key={pt.key}
+                    onClick={() => switchCategory(pt.key)}
+                    className={`w-full h-[4.8rem] flex flex-row p-[1vw] gap-x-[0.8vw] rounded-[0.6rem] cursor-pointer border-[0.13rem] transition-all duration-300 ${
+                      isActive ? "border-LightBlue-d bg-LightBlue-d/5 shadow-md" : "border-[#C3D4DB] bg-white hover:shadow-md hover:border-LightBlue-c/30"
+                    }`}
+                  >
+                    <div className="flex flex-col gap-y-[0.2vw] flex-1 justify-center">
+                      <p className={`font-SourceSansProBold text-[1.05rem] transition-all duration-500 ${
+                        isActive ? "text-LightBlue-e" : "text-neutral-g"
+                      }`}>
+                        {pt.label}
+                      </p>
+                      <p className="font-SourceSansProSemibold text-[0.65rem] text-neutral-d">
+                        {count} project{count > 1 ? "s" : ""}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
+
+            <a href="/projects" className="flex items-center gap-x-[0.3rem] mt-[1.2vw] hover:scale-[102%] transition-all duration-300 self-start">
+              <p className="font-InterBold text-[0.75rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">More Projects</p>
+              <FaArrowRightIcon className="text-[#24AAA7] w-[0.8rem]" />
+            </a>
           </div>
 
-          {/* Right: Portfolio preview - smaller */}
-          <div className="relative">
+          {/* Right: Portfolio preview */}
+          <div className="relative self-center">
             {currentProject && (
               <div className="bg-border p-[0.12rem] rounded-[0.5rem]">
                 <div className="relative bg-[#FBFCFD] shadow-md rounded-[0.5rem] overflow-hidden">
@@ -91,38 +98,33 @@ export default function PortoSection({ projects }) {
                     ))}
                   </div>
                   {totalInCategory > 1 && (
-                    <>
+                    <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-2 py-1 shadow-sm">
                       <button onClick={prevProject} disabled={projectIndex === 0}
-                        className="absolute left-1.5 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-1 shadow transition disabled:opacity-30 disabled:cursor-not-allowed"><FaArrowLeft size={14} /></button>
-                      <button onClick={nextProject} disabled={projectIndex >= totalInCategory - 1}
-                        className="absolute right-1.5 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-1 shadow transition disabled:opacity-30 disabled:cursor-not-allowed"><FaArrowRight size={14} /></button>
-                    </>
-                  )}
-                  {totalInCategory > 1 && (
-                    <div className="absolute bottom-1 left-1/2 -translate-x-1/2 z-10 flex gap-1">
+                        className="text-gray-500 hover:text-LightBlue-c transition disabled:opacity-30 disabled:cursor-not-allowed">
+                        <FaArrowLeft size={11} />
+                      </button>
                       {filtered.map((_, i) => (
                         <button key={i} onClick={() => setProjectIndex(i)}
-                          className={`w-1.5 h-1.5 rounded-full transition-all ${i === projectIndex ? "bg-LightBlue-c w-3" : "bg-gray-300"}`} />
+                          className={`rounded-full transition-all ${i === projectIndex ? "bg-LightBlue-c w-[0.55rem] h-[0.55rem]" : "bg-gray-300 w-[0.35rem] h-[0.35rem]"}`} />
                       ))}
+                      <button onClick={nextProject} disabled={projectIndex >= totalInCategory - 1}
+                        className="text-gray-500 hover:text-LightBlue-c transition disabled:opacity-30 disabled:cursor-not-allowed">
+                        <FaArrowRight size={11} />
+                      </button>
                     </div>
                   )}
                 </div>
               </div>
             )}
             {currentProject?.imageMobile && (
-              <div className="bg-border absolute aspect-[303/514] z-[3] w-[12rem] p-[0.15rem] shadow-md rounded-xl -bottom-[3.1vh] -right-[2rem] flex flex-col">
+              <div key={projectIndex} className="bg-border absolute aspect-[303/514] z-[3] w-[12rem] p-[0.15rem] shadow-md rounded-xl -bottom-[3.1vh] -right-[2rem] flex flex-col transition-all duration-300">
                 <div className="relative w-full h-full bg-white rounded-xl overflow-hidden">
-                  <img src={currentProject.imageMobile} alt="" className="w-full" draggable="false" />
+                  <img src={currentProject.imageMobile} alt="" className="w-full transition-opacity duration-300" draggable="false" />
                 </div>
               </div>
             )}
           </div>
         </div>
-
-        <a href="/projects" className="flex items-center gap-x-[0.3rem] mt-[2.5vw] hover:scale-[102%] transition-all duration-300">
-          <p className="font-InterBold text-[0.8rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">More Projects</p>
-          <FaArrowRightIcon className="text-[#24AAA7] w-[0.9rem]" />
-        </a>
       </div>
 
       {/* Mobile */}
