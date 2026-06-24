@@ -4,9 +4,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 
-const settings = useSettings();
-	
 export default function CTA() {
+  const settings = useSettings();
   useEffect(() => {
 		AOS.init({
 			duration: 1500,
