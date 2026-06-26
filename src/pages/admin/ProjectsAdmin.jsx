@@ -118,6 +118,13 @@ function EditModal({ form, setForm, onSave, onCancel }) {
                 <option value="wa-apps">WhatsApp Apps</option>
               </select>
             </div>
+            <div className="flex items-center gap-3 pt-1">
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" className="sr-only peer" checked={!!form.preview} onChange={(e) => update("preview", e.target.checked)} />
+                <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-500"></div>
+                <span className="ms-2 text-sm font-medium text-gray-700">Preview / Demo</span>
+              </label>
+            </div>
           </div>
           <div className="flex gap-3">
             <button onClick={save} className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700">{form.id ? "Update" : "Create"}</button>
@@ -149,7 +156,7 @@ export default function ProjectsAdmin() {
 
   const openNew = () => {
     setEditing(null);
-    setForm({ title: "", description: "", link: "", product: "compro", imageDesktop: "", imageMobile: "", desktopImages: [], mobileImages: [] });
+    setForm({ title: "", description: "", link: "", product: "compro", preview: false, imageDesktop: "", imageMobile: "", desktopImages: [], mobileImages: [] });
     setShowModal(true);
   };
 
@@ -232,6 +239,12 @@ export default function ProjectsAdmin() {
                 {hasMobile && (
                   <img src={p.imageMobile || p.mobileImages[0]} alt=""
                     className="absolute w-[22%] aspect-[245/485] rounded shadow -bottom-[4%] left-[6%] object-cover" />
+                )}
+                {/* Preview badge */}
+                {p.preview && (
+                  <div className="absolute top-0 left-0 z-10">
+                    <div className="bg-amber-500 text-white text-[9px] font-bold uppercase tracking-wider px-6 py-0.5 -ml-2 -mt-1 rotate-[-45deg] origin-top-right shadow-sm">Preview</div>
+                  </div>
                 )}
                 {/* Drag indicator */}
                 <div className="absolute top-1 left-1 text-gray-300 text-xs bg-white/70 rounded px-1">⠿</div>
