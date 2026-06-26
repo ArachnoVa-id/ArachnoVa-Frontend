@@ -46,33 +46,35 @@ export default function ProjectCardGrid({ projects, autoOpenId, onAutoOpenDone, 
               data-aos-delay={(i % 4) * 100}
               className="group bg-white rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-[0.3rem] cursor-pointer"
             >
-              {(hasDesktop || hasMobile) && (
-                <div className="relative w-full aspect-[824.28/426.9] bg-gray-50 overflow-hidden">
+              {(hasDesktop || hasMobile) ? (
+                <div className="relative w-full aspect-[824.28/426.9] bg-gray-50">
                   {project.preview && (
-                    <div className="absolute top-0 left-0 z-10">
-                      <div className="bg-amber-500 text-white text-[9px] font-bold uppercase tracking-wider px-6 py-0.5 -ml-2 -mt-1 rotate-[-45deg] origin-top-right shadow-sm">Preview</div>
+                    <div className="absolute top-0 left-0 z-10 overflow-visible pointer-events-none">
+                      <div className="bg-amber-500 text-white text-[9px] font-bold uppercase tracking-wider px-6 py-0.5 -ml-2 -mt-0.5 rotate-[-45deg] origin-top-left shadow-sm">Preview</div>
                     </div>
                   )}
-                  {hasDesktop && hasMobile ? (
-                    <>
+                  <div className="w-full h-full overflow-hidden">
+                    {hasDesktop && hasMobile ? (
+                      <>
+                        <img src={project.imageDesktop || project.desktopImages[0]} alt=""
+                          className="absolute w-[80%] aspect-[669/376] rounded-lg shadow-lg right-0 top-[5%]"
+                          draggable="false" loading="lazy" />
+                        <img src={project.imageMobile || project.mobileImages[0]} alt=""
+                          className="absolute w-[22%] aspect-[245/485] rounded-[0.6rem] shadow-lg -bottom-[2%] left-[4%]"
+                          draggable="false" loading="lazy" />
+                      </>
+                    ) : hasDesktop ? (
                       <img src={project.imageDesktop || project.desktopImages[0]} alt=""
-                        className="absolute w-[80%] aspect-[669/376] rounded-lg shadow-lg right-0 top-[5%]"
+                        className="w-full h-full object-contain rounded-lg shadow-lg p-[3%]"
                         draggable="false" loading="lazy" />
+                    ) : hasMobile ? (
                       <img src={project.imageMobile || project.mobileImages[0]} alt=""
-                        className="absolute w-[22%] aspect-[245/485] rounded-[0.6rem] shadow-lg -bottom-[2%] left-[4%]"
+                        className="h-full w-auto rounded-lg shadow-lg mx-auto p-[5%]"
                         draggable="false" loading="lazy" />
-                    </>
-                  ) : hasDesktop ? (
-                    <img src={project.imageDesktop || project.desktopImages[0]} alt=""
-                      className="w-full h-full object-contain rounded-lg shadow-lg p-[3%]"
-                      draggable="false" loading="lazy" />
-                  ) : hasMobile ? (
-                    <img src={project.imageMobile || project.mobileImages[0]} alt=""
-                      className="h-full w-auto rounded-lg shadow-lg mx-auto p-[5%]"
-                      draggable="false" loading="lazy" />
-                  ) : null}
+                    ) : null}
+                  </div>
                 </div>
-              )}
+              ) : null}
               <div className="p-[1.0rem] pt-[1.5rem]">
                 <h3 className="font-SourceSansProBold lg:text-[0.94rem] text-[3.5rem] text-neutral-g group-hover:text-LightBlue-d transition-colors truncate">
                   {project.title}
