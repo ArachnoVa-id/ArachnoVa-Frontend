@@ -22,12 +22,12 @@ const ServicesHero = () => {
     <section
       className="relative w-full lg:min-h-screen flex flex-col justify-center items-center bg-white-MainPage overflow-hidden
                  lg:pb-[5.938vw]
-                 pb-[58.333vw]"
+                 pb-[clamp(6rem,58.333vw,18rem)]"
     >
       <div
         className="w-full
                    lg:mt-[8vw]
-                   mt-[35.116vw] "
+                   mt-[clamp(3rem,35.116vw,12rem)] "
       >
         <div className="absolute top-[4.271vw] w-full aspect-[1920/458] z-0 lg:flex hidden">
           <Image
@@ -50,30 +50,30 @@ const ServicesHero = () => {
         <div
           className="flex flex-col justify-center items-center
 	  			           lg:gap-[3.125vw]
-                     gap-[11.279vw]"
+                     gap-[clamp(1.5rem,11.279vw,5rem)]"
         >
           <div
             className="flex flex-col justify-center items-center
-                       lg:gap-[3.125vw]
-                       gap-[9.302vw]"
+                        lg:gap-[3.125vw]
+                       gap-[clamp(1rem,9.302vw,4rem)]"
             data-aos="fade-down"
           >
             <div
               className="w-full flex flex-col justify-center items-center
-                         lg:gap-0
-                         gap-[1.163vw]"
+                          lg:gap-0
+                         gap-[clamp(0.3rem,1.163vw,0.8rem)]"
             >
               <p
                 className="font-SourceSansProBold bg-clip-text text-transparent bg-gradient-to-r from-[#0893D4] from-[17.73%] to-[#44C4D9] to-[65.68%]
-                           lg:text-[1.563vw]
-                           text-[4.186vw]"
+                            lg:text-[1.563vw]
+                           text-[clamp(0.7rem,4.186vw,1.2rem)]"
               >
                 What We Provide
               </p>
               <h1
                 className="font-SourceSansProBold text-neutral-g text-center
-                           lg:text-[2.396vw] lg:leading-[2.448vw] lg:w-auto
-                           text-[6.977vw] leading-[100%] w-[68vw]"
+                            lg:text-[2.396vw] lg:leading-[2.448vw] lg:w-auto
+                           text-[clamp(1.4rem,6.977vw,2.6rem)] leading-[100%] w-[clamp(28rem,68vw,45rem)]"
               >
                 Elevate Your Presence Online
               </h1>
@@ -81,7 +81,7 @@ const ServicesHero = () => {
             <div
               className="flex
 				                 lg:gap-[3.125vw]
-                         gap-[9.302vw]"
+                         gap-[clamp(1rem,9.302vw,4rem)]"
             >
               {data?.map((data) => {
                 return (

@@ -15,7 +15,7 @@ const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<>
-			<nav className="fixed z-[100] lg:py-[0.94rem] lg:px-[15.0rem] px-[5.6rem] py-[2.9rem] w-screen flex items-center justify-between bg-[#FAFDFF]/[0.75] lg:backdrop-blur-[0.21rem] backdrop-blur-[1.16rem] lg:border-b-[0.1rem] border-b-[0.46rem] border-[#E6ECF0]">
+			<nav className="fixed z-[100] lg:py-[0.94rem] lg:px-[15.0rem] px-[clamp(1rem,6vw,5.6rem)] py-[clamp(0.8rem,4vw,2.9rem)] w-screen flex items-center justify-between bg-[#FAFDFF]/[0.75] lg:backdrop-blur-[0.21rem] backdrop-blur-[1.16rem] lg:border-b-[0.1rem] border-b-[clamp(0.15rem,0.5vw,0.46rem)] border-[#E6ECF0]">
 				<div className="flex items-center flex-row">
 					<ul className="lg:flex items-center gap-x-[3.1rem] hidden">
 						<a href="/">
@@ -35,7 +35,7 @@ const Navbar = () => {
 						<NavItem Menu="About" href="/aboutus" path={path} />
 					</ul>
 					<a href="/">
-						<div className="relative lg:hidden w-[10.5rem] aspect-[45/33] hover:scale-110 transition-all duration-300 ease-in-out">
+						<div className="relative lg:hidden w-[clamp(6rem,12vw,10.5rem)] aspect-[45/33] hover:scale-110 transition-all duration-300 ease-in-out">
 							<Image
 								src="/image/Logo.png"
 								draggable="false"

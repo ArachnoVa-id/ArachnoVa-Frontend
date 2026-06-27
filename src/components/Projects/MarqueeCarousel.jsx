@@ -36,7 +36,7 @@ export default function MarqueeCarousel({ items, direction = "left", onItemClick
           <div
             key={i}
             onClick={() => onItemClick?.(item.projectId)}
-            className="relative group flex-shrink-0 lg:w-[14.0rem] w-[45.0rem] aspect-[4/3] rounded-lg overflow-hidden border border-border shadow-sm cursor-pointer"
+            className="relative group flex-shrink-0 lg:w-[14.0rem] w-[clamp(12rem,60vw,45rem)] aspect-[4/3] rounded-lg overflow-hidden border border-border shadow-sm cursor-pointer"
           >
             <img
               src={item.src}

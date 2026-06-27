@@ -30,21 +30,21 @@ export default function AdminLayout() {
               <h1 className="font-bold text-base text-gray-900">CMS Admin</h1>
             </div>
 
-            <nav className="flex items-center gap-1">
+            <nav className="flex items-center gap-0 sm:gap-1 overflow-x-auto no-scrollbar">
               {navItems.map((item) => (
                 <NavLink
                   key={item.to}
                   to={item.to}
                   end={item.end}
                   className={({ isActive }) =>
-                    `flex flex-col items-center px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                    `flex flex-col items-center px-2 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-medium transition-colors shrink-0 ${
                       isActive
                         ? "bg-blue-50 text-blue-700"
                         : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
                     }`
                   }
                 >
-                  <item.icon size={16} />
+                  <item.icon size={14} className="sm:size-[16px]" />
                   <span className="mt-0.5 whitespace-nowrap">{item.label}</span>
                 </NavLink>
               ))}

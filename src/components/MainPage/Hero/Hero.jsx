@@ -115,17 +115,17 @@ export default function Hero() {
       {/* Mobile */}
       <div
         data-aos="fade-up"
-        className="flex flex-col lg:hidden w-full items-center mb-[40.0rem] z-[2] mt-[24.4rem]"
+        className="flex flex-col lg:hidden w-full items-center mb-[clamp(8rem,40vw,40rem)] z-[2] mt-[clamp(6rem,25vw,24.4rem)]"
       >
-        <div className="text-[8.6rem] text-neutral-g font-CoolveticaCondReg ">
+          <div className="text-[clamp(3rem,12vw,8.6rem)] text-neutral-g font-CoolveticaCondReg ">
           ArachnoVa{" "}
         </div>
 
-        <div className="text-neutral-g items-center justify-center font-SourceSansProBold text-[2.0rem]/[6.0rem]">
-          <div className="text-[7.0rem] mx-[5.0rem]   ">Your Web Design Partner</div>
-          <div className="overflow-clip  flex items-center justify-center h-[9.8rem] gap-[2.0rem]  leading-none">
-            <div className="text-[9.8rem]">Always</div>
-            <div className="flex-col gap-[4.0rem] text-[9.8rem] gap-y-[2.0rem] ">
+        <div className="text-neutral-g items-center justify-center font-SourceSansProBold text-[clamp(1.2rem,3vw,2rem)]/[clamp(2rem,8vw,6rem)]">
+          <div className="text-[clamp(2.5rem,10vw,7rem)] mx-[5.0rem]   ">Your Web Design Partner</div>
+          <div className="overflow-clip  flex items-center justify-center h-[clamp(4rem,14vw,9.8rem)] gap-[clamp(0.5rem,3vw,2rem)]  leading-none">
+            <div className="text-[clamp(3.5rem,14vw,9.8rem)]">Always</div>
+            <div className="flex-col gap-[clamp(0.5rem,4vw,4rem)] text-[clamp(3.5rem,14vw,9.8rem)] gap-y-[clamp(0.5rem,2.5vw,2rem)] ">
               <div className=" animate-swap_words ">Delivered</div>
               <div className=" animate-swap_words">Distinctive</div>
 			  <div className=" animate-swap_words ">Dependable</div>
@@ -133,26 +133,26 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center items-center text-[5.0rem]/[5.0rem] pt-[4.0rem] text-neutral-e font-SourceSansProSemibold ">
+        <div className="flex flex-col justify-center items-center text-[clamp(1.8rem,7vw,5rem)]/[clamp(1.8rem,7vw,5rem)] pt-[clamp(1.5rem,5vw,4rem)] text-neutral-e font-SourceSansProSemibold ">
           <div className="">Crafting Digital Presence in Every</div>
           <div className="">Strand of Code</div>
         </div>
 
         <a
           href={settings?.whatsapp || "https://wa.me/6287882832538"}
-          className="w-[80.0rem] h-[8.0rem] mt-[4.0rem] my-[2.5rem] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white rounded-md text-[3.0rem] flex justify-center items-center hover:translate-y-[-3px] transition-all duration-500 ease-in-out "
+          className="w-[clamp(18rem,80vw,80rem)] h-[clamp(3.5rem,10vw,8rem)] mt-[clamp(1.5rem,5vw,4rem)] my-[clamp(1rem,3vw,2.5rem)] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white rounded-md text-[clamp(1.2rem,4vw,3rem)] flex justify-center items-center hover:translate-y-[-3px] transition-all duration-500 ease-in-out "
         >
           Start Your Project
         </a>
-        <a href="/services" className="w-[80.0rem] h-[8.0rem] bg-transparent mb-[2.5rem] rounded-md text-[3.0rem] flex justify-center items-center hover:translate-y-[-3px] transition-all duration-500 ease-in-out hover:bg-[#cae8ee] ">
+        <a href="/services" className="w-[clamp(18rem,80vw,80rem)] h-[clamp(3.5rem,10vw,8rem)] bg-transparent mb-[clamp(1rem,3vw,2.5rem)] rounded-md text-[clamp(1.2rem,4vw,3rem)] flex justify-center items-center hover:translate-y-[-3px] transition-all duration-500 ease-in-out hover:bg-[#cae8ee] ">
           <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold">
             Discover Our Services
           </div>
         </a>
 
         <div className="relative">
-          <div className="bg-white w-[80.0rem] h-[60.0rem] rounded-lg font-ConsolasRegular overflow-hidden">
-            <div className="px-[1.5rem] py-[4.0rem] text-[3.0rem]/[4.0rem] relative ">
+          <div className="bg-white w-[clamp(18rem,85vw,80rem)] h-[clamp(25rem,60vw,60rem)] rounded-lg font-ConsolasRegular overflow-hidden">
+            <div className="px-[clamp(0.8rem,2.5vw,1.5rem)] py-[clamp(1rem,5vw,4rem)] text-[clamp(1.2rem,4vw,3rem)]/[clamp(1.5rem,5vw,4rem)] relative ">
               <Image
                 alt=""
                 src="/image/Hero/3ColorButton.png"
@@ -161,11 +161,11 @@ export default function Hero() {
                 width={100}
                 height={100}
               />
-              <CodeTyper speed={100} className="min-h-[40.0rem]" onDone={() => setCodeDone(true)} />
+              <CodeTyper speed={100} className="min-h-[clamp(15rem,40vw,40rem)]" onDone={() => setCodeDone(true)} />
             </div>
           </div>
           {codeDone && (
-            <div className="absolute w-[60.0rem] h-[13.0rem] bg-white rounded-md -bottom-[3.0rem] -right-[2.0rem] text-[3.0rem] border-2 border-[#E2E8F0] font-ConsolasBold shadow-md animate-fade-in-left">
+            <div className="absolute w-[clamp(15rem,65vw,60rem)] h-[clamp(5rem,15vw,13rem)] bg-white rounded-md -bottom-[clamp(1rem,4vw,3rem)] -right-[clamp(0.5rem,3vw,2rem)] text-[clamp(1.2rem,4vw,3rem)] border-2 border-[#E2E8F0] font-ConsolasBold shadow-md animate-fade-in-left">
               <Image
                 alt=""
                 src="/image/Hero/3ColorButton.png"
@@ -174,7 +174,7 @@ export default function Hero() {
                 width={100}
                 height={100}
               />
-               <div className="flex items-center text-[2.6rem] gap-x-[0.06rem] pt-[5.0rem] whitespace-nowrap ml-[2.0rem] pr-[2rem]">
+               <div className="flex items-center text-[clamp(1rem,3.5vw,2.6rem)] gap-x-[0.06rem] pt-[clamp(1.5rem,6vw,5rem)] whitespace-nowrap ml-[clamp(0.5rem,2.5vw,2rem)] pr-[clamp(0.5rem,2.5vw,2rem)]">
                 <TerminalTyper speed={80} startDelay={300} />
               </div>
             </div>

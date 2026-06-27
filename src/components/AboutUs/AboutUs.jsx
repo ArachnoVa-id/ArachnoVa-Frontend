@@ -28,16 +28,16 @@ const AboutUs = () => {
         <Image src="/image/OurServices/ServicesHero/bg-mobile.png" alt="bg" draggable="false" fill className="object-contain" />
       </div>
 
-      <div className="relative w-full max-w-[75rem] mx-auto z-10 lg:px-[5vw] px-[5.581vw]">
+      <div className="relative w-full max-w-[75rem] mx-auto z-10 lg:px-[5vw] px-[clamp(1.5rem,5vw,5rem)]">
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-[3vw]">
           {/* Left main: header + brand panel stacked */}
           <div className="lg:col-span-8 lg:space-y-[3vw]">
             {/* Header */}
             <div data-aos="fade-right">
-              <p className="font-SourceSansProBold lg:text-[1.3rem] text-[4.2rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+              <p className="font-SourceSansProBold lg:text-[1.3rem] text-[clamp(1.2rem,6vw,4.2rem)] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
                 Who We Are
               </p>
-              <h1 className="font-SourceSansProBold lg:text-[2.4rem] text-[7.0rem] text-neutral-g lg:mt-[0.3rem]">
+              <h1 className="font-SourceSansProBold lg:text-[2.4rem] text-[clamp(2rem,10vw,7rem)] text-neutral-g lg:mt-[0.3rem]">
                 About ArachnoVa
               </h1>
             </div>
@@ -47,24 +47,24 @@ const AboutUs = () => {
               <div className="absolute -left-[8vw] -bottom-[6vw] lg:w-[25vw] w-[40vw] aspect-[433/235] z-0 lg:flex hidden pointer-events-none">
                 <Image src="/image/AboutUs/blur-left.png" alt="blur" draggable="false" fill className="object-contain" />
               </div>
-              <div className="relative lg:w-[44rem] w-[90.7rem] lg:p-[2.5rem] p-[5rem] flex flex-col items-center lg:rounded-[0.8rem] rounded-[3.7rem] lg:border border-white z-10"
+              <div className="relative lg:w-[44rem] w-[clamp(20rem,85vw,90.7rem)] lg:p-[2.5rem] p-[clamp(1.5rem,6vw,5rem)] flex flex-col items-center lg:rounded-[0.8rem] rounded-[3.7rem] lg:border border-white z-10"
                 style={{
                   background: "rgba(241, 245, 249, 0.50)",
                   boxShadow: "0px 25px 50px -12px rgba(71, 85, 105, 0.25)",
                 }}>
-                <div className="absolute lg:top-[0.6rem] top-[3rem] lg:left-[0.6rem] left-[3rem] flex lg:gap-x-[0.4rem] gap-x-[2.8rem]">
-                  <div className="lg:w-[0.6rem] w-[2.8rem] aspect-[1/1] rounded-full" style={{ background: "linear-gradient(135deg, #FECDD3 0%, #FDA4AF 100%)", boxShadow: "0px 1px 2px -1px #FECDD3, 0px 1px 3px 0px #FECDD3" }} />
-                  <div className="lg:w-[0.6rem] w-[2.8rem] aspect-[1/1] rounded-full" style={{ background: "linear-gradient(135deg, #FDE68A 0%, #FCD34D 100%)", boxShadow: "0px 1px 2px -1px #FDE68A, 0px 1px 3px 0px #FDE68A" }} />
-                  <div className="lg:w-[0.6rem] w-[2.8rem] aspect-[1/1] rounded-full" style={{ background: "linear-gradient(135deg, #A7F3D0 0%, #6EE7B7 100%)", boxShadow: "0px 1px 2px -1px #A7F3D0, 0px 1px 3px 0px #A7F3D0" }} />
+                <div className="absolute lg:top-[0.6rem] top-[3rem] lg:left-[0.6rem] left-[3rem] flex lg:gap-x-[0.4rem] gap-x-[clamp(0.8rem,4vw,2.8rem)]">
+                  <div className="lg:w-[0.6rem] w-[clamp(0.8rem,4vw,2.8rem)] aspect-[1/1] rounded-full" style={{ background: "linear-gradient(135deg, #FECDD3 0%, #FDA4AF 100%)", boxShadow: "0px 1px 2px -1px #FECDD3, 0px 1px 3px 0px #FECDD3" }} />
+                  <div className="lg:w-[0.6rem] w-[clamp(0.8rem,4vw,2.8rem)] aspect-[1/1] rounded-full" style={{ background: "linear-gradient(135deg, #FDE68A 0%, #FCD34D 100%)", boxShadow: "0px 1px 2px -1px #FDE68A, 0px 1px 3px 0px #FDE68A" }} />
+                  <div className="lg:w-[0.6rem] w-[clamp(0.8rem,4vw,2.8rem)] aspect-[1/1] rounded-full" style={{ background: "linear-gradient(135deg, #A7F3D0 0%, #6EE7B7 100%)", boxShadow: "0px 1px 2px -1px #A7F3D0, 0px 1px 3px 0px #A7F3D0" }} />
                 </div>
                 <div className="flex flex-col items-center lg:mb-[0.8rem] mb-[3rem]">
-                  <div className="relative lg:w-[3.5rem] w-[18.4rem] lg:aspect-[88/65] aspect-[79/58]">
+                  <div className="relative lg:w-[3.5rem] w-[clamp(5rem,20vw,18.4rem)] lg:aspect-[88/65] aspect-[79/58]">
                     <Image src="/image/AboutUs/logo.png" alt="logo" draggable="false" fill className="object-contain" />
                   </div>
-                  <p className="font-CoolveticaReg lg:text-[2rem] text-[9.3rem] text-[#1AB0C8]">ARACHNOVA</p>
+                  <p className="font-CoolveticaReg lg:text-[2rem] text-[clamp(2.5rem,12vw,9.3rem)] text-[#1AB0C8]">ARACHNOVA</p>
                 </div>
-                <div className="lg:w-[38rem] w-[82.8rem] lg:h-[0.05rem] h-[0.3rem] bg-neutral-d opacity-50 lg:mb-[1rem] mb-[4.2rem]" />
-                <p className="lg:w-[38rem] w-[82.8rem] font-SourceSansProSemibold lg:text-[0.9rem] text-[4.2rem] text-neutral-g lg:leading-[1.6rem] leading-[5rem] text-center">
+                <div className="lg:w-[38rem] w-[clamp(20rem,85vw,82.8rem)] lg:h-[0.05rem] h-[0.3rem] bg-neutral-d opacity-50 lg:mb-[1rem] mb-[4.2rem]" />
+                <p className="lg:w-[38rem] w-[clamp(20rem,85vw,82.8rem)] font-SourceSansProSemibold lg:text-[0.9rem] text-[clamp(1.2rem,6vw,4.2rem)] text-neutral-g lg:leading-[1.6rem] leading-[clamp(1.6rem,6vw,5rem)] text-center">
                   {Description}
                 </p>
               </div>
@@ -74,9 +74,9 @@ const AboutUs = () => {
           {/* Right sidebar: Get In Touch - minimal */}
           <div className="lg:col-span-4 lg:flex lg:flex-col lg:items-center lg:justify-center lg:gap-y-[1.5rem]">
             <div data-aos="fade-left" className="lg:flex lg:flex-col lg:items-center lg:gap-y-[1.2rem]">
-              <h2 className="font-SourceSansProBold lg:text-[1.3rem] text-[7.0rem] text-neutral-g">Get In Touch</h2>
-              <p className="font-SourceSansProSemibold lg:text-[0.8rem] text-[4.2rem] text-neutral-e">Let's Connect</p>
-              <div className="flex lg:flex-col lg:gap-y-[0.8rem] gap-x-[5.6rem] lg:items-center lg:mt-[0.5rem]">
+              <h2 className="font-SourceSansProBold lg:text-[1.3rem] text-[clamp(2rem,10vw,7rem)] text-neutral-g">Get In Touch</h2>
+              <p className="font-SourceSansProSemibold lg:text-[0.8rem] text-[clamp(1.2rem,6vw,4.2rem)] text-neutral-e">Let's Connect</p>
+              <div className="flex lg:flex-col lg:gap-y-[0.8rem] gap-x-[clamp(2rem,8vw,5.6rem)] lg:items-center lg:mt-[0.5rem]">
                 <SocialMediaIcon Icon={<IoIosMail size="32px" className="text-white" />} href={email} />
                 <SocialMediaIcon Icon={<FaInstagram size="30px" className="text-white" />} href={instagram} />
                 <SocialMediaIcon Icon={<FaWhatsapp size="30px" className="text-white" />} href={whatsapp} />

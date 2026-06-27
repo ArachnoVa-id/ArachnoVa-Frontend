@@ -27,10 +27,10 @@ export default function ProjectCardGrid({ projects, autoOpenId, onAutoOpenDone, 
   if (!projects?.length) return null;
 
   return (
-    <section className="w-full bg-white-MainPage lg:py-[5.2rem] py-[14.0rem] lg:px-[10.0rem] px-[5.6rem]" id="project-cards">
+    <section className="w-full bg-white-MainPage lg:py-[5.2rem] py-[clamp(3rem,18vw,14rem)] lg:px-[10.0rem] px-[clamp(1.2rem,8vw,5.6rem)]" id="project-cards">
       <div data-aos="fade-down" className="text-center mb-[3.0rem]">
-        <p className="font-SourceSansProBold lg:text-[1.56rem] text-[4.2rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Our Projects</p>
-        <h2 className="font-SourceSansProBold lg:text-[2.4rem] text-[7.0rem] text-neutral-g lg:leading-[2.8rem] leading-[7.5rem] mt-[0.5rem]">Explore Our Work</h2>
+        <p className="font-SourceSansProBold lg:text-[1.56rem] text-[clamp(1rem,6vw,4.2rem)] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Our Projects</p>
+        <h2 className="font-SourceSansProBold lg:text-[2.4rem] text-[clamp(1.8rem,10vw,7rem)] text-neutral-g lg:leading-[2.8rem] leading-[clamp(2.2rem,11vw,7.5rem)] mt-[0.5rem]">Explore Our Work</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1.5rem]">
@@ -75,11 +75,11 @@ export default function ProjectCardGrid({ projects, autoOpenId, onAutoOpenDone, 
                   </div>
                 </div>
               ) : null}
-              <div className="p-[1.0rem] pt-[1.5rem]">
-                <h3 className="font-SourceSansProBold lg:text-[0.94rem] text-[3.5rem] text-neutral-g group-hover:text-LightBlue-d transition-colors truncate">
+              <div className="p-[clamp(0.3rem,2vw,1rem)] pt-[clamp(0.5rem,2.5vw,1.5rem)]">
+                <h3 className="font-SourceSansProBold lg:text-[0.94rem] text-[clamp(1rem,5vw,3.5rem)] text-neutral-g group-hover:text-LightBlue-d transition-colors truncate">
                   {project.title}
                 </h3>
-                <p className="font-SourceSansProSemibold lg:text-[0.73rem] text-[2.8rem] text-neutral-e mt-[0.3rem] line-clamp-2 lg:leading-[1.2rem] leading-[4.0rem]">
+                <p className="font-SourceSansProSemibold lg:text-[0.73rem] text-[clamp(0.8rem,4vw,2.8rem)] text-neutral-e mt-[0.3rem] line-clamp-2 lg:leading-[1.2rem] leading-[clamp(1.2rem,5vw,4rem)]">
                   {project.description}
                 </p>
               </div>

@@ -60,7 +60,7 @@ const OurMechs = () => {
 		console.log("Future Touch Points Displayed");
 	};
 	return (
-		<section className="relative flex flex-col w-full lg:aspect-[1920/1147] max-lg:aspect-[430/3808] justify-center items-center bg-white-MainPage  overflow-hidden">
+		<section className="relative flex flex-col w-full lg:aspect-[1920/1147]  justify-center items-center bg-white-MainPage  overflow-hidden">
 			<div className="w-[70.5rem] h-[44.8rem] hidden lg:flex flex-col gap-y-[2.1rem]">
 				<div data-aos="fade-up" className="w-[28.4rem] flex flex-col">
 					<p className="font-SourceSansProBold text-[1.04rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
@@ -191,29 +191,29 @@ const OurMechs = () => {
 				</div>
 			</div>
 			{/* Mobile Version */}
-			<div className="w-fit h-fit flex items-center flex-col lg:hidden gap-y-[14.0rem]">
+			<div className="w-fit h-fit flex items-center flex-col lg:hidden gap-y-[clamp(3rem,10vw,14.0rem)]">
 				<div
 					data-aos="fade-up"
-					className="w-[90.7rem] lg:hidden flex flex-col gap-y-[1.86rem]"
+					className="w-full lg:hidden flex flex-col gap-y-[1.86rem]"
 				>
-					<p className="font-SourceSansProBold text-[4.2rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+					<p className="font-SourceSansProBold text-[clamp(1.2rem,5vw,4.2rem)] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
 						Simple Steps, Remarkable Solutions
 					</p>
-					<h1 className="font-SourceSansProBold text-[7.0rem] text-neutral-g leading-[7.0rem] mt-[0.52rem]">
+					<h1 className="font-SourceSansProBold text-[clamp(2rem,8vw,7.0rem)] text-neutral-g leading-[clamp(2.2rem,8.5vw,7.0rem)] mt-[0.52rem]">
 						How Our Mechanism Can <br /> Help You Build Your Dream Website
 					</h1>
-					<p className="font-SourceSansProSemibold text-[4.2rem] text-neutral-e mt-[1.04rem]">
+					<p className="font-SourceSansProSemibold text-[clamp(1.4rem,5.5vw,4.2rem)] text-neutral-e mt-[1.04rem]">
 						Dengan ArachnoVa, Anda dapat membangun situs web impian Anda.
 						Mekanisme kami sederhana dan efektif, Anda memberi tahu kami apa
 						yang Anda inginkan, dan kami mewujudkannya
 					</p>
 				</div>
-				<div className="flex flex-col w-fit h-[763.7rem] justify-between items-center">
+				<div className="flex flex-col w-fit h-fit justify-between items-center">
 					<div
 						data-aos="fade-up"
 						className="relative flex flex-col w-fit h-fit justify-center items-center"
 					>
-						<div className="w-[120.7rem] aspect-[621/632] z-[0] absolute -left-[30.0rem] -bottom-[10.0rem]">
+						<div className="w-[clamp(35rem,80vw,120.7rem)] aspect-[621/632] z-[0] absolute -left-[clamp(2rem,15vw,30.0rem)] -bottom-[clamp(1rem,5vw,10.0rem)]">
 							<Image
 								src="/image/OurMechs/bg-mobile-left.png"
 								alt="bg"
@@ -222,7 +222,7 @@ const OurMechs = () => {
 								className="object-contain"
 							/>
 						</div>
-						<div className="w-[130.7rem] aspect-[598/600] z-[0] absolute -right-[50.0rem] top-[5.0rem]">
+						<div className="w-[clamp(35rem,85vw,130.7rem)] aspect-[598/600] z-[0] absolute -right-[clamp(2rem,20vw,50.0rem)] top-[5.0rem]">
 							<Image
 								src="/image/OurMechs/bg-mobile-right.png"
 								alt="bg"
@@ -255,7 +255,7 @@ const OurMechs = () => {
 						data-aos="fade-up"
 						className="relative flex flex-col w-fit h-fit justify-center items-center"
 					>
-						<div className="w-[120.7rem] aspect-[621/632] z-[0] absolute -left-[30.0rem] -bottom-[10.0rem]">
+						<div className="w-[clamp(35rem,80vw,120.7rem)] aspect-[621/632] z-[0] absolute -left-[clamp(2rem,15vw,30.0rem)] -bottom-[clamp(1rem,5vw,10.0rem)]">
 							<Image
 								src="/image/OurMechs/bg-mobile-left.png"
 								alt="bg"
@@ -264,7 +264,7 @@ const OurMechs = () => {
 								className="object-contain"
 							/>
 						</div>
-						<div className="w-[130.7rem] aspect-[598/600] z-[0] absolute -right-[50.0rem] top-[5.0rem]">
+						<div className="w-[clamp(35rem,85vw,130.7rem)] aspect-[598/600] z-[0] absolute -right-[clamp(2rem,20vw,50.0rem)] top-[5.0rem]">
 							<Image
 								src="/image/OurMechs/bg-mobile-right.png"
 								alt="bg"
@@ -297,7 +297,7 @@ const OurMechs = () => {
 						data-aos="fade-up"
 						className="relative flex flex-col w-fit h-fit justify-center items-center"
 					>
-						<div className="w-[120.7rem] aspect-[621/632] z-[0] absolute -left-[30.0rem] -bottom-[10.0rem]">
+						<div className="w-[clamp(35rem,80vw,120.7rem)] aspect-[621/632] z-[0] absolute -left-[clamp(2rem,15vw,30.0rem)] -bottom-[clamp(1rem,5vw,10.0rem)]">
 							<Image
 								src="/image/OurMechs/bg-mobile-left.png"
 								alt="bg"
@@ -306,7 +306,7 @@ const OurMechs = () => {
 								className="object-contain"
 							/>
 						</div>
-						<div className="w-[130.7rem] aspect-[598/600] z-[0] absolute -right-[50.0rem] top-[5.0rem]">
+						<div className="w-[clamp(35rem,85vw,130.7rem)] aspect-[598/600] z-[0] absolute -right-[clamp(2rem,20vw,50.0rem)] top-[5.0rem]">
 							<Image
 								src="/image/OurMechs/bg-mobile-right.png"
 								alt="bg"
@@ -339,7 +339,7 @@ const OurMechs = () => {
 						data-aos="fade-up"
 						className="relative flex flex-col w-fit h-fit justify-center items-center"
 					>
-						<div className="w-[120.7rem] aspect-[621/632] z-[0] absolute -left-[30.0rem] -bottom-[10.0rem]">
+						<div className="w-[clamp(35rem,80vw,120.7rem)] aspect-[621/632] z-[0] absolute -left-[clamp(2rem,15vw,30.0rem)] -bottom-[clamp(1rem,5vw,10.0rem)]">
 							<Image
 								src="/image/OurMechs/bg-mobile-left.png"
 								alt="bg"
@@ -348,7 +348,7 @@ const OurMechs = () => {
 								className="object-contain"
 							/>
 						</div>
-						<div className="w-[130.7rem] aspect-[598/600] z-[0] absolute -right-[50.0rem] top-[5.0rem]">
+						<div className="w-[clamp(35rem,85vw,130.7rem)] aspect-[598/600] z-[0] absolute -right-[clamp(2rem,20vw,50.0rem)] top-[5.0rem]">
 							<Image
 								src="/image/OurMechs/bg-mobile-right.png"
 								alt="bg"
