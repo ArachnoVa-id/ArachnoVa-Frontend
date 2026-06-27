@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-REPO_DIR="/var/www/neo.arachnova.id"
-DOMAIN="neo.arachnova.id"
+REPO_DIR="/var/www/arachnova.id"
+DOMAIN="arachnova.id"
 
 echo "=== Updating code ==="
 cd $REPO_DIR
@@ -26,7 +26,7 @@ echo "=== Setting up SSL ==="
 sudo certbot --nginx -d $DOMAIN --non-interactive --agree-tos --email arachnova.id@gmail.com || true
 
 echo "=== Configuring Nginx ==="
-sudo cp $REPO_DIR/deploy/neo.arachnova.id.nginx /etc/nginx/sites-available/$DOMAIN
+sudo cp $REPO_DIR/deploy/arachnova.id.nginx /etc/nginx/sites-available/$DOMAIN
 sudo ln -sf /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 

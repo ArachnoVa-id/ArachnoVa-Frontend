@@ -5,7 +5,7 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 
-const API_BASE = process.env.API_URL || "https://neo.arachnova.id/api";
+const API_BASE = process.env.API_URL || "https://arachnova.id/api";
 const API_KEY = process.env.CMS_API_KEY || "";
 
 async function headers(extra = {}) {
