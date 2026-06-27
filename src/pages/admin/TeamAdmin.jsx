@@ -62,8 +62,10 @@ const MemberCard = memo(({ member, idx, onUpdate, onUpload, onFetchLinkedIn, onR
     <div
       draggable
       onDragStart={(e) => { e.dataTransfer.setData("text/plain", String(idx)); onDragStart?.(idx); }}
-      className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm cursor-grab active:cursor-grabbing transition hover:shadow-md"
+      className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm cursor-grab active:cursor-grabbing transition hover:shadow-md relative"
     >
+      <div className="absolute top-1 left-1 text-gray-300 text-xs select-none" title="Drag to reorder or move to other group">⠿</div>
+      {/* Avatar */}
       <div className="relative w-16 h-16 mx-auto mb-1 rounded-full overflow-hidden cursor-pointer group" onClick={() => onUpload(idx)}>
         {member.image ? <img src={member.image} alt="" className="w-full h-full object-cover" /> : (
           <div className={`w-full h-full bg-gradient-to-br ${gradientColor} flex items-center justify-center text-white text-lg font-bold`}>
