@@ -15,7 +15,7 @@ import PricingAdmin from "@/pages/admin/PricingAdmin";
 import RedirectsAdmin from "@/pages/admin/RedirectsAdmin";
 import TeamAdmin from "@/pages/admin/TeamAdmin";
 import SettingsAdmin from "@/pages/admin/SettingsAdmin";
-import RedirectGuard from "@/pages/RedirectGuard";
+
 
 export default function App() {
   return (
@@ -31,7 +31,7 @@ export default function App() {
           <Route path="settings" element={<SettingsAdmin />} />
         </Route>
         <Route path="*" element={
-          <RedirectGuard>
+          <>
             <Navbar />
             <div className="flex flex-col">
               <Routes>
@@ -43,7 +43,7 @@ export default function App() {
               </Routes>
             </div>
             <Footer />
-          </RedirectGuard>
+          </>
         } />
       </Routes>
     </HelmetProvider>
