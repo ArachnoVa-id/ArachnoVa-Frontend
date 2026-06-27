@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useCollection } from "@/context/DataContext";
 
-const redirects = {
+const fallback = {
   "/academy/booklet": "https://www.figma.com/slides/AdcmoUcleIzn8gtGFtvEYK/Booklet-ArachnoVa-Academy-(BasPro)?node-id=2-439&t=e8wXSkLiHTiR4HfQ-1",
   "/academy/evaluation": "https://forms.gle/YWGea3bFusN9hc5E8",
   "/academy": "https://forms.gle/47BD69dSta8wDPrV8",
@@ -10,14 +11,19 @@ const redirects = {
 };
 
 export default function RedirectPage() {
+  const [redirects] = useCollection("redirects");
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const url = redirects[pathname];
+    // Build lookup from CMS data, fall back to hardcoded
+    const lookup = {};
+    (redirects || []).forEach((r) => { if (r.path) lookup[r.path] = r.redirect; });
+    const all = { ...fallback, ...lookup };
+    const url = all[pathname];
     if (url) {
       window.location.replace(url);
     }
-  }, [pathname]);
+  }, [pathname, redirects]);
 
   return null;
 }
