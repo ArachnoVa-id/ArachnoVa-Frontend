@@ -47,9 +47,9 @@ export default function RedirectsAdmin() {
               <label className="block text-xs font-medium text-gray-500 mb-1">From Path</label>
               <input value={r.path} onChange={(e) => change(i, "path", e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono" />
               {r.path && (
-                <a href={`https://neo.arachnova.id${r.path}`} target="_blank" rel="noopener noreferrer"
+                <a href={`https://link.arachnova.id${r.path}`} target="_blank" rel="noopener noreferrer"
                   className="text-[10px] text-blue-500 hover:text-blue-700 mt-0.5 block truncate">
-                  https://neo.arachnova.id{r.path}
+                  https://link.arachnova.id{r.path}
                 </a>
               )}
             </div>
