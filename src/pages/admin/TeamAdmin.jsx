@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, useRef } from "react";
 import { useCollection } from "@/context/DataContext";
 import { useToast } from "@/components/ui/Toast";
 import { FiPlus, FiSave, FiUpload, FiSearch, FiX, FiLinkedin } from "react-icons/fi";
@@ -55,12 +55,15 @@ function ProjectPicker({ selected, onChange, projects }) {
   );
 }
 
-const MemberCard = memo(({ member, idx, onUpdate, onUpload, onFetchLinkedIn, onRemove, fetchingLi, projects, gradientColor }) => {
+const MemberCard = memo(({ member, idx, onUpdate, onUpload, onFetchLinkedIn, onRemove, fetchingLi, projects, gradientColor, onDragStart }) => {
   const [urlInput, setUrlInput] = useState("");
   const change = (field, val) => onUpdate(idx, field, val);
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
-      {/* Avatar */}
+    <div
+      draggable
+      onDragStart={(e) => { e.dataTransfer.setData("text/plain", String(idx)); onDragStart?.(idx); }}
+      className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm cursor-grab active:cursor-grabbing transition hover:shadow-md"
+    >
       <div className="relative w-16 h-16 mx-auto mb-1 rounded-full overflow-hidden cursor-pointer group" onClick={() => onUpload(idx)}>
         {member.image ? <img src={member.image} alt="" className="w-full h-full object-cover" /> : (
           <div className={`w-full h-full bg-gradient-to-br ${gradientColor} flex items-center justify-center text-white text-lg font-bold`}>
@@ -70,7 +73,6 @@ const MemberCard = memo(({ member, idx, onUpdate, onUpload, onFetchLinkedIn, onR
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-white text-[10px] rounded-full"><FiUpload size={14} /></div>
       </div>
 
-      {/* Image URL paste + Upload button */}
       <div className="flex gap-1 mb-1.5">
         <input value={urlInput} onChange={(e) => setUrlInput(e.target.value)}
           placeholder="Paste image URL..." className="flex-1 px-2 py-1 border border-gray-200 rounded-lg text-[10px] font-mono" />
@@ -107,6 +109,7 @@ export default function TeamAdmin() {
   const [local, setLocal] = useState(null);
   const [dirty, setDirty] = useState(false);
   const [fetchingLi, setFetchingLi] = useState(null);
+  const [dragIdx, setDragIdx] = useState(null);
   const toast = useToast();
 
   useEffect(() => {
@@ -120,6 +123,36 @@ export default function TeamAdmin() {
   const change = (i, field, value) => update((prev) => {
     const next = [...prev]; next[i] = { ...next[i], [field]: value }; return next;
   });
+
+  const moveMember = (fromIdx, toType) => {
+    update((prev) => {
+      const next = [...prev];
+      next[fromIdx] = { ...next[fromIdx], type: toType };
+      return next;
+    });
+  };
+
+  const reorder = (fromIdx, toIdx) => {
+    update((prev) => {
+      const next = [...prev];
+      const [moved] = next.splice(fromIdx, 1);
+      next.splice(toIdx, 0, moved);
+      return next;
+    });
+  };
+
+  const handleDrop = (targetType) => (e) => {
+    e.preventDefault();
+    const from = parseInt(e.dataTransfer.getData("text/plain"));
+    if (isNaN(from)) return;
+    const memberType = local[from]?.type;
+    if (memberType !== targetType) {
+      moveMember(from, targetType);
+    }
+    setDragIdx(null);
+  };
+
+  const handleDragOver = (e) => e.preventDefault();
 
   const handleUpload = async (i) => {
     const input = document.createElement("input");
@@ -152,7 +185,12 @@ export default function TeamAdmin() {
     const items = local.filter((m) => m.type === type);
     const indices = items.map((m) => local.indexOf(m));
     return (
-      <div className="mb-8" key={type}>
+      <div
+        key={type}
+        onDragOver={handleDragOver}
+        onDrop={handleDrop(type)}
+        className={`mb-8 p-4 rounded-xl border-2 border-dashed transition-colors ${dragIdx !== null ? "border-blue-300 bg-blue-50/30" : "border-transparent"}`}
+      >
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
             <span className={`w-2 h-2 rounded-full ${color}`} /> {title} ({indices.length})
@@ -161,7 +199,9 @@ export default function TeamAdmin() {
             <FiPlus size={12} /> Add
           </button>
         </div>
-        {indices.length === 0 ? <p className="text-sm text-gray-400 italic">No members yet</p> : (
+        {indices.length === 0 ? (
+          <p className="text-sm text-gray-400 italic text-center py-8">Drop members here</p>
+        ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
             {indices.map((idx) => (
               <MemberCard
@@ -175,6 +215,7 @@ export default function TeamAdmin() {
                 fetchingLi={fetchingLi === idx}
                 projects={projects}
                 gradientColor={gradientColors[idx % gradientColors.length]}
+                onDragStart={(i) => setDragIdx(i)}
               />
             ))}
           </div>
