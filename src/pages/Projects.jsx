@@ -1,6 +1,6 @@
 import { useRef, useCallback, useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { useCollection } from "@/context/DataContext";
+import { useCollection, useData } from "@/context/DataContext";
 import { useLocation } from "react-router-dom";
 import MarqueeCarousel from "@/components/Projects/MarqueeCarousel";
 import ProjectCardGrid from "@/components/Projects/ProjectCardGrid";
@@ -15,6 +15,7 @@ function shuffle(arr) {
 }
 
 export default function ProjectsPage() {
+  const { loading } = useData();
   const [projects] = useCollection("projects");
   const gridRef = useRef(null);
   const cardRefs = useRef({});
@@ -67,6 +68,14 @@ export default function ProjectsPage() {
       setTimeout(() => setAutoOpenId(projectId), 700);
     }
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-LightBlue-c" />
+      </div>
+    );
+  }
 
   return (
     <>
