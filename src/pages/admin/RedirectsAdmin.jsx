@@ -46,12 +46,22 @@ export default function RedirectsAdmin() {
             <div className="flex-1">
               <label className="block text-xs font-medium text-gray-500 mb-1">From Path</label>
               <input value={r.path} onChange={(e) => change(i, "path", e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono" />
-              {r.path && <p className="text-[10px] text-gray-400 mt-0.5">https://neo.arachnova.id{r.path}</p>}
+              {r.path && (
+                <a href={`https://neo.arachnova.id${r.path}`} target="_blank" rel="noopener noreferrer"
+                  className="text-[10px] text-blue-500 hover:text-blue-700 mt-0.5 block truncate">
+                  https://neo.arachnova.id{r.path}
+                </a>
+              )}
             </div>
             <div className="flex-1">
               <label className="block text-xs font-medium text-gray-500 mb-1">Redirect To</label>
               <input value={r.redirect} onChange={(e) => change(i, "redirect", e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono" />
-              {r.redirect && <p className="text-[10px] text-gray-400 mt-0.5 truncate">{r.redirect}</p>}
+              {r.redirect && (
+                <a href={r.redirect} target="_blank" rel="noopener noreferrer"
+                  className="text-[10px] text-blue-500 hover:text-blue-700 mt-0.5 block truncate">
+                  {r.redirect}
+                </a>
+              )}
             </div>
             <button onClick={() => remove(i)} className="mt-5 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg text-sm">×</button>
           </div>
