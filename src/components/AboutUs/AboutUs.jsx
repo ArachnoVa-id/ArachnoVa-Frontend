@@ -18,7 +18,7 @@ const AboutUs = () => {
   const instagram = "https://www.instagram.com/arachnova.id/";
   const whatsapp = "https://wa.me/6287882832538";
   const Description =
-    "ArachnoVa adalah perusahaan yang berfokus pada penyediaan layanan desain dan pengembangan website profesional. Dengan tim yang memiliki kompetensi teknis mendalam di bidang teknologi informasi, kami berkomitmen untuk menghadirkan solusi web inovatif yang kreatif, responsif, dan sesuai dengan kebutuhan setiap klien.";
+    "ArachnoVa adalah bagian dari PT ARAH INOVASI DIGITALOKA, perusahaan yang berfokus pada penyediaan layanan desain dan pengembangan website profesional. Dengan tim yang memiliki kompetensi teknis mendalam di bidang teknologi informasi, kami berkomitmen untuk menghadirkan solusi web inovatif yang kreatif, responsif, dan sesuai dengan kebutuhan setiap klien.";
   return (
     <section className="relative w-full lg:min-h-[100vh] flex flex-col justify-center items-center bg-white-MainPage lg:py-[5vw] py-[15vw] overflow-hidden">
       <div className="absolute top-[4.3rem] w-full aspect-[1920/458] z-0 lg:flex hidden">

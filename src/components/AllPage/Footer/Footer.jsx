@@ -66,9 +66,14 @@ const Footer = () => {
 
         {/* Bottom bar */}
         <div className="flex flex-col lg:flex-row items-center justify-between gap-y-[clamp(0.25rem,1vw,0.75rem)]">
-          <p className="font-InterSemibold lg:text-[0.75rem] text-[clamp(0.6rem,3vw,1rem)] text-neutral-a/60">
-            &copy; {year} ArachnoVa. All rights reserved.
-          </p>
+          <div className="text-center lg:text-left">
+            <p className="font-InterSemibold lg:text-[0.75rem] text-[clamp(0.6rem,3vw,1rem)] text-neutral-a/60">
+              &copy; {year} ArachnoVa. All rights reserved.
+            </p>
+            <p className="font-InterSemibold lg:text-[0.65rem] text-[clamp(0.5rem,2.5vw,0.85rem)] text-neutral-a/40 mt-1">
+              PT ARAH INOVASI DIGITALOKA
+            </p>
+          </div>
           <div className="flex gap-x-[1.2rem]">
             <a href="/projects" className="font-InterSemibold lg:text-[0.7rem] text-[clamp(0.5rem,2.5vw,0.9rem)] text-neutral-a/50 hover:text-neutral-a/80 transition-colors">Projects</a>
             <a href="/services" className="font-InterSemibold lg:text-[0.7rem] text-[clamp(0.5rem,2.5vw,0.9rem)] text-neutral-a/50 hover:text-neutral-a/80 transition-colors">Services</a>
