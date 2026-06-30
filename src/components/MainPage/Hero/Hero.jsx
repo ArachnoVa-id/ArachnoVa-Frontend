@@ -1,6 +1,6 @@
 import { useSettings } from "@/context/DataContext";
 import Image from "@/components/ui/Img";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import CodeTyper from "@/components/ui/CodeTyper";
@@ -14,15 +14,17 @@ function Words({ words, className }) {
     return () => clearInterval(t);
   }, [words.length]);
   return (
-    <span className={`relative inline-block overflow-hidden ${className || ""}`} style={{ width: `${Math.max(...words.map(w => w.length))}ch` }}>
-      {words.map((w, i) => (
-        <span key={i} className="absolute inset-0 flex items-center transition-all duration-500"
-          style={{
-            transform: i === idx ? "translateY(0)" : i < idx ? "translateY(-100%)" : "translateY(100%)",
-            opacity: i === idx ? 1 : 0,
-          }}
-        >{w}</span>
-      ))}
+    <span className={`inline-flex flex-col overflow-hidden leading-none ${className || ""}`}>
+          <span className="relative" style={{ height: '1em' }}>
+        {words.map((w, i) => (
+          <span key={i} className="absolute inset-0 transition-all duration-500 flex items-center"
+            style={{
+              transform: i === idx ? "translateY(0)" : i < idx ? "translateY(-100%)" : "translateY(100%)",
+              opacity: i === idx ? 1 : 0,
+            }}
+          >{w}</span>
+        ))}
+      </span>
     </span>
   );
 }
