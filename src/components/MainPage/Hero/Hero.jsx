@@ -7,6 +7,26 @@ import CodeTyper from "@/components/ui/CodeTyper";
 import TerminalTyper from "@/components/ui/TerminalTyper";
 import WebPattern from "@/components/ui/WebPattern";
 
+function Words({ words, className }) {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % words.length), 2500);
+    return () => clearInterval(t);
+  }, [words.length]);
+  return (
+    <span className={`relative inline-block overflow-hidden ${className || ""}`} style={{ width: `${Math.max(...words.map(w => w.length))}ch` }}>
+      {words.map((w, i) => (
+        <span key={i} className="absolute inset-0 flex items-center transition-all duration-500"
+          style={{
+            transform: i === idx ? "translateY(0)" : i < idx ? "translateY(-100%)" : "translateY(100%)",
+            opacity: i === idx ? 1 : 0,
+          }}
+        >{w}</span>
+      ))}
+    </span>
+  );
+}
+
 export default function Hero() {
   const [codeDone, setCodeDone] = useState(false);
 
@@ -41,21 +61,11 @@ export default function Hero() {
           <div className="text-[1.6rem] text-neutral-g font-CoolveticaCondReg ">
             ArachnoVa{" "}
           </div>
-          <div className="text-neutral-g font-SourceSansProBold text-[2.0rem]/[2.5rem]">
-            <div className="text-[2.0rem] ">Your Web Design Partner</div>
-            <div className="overflow-clip  flex items-center justify-center h-[3.0rem] gap-[0.5rem] leading-none">
-              <div className="text-[2.8rem]">Always</div>
-              <div className="flex-col items-center justify-center  gap-[4.0rem] h-full w-full -translate-y-full  ">
-                <div className="text-[2.8rem] animate-swap_words pt-[0.2rem]">
-                  Delivered
-                </div>
-                <div className="text-[2.8rem] animate-swap_words pt-[0.1rem]">
-                  Distinctive
-                </div>
-                <div className="text-[2.8rem] animate-swap_words ">
-                  Dependable
-                </div>
-              </div>
+          <div className="text-neutral-g font-SourceSansProBold">
+            <div className="text-[1.8rem]">Your Web Design Partner</div>
+            <div className="flex items-baseline gap-[0.4rem] mt-[0.1rem]">
+              <span className="text-[2.6rem]">Always</span>
+              <Words words={["Delivered", "Distinctive", "Dependable"]} className="text-[2.6rem]" />
             </div>
           </div>
           <div className="text-[1.0rem] text-neutral-e pt-[1.1rem] font-SourceSansProSemibold ">
@@ -121,15 +131,11 @@ export default function Hero() {
           ArachnoVa{" "}
         </div>
 
-        <div className="text-neutral-g items-center justify-center font-SourceSansProBold text-[clamp(1.2rem,3vw,2rem)]/[clamp(2rem,8vw,6rem)]">
-          <div className="text-[clamp(1.5rem,8vw,5rem)] mx-[5.0rem]   ">Your Web Design Partner</div>
-          <div className="overflow-clip  flex items-center justify-center h-[clamp(2rem,12vw,7rem)] gap-[clamp(0.5rem,3vw,2rem)]  leading-none">
-            <div className="text-[clamp(2rem,10vw,7rem)]">Always</div>
-            <div className="flex-col gap-[clamp(0.5rem,4vw,4rem)] text-[clamp(2rem,10vw,7rem)] gap-y-[clamp(0.5rem,2.5vw,2rem)] ">
-              <div className=" animate-swap_words ">Delivered</div>
-              <div className=" animate-swap_words">Distinctive</div>
-			  <div className=" animate-swap_words ">Dependable</div>
-            </div>
+        <div className="text-neutral-g font-SourceSansProBold text-center">
+          <div className="text-[clamp(1.2rem,7vw,5rem)]">Your Web Design Partner</div>
+          <div className="flex items-baseline justify-center gap-[0.5rem] mt-[0.2rem]">
+            <span className="text-[clamp(1.5rem,9vw,6rem)]">Always</span>
+            <Words words={["Delivered", "Distinctive", "Dependable"]} className="text-[clamp(1.5rem,9vw,6rem)]" />
           </div>
         </div>
 
