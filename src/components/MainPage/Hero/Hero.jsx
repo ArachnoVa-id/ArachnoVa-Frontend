@@ -14,15 +14,12 @@ function Words({ words, className }) {
     return () => clearInterval(t);
   }, [words.length]);
   return (
-    <span className={`inline-flex flex-col overflow-hidden leading-none ${className || ""}`}>
-          <span className="relative" style={{ height: '1em' }}>
+    <span className={`inline-block overflow-hidden leading-none align-middle ${className || ""}`}
+      style={{ width: `${Math.max(...words.map(w => w.length))}ch`, height: '1em' }}>
+      <span className="block transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateY(-${idx * 100}%)` }}>
         {words.map((w, i) => (
-          <span key={i} className="absolute inset-0 transition-all duration-500 flex items-center"
-            style={{
-              transform: i === idx ? "translateY(0)" : i < idx ? "translateY(-100%)" : "translateY(100%)",
-              opacity: i === idx ? 1 : 0,
-            }}
-          >{w}</span>
+          <span key={i} className="block" style={{ height: '1em', lineHeight: 1 }}>{w}</span>
         ))}
       </span>
     </span>
