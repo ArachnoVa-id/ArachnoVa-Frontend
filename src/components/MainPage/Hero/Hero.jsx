@@ -9,17 +9,22 @@ import WebPattern from "@/components/ui/WebPattern";
 
 function Words({ words, className }) {
   const [idx, setIdx] = useState(0);
+  const [w, setW] = useState(null);
+  const measureRef = useRef(null);
   useEffect(() => {
     const t = setInterval(() => setIdx((i) => (i + 1) % words.length), 2500);
     return () => clearInterval(t);
   }, [words.length]);
+  useEffect(() => {
+    if (measureRef.current) setW(measureRef.current.offsetWidth + 1 + 'px');
+  }, [idx]);
   return (
     <span className={`inline-block overflow-hidden leading-none align-middle ${className || ""}`}
-      style={{ width: `${Math.max(...words.map(w => w.length))}ch`, height: '1em' }}>
+      style={{ height: '1em', width: w || 'auto' }}>
       <span className="block transition-transform duration-500 ease-in-out"
         style={{ transform: `translateY(-${idx}em)` }}>
         {words.map((w, i) => (
-          <span key={i} className="block" style={{ height: '1em', lineHeight: 1 }}>{w}</span>
+          <span key={i} ref={i === idx ? measureRef : null} className="block whitespace-nowrap" style={{ height: '1em', lineHeight: 1 }}>{w}</span>
         ))}
       </span>
     </span>
