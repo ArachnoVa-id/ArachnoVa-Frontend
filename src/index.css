@@ -52,6 +52,13 @@ body {
   background: #F8FAFC;
 }
 
+@media (max-width: 640px) {
+  html { font-size: 13px; }
+}
+@media (max-width: 400px) {
+  html { font-size: 12px; }
+}
+
 ::selection {
   background: #0891B2;
   color: white;
