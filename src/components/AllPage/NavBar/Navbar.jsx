@@ -35,7 +35,7 @@ const Navbar = () => {
 						<NavItem Menu="About" href="/aboutus" path={path} />
 					</ul>
 					<a href="/">
-						<div className="relative lg:hidden w-[clamp(6rem,12vw,10.5rem)] aspect-[45/33] hover:scale-110 transition-all duration-300 ease-in-out">
+						<div className="relative lg:hidden w-[clamp(4rem,9vw,7rem)] aspect-[45/33] hover:scale-110 transition-all duration-300 ease-in-out">
 							<Image
 								src="/image/Logo.png"
 								draggable="false"
