@@ -17,7 +17,7 @@ export default function Hero() {
     });
   }, []);
   return (
-    <section className="w-full min-h-screen relative bg-white-MainPage overflow-hidden flex flex-row justify-center items-center">
+    <section className="w-full lg:min-h-[90vh] min-h-[70vh] relative bg-white-MainPage overflow-hidden flex flex-row justify-center items-center">
       <style>{`@keyframes fade-in-left { from { opacity: 0; transform: translateX(-1.5rem); } to { opacity: 1; transform: translateX(0); } } .animate-fade-in-left { animation: fade-in-left 0.5s ease-out; }`}</style>
       <WebPattern opacity={0.04} />
       <Image

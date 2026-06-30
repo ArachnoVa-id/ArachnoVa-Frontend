@@ -83,7 +83,7 @@ export default function ProjectsPage() {
         <title>Our Projects | ArachnoVa</title>
       </Helmet>
 
-      <section className="relative w-full bg-white-MainPage lg:pt-[5.0rem] pt-[clamp(5rem,25vw,22rem)] lg:pb-[1.0rem] pb-[clamp(1rem,8vw,5rem)] h-screen overflow-hidden flex flex-col justify-center">
+      <section className="relative w-full bg-white-MainPage lg:pt-[5.0rem] pt-[clamp(5rem,25vw,22rem)] lg:pb-[1.0rem] pb-[clamp(1rem,8vw,5rem)] max-h-screen overflow-hidden flex flex-col justify-center min-h-[60vh]">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <svg className="absolute lg:w-[40.0rem] w-[clamp(20rem,100vw,80rem)] lg:top-[2.0rem] top-[clamp(2rem,15vw,10rem)] lg:left-[30.0rem] left-[clamp(2rem,15vw,10rem)]" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: "blur(60px)" }}>
             <path d="M300 0C450 0 550 50 600 150C650 250 600 350 500 380C400 410 200 420 100 350C0 280 -50 150 50 80C150 10 200 0 300 0Z" fill="url(#blobGrad)" opacity="0.3" />
