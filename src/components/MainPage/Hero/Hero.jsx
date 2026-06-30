@@ -81,7 +81,7 @@ export default function Hero() {
 
         <div className="relative">
           <div className="aspect-[537/366] w-[28.0rem] border-2 border-[#E2E8F0] rounded-[0.62rem] font-ConsolasRegular overflow-hidden">
-            <div className="bg-white w-full h-full absolute rounded-[0.62rem]"></div>
+            <div className="bg-white/50 backdrop-blur-xl w-full h-full absolute rounded-[0.62rem]"></div>
             <div className="px-[1.2rem] py-[2.0rem] text-[1.05rem]/[1.15rem] relative">
               <Image
                 alt=""
@@ -95,7 +95,7 @@ export default function Hero() {
             </div>
           </div>
           {codeDone && (
-            <div className="absolute aspect-[419/96] w-[24rem] bg-white rounded-[0.62rem] -bottom-[1.5rem] -right-[1.0rem] text-[1.0rem] flex items-center border-2 border-[#E2E8F0] font-ConsolasBold shadow-md animate-fade-in-left">
+            <div className="absolute aspect-[419/96] w-[24rem] bg-white/70 backdrop-blur-md rounded-[0.62rem] -bottom-[1.5rem] -right-[1.0rem] text-[1.0rem] flex items-center border-2 border-[#E2E8F0] font-ConsolasBold shadow-md animate-fade-in-left">
               <Image
                 alt=""
                 src="/image/Hero/3ColorButton.png"
@@ -165,7 +165,7 @@ export default function Hero() {
             </div>
           </div>
           {codeDone && (
-            <div className="absolute w-[clamp(15rem,65vw,60rem)] h-[clamp(5rem,15vw,13rem)] bg-white rounded-md -bottom-[clamp(1rem,4vw,3rem)] -right-[clamp(0.5rem,3vw,2rem)] text-[clamp(1.2rem,4vw,3rem)] border-2 border-[#E2E8F0] font-ConsolasBold shadow-md animate-fade-in-left">
+            <div className="absolute w-[clamp(15rem,65vw,60rem)] h-[clamp(5rem,15vw,13rem)] bg-white/70 backdrop-blur-md rounded-md -bottom-[clamp(1rem,4vw,3rem)] -right-[clamp(0.5rem,3vw,2rem)] text-[clamp(1.2rem,4vw,3rem)] border-2 border-[#E2E8F0] font-ConsolasBold shadow-md animate-fade-in-left">
               <Image
                 alt=""
                 src="/image/Hero/3ColorButton.png"
