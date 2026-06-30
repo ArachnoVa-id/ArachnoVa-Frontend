@@ -115,17 +115,17 @@ export default function Hero() {
       {/* Mobile */}
       <div
         data-aos="fade-up"
-        className="hero-mobile flex flex-col lg:hidden w-full items-center mb-[clamp(8rem,40vw,40rem)] z-[2] mt-[clamp(6rem,25vw,24.4rem)]"
+        className="hero-mobile flex flex-col lg:hidden w-full items-center mb-[clamp(4rem,35vw,30rem)] z-[2] mt-[clamp(3rem,20vw,18rem)]"
       >
-          <div className="text-[clamp(3rem,12vw,8.6rem)] text-neutral-g font-CoolveticaCondReg ">
+          <div className="text-[clamp(2rem,10vw,6rem)] text-neutral-g font-CoolveticaCondReg ">
           ArachnoVa{" "}
         </div>
 
         <div className="text-neutral-g items-center justify-center font-SourceSansProBold text-[clamp(1.2rem,3vw,2rem)]/[clamp(2rem,8vw,6rem)]">
-          <div className="text-[clamp(2.5rem,10vw,7rem)] mx-[5.0rem]   ">Your Web Design Partner</div>
-          <div className="overflow-clip  flex items-center justify-center h-[clamp(4rem,14vw,9.8rem)] gap-[clamp(0.5rem,3vw,2rem)]  leading-none">
-            <div className="text-[clamp(3.5rem,14vw,9.8rem)]">Always</div>
-            <div className="flex-col gap-[clamp(0.5rem,4vw,4rem)] text-[clamp(3.5rem,14vw,9.8rem)] gap-y-[clamp(0.5rem,2.5vw,2rem)] ">
+          <div className="text-[clamp(1.5rem,8vw,5rem)] mx-[5.0rem]   ">Your Web Design Partner</div>
+          <div className="overflow-clip  flex items-center justify-center h-[clamp(2rem,12vw,7rem)] gap-[clamp(0.5rem,3vw,2rem)]  leading-none">
+            <div className="text-[clamp(2rem,10vw,7rem)]">Always</div>
+            <div className="flex-col gap-[clamp(0.5rem,4vw,4rem)] text-[clamp(2rem,10vw,7rem)] gap-y-[clamp(0.5rem,2.5vw,2rem)] ">
               <div className=" animate-swap_words ">Delivered</div>
               <div className=" animate-swap_words">Distinctive</div>
 			  <div className=" animate-swap_words ">Dependable</div>
