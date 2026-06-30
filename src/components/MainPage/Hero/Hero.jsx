@@ -115,7 +115,7 @@ export default function Hero() {
       {/* Mobile */}
       <div
         data-aos="fade-up"
-        className="flex flex-col lg:hidden w-full items-center mb-[clamp(8rem,40vw,40rem)] z-[2] mt-[clamp(6rem,25vw,24.4rem)]"
+        className="hero-mobile flex flex-col lg:hidden w-full items-center mb-[clamp(8rem,40vw,40rem)] z-[2] mt-[clamp(6rem,25vw,24.4rem)]"
       >
           <div className="text-[clamp(3rem,12vw,8.6rem)] text-neutral-g font-CoolveticaCondReg ">
           ArachnoVa{" "}
