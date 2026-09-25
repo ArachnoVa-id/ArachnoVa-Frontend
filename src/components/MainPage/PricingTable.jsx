@@ -1,4 +1,5 @@
 import { useSettings } from "@/context/DataContext";
+import PlanCta from "@/components/ui/PlanCta";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -109,12 +110,7 @@ export default function PricingTable({ data }) {
               <div className="border-t border-border border-r" />
               {plans.map((plan, i) => (
                 <div key={i} className="p-[1.2rem] text-center border-t border-border border-r last:border-r-0">
-                  <a
-                    href={plan.cta || "https://wa.me/6287882832538"}
-                    className="inline-block font-InterBold lg:text-[0.83rem] text-neutral-a bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] px-[1.5rem] py-[0.6rem] rounded-[0.4rem] hover:translate-y-[-2px] transition-all duration-300"
-                  >
-                    {plan.ctaText || "Pilih Paket"}
-                  </a>
+                  <PlanCta plan={plan} className="inline-block font-InterBold lg:text-[0.83rem] text-neutral-a bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] px-[1.5rem] py-[0.6rem] rounded-[0.4rem] hover:translate-y-[-2px] transition-all duration-300" />
                 </div>
               ))}
             </div>
@@ -136,12 +132,7 @@ export default function PricingTable({ data }) {
                   </div>
                 ))}
               </div>
-              <a
-                href={plan.cta || "https://wa.me/6287882832538"}
-                className="block text-center font-InterBold text-[clamp(1.3rem,4.5vw,3.5rem)] text-neutral-a bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] py-[clamp(1rem,3.5vw,2.5rem)] rounded-[1.5rem] mt-[clamp(1.5rem,5.5vw,4rem)]"
-              >
-                {plan.ctaText || "Pilih Paket"}
-              </a>
+              <PlanCta plan={plan} className="block w-full text-center font-InterBold text-[clamp(1.3rem,4.5vw,3.5rem)] text-neutral-a bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] py-[clamp(1rem,3.5vw,2.5rem)] rounded-[1.5rem] mt-[clamp(1.5rem,5.5vw,4rem)]" />
             </div>
           ))}
         </div>

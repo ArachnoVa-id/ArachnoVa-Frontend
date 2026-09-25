@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 
 const API_BASE = import.meta.env.VITE_API_URL || "";
-const TOKEN_KEY = "cms_token";
+const SESSION_KEY = "av_session";
 
 const DataContext = createContext(null);
 
@@ -15,11 +15,21 @@ const defaults = {
   settings: { whatsapp: "https://wa.me/6287882832538", email: "mailto:arachnova.id@gmail.com", instagram: "https://www.instagram.com/arachnova.id/", linkedin: "https://www.linkedin.com/company/arachnova-id/" },
 };
 
-function getToken() {
-  return sessionStorage.getItem(TOKEN_KEY);
+// Google sign-in session: { token, email, name, isAdmin }. Kept per browser tab.
+function readSession() {
+  try {
+    const s = JSON.parse(sessionStorage.getItem(SESSION_KEY));
+    return s?.token && s.expiresAt > Date.now() ? s : null;
+  } catch {
+    return null;
+  }
 }
 
-// Fetch against the CMS API with the admin session token attached.
+function getToken() {
+  return readSession()?.token;
+}
+
+// Fetch against the API with the signed-in user's session token attached.
 export function authFetch(path, options = {}) {
   const headers = { ...options.headers };
   const token = getToken();
@@ -30,7 +40,8 @@ export function authFetch(path, options = {}) {
 export function DataProvider({ children }) {
   const [data, setData] = useState(defaults);
   const [loading, setLoading] = useState(true);
-  const [auth, setAuth] = useState(() => !!getToken());
+  const [user, setUser] = useState(readSession);
+  const auth = !!user?.isAdmin;
 
   const fetchAll = useCallback(async () => {
     setLoading(true);
@@ -61,8 +72,8 @@ export function DataProvider({ children }) {
         body: JSON.stringify(value),
       });
       if (res.status === 401) {
-        sessionStorage.removeItem(TOKEN_KEY);
-        setAuth(false);
+        sessionStorage.removeItem(SESSION_KEY);
+        setUser(null);
       }
       if (!res.ok) throw new Error(`Server returned ${res.status}`);
     } catch (e) {
@@ -70,7 +81,7 @@ export function DataProvider({ children }) {
     }
   }, []);
 
-  // Exchanges a Google ID token for a CMS session. Resolves to null on success, or an error message.
+  // Exchanges a Google ID token for a session. Resolves to { user } or { error }.
   const login = useCallback(async (credential) => {
     try {
       const res = await fetch(`${API_BASE}/api/auth/google`, {
@@ -79,22 +90,22 @@ export function DataProvider({ children }) {
         body: JSON.stringify({ credential }),
       });
       const json = await res.json().catch(() => ({}));
-      if (!res.ok || !json.token) return json.error || `Login failed (${res.status})`;
-      sessionStorage.setItem(TOKEN_KEY, json.token);
-      setAuth(true);
-      return null;
+      if (!res.ok || !json.token) return { error: json.error || `Login failed (${res.status})` };
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify(json));
+      setUser(json);
+      return { user: json };
     } catch (e) {
-      return `Login failed: ${e.message}`;
+      return { error: `Login failed: ${e.message}` };
     }
   }, []);
 
   const logout = useCallback(() => {
-    sessionStorage.removeItem(TOKEN_KEY);
-    setAuth(false);
+    sessionStorage.removeItem(SESSION_KEY);
+    setUser(null);
   }, []);
 
   return (
-    <DataContext.Provider value={{ data, loading, auth, login, logout, update, refetch: fetchAll }}>
+    <DataContext.Provider value={{ data, loading, auth, user, login, logout, update, refetch: fetchAll }}>
       {children}
     </DataContext.Provider>
   );

@@ -2,7 +2,7 @@ import { Router } from "express";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { requireAuth, authConfig, googleLogin } from "../auth.js";
+import { requireAuth, requireUser, authConfig, googleLogin } from "../auth.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(__dirname, "..", "data");
@@ -38,8 +38,8 @@ apiRouter.get("/auth/config", authConfig);
 
 apiRouter.post("/auth/google", googleLogin);
 
-apiRouter.get("/auth/check", requireAuth, (req, res) => {
-  res.json({ ok: true, email: req.adminEmail || null });
+apiRouter.get("/auth/me", requireUser, (req, res) => {
+  res.json(req.user);
 });
 
 collections.forEach((name) => {

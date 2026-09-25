@@ -5,6 +5,7 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 import { apiRouter } from "./routes/api.js";
 import { uploadRouter } from "./routes/upload.js";
+import { ordersRouter } from "./routes/orders.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 
 app.use("/api", apiRouter);
 app.use("/api/upload", uploadRouter);
+app.use("/api/orders", ordersRouter);
 // Uploaded files are user content: never let them run scripts on our origin (e.g. SVG with <script>).
 app.use("/uploads", (req, res, next) => {
   res.set("X-Content-Type-Options", "nosniff");
