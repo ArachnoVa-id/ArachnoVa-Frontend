@@ -55,7 +55,7 @@ function MemberCard({ member, i, projects }) {
           <div className="flex flex-wrap gap-1 mt-0.5">
             {memberProjects.map((p) => (
               <Link key={p.id} to={`/projects?projectId=${p.id}`}
-                className="text-[10px] px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-500 border border-gray-200 hover:bg-LightBlue-c hover:text-white hover:border-LightBlue-c transition-colors">
+                className="text-[12px] px-2 py-1 rounded-full bg-gray-100 text-gray-500 border border-gray-200 hover:bg-LightBlue-c hover:text-white hover:border-LightBlue-c transition-colors">
                 {p.title}
               </Link>
             ))}
@@ -83,13 +83,13 @@ export default function TeamSection({ members, projects }) {
           <MemberCard key={i} member={member} i={i} projects={projects} />
         ))}
       </div>
-      <div className="md:hidden flex gap-6 overflow-x-auto pb-4">
+      <div className="md:hidden flex gap-4 overflow-x-auto pb-4 -mx-6 px-6 scroll-px-6 snap-x snap-mandatory">
         {items.map((member, i) => {
           const memberProjects = (member.projectIds || [])
             .map((id) => (projects || []).find((p) => p.id === id))
             .filter(Boolean);
           return (
-            <div key={i} className="flex-shrink-0 w-64">
+            <div key={i} className="flex-shrink-0 w-[min(62vw,240px)] snap-start">
               <div className="rounded-2xl overflow-hidden border border-gray-200/80 bg-gray-50 shadow-sm mb-3">
                 {member.image ? (
                   <img loading="lazy" alt={member.name} src={member.image} className="object-cover aspect-square w-full" draggable="false" />
@@ -99,25 +99,25 @@ export default function TeamSection({ members, projects }) {
                   </div>
                 )}
               </div>
-              <p className="font-bold text-base text-gray-900">{member.name}</p>
-              <p className="text-sm text-gray-500">{member.role}</p>
+              <p className="font-bold text-[16px] leading-snug text-gray-900">{member.name}</p>
+              <p className="text-[14px] text-gray-500">{member.role}</p>
               {member.linkedin && (
                 <a href={member.linkedin} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-xs text-gray-400 hover:text-blue-600 mt-1">
-                  <FiLinkedin size={12} /> <span className="truncate">{shortUrl(member.linkedin)}</span>
+                  className="flex items-center gap-1.5 text-[13px] text-gray-500 hover:text-blue-600 py-1.5">
+                  <FiLinkedin size={14} className="shrink-0" /> <span className="truncate">{shortUrl(member.linkedin)}</span>
                 </a>
               )}
               {member.website && (
                 <a href={member.website} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-xs text-gray-400 hover:text-teal-600 mt-0.5">
-                  <FiGlobe size={12} /> <span className="truncate">{shortUrl(member.website)}</span>
+                  className="flex items-center gap-1.5 text-[13px] text-gray-500 hover:text-teal-600 py-1.5">
+                  <FiGlobe size={14} className="shrink-0" /> <span className="truncate">{shortUrl(member.website)}</span>
                 </a>
               )}
               {memberProjects.length > 0 && (
                 <div className="flex flex-wrap gap-1 mt-1">
                   {memberProjects.map((p) => (
                     <Link key={p.id} to={`/projects?projectId=${p.id}`}
-                      className="text-[10px] px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-500 border border-gray-200 hover:bg-LightBlue-c hover:text-white hover:border-LightBlue-c transition-colors">{p.title}</Link>
+                      className="text-[12px] px-2 py-1 rounded-full bg-gray-100 text-gray-500 border border-gray-200 hover:bg-LightBlue-c hover:text-white hover:border-LightBlue-c transition-colors">{p.title}</Link>
                   ))}
                 </div>
               )}
@@ -131,10 +131,10 @@ export default function TeamSection({ members, projects }) {
   return (
     <section className="w-full bg-white-MainPage lg:py-20 py-16 lg:px-32 px-6">
       <div className="text-center mb-12">
-        <p className="font-SourceSansProBold lg:text-xl text-base bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
+        <p className="font-SourceSansProBold lg:text-xl text-[16px] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
           Our Team
         </p>
-        <h2 className="font-SourceSansProBold lg:text-3xl text-2xl text-neutral-g mt-2">
+        <h2 className="font-SourceSansProBold lg:text-3xl text-[28px] text-neutral-g mt-2">
           Meet the Founders
         </h2>
       </div>

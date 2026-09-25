@@ -110,9 +110,9 @@ const ServiceDetails = ({ _key, selected, title, description, image }) => {
           {title}
         </div>
         <div
-          className="text-[#4E5F66] text-justify font-SourceSansProSemibold
+          className="text-[#4E5F66] lg:text-justify text-left font-SourceSansProSemibold
                      lg:text-[1.042vw] lg:w-[26.615vw] lg:leading-[150%]
-                     text-[3.256vw] w-[79.536vw]  leading-[125%]"
+                     text-[clamp(14px,3.8vw,18px)] w-[79.536vw]  leading-[150%]"
         >
           {description}
         </div>

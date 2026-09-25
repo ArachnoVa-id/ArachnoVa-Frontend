@@ -16,10 +16,18 @@ function Words({ words, className }) {
     return () => clearInterval(t);
   }, [words.length]);
   useEffect(() => {
-    if (measureRef.current) setCw(measureRef.current.offsetWidth + 1 + 'px');
+    const el = measureRef.current;
+    if (!el) return;
+    // Re-measure whenever the word's rendered width changes: new word, web font finishing
+    // loading (the first measure uses the narrower fallback font), or viewport resize.
+    const measure = () => setCw(Math.ceil(el.getBoundingClientRect().width) + 2 + "px");
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
   }, [idx]);
   return (
-    <span className={`inline-flex overflow-hidden leading-none align-middle ${className || ""}`}
+    <span className={`inline-flex overflow-hidden leading-none align-middle text-left ${className || ""}`}
       style={{ height: '1em', width: cw || 'auto' }}>
       <span className="block transition-transform duration-500 ease-in-out"
         style={{ transform: `translateY(-${idx}em)` }}>
@@ -62,8 +70,8 @@ export default function Hero() {
       />
 
       {/* Dekstop */}
-      <div className="text-black flex gap-x-[8.0rem] max-lg:hidden z-[2]">
-        <div className="flex flex-col justify-center scale-[1.2]">
+      <div className="text-black flex gap-x-[4.5rem] xl:gap-x-[8.0rem] max-lg:hidden z-[2]">
+        <div className="flex flex-col justify-center xl:scale-[1.2]">
           <div className="text-[1.6rem] text-neutral-g font-CoolveticaCondReg ">
             ArachnoVa{" "}
           </div>
@@ -145,7 +153,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center items-center text-[clamp(1.8rem,7vw,5rem)]/[clamp(1.8rem,7vw,5rem)] pt-[clamp(1.5rem,5vw,4rem)] text-neutral-e font-SourceSansProSemibold ">
+        <div className="flex flex-col justify-center items-center text-center px-4 text-[clamp(1.25rem,5vw,2.4rem)]/[1.2] pt-[clamp(1rem,4vw,3rem)] text-neutral-e font-SourceSansProSemibold ">
           <div className="">Crafting Digital Presence in Every</div>
           <div className="">Strand of Code</div>
         </div>
@@ -163,12 +171,12 @@ export default function Hero() {
         </a>
 
         <div className="relative">
-          <div className="bg-white w-[clamp(18rem,85vw,80rem)] h-[clamp(25rem,60vw,60rem)] rounded-lg font-ConsolasRegular overflow-hidden">
-            <div className="px-[clamp(0.8rem,2.5vw,1.5rem)] py-[clamp(1rem,5vw,4rem)] text-[clamp(1.2rem,4vw,3rem)]/[clamp(1.5rem,5vw,4rem)] relative ">
+          <div className="bg-white w-[clamp(18rem,85vw,80rem)] min-h-[clamp(25rem,60vw,60rem)] rounded-lg font-ConsolasRegular overflow-hidden">
+            <div className="px-[clamp(0.8rem,2.5vw,1.5rem)] pt-[clamp(2.25rem,7vw,4rem)] pb-[clamp(4.5rem,15vw,7rem)] text-[clamp(1.1rem,3.6vw,2.4rem)]/[1.35] relative ">
               <Image
                 alt=""
                 src="/image/Hero/3ColorButton.png"
-                className="w-[8.0rem] h-[3.0rem] top-[0.5rem] left-[0.7rem] absolute"
+                className="w-[clamp(3.5rem,11vw,6rem)] h-auto top-[clamp(0.6rem,2vw,1.2rem)] left-[clamp(0.8rem,2.5vw,1.5rem)] absolute object-contain"
                 draggable="false"
                 width={100}
                 height={100}
@@ -177,16 +185,16 @@ export default function Hero() {
             </div>
           </div>
           {codeDone && (
-            <div className="absolute w-[clamp(15rem,65vw,60rem)] h-[clamp(5rem,15vw,13rem)] bg-white/70 backdrop-blur-md rounded-md -bottom-[clamp(1rem,4vw,3rem)] -right-[clamp(0.5rem,3vw,2rem)] text-[clamp(1.2rem,4vw,3rem)] border-2 border-[#E2E8F0] font-ConsolasBold shadow-md animate-fade-in-left">
+            <div className="absolute w-[80vw] max-w-[40rem] bg-white/70 backdrop-blur-md rounded-md -bottom-[clamp(1rem,4vw,3rem)] -right-[2vw] border-2 border-[#E2E8F0] font-ConsolasBold shadow-md animate-fade-in-left">
               <Image
                 alt=""
                 src="/image/Hero/3ColorButton.png"
-                className="w-[10.0rem] h-[3.0rem] top-[0.9rem] left-[0.7rem] absolute"
+                className="w-[clamp(3rem,9vw,5rem)] h-auto top-[clamp(0.4rem,1.5vw,0.9rem)] left-[clamp(0.6rem,2.5vw,1.5rem)] absolute object-contain"
                 draggable="false"
                 width={100}
                 height={100}
               />
-               <div className="flex items-center text-[clamp(1rem,3.5vw,2.6rem)] gap-x-[0.06rem] pt-[clamp(1.5rem,6vw,5rem)] whitespace-nowrap ml-[clamp(0.5rem,2.5vw,2rem)] pr-[clamp(0.5rem,2.5vw,2rem)]">
+               <div className="flex items-center text-[clamp(10px,3.1vw,1.6rem)] gap-x-[0.06rem] pt-[clamp(1.6rem,6vw,3.5rem)] pb-[clamp(0.6rem,2vw,1.2rem)] whitespace-nowrap overflow-hidden px-[clamp(0.6rem,2.5vw,1.5rem)]">
                 <TerminalTyper speed={80} startDelay={300} />
               </div>
             </div>

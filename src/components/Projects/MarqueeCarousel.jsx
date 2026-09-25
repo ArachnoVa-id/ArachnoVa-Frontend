@@ -46,7 +46,7 @@ export default function MarqueeCarousel({ items, direction = "left", onItemClick
               loading="lazy"
             />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/10">
-              <span className="text-white text-sm font-bold text-center px-2 drop-shadow-lg [text-shadow:_0_1px_4px_rgba(0,0,0,0.6)]">
+              <span className="text-white text-[13px] md:text-sm font-bold text-center px-2 drop-shadow-lg [text-shadow:_0_1px_4px_rgba(0,0,0,0.6)]">
                 {item.projectTitle}
               </span>
             </div>

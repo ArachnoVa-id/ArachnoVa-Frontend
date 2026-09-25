@@ -92,7 +92,7 @@ export default function PortoSection({ projects, services }) {
         .phone-scroll-in { animation: scroll-up 0.5s ease-out; }
       `}</style>
       {/* Desktop */}
-      <div className="max-lg:hidden mx-auto w-[65rem]">
+      <div className="max-lg:hidden mx-auto w-[min(65rem,calc(100%-6rem))]">
         <div className="grid grid-cols-[20rem_1fr] gap-x-[2vw]">
           {/* Left: Title + Product type cards + More Projects */}
           <div className="flex flex-col">
@@ -238,16 +238,18 @@ export default function PortoSection({ projects, services }) {
             </div>
             {totalInCategory > 1 && (
               <>
-                <div className="flex justify-center gap-1.5 mt-2">
+                <div className="flex justify-center flex-wrap mt-1">
                   {filtered.map((_, i) => (
-                    <button key={i} onClick={() => setProjectIndex(i)}
-                      className={`w-2 h-2 rounded-full transition-all ${i === projectIndex ? "bg-LightBlue-c w-4" : "bg-gray-300"}`} />
+                    <button key={i} onClick={() => setProjectIndex(i)} aria-label={`Project ${i + 1}`}
+                      className="p-[5px] flex items-center">
+                      <span className={`block h-2 rounded-full transition-all ${i === projectIndex ? "bg-LightBlue-c w-4" : "bg-gray-300 w-2"}`} />
+                    </button>
                   ))}
                 </div>
-                <div className="flex justify-between mt-2">
-                  <button onClick={goPrev} className="text-sm text-LightBlue-c">← Prev</button>
-                  <span className="text-xs text-gray-400">{projectIndex + 1}/{totalInCategory}</span>
-                  <button onClick={goNext} className="text-sm text-LightBlue-c">Next →</button>
+                <div className="flex justify-between items-center">
+                  <button onClick={goPrev} className="text-[14px] text-LightBlue-c font-InterSemibold pr-3 py-2.5">← Prev</button>
+                  <span className="text-[13px] text-gray-500">{projectIndex + 1}/{totalInCategory}</span>
+                  <button onClick={goNext} className="text-[14px] text-LightBlue-c font-InterSemibold pl-3 py-2.5">Next →</button>
                 </div>
               </>
             )}

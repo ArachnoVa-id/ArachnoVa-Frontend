@@ -22,7 +22,7 @@ const ServicesHero = () => {
     <section
       className="relative w-full lg:min-h-screen flex flex-col justify-center items-center bg-white-MainPage overflow-hidden
                  lg:pb-[5.938vw]
-                 pb-[clamp(6rem,58.333vw,18rem)]"
+                 pb-12"
     >
       <div
         className="w-full

@@ -16,7 +16,7 @@ function renderValue(val, feature) {
   if (val === true || val === "true" || val === "✓") return <CheckIcon />;
   if (val === false || val === "false" || val === "✗") return <CrossIcon />;
   if (val === null || val === "" || val === "-") return <span className="text-gray-300">—</span>;
-  return <span className="text-neutral-g font-InterSemibold text-sm lg:text-sm whitespace-pre-line">{val}</span>;
+  return <span className="text-neutral-g font-InterSemibold text-[14px] md:text-sm whitespace-pre-line">{val}</span>;
 }
 
 const cell = "px-3 py-2.5 border-b border-r border-[#E2E8F0] last:border-r-0 text-center text-sm";
@@ -34,16 +34,16 @@ export default function ServicesOption({ data }) {
     <section className="w-full bg-white-MainPage py-12 lg:py-16 flex flex-col items-center overflow-hidden">
       <div className="w-full max-w-5xl px-4">
         <div data-aos="fade-down" className="text-center mb-8">
-          <h2 className="text-2xl lg:text-3xl font-SourceSansProBold text-neutral-g">
+          <h2 className="text-[26px] md:text-2xl lg:text-3xl font-SourceSansProBold text-neutral-g">
             {title || "Choose Your Services"}
           </h2>
-          <p className="mt-2 text-sm lg:text-base text-neutral-e max-w-xl mx-auto">
+          <p className="mt-2 text-[14px] md:text-sm lg:text-base text-neutral-e max-w-xl mx-auto">
             {subtitle || ""}
           </p>
         </div>
 
         {/* Desktop table */}
-        <div data-aos="fade-up" className="hidden lg:block bg-[#FAFDFF] border border-[#E2E8F0] rounded-xl shadow-[0_10px_40px_-10px_rgba(71,85,105,0.25)] overflow-hidden">
+        <div data-aos="fade-up" className="hidden md:block bg-[#FAFDFF] border border-[#E2E8F0] rounded-xl shadow-[0_10px_40px_-10px_rgba(71,85,105,0.25)] overflow-hidden">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-[#E2E8F0]">
@@ -61,7 +61,7 @@ export default function ServicesOption({ data }) {
                 </td>
                 {plans.map((plan, pi) => (
                   <td key={pi} className={cell}>
-                    {plan.priceNote && <div className="text-[10px] text-neutral-d">{plan.priceNote}</div>}
+                    {plan.priceNote && <div className="text-xs text-neutral-d">{plan.priceNote}</div>}
                     <span className="font-InterBold text-transparent bg-clip-text bg-gradient-to-r from-[#0893D4] via-[#44C4D9] to-[#159E8D] text-base lg:text-lg">{plan.price}</span>
                   </td>
                 ))}
@@ -80,7 +80,7 @@ export default function ServicesOption({ data }) {
                 <td className={cell} />
                 {plans.map((plan, pi) => (
                   <td key={pi} className="px-3 py-3 text-center">
-                    <PlanCta plan={plan} className="inline-flex items-center justify-center bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white text-xs font-InterBold px-3 py-1.5 rounded-md hover:scale-105 transition-transform" />
+                    <PlanCta plan={plan} className="inline-flex items-center justify-center bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white text-sm font-InterBold px-4 py-2 rounded-md hover:scale-105 transition-transform" />
                   </td>
                 ))}
               </tr>
@@ -89,22 +89,22 @@ export default function ServicesOption({ data }) {
         </div>
 
         {/* Mobile: card layout */}
-        <div className="lg:hidden space-y-4">
+        <div className="md:hidden space-y-4">
           {plans.map((plan, pi) => (
             <div key={pi} data-aos="fade-up" data-aos-delay={pi * 100} className="bg-white border border-[#E2E8F0] rounded-xl p-5 shadow-sm">
-              <h3 className="font-SourceSansProBold text-lg text-neutral-g text-center mb-1">{plan.name}</h3>
-              {plan.subtitle && <p className="text-neutral-e text-xs text-center mb-3">{plan.subtitle}</p>}
+              <h3 className="font-SourceSansProBold text-[19px] text-neutral-g text-center mb-1">{plan.name}</h3>
+              {plan.subtitle && <p className="text-neutral-e text-[13px] text-center mb-3">{plan.subtitle}</p>}
               <div className="mb-3 text-center">
-                {plan.priceNote && <p className="text-[11px] text-neutral-d">{plan.priceNote}</p>}
-                <p className="font-InterBold text-transparent bg-clip-text bg-gradient-to-r from-[#0893D4] via-[#44C4D9] to-[#159E8D] text-xl">{plan.price}</p>
+                {plan.priceNote && <p className="text-[12px] text-neutral-d">{plan.priceNote}</p>}
+                <p className="font-InterBold text-transparent bg-clip-text bg-gradient-to-r from-[#0893D4] via-[#44C4D9] to-[#159E8D] text-[24px]">{plan.price}</p>
               </div>
               {featureRows?.map((feature, ri) => (
-                <div key={ri} className="flex justify-between items-center py-2 border-t border-[#E2E8F0] text-sm">
-                  <span className="font-medium text-neutral-g">{feature}</span>
-                  <span>{renderValue(plan.values?.[ri], feature)}</span>
+                <div key={ri} className="flex justify-between items-center gap-3 py-2.5 border-t border-[#E2E8F0] text-[14px]">
+                  <span className="font-medium text-neutral-g shrink-0">{feature}</span>
+                  <span className="text-right">{renderValue(plan.values?.[ri], feature)}</span>
                 </div>
               ))}
-              <PlanCta plan={plan} className="block w-full text-center mt-4 bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white font-InterBold text-sm py-2.5 rounded-lg" />
+              <PlanCta plan={plan} className="block w-full text-center mt-4 bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white font-InterBold text-[15px] py-3 rounded-lg" />
             </div>
           ))}
         </div>

@@ -40,10 +40,10 @@ export default function CTA() {
 			</div>
 
 			{/* Mobile */}
-			<div className="flex flex-col justify-center items-center lg:hidden">
+			<div className="flex flex-col justify-center items-center lg:hidden py-12">
 				<div
 					data-aos="fade-up"
-					className="text-neutral-g font-SourceSansProBold text-[clamp(1.8rem,6.5vw,4.5rem)]/[clamp(2.2rem,7vw,5.0rem)] flex flex-col justify-center items-center"
+					className="text-neutral-g font-SourceSansProBold text-[clamp(1.8rem,6.5vw,4.5rem)]/[clamp(2.2rem,7vw,5.0rem)] flex flex-col justify-center items-center text-center px-5"
 				>
 					<p>Ready to Transform Your Digital Presence ? </p>
 					<p>Let&apos;s Start Crafting Your Website Today</p>

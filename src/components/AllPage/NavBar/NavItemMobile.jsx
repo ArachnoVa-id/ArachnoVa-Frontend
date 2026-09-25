@@ -17,7 +17,7 @@ const NavItemMobile = ({ href, isOpen, onClose }) => {
       >
         <div className="flex flex-col items-center py-[8vw] px-[5.581vw]">
           {/* Close button */}
-          <button onClick={onClose} className="self-end text-neutral-g mb-[3vw]">
+          <button onClick={onClose} aria-label="Close menu" className="self-end text-neutral-g mb-[3vw] p-2.5 -m-2.5">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
@@ -30,9 +30,9 @@ const NavItemMobile = ({ href, isOpen, onClose }) => {
 
           {/* Nav links */}
           <ul className="flex flex-col items-center gap-y-[3vw] mb-[6vw]">
-            <li><a href="/projects" onClick={onClose} className="font-InterBold text-[5vw] text-neutral-g hover:text-LightBlue-d transition-colors">Projects</a></li>
-            <li><a href="/services" onClick={onClose} className="font-InterBold text-[5vw] text-neutral-g hover:text-LightBlue-d transition-colors">Services</a></li>
-            <li><a href="/aboutus" onClick={onClose} className="font-InterBold text-[5vw] text-neutral-g hover:text-LightBlue-d transition-colors">About</a></li>
+            <li><a href="/projects" onClick={onClose} className="inline-block py-2 font-InterBold text-[clamp(18px,5vw,26px)] text-neutral-g hover:text-LightBlue-d transition-colors">Projects</a></li>
+            <li><a href="/services" onClick={onClose} className="inline-block py-2 font-InterBold text-[clamp(18px,5vw,26px)] text-neutral-g hover:text-LightBlue-d transition-colors">Services</a></li>
+            <li><a href="/aboutus" onClick={onClose} className="inline-block py-2 font-InterBold text-[clamp(18px,5vw,26px)] text-neutral-g hover:text-LightBlue-d transition-colors">About</a></li>
           </ul>
 
           {/* CTA */}
