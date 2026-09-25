@@ -1,9 +1,8 @@
 import { useState, useEffect, memo, useRef } from "react";
-import { useCollection } from "@/context/DataContext";
+import { useCollection, authFetch } from "@/context/DataContext";
 import { useToast } from "@/components/ui/Toast";
 import { FiPlus, FiSave, FiUpload, FiSearch, FiX, FiLinkedin } from "react-icons/fi";
 
-const API_BASE = import.meta.env.VITE_API_URL || "";
 const gradientColors = [
   "from-purple-400 to-pink-400", "from-blue-400 to-teal-400",
   "from-orange-400 to-red-400", "from-green-400 to-cyan-400",
@@ -14,7 +13,11 @@ const gradientColors = [
 function uploadFile(file) {
   const fd = new FormData();
   fd.append("file", file);
-  return fetch(`${API_BASE}/api/upload`, { method: "POST", body: fd }).then((r) => r.json());
+  return authFetch("/api/upload", { method: "POST", body: fd }).then(async (r) => {
+    const json = await r.json().catch(() => ({}));
+    if (!r.ok || !json.url) throw new Error(json.error || `Upload failed (${r.status})`);
+    return json;
+  });
 }
 
 function ProjectPicker({ selected, onChange, projects }) {
@@ -173,7 +176,7 @@ export default function TeamAdmin() {
     if (!member?.linkedin) { toast("Enter a LinkedIn URL first", "info"); return; }
     setFetchingLi(i);
     try {
-      const res = await fetch(`${API_BASE}/api/linkedin-image?url=${encodeURIComponent(member.linkedin)}`);
+      const res = await authFetch(`/api/linkedin-image?url=${encodeURIComponent(member.linkedin)}`);
       const data = await res.json();
       if (data.image) { change(i, "image", data.image); toast("Profile image fetched", "success"); }
       if (!data.image) { window.open(member.linkedin, "_blank"); toast("LinkedIn opened. Right-click photo → Copy Image Address → paste below", "info", 5000); }

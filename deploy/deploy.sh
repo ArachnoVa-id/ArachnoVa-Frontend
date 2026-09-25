@@ -8,13 +8,22 @@ echo "=== Updating code ==="
 cd $REPO_DIR
 git pull origin main
 
-CMS_API_KEY="${CMS_API_KEY:-$(cat .env 2>/dev/null | grep '^CMS_API_KEY=' | cut -d= -f2)}"
-CMS_API_KEY="${CMS_API_KEY:-$(openssl rand -hex 16)}"
+# Server-only secrets. Never expose these as VITE_* vars: those are compiled into the public JS bundle.
+CMS_API_KEY="${CMS_API_KEY:-$(grep '^CMS_API_KEY=' .env 2>/dev/null | cut -d= -f2)}"
+CMS_API_KEY="${CMS_API_KEY:-$(openssl rand -hex 32)}"
+# Admin login is "Sign in with Google": OAuth client ID + allowlisted emails (comma-separated).
+GOOGLE_CLIENT_ID="${GOOGLE_CLIENT_ID:-$(grep '^GOOGLE_CLIENT_ID=' .env 2>/dev/null | cut -d= -f2)}"
+CMS_ADMIN_EMAILS="${CMS_ADMIN_EMAILS:-$(grep '^CMS_ADMIN_EMAILS=' .env 2>/dev/null | cut -d= -f2)}"
+if [ -z "$GOOGLE_CLIENT_ID" ] || [ -z "$CMS_ADMIN_EMAILS" ]; then
+  echo "Set GOOGLE_CLIENT_ID and CMS_ADMIN_EMAILS (env or $REPO_DIR/.env) before deploying" >&2
+  exit 1
+fi
 
-echo "CMS_API_KEY=$CMS_API_KEY" > $REPO_DIR/.env
-echo "VITE_CMS_API_KEY=$CMS_API_KEY" >> $REPO_DIR/.env
-
-export VITE_CMS_API_KEY=$CMS_API_KEY
+umask 077
+printf 'CMS_API_KEY=%s\nGOOGLE_CLIENT_ID=%s\nCMS_ADMIN_EMAILS=%s\n' \
+  "$CMS_API_KEY" "$GOOGLE_CLIENT_ID" "$CMS_ADMIN_EMAILS" > $REPO_DIR/.env
+chmod 600 $REPO_DIR/.env
+umask 022
 
 echo "=== Installing dependencies ==="
 npm install
@@ -45,7 +54,7 @@ Restart=always
 RestartSec=5
 Environment=PORT=3006
 Environment=NODE_ENV=production
-Environment=CMS_API_KEY=$CMS_API_KEY
+EnvironmentFile=$REPO_DIR/.env
 
 [Install]
 WantedBy=multi-user.target
@@ -58,5 +67,4 @@ sudo systemctl restart arachnova-cms
 echo "=== Deployment complete! ==="
 echo "Site: https://$DOMAIN"
 echo "Admin: https://$DOMAIN/admin"
-echo "Password: arachnova2024"
-echo "API Key: $CMS_API_KEY"
+echo "Admin login: Google accounts in CMS_ADMIN_EMAILS ($REPO_DIR/.env)"

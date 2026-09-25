@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 
 const API_BASE = import.meta.env.VITE_API_URL || "";
-const ENV_API_KEY = import.meta.env.VITE_CMS_API_KEY || "";
+const TOKEN_KEY = "cms_token";
 
 const DataContext = createContext(null);
 
@@ -15,19 +15,22 @@ const defaults = {
   settings: { whatsapp: "https://wa.me/6287882832538", email: "mailto:arachnova.id@gmail.com", instagram: "https://www.instagram.com/arachnova.id/", linkedin: "https://www.linkedin.com/company/arachnova-id/" },
 };
 
-function authHeaders(forWrite) {
-  if (forWrite) {
-    const h = { "Content-Type": "application/json" };
-    if (ENV_API_KEY) h["x-api-key"] = ENV_API_KEY;
-    return h;
-  }
-  return {};
+function getToken() {
+  return sessionStorage.getItem(TOKEN_KEY);
+}
+
+// Fetch against the CMS API with the admin session token attached.
+export function authFetch(path, options = {}) {
+  const headers = { ...options.headers };
+  const token = getToken();
+  if (token) headers.Authorization = `Bearer ${token}`;
+  return fetch(`${API_BASE}${path}`, { ...options, headers });
 }
 
 export function DataProvider({ children }) {
   const [data, setData] = useState(defaults);
   const [loading, setLoading] = useState(true);
-  const [auth, setAuth] = useState(() => sessionStorage.getItem("cms_auth") === "true");
+  const [auth, setAuth] = useState(() => !!getToken());
 
   const fetchAll = useCallback(async () => {
     setLoading(true);
@@ -52,28 +55,41 @@ export function DataProvider({ children }) {
   const update = useCallback(async (collection, value) => {
     setData((prev) => ({ ...prev, [collection]: value }));
     try {
-      const res = await fetch(`${API_BASE}/api/${collection}`, {
+      const res = await authFetch(`/api/${collection}`, {
         method: "PUT",
-        headers: authHeaders(true),
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(value),
       });
+      if (res.status === 401) {
+        sessionStorage.removeItem(TOKEN_KEY);
+        setAuth(false);
+      }
       if (!res.ok) throw new Error(`Server returned ${res.status}`);
     } catch (e) {
       console.error(`Failed to save ${collection}:`, e.message);
     }
   }, []);
 
-  const login = useCallback((password) => {
-    if (password === "arachnova2024") {
-      sessionStorage.setItem("cms_auth", "true");
+  // Exchanges a Google ID token for a CMS session. Resolves to null on success, or an error message.
+  const login = useCallback(async (credential) => {
+    try {
+      const res = await fetch(`${API_BASE}/api/auth/google`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ credential }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json.token) return json.error || `Login failed (${res.status})`;
+      sessionStorage.setItem(TOKEN_KEY, json.token);
       setAuth(true);
-      return true;
+      return null;
+    } catch (e) {
+      return `Login failed: ${e.message}`;
     }
-    return false;
   }, []);
 
   const logout = useCallback(() => {
-    sessionStorage.removeItem("cms_auth");
+    sessionStorage.removeItem(TOKEN_KEY);
     setAuth(false);
   }, []);
 

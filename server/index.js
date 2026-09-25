@@ -31,13 +31,20 @@ app.use((req, res, next) => {
 
 app.use("/api", apiRouter);
 app.use("/api/upload", uploadRouter);
-app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
+// Uploaded files are user content: never let them run scripts on our origin (e.g. SVG with <script>).
+app.use("/uploads", (req, res, next) => {
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", "default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; sandbox");
+  next();
+}, express.static(path.join(__dirname, "..", "uploads")));
 
 const distPath = path.join(__dirname, "..", "dist");
 app.use(express.static(distPath));
 app.get("*", (req, res) => {
   if (!req.path.startsWith("/api") && !req.path.startsWith("/uploads")) {
     res.sendFile(path.join(distPath, "index.html"));
+  } else {
+    res.status(404).json({ error: "Not found" });
   }
 });
 

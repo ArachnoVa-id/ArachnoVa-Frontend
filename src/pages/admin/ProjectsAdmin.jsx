@@ -1,14 +1,17 @@
 import { useState, useRef, useEffect } from "react";
-import { useCollection } from "@/context/DataContext";
+import { useCollection, authFetch } from "@/context/DataContext";
 import { useToast } from "@/components/ui/Toast";
 import { FiEdit2, FiTrash2, FiPlus, FiSave, FiX } from "react-icons/fi";
 
-const API_BASE = import.meta.env.VITE_API_URL || "";
 
 function uploadFile(file) {
   const fd = new FormData();
   fd.append("file", file);
-  return fetch(`${API_BASE}/api/upload`, { method: "POST", body: fd }).then((r) => r.json());
+  return authFetch("/api/upload", { method: "POST", body: fd }).then(async (r) => {
+    const json = await r.json().catch(() => ({}));
+    if (!r.ok || !json.url) throw new Error(json.error || `Upload failed (${r.status})`);
+    return json;
+  });
 }
 
 function ImageRow({ label, images, onAdd, onRemove, onMove }) {

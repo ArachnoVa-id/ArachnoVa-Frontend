@@ -2,6 +2,7 @@ import { Router } from "express";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { requireAuth, authConfig, googleLogin } from "../auth.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(__dirname, "..", "data");
@@ -27,21 +28,18 @@ function writeData(name, data) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
 }
 
-const API_KEY = process.env.CMS_API_KEY;
-
-function requireKey(req, res, next) {
-  if (!API_KEY) return next();
-  const provided = req.headers["x-api-key"];
-  if (!provided || provided !== API_KEY) {
-    return res.status(401).json({ error: "Unauthorized: invalid or missing API key" });
-  }
-  next();
-}
-
 export const apiRouter = Router();
 
 apiRouter.get("/health", (req, res) => {
   res.json({ status: "ok", collections });
+});
+
+apiRouter.get("/auth/config", authConfig);
+
+apiRouter.post("/auth/google", googleLogin);
+
+apiRouter.get("/auth/check", requireAuth, (req, res) => {
+  res.json({ ok: true, email: req.adminEmail || null });
 });
 
 collections.forEach((name) => {
@@ -51,7 +49,7 @@ collections.forEach((name) => {
     res.json(data);
   });
 
-  apiRouter.put(`/${name}`, requireKey, (req, res) => {
+  apiRouter.put(`/${name}`, requireAuth, (req, res) => {
     writeData(name, req.body);
     res.json({ ok: true, collection: name });
   });
@@ -65,7 +63,7 @@ apiRouter.get("/all", (req, res) => {
   res.json(all);
 });
 
-apiRouter.put("/all", requireKey, (req, res) => {
+apiRouter.put("/all", requireAuth, (req, res) => {
   Object.keys(req.body).forEach((name) => {
     if (collections.includes(name)) {
       writeData(name, req.body[name]);
@@ -75,12 +73,21 @@ apiRouter.put("/all", requireKey, (req, res) => {
 });
 
 // LinkedIn profile data fetcher - extracts name from URL, returns guidance for manual image fetch
-apiRouter.get("/linkedin-image", async (req, res) => {
+apiRouter.get("/linkedin-image", requireAuth, async (req, res) => {
   const { url } = req.query;
-  if (!url || !url.includes("linkedin.com/in/")) {
+  let parsed;
+  try {
+    parsed = new URL(url);
+  } catch {
     return res.status(400).json({ error: "Invalid LinkedIn URL" });
   }
-  const username = url.match(/linkedin\.com\/in\/([^/?#]+)/)?.[1];
+  // Only fetch real LinkedIn profile pages; anything else would let callers make
+  // the server request arbitrary (including internal) URLs.
+  const isLinkedIn = parsed.hostname === "linkedin.com" || parsed.hostname.endsWith(".linkedin.com");
+  if (parsed.protocol !== "https:" || !isLinkedIn || !parsed.pathname.startsWith("/in/")) {
+    return res.status(400).json({ error: "Invalid LinkedIn URL" });
+  }
+  const username = parsed.pathname.match(/^\/in\/([^/]+)/)?.[1];
   if (!username) return res.status(400).json({ error: "Could not extract username" });
 
   // Derive name from URL: "yitzhak-manalu" or "yitzhakmanalu" -> "Yitzhak Manalu"
@@ -95,7 +102,8 @@ apiRouter.get("/linkedin-image", async (req, res) => {
   // Try to fetch the real page (usually blocked)
   let image = null;
   try {
-    const response = await fetch(url, {
+    const response = await fetch(parsed.href, {
+      redirect: "manual",
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml",
