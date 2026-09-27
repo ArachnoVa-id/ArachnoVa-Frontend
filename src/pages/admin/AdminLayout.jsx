@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useData } from "@/context/DataContext";
 import { ToastProvider } from "@/components/ui/Toast";
@@ -67,7 +68,9 @@ export default function AdminLayout() {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
             </div>
           ) : (
-            <Outlet />
+            <Suspense fallback={null}>
+              <Outlet />
+            </Suspense>
           )}
         </ToastProvider>
       </main>

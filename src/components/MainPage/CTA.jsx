@@ -15,7 +15,7 @@ export default function CTA() {
 		<section className="w-full lg:h-[60vh] max-lg:min-h-[40vh] relative bg-transparent flex flex-row justify-center items-center">
 			<Image
 				alt=""
-				src="/image/CTA/BGCTA.png"
+				src="/image/CTA/BGCTA.webp"
 				className="absolute w-full h-full -z-[1]  "
 				draggable="false"
 				fill

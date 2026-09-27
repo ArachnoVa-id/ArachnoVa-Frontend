@@ -14,6 +14,12 @@ const TemplateAccordion = ({ number, title, image }) => {
   };
 
   const [toggle, setToggle] = useState(initial);
+  // Collapsed sections still render their <img>s, so the browser downloaded every template
+  // screenshot up front. Only mount a section's images once it has been opened.
+  const [opened, setOpened] = useState(initial);
+  useEffect(() => {
+    if (toggle) setOpened(true);
+  }, [toggle]);
   useEffect(() => {
     AOS.init({
       duration: 1500,
@@ -67,7 +73,7 @@ const TemplateAccordion = ({ number, title, image }) => {
               className="grid grid-cols-1 sm:grid-cols-2 w-full gap-4
                          lg:flex lg:flex-wrap lg:flex-row lg:justify-between lg:w-full lg:gap-[1.04rem]"
             >
-              {image?.map((image) => {
+              {opened && image?.map((image) => {
                 return (
                   <div
                     key={image.key}

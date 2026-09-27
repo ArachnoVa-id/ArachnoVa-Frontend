@@ -4,6 +4,7 @@ import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
 import { requireAuth } from "../auth.js";
+import { isOptimizable, toWebp, fileSize } from "../imageOptimize.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const uploadsDir = path.join(__dirname, "..", "..", "uploads");
@@ -41,6 +42,23 @@ uploadRouter.post("/", requireAuth, (req, res) => {
   upload.single("file")(req, res, (err) => {
     if (err) return res.status(400).json({ error: err.message });
     if (!req.file) return res.status(400).json({ error: "No file uploaded" });
-    res.json({ url: `/uploads/${req.file.filename}` });
+    optimize(req.file.path).then((file) => res.json({ url: `/uploads/${path.basename(file)}` }));
   });
 });
+
+// PNG/JPEG uploads are stored as resized WebP (screenshots shrink ~10x). If conversion fails
+// or doesn't help, keep the original file.
+async function optimize(file) {
+  if (!isOptimizable(file)) return file;
+  try {
+    const webp = await toWebp(file);
+    if (fileSize(webp) < fileSize(file)) {
+      fs.unlinkSync(file);
+      return webp;
+    }
+    fs.unlinkSync(webp);
+  } catch (e) {
+    console.error("Image optimization failed, keeping original:", e.message);
+  }
+  return file;
+}

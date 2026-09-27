@@ -22,7 +22,7 @@ const AboutUs = () => {
   return (
     <section className="relative w-full lg:min-h-[100vh] flex flex-col justify-center items-center bg-white-MainPage lg:py-[5vw] pt-28 pb-14 overflow-hidden">
       <div className="absolute top-[4.3rem] w-full aspect-[1920/458] z-0 lg:flex hidden">
-        <Image src="/image/OurServices/ServicesHero/bg.png" alt="bg" draggable="false" fill className="object-contain" />
+        <Image src="/image/OurServices/ServicesHero/bg.webp" alt="bg" draggable="false" fill className="object-contain" />
       </div>
       <div className="absolute top-[0] w-full aspect-[430/195] z-0 lg:hidden">
         <Image src="/image/OurServices/ServicesHero/bg-mobile.png" alt="bg" draggable="false" fill className="object-contain" />
@@ -45,7 +45,7 @@ const AboutUs = () => {
             {/* Brand panel */}
             <div data-aos="fade-up" className="relative">
               <div className="absolute -left-[8vw] -bottom-[6vw] lg:w-[25vw] w-[40vw] aspect-[433/235] z-0 lg:flex hidden pointer-events-none">
-                <Image src="/image/AboutUs/blur-left.png" alt="blur" draggable="false" fill className="object-contain" />
+                <Image src="/image/AboutUs/blur-left.webp" alt="blur" draggable="false" fill className="object-contain" />
               </div>
               <div className="relative w-full lg:max-w-[44rem] lg:p-[2.5rem] px-5 pt-12 pb-7 sm:px-8 flex flex-col items-center lg:rounded-[0.8rem] rounded-3xl lg:border border-white z-10"
                 style={{

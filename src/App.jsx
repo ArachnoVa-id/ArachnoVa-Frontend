@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Navbar from "@/components/AllPage/NavBar/Navbar";
@@ -7,22 +8,24 @@ import AboutUs from "@/pages/AboutUs";
 import Services from "@/pages/Services";
 import Projects from "@/pages/Projects";
 import Templates from "@/pages/Templates";
-import AdminLayout from "@/pages/admin/AdminLayout";
-import Login from "@/pages/admin/Login";
-import Dashboard from "@/pages/admin/Dashboard";
-import ProjectsAdmin from "@/pages/admin/ProjectsAdmin";
-import PricingAdmin from "@/pages/admin/PricingAdmin";
-import RedirectsAdmin from "@/pages/admin/RedirectsAdmin";
-import TeamAdmin from "@/pages/admin/TeamAdmin";
-import SettingsAdmin from "@/pages/admin/SettingsAdmin";
+
+// Admin pages are only for a few people; keep them out of the public bundle.
+const AdminLayout = lazy(() => import("@/pages/admin/AdminLayout"));
+const Login = lazy(() => import("@/pages/admin/Login"));
+const Dashboard = lazy(() => import("@/pages/admin/Dashboard"));
+const ProjectsAdmin = lazy(() => import("@/pages/admin/ProjectsAdmin"));
+const PricingAdmin = lazy(() => import("@/pages/admin/PricingAdmin"));
+const RedirectsAdmin = lazy(() => import("@/pages/admin/RedirectsAdmin"));
+const TeamAdmin = lazy(() => import("@/pages/admin/TeamAdmin"));
+const SettingsAdmin = lazy(() => import("@/pages/admin/SettingsAdmin"));
 
 
 export default function App() {
   return (
     <HelmetProvider>
       <Routes>
-        <Route path="/admin/login" element={<Login />} />
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route path="/admin/login" element={<Suspense fallback={null}><Login /></Suspense>} />
+        <Route path="/admin" element={<Suspense fallback={null}><AdminLayout /></Suspense>}>
           <Route index element={<Dashboard />} />
           <Route path="projects" element={<ProjectsAdmin />} />
           <Route path="pricing" element={<PricingAdmin />} />

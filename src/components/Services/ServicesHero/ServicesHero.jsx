@@ -31,7 +31,7 @@ const ServicesHero = () => {
       >
         <div className="absolute top-[4.271vw] w-full aspect-[1920/458] z-0 lg:flex hidden">
           <Image
-            src="/image/OurServices/ServicesHero/bg.png"
+            src="/image/OurServices/ServicesHero/bg.webp"
             alt="bg"
             draggable="false"
             fill

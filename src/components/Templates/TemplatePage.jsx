@@ -26,7 +26,7 @@ const TemplatePage = () => {
       >
         <div className="absolute top-[4.3rem] w-full aspect-[1920/458] z-0 lg:flex hidden">
           <Image
-            src="/image/OurServices/ServicesHero/bg.png"
+            src="/image/OurServices/ServicesHero/bg.webp"
             alt="bg"
             draggable="false"
             fill

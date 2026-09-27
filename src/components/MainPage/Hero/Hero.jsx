@@ -56,14 +56,14 @@ export default function Hero() {
       <WebPattern opacity={0.04} />
       <Image
         alt="Background"
-        src="/image/Hero/HeroBG.png"
+        src="/image/Hero/HeroBG.webp"
         className="absolute w-full h-full z-[1] max-lg:hidden"
         fill
         draggable="false"
       />
       <Image
         alt="Background"
-        src="/image/Hero/HeroBGMobile.png"
+        src="/image/Hero/HeroBGMobile.webp"
         className="absolute w-full h-full z-[1] lg:hidden"
         fill
         draggable="false"
