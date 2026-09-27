@@ -171,6 +171,20 @@ export default function PricingAdmin() {
               ))}
             </tr>
 
+            {/* CTA: Action */}
+            <tr className="bg-white">
+              <td className="px-4 py-2.5 border-b border-r border-gray-200 text-xs font-medium text-gray-500">Button action</td>
+              {local.plans?.map((plan, pi) => (
+                <td key={pi} className="px-3 py-2 border-b border-r border-gray-200 text-center">
+                  <select value={plan.ctaMode || "auto"} onChange={(e) => updatePlanField(pi, "ctaMode", e.target.value === "auto" ? undefined : e.target.value)}
+                    className="w-full px-2 py-1.5 text-xs border border-gray-200 rounded focus:outline-none bg-white">
+                    <option value="auto">Auto: pay online if priced, else URL</option>
+                    <option value="link">Always open URL</option>
+                  </select>
+                </td>
+              ))}
+            </tr>
+
             {/* CTA: Popular */}
             <tr className="bg-white">
               <td className="px-4 py-2.5 border-r border-gray-200 text-xs font-medium text-gray-500">Popular</td>

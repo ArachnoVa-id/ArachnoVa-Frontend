@@ -47,7 +47,8 @@ ordersRouter.post("/", requireUser, async (req, res) => {
   if (!SERVER_KEY) return res.status(503).json({ error: "Payments are not configured yet" });
 
   const plan = findPlan(req.body?.plan);
-  const amount = plan && parsePrice(plan.price);
+  // ctaMode "link" plans are sold elsewhere (their CTA URL), never through this checkout.
+  const amount = plan && plan.ctaMode !== "link" && parsePrice(plan.price);
   // The amount always comes from pricing.json, never from the client.
   if (!amount) return res.status(400).json({ error: "This package can't be ordered online" });
 

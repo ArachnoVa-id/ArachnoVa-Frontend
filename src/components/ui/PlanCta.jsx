@@ -3,12 +3,12 @@ import { createPortal } from "react-dom";
 import OrderModal, { parsePrice } from "@/components/ui/OrderModal";
 
 // "Pilih Paket" button: plans with a numeric price are ordered online (Midtrans),
-// "Custom" plans keep linking to their CTA (WhatsApp).
+// "Custom" plans and plans with ctaMode "link" go to their CTA URL (WhatsApp, external signup...).
 export default function PlanCta({ plan, className }) {
   const [open, setOpen] = useState(false);
   const label = plan.ctaText || "Pilih Paket";
 
-  if (!parsePrice(plan.price)) {
+  if (plan.ctaMode === "link" || !parsePrice(plan.price)) {
     return (
       <a href={plan.cta || "https://wa.me/6287882832538"} className={className}>
         {label}
