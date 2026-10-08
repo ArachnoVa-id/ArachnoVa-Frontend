@@ -45,7 +45,7 @@ export default function Tractions() {
             Solutions We Deliver
           </h2>
           <p className="font-SourceSansProSemibold lg:text-[1.04rem] text-[clamp(1rem,5vw,3.3rem)] text-neutral-e lg:mt-[1.0rem] mt-[3.0rem] lg:leading-[1.8rem] leading-[clamp(1.8rem,6vw,5rem)]">
-            ArachnoVa telah berpengalaman dalam pembuatan website mencakup aspek Frontend, Backend, dan desain UI. Kami dengan bangga mempersembahkan beberapa karya kami sebagai gambaran representatif.
+            ArachnoVa berpengalaman membangun website, sistem ERP, dan aplikasi WhatsApp, mulai dari desain UI hingga Frontend dan Backend. Kami dengan bangga mempersembahkan beberapa karya kami sebagai gambaran representatif.
           </p>
         </div>
 

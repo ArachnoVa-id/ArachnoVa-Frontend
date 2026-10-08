@@ -1,5 +1,5 @@
 import { useRef, useCallback, useState, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import Seo from "@/components/ui/Seo";
 import { useCollection, useData } from "@/context/DataContext";
 import { useLocation } from "react-router-dom";
 import MarqueeCarousel from "@/components/Projects/MarqueeCarousel";
@@ -17,6 +17,7 @@ function shuffle(arr) {
 export default function ProjectsPage() {
   const { loading } = useData();
   const [projects] = useCollection("projects");
+  const [services] = useCollection("services");
   const gridRef = useRef(null);
   const cardRefs = useRef({});
   const [autoOpenId, setAutoOpenId] = useState(null);
@@ -79,9 +80,7 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Our Projects | ArachnoVa</title>
-      </Helmet>
+      <Seo path="/projects" />
 
       <section className="relative w-full bg-white-MainPage lg:pt-[5.0rem] pt-[clamp(5rem,25vw,22rem)] lg:pb-[1.0rem] pb-[clamp(1rem,8vw,5rem)] max-h-screen overflow-hidden flex flex-col justify-center min-h-[60vh]">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -104,7 +103,8 @@ export default function ProjectsPage() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[0.15rem] relative z-[5]">
+        {/* Decorative scrolling preview; the card grid below is the accessible list of projects. */}
+        <div className="flex flex-col gap-[0.15rem] relative z-[5]" aria-hidden="true">
           {imageChunks.map((chunk, i) => (
             <MarqueeCarousel
               key={i}
@@ -117,7 +117,7 @@ export default function ProjectsPage() {
       </section>
 
       <div ref={gridRef}>
-        <ProjectCardGrid projects={projects} autoOpenId={autoOpenId} onAutoOpenDone={() => setAutoOpenId(null)} cardRefs={cardRefs} />
+        <ProjectCardGrid projects={projects} services={services} autoOpenId={autoOpenId} onAutoOpenDone={() => setAutoOpenId(null)} cardRefs={cardRefs} />
       </div>
     </>
   );

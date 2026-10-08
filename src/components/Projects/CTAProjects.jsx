@@ -1,4 +1,4 @@
-import { useSettings } from "@/context/DataContext";
+import { useWhatsApp, WA_MESSAGES } from "@/lib/whatsapp";
 "use client";
 
 import Image from "@/components/ui/Img";
@@ -7,7 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 export default function CTAProjects() {
-  const settings = useSettings();
+  const projectsWa = useWhatsApp(WA_MESSAGES.projects);
   useEffect(() => {
     AOS.init({
       duration: 1500,
@@ -31,7 +31,7 @@ export default function CTAProjects() {
           Get Inspired? Create Yours Now!
         </h1>
         <a
-          href={settings?.whatsapp || "https://wa.me/6287882832538"}
+          href={projectsWa}
           className="bg-black w-[13.6rem] flex text-neutral-a justify-center items-center aspect-[262/54] z-[2] rounded-[0.26rem] font-SourceSansProSemibold mt-[1.0rem] text-[1.04rem] hover:bg-neutral-e duration-500"
         >
           Start Your Project
@@ -60,7 +60,7 @@ export default function CTAProjects() {
         </div>
 
         <a
-          href={settings?.whatsapp || "https://wa.me/6287882832538"}
+          href={projectsWa}
           className="bg-black w-[60.0rem] h-[12.0rem] flex justify-center items-center z-[2] text-neutral-a rounded-lg font-SourceSansProSemibold mt-[1.0rem] text-[5.0rem] hover:bg-neutral-e duration-500"
         >
           Start Your Project

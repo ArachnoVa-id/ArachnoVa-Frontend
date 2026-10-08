@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import Seo from "@/components/ui/Seo";
 import { useCollection } from "@/context/DataContext";
 import Hero from "@/components/MainPage/Hero/Hero";
 import PortoSection from "@/components/MainPage/PortoSection";
@@ -12,9 +12,7 @@ export default function Home() {
 
   return (
     <>
-      <Helmet>
-        <title>ArachnoVa</title>
-      </Helmet>
+      <Seo path="/" />
       <Hero />
       <div className="w-full lg:h-[0.06rem] h-[0.23rem] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />
       <PortoSection projects={projects} services={services} />

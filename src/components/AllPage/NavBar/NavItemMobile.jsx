@@ -1,15 +1,36 @@
-import NavItem from "./NavItem";
+import { useEffect } from "react";
+import { createPortal } from "react-dom";
 
+// Rendered on <body>: the navbar's backdrop-filter makes it the containing block for fixed
+// children, which shrank the "full-screen" backdrop to the navbar's height.
 const NavItemMobile = ({ href, isOpen, onClose }) => {
-  return (
+  useEffect(() => {
+    if (!isOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [isOpen, onClose]);
+
+  return createPortal(
     <>
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 z-[105] bg-black/30 lg:hidden transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        aria-hidden="true"
+        className={`fixed inset-0 z-[105] bg-black/40 lg:hidden transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         onClick={onClose}
       />
       {/* Slide-down menu */}
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+        aria-hidden={!isOpen}
+        inert={isOpen ? undefined : ""}
         className={`fixed top-0 left-0 right-0 z-[110] bg-white lg:hidden shadow-lg transition-all duration-300 ease-in-out ${
           isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
         }`}
@@ -24,7 +45,7 @@ const NavItemMobile = ({ href, isOpen, onClose }) => {
           </button>
 
           {/* Logo */}
-          <a href="/" className="mb-[5vw]">
+          <a href="/" onClick={onClose} aria-label="ArachnoVa home" className="mb-[5vw]">
             <img src="/image/Logo.png" alt="logo" className="w-[12vw] h-auto" draggable="false" />
           </a>
 
@@ -37,13 +58,14 @@ const NavItemMobile = ({ href, isOpen, onClose }) => {
 
           {/* CTA */}
           <a href={href} onClick={onClose}
-            className="w-[60vw] py-[3vw] rounded-[2vw] flex items-center justify-center bg-gradient-to-br from-[#1AB0C8] to-[#179FB5]"
+            className="w-[60vw] min-h-[44px] py-[3vw] rounded-[2vw] flex items-center justify-center bg-gradient-to-br from-[#1AB0C8] to-[#179FB5]"
           >
             <p className="font-InterBold text-[4vw] text-white">Contact Us</p>
           </a>
         </div>
       </div>
-    </>
+    </>,
+    document.body
   );
 };
 

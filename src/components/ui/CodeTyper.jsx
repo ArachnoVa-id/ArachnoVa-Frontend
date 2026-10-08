@@ -8,7 +8,7 @@ const codeData = [
   [{ c: "#1E293B", t: '<div ' }, { c: "#0151EC", t: "className" }, { c: "#1E293B", t: '="' }, { c: "#8131B2", t: "Welcome to ArachnoVa" }, { c: "#1E293B", t: '">' }],
   [{ c: "#1E293B", t: '\u00A0 <div ' }, { c: "#0151EC", t: "className" }, { c: "#1E293B", t: '="' }, { c: "#8131B2", t: "content" }, { c: "#1E293B", t: '">' }],
   [{ c: "#1E293B", t: "\u00A0 {" }],
-  [{ c: "#1E293B", t: "\u00A0\u00A0 " }, { c: "#8131B2", t: '"Your web design partner"' }],
+  [{ c: "#1E293B", t: "\u00A0\u00A0 " }, { c: "#8131B2", t: '"Your digital product partner"' }],
   [{ c: "#1E293B", t: "\u00A0 }" }],
   [{ c: "#1E293B", t: "\u00A0 </div>" }],
   [{ c: "#1E293B", t: '\u00A0 <' }, { c: "#0151EC", t: "img" }, { c: "#1E293B", t: ' src="' }, { c: "#8131B2", t: "img/herofix.png" }, { c: "#1E293B", t: '"/>' }],

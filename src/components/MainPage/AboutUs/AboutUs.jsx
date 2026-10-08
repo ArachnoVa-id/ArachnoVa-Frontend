@@ -33,7 +33,7 @@ const AboutUs = () => {
 							Elektro dan Teknologi Informasi) yang
 							<span className="text-[#1E293B]">
 								{" "}
-								menawarkan jasa web design dan development.
+								membangun produk digital: website, ERP, dan aplikasi WhatsApp.
 							</span>
 						</p>
 					</div>

@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import Seo from "@/components/ui/Seo";
 import { useCollection } from "@/context/DataContext";
 import ServicesHero from "@/components/Services/ServicesHero/ServicesHero";
 import ServicesOption from "@/components/Services/ServicesOption/ServicesOption";
@@ -9,9 +9,7 @@ export default function ServicesPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Our Services | ArachnoVa</title>
-      </Helmet>
+      <Seo path="/services" />
       <main className="w-full flex flex-col justify-center items-center bg-transparent">
         <ServicesHero />
         <ServicesOption data={pricing} />

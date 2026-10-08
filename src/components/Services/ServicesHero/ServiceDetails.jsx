@@ -44,13 +44,16 @@ const ServiceDetails = ({ _key, selected, title, description, image }) => {
                      lg:w-[2.083vw]
                      w-[4.884vw]"
         >
-          <BsFillCaretLeftFill
-            size={"100%"}
-            className="cursor-pointer"
+          <button
+            type="button"
+            aria-label="Previous screenshot"
+            className="block w-full cursor-pointer"
             onClick={() => {
               swiperRef.current.slidePrev(250, true);
             }}
-          />
+          >
+            <BsFillCaretLeftFill size={"100%"} aria-hidden="true" />
+          </button>
         </div>
         <div
           className="flex justify-center items-center bg-[#FBFCFD] border-[#E2E8F0]
@@ -64,7 +67,9 @@ const ServiceDetails = ({ _key, selected, title, description, image }) => {
             slidesPerView={1}
             spaceBetween={5}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
-            loop={true}
+            // Swiper's loop mode needs more slides than are visible; with 1-2 it only logs warnings.
+            loop={(image?.length || 0) > 2}
+            rewind={(image?.length || 0) <= 2}
           >
             {image?.map((image, index) => {
               return (
@@ -88,13 +93,16 @@ const ServiceDetails = ({ _key, selected, title, description, image }) => {
                      lg:w-[2.083vw]
                      w-[4.884vw]"
         >
-          <BsFillCaretRightFill
-            size={"100%"}
-            className="cursor-pointer"
+          <button
+            type="button"
+            aria-label="Next screenshot"
+            className="block w-full cursor-pointer"
             onClick={() => {
               swiperRef.current.slideNext(250, true);
             }}
-          />
+          >
+            <BsFillCaretRightFill size={"100%"} aria-hidden="true" />
+          </button>
         </div>
       </div>
       <div

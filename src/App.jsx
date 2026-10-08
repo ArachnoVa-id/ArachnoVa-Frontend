@@ -8,6 +8,8 @@ import AboutUs from "@/pages/AboutUs";
 import Services from "@/pages/Services";
 import Projects from "@/pages/Projects";
 import Templates from "@/pages/Templates";
+import NotFound from "@/pages/NotFound";
+import RouteTracker from "@/components/ui/RouteTracker";
 
 // Admin pages are only for a few people; keep them out of the public bundle.
 const AdminLayout = lazy(() => import("@/pages/admin/AdminLayout"));
@@ -23,6 +25,7 @@ const SettingsAdmin = lazy(() => import("@/pages/admin/SettingsAdmin"));
 export default function App() {
   return (
     <HelmetProvider>
+      <RouteTracker />
       <Routes>
         <Route path="/admin/login" element={<Suspense fallback={null}><Login /></Suspense>} />
         <Route path="/admin" element={<Suspense fallback={null}><AdminLayout /></Suspense>}>
@@ -43,6 +46,7 @@ export default function App() {
                 <Route path="/services" element={<Services />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/templates" element={<Templates />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </div>
             <Footer />

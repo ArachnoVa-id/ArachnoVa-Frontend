@@ -85,10 +85,12 @@ const ServicesHero = () => {
             >
               {data?.map((data) => {
                 return (
-                  <div
+                  <button
+                    type="button"
                     key={data.key}
                     onClick={() => setState(data.key)}
-                    className="cursor-pointer"
+                    aria-pressed={state === data.key}
+                    className="cursor-pointer text-left"
                   >
                     <OptionButton
                       _key={data.key}
@@ -96,7 +98,7 @@ const ServicesHero = () => {
                       text={data.title}
                       selected={state}
                     />
-                  </div>
+                  </button>
                 );
               })}
             </div>

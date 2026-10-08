@@ -62,7 +62,7 @@ function SlideTrack({ images, idx, goTo, className, style, vertical }) {
               width: vertical ? "100%" : `${slidePct}%`,
               height: vertical ? `${slidePct}%` : "100%",
             }}>
-            <img src={src} alt="" className="w-full h-full object-cover select-none pointer-events-none" draggable="false" />
+            <img src={src} alt="" className={`w-full h-full ${vertical ? "object-cover" : "object-contain"} select-none pointer-events-none`} draggable="false" />
           </div>
         ))}
       </div>
@@ -88,7 +88,10 @@ export default function ProjectModal({ project, onClose, originEl }) {
   if (hasDesktop) views.push("desktop");
   if (hasMobile) views.push("mobile");
 
-  const [view, setView] = useState(views[0] || null);
+  const smallScreen = typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
+  const [view, setView] = useState(smallScreen && hasMobile ? "mobile" : views[0] || null);
+  const closeRef = useRef(null);
+  const titleId = `project-modal-title-${project?.id ?? "x"}`;
   const [desktopIdx, setDesktopIdx] = useState(0);
   const [mobileIdx, setMobileIdx] = useState(0);
   const activeIdx = view === "desktop" ? desktopIdx : mobileIdx;
@@ -106,7 +109,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
   };
 
   useEffect(() => {
-    if (!originRect.current) { setPhase("open"); return; }
+    if (!originRect.current) { setPhase("open"); closeRef.current?.focus({ preventScroll: true }); return; }
     const maxW = Math.min(window.innerWidth * 0.9, 680);
     const finalLeft = (window.innerWidth - maxW) / 2;
     const finalHeight = Math.min(window.innerHeight * 0.78, 680);
@@ -129,6 +132,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
         cardRef.current.style.height = finalHeight + "px";
         cardRef.current.style.borderRadius = "16px";
         setPhase("open");
+        closeRef.current?.focus({ preventScroll: true });
       });
     });
   }, []);
@@ -181,21 +185,22 @@ export default function ProjectModal({ project, onClose, originEl }) {
   return (
     <>
       <div className="fixed inset-0 z-[199] bg-black/50 backdrop-blur-sm"
+        aria-hidden="true"
         onClick={handleClose}
         style={{ opacity: phase === "start" ? 0 : 1, transition: "opacity 0.3s ease" }} />
 
-      <div ref={cardRef} style={startStyle}>
+      <div ref={cardRef} style={startStyle} role="dialog" aria-modal="true" aria-labelledby={titleId}>
         <div className="h-full flex flex-col bg-white"
           style={{ opacity: phase === "start" ? 0 : 1, transition: "opacity 0.2s ease 0.15s" }}>
 
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-border shrink-0">
             <div className="flex items-center gap-2.5 min-w-0">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-LightBlue-c to-LightBlue-d flex items-center justify-center text-white text-[0.6rem] font-bold shrink-0">
+              <div aria-hidden="true" className="w-8 h-8 rounded-full bg-gradient-to-br from-LightBlue-c to-LightBlue-d flex items-center justify-center text-white text-[0.6rem] font-bold shrink-0">
                 {project.title?.charAt(0)?.toUpperCase() || "P"}
               </div>
               <div className="min-w-0">
-                <p className="text-sm font-semibold text-neutral-g leading-tight truncate">{project.title}</p>
+                <h2 id={titleId} className="text-sm font-semibold text-neutral-g leading-tight truncate">{project.title}</h2>
                 {domain && (
                   <a href={project.link} target="_blank" rel="noopener noreferrer"
                     className="text-[0.65rem] text-LightBlue-c hover:underline truncate block leading-tight">
@@ -211,7 +216,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
                   Visit
                 </a>
               )}
-              <button onClick={handleClose} className="text-gray-400 hover:text-gray-600 p-0.5 transition-colors">
+              <button ref={closeRef} type="button" onClick={handleClose} aria-label="Close project" className="text-gray-400 hover:text-gray-600 p-2 -m-1.5 transition-colors">
                 <IoMdClose size={20} />
               </button>
             </div>
@@ -222,7 +227,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
             <div className="flex justify-center shrink-0 bg-gray-50 border-b border-border">
               <div className="flex p-0.5 gap-0.5">
                 {views.map(v => (
-                  <button key={v} onClick={() => setView(v)}
+                  <button type="button" key={v} onClick={() => setView(v)} aria-pressed={view === v}
                     className={`px-4 py-1 text-xs uppercase tracking-[0.08em] font-semibold rounded-md transition-all ${
                       view === v
                         ? "bg-LightBlue-c text-white shadow-sm"
@@ -263,12 +268,12 @@ export default function ProjectModal({ project, onClose, originEl }) {
             {/* Arrows */}
             {activeImages.length > 1 && (
               <>
-                <button onClick={(e) => { e.stopPropagation(); goTo(activeIdx - 1); }}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/80 hover:bg-white rounded-full shadow-md transition text-gray-700 z-10">
+                <button type="button" aria-label="Previous screenshot" onClick={(e) => { e.stopPropagation(); goTo(activeIdx - 1); }}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white/80 hover:bg-white rounded-full shadow-md transition text-gray-700 z-10">
                   <IoMdArrowBack size={16} />
                 </button>
-                <button onClick={(e) => { e.stopPropagation(); goTo(activeIdx + 1); }}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/80 hover:bg-white rounded-full shadow-md transition text-gray-700 z-10">
+                <button type="button" aria-label="Next screenshot" onClick={(e) => { e.stopPropagation(); goTo(activeIdx + 1); }}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white/80 hover:bg-white rounded-full shadow-md transition text-gray-700 z-10">
                   <IoMdArrowForward size={16} />
                 </button>
               </>
@@ -276,10 +281,13 @@ export default function ProjectModal({ project, onClose, originEl }) {
 
             {/* Dots */}
             {activeImages.length > 1 && (
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-[0.35rem]">
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-[0.1rem]">
                 {activeImages.map((_, i) => (
-                  <button key={i} onClick={(e) => { e.stopPropagation(); goTo(i); }}
-                    className={`w-[0.4rem] h-[0.4rem] rounded-full transition-all duration-300 ${i === activeIdx ? "bg-LightBlue-c scale-150" : "bg-gray-400/60 hover:bg-gray-500/80"}`} />
+                  <button type="button" key={i} onClick={(e) => { e.stopPropagation(); goTo(i); }}
+                    aria-label={`Screenshot ${i + 1} of ${activeImages.length}`} aria-current={i === activeIdx}
+                    className="p-1 flex items-center">
+                    <span className={`block w-[0.4rem] h-[0.4rem] rounded-full transition-all duration-300 ${i === activeIdx ? "bg-LightBlue-c scale-150" : "bg-gray-400/60 hover:bg-gray-500/80"}`} />
+                  </button>
                 ))}
               </div>
             )}

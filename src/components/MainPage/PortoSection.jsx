@@ -99,7 +99,7 @@ export default function PortoSection({ projects, services }) {
             <div className="mb-[1.5vw]">
               <p className="font-SourceSansProBold text-[1.6rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Our Tractions</p>
               <p className="text-neutral-e text-[0.9rem] font-SourceSansProSemibold mt-[0.3rem] leading-snug">
-                ArachnoVa telah berpengalaman dalam pembuatan website mencakup aspek Frontend, Backend, dan desain UI.
+                ArachnoVa berpengalaman membangun website, sistem ERP, dan aplikasi WhatsApp, mulai dari desain UI hingga Frontend dan Backend.
               </p>
             </div>
 
@@ -108,10 +108,12 @@ export default function PortoSection({ projects, services }) {
                 const count = projects.filter((p) => p.product === pt.key).length;
                 const isActive = active === pt.key;
                 return (
-                  <div
+                  <button
+                    type="button"
                     key={pt.key}
                     onClick={() => switchCategory(pt.key)}
-                    className={`w-full h-[4.8rem] flex flex-row p-[1vw] gap-x-[0.8vw] rounded-[0.6rem] cursor-pointer border-[0.13rem] transition-all duration-300 ${
+                    aria-pressed={isActive}
+                    className={`w-full h-[4.8rem] flex flex-row text-left p-[1vw] gap-x-[0.8vw] rounded-[0.6rem] cursor-pointer border-[0.13rem] transition-all duration-300 ${
                       isActive ? "border-LightBlue-d bg-LightBlue-d/5 shadow-md" : "border-[#C3D4DB] bg-white hover:shadow-md hover:border-LightBlue-c/30"
                     }`}
                   >
@@ -130,7 +132,7 @@ export default function PortoSection({ projects, services }) {
                         {count} project{count > 1 ? "s" : ""}
                       </p>
                     </div>
-                  </div>
+                  </button>
                 );
               })}
             </div>
@@ -161,21 +163,23 @@ export default function PortoSection({ projects, services }) {
                     {filtered.map((p, i) => (
                       <div key={i} className="w-full flex-shrink-0 bg-[#FBFCFD]">
                         <div className="aspect-[16/10] w-full p-[0.5rem] bg-[#FBFCFD]">
-                          <img src={p.imageDesktop} alt="" className="w-full h-full object-cover rounded-md" draggable="false" />
+                          <img src={p.imageDesktop} alt={i === projectIndex ? `${p.title} (desktop)` : ""} className="w-full h-full object-cover rounded-md" draggable="false" />
                         </div>
                       </div>
                     ))}
                   </div>
                   {totalInCategory > 1 && (
                     <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-2 py-1 shadow-sm">
-                      <button onClick={goPrev} className="text-gray-500 hover:text-LightBlue-c transition">
+                      <button type="button" onClick={goPrev} aria-label="Previous project" className="p-1 text-gray-500 hover:text-LightBlue-c transition">
                         <FaArrowLeft size={11} />
                       </button>
                       {filtered.map((_, i) => (
-                        <button key={i} onClick={() => setProjectIndex(i)}
-                          className={`rounded-full transition-all ${i === projectIndex ? "bg-LightBlue-c w-[0.55rem] h-[0.55rem]" : "bg-gray-300 w-[0.35rem] h-[0.35rem]"}`} />
+                        <button type="button" key={i} onClick={() => setProjectIndex(i)} aria-label={`Show project ${i + 1} of ${totalInCategory}`} aria-current={i === projectIndex}
+                          className="p-[0.2rem] flex items-center">
+                          <span className={`block rounded-full transition-all ${i === projectIndex ? "bg-LightBlue-c w-[0.55rem] h-[0.55rem]" : "bg-gray-300 w-[0.35rem] h-[0.35rem]"}`} />
+                        </button>
                       ))}
-                      <button onClick={goNext} className="text-gray-500 hover:text-LightBlue-c transition">
+                      <button type="button" onClick={goNext} aria-label="Next project" className="p-1 text-gray-500 hover:text-LightBlue-c transition">
                         <FaArrowRight size={11} />
                       </button>
                     </div>
@@ -204,13 +208,13 @@ export default function PortoSection({ projects, services }) {
       <div className="lg:hidden flex flex-col items-center w-full px-[5.581vw]">
         <p className="font-SourceSansProBold text-[6.977vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5] text-center">Our Tractions</p>
         <p className="text-neutral-e text-[3.5vw] text-center font-SourceSansProSemibold mt-[2vw] mb-[5vw]">
-          ArachnoVa telah berpengalaman dalam pembuatan website mencakup aspek Frontend, Backend, dan desain UI.
+          ArachnoVa berpengalaman membangun website, sistem ERP, dan aplikasi WhatsApp, mulai dari desain UI hingga Frontend dan Backend.
         </p>
 
         <div className="flex gap-[3vw] mb-[5vw] justify-center w-full overflow-x-auto no-scrollbar">
           {productTypes.map((pt) => (
-            <button key={pt.key} onClick={() => switchCategory(pt.key)}
-              className={`px-[4vw] py-[2vw] rounded-[2vw] text-[3.5vw] font-InterBold whitespace-nowrap transition-all ${
+            <button type="button" key={pt.key} onClick={() => switchCategory(pt.key)} aria-pressed={active === pt.key}
+              className={`min-h-[44px] px-[4vw] py-[2vw] rounded-[2vw] text-[3.5vw] font-InterBold whitespace-nowrap transition-all ${
                 active === pt.key ? "bg-LightBlue-c text-white" : "bg-border text-neutral-e"
               }`}>{pt.short}</button>
           ))}
@@ -230,7 +234,7 @@ export default function PortoSection({ projects, services }) {
                 {filtered.map((p, i) => (
                   <div key={i} className="w-full flex-shrink-0">
                     <div className="aspect-[390/228]">
-                      <img src={p.imageDesktop} alt="" className="w-full h-full object-cover" draggable="false" />
+                      <img src={p.imageDesktop} alt={i === projectIndex ? p.title : ""} className="w-full h-full object-cover" draggable="false" />
                     </div>
                   </div>
                 ))}
@@ -238,18 +242,15 @@ export default function PortoSection({ projects, services }) {
             </div>
             {totalInCategory > 1 && (
               <>
-                <div className="flex justify-center flex-wrap mt-1">
+                <div className="flex justify-center flex-wrap gap-[6px] mt-2" aria-hidden="true">
                   {filtered.map((_, i) => (
-                    <button key={i} onClick={() => setProjectIndex(i)} aria-label={`Project ${i + 1}`}
-                      className="p-[5px] flex items-center">
-                      <span className={`block h-2 rounded-full transition-all ${i === projectIndex ? "bg-LightBlue-c w-4" : "bg-gray-300 w-2"}`} />
-                    </button>
+                    <span key={i} className={`block h-2 rounded-full transition-all ${i === projectIndex ? "bg-LightBlue-c w-4" : "bg-gray-300 w-2"}`} />
                   ))}
                 </div>
                 <div className="flex justify-between items-center">
-                  <button onClick={goPrev} className="text-[14px] text-LightBlue-c font-InterSemibold pr-3 py-2.5">← Prev</button>
-                  <span className="text-[13px] text-gray-500">{projectIndex + 1}/{totalInCategory}</span>
-                  <button onClick={goNext} className="text-[14px] text-LightBlue-c font-InterSemibold pl-3 py-2.5">Next →</button>
+                  <button type="button" onClick={goPrev} aria-label="Previous project" className="min-h-[44px] min-w-[44px] text-[14px] text-LightBlue-c font-InterSemibold pr-3">← Prev</button>
+                  <span className="text-[13px] text-gray-500" aria-live="polite">{projectIndex + 1}/{totalInCategory}</span>
+                  <button type="button" onClick={goNext} aria-label="Next project" className="min-h-[44px] min-w-[44px] text-[14px] text-LightBlue-c font-InterSemibold pl-3">Next →</button>
                 </div>
               </>
             )}

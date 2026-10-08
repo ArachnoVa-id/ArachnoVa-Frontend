@@ -1,7 +1,7 @@
-import { useSettings } from "@/context/DataContext";
+import { useWhatsApp, WA_MESSAGES } from "@/lib/whatsapp";
 
 const ServicesCTA = () => {
-  const settings = useSettings();
+  const servicesWa = useWhatsApp(WA_MESSAGES.services);
   return (
     <section
       className="relative w-full flex flex-col justify-center items-center bg-white-MainPage text-black
@@ -35,7 +35,7 @@ const ServicesCTA = () => {
           </div>
         </div>
         <a
-          href={settings?.whatsapp || "https://wa.me/6287882832538"}
+          href={servicesWa}
           className="flex justify-center items-center bg-black hover:scale-[110%] transition-all duration-500 ease-in-out
                      lg:w-[13.6rem] lg:h-[2.8rem] lg:rounded-[0.26rem] lg:hover:translate-y-[-5px]
                      w-full max-w-xs h-12 rounded-lg hover:translate-y-[-8px] lg:max-w-none"

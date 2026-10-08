@@ -1,4 +1,4 @@
-import { useSettings } from "@/context/DataContext";
+import { useWhatsApp, WA_MESSAGES } from "@/lib/whatsapp";
 import Image from "@/components/ui/Img";
 import { useEffect, useState, useRef } from "react";
 import AOS from "aos";
@@ -44,7 +44,8 @@ function Words({ words, className }) {
 export default function Hero() {
   const [codeDone, setCodeDone] = useState(false);
 
-  const settings = useSettings();
+
+  const heroWa = useWhatsApp(WA_MESSAGES.hero);
   useEffect(() => {
     AOS.init({
       duration: 1500,
@@ -72,22 +73,20 @@ export default function Hero() {
       {/* Dekstop */}
       <div className="text-black flex gap-x-[4.5rem] xl:gap-x-[8.0rem] max-lg:hidden z-[2]">
         <div className="flex flex-col justify-center xl:scale-[1.2]">
-          <div className="text-[1.6rem] text-neutral-g font-CoolveticaCondReg ">
-            ArachnoVa{" "}
-          </div>
-          <div className="text-neutral-g font-SourceSansProBold">
-            <div className="text-[1.8rem]">Your Web Design Partner</div>
-            <div className="flex items-baseline gap-[0.4rem] mt-[0.1rem]">
+          <h1 className="text-neutral-g font-SourceSansProBold">
+            <span className="block text-[1.6rem] font-CoolveticaCondReg font-normal">ArachnoVa</span>
+            <span className="block text-[1.8rem]">Your Digital Product Partner</span>
+            <span className="flex items-baseline gap-[0.4rem] mt-[0.1rem]">
               <span className="text-[2.6rem]">Always</span>
               <Words words={["Delivered", "Distinctive", "Dependable"]} className="text-[2.6rem]" />
-            </div>
-          </div>
+            </span>
+          </h1>
           <div className="text-[1.0rem] text-neutral-e pt-[1.1rem] font-SourceSansProSemibold ">
             Crafting Digital Presence in Every Strand of Code
           </div>
           <div className="py-[2vh] flex gap-[1.0rem]">
             <a
-              href={settings?.whatsapp || "https://wa.me/6287882832538"}
+              href={heroWa}
               className="aspect-[167/46] w-[8.7rem] rounded-[0.4rem] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white text-[0.8rem] flex justify-center items-center hover:translate-y-[-3px] transition-all duration-500 ease-in-out "
             >
               Start Your Project
@@ -141,17 +140,14 @@ export default function Hero() {
         data-aos="fade-up"
         className="hero-mobile flex flex-col lg:hidden w-full items-center mb-[clamp(4rem,35vw,30rem)] z-[2] mt-[clamp(3rem,20vw,18rem)]"
       >
-          <div className="text-[clamp(2rem,10vw,6rem)] text-neutral-g font-CoolveticaCondReg ">
-          ArachnoVa{" "}
-        </div>
-
-        <div className="text-neutral-g font-SourceSansProBold text-center">
-          <div className="text-[clamp(1.2rem,7vw,5rem)]">Your Web Design Partner</div>
-          <div className="flex items-baseline justify-center gap-[0.5rem] mt-[0.2rem]">
-            <span className="text-[clamp(1.5rem,9vw,6rem)]">Always</span>
-            <Words words={["Delivered", "Distinctive", "Dependable"]} className="text-[clamp(1.5rem,9vw,6rem)]" />
-          </div>
-        </div>
+        <h1 className="text-neutral-g font-SourceSansProBold text-center px-4 max-w-full">
+          <span className="block text-[clamp(2rem,10vw,6rem)] font-CoolveticaCondReg font-normal">ArachnoVa</span>
+          <span className="block text-[clamp(1.2rem,6.5vw,5rem)]">Your Digital Product Partner</span>
+          <span className="flex flex-wrap items-baseline justify-center gap-x-[0.5rem] mt-[0.2rem]">
+            <span className="text-[clamp(1.4rem,8vw,6rem)]">Always</span>
+            <Words words={["Delivered", "Distinctive", "Dependable"]} className="text-[clamp(1.4rem,8vw,6rem)]" />
+          </span>
+        </h1>
 
         <div className="flex flex-col justify-center items-center text-center px-4 text-[clamp(1.25rem,5vw,2.4rem)]/[1.2] pt-[clamp(1rem,4vw,3rem)] text-neutral-e font-SourceSansProSemibold ">
           <div className="">Crafting Digital Presence in Every</div>
@@ -159,7 +155,7 @@ export default function Hero() {
         </div>
 
         <a
-          href={settings?.whatsapp || "https://wa.me/6287882832538"}
+          href={heroWa}
           className="w-[clamp(18rem,80vw,80rem)] h-[clamp(3.5rem,10vw,8rem)] mt-[clamp(1.5rem,5vw,4rem)] my-[clamp(1rem,3vw,2.5rem)] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white rounded-md text-[clamp(1.2rem,4vw,3rem)] flex justify-center items-center hover:translate-y-[-3px] transition-all duration-500 ease-in-out "
         >
           Start Your Project

@@ -1,6 +1,7 @@
 "use client";
 
 import { useSettings } from "@/context/DataContext";
+import { useWhatsApp, WA_MESSAGES } from "@/lib/whatsapp";
 import { IoIosMail } from "react-icons/io";
 import SocialMediaIcon from "./SocialMediaIcon";
 import { FaInstagram } from "react-icons/fa";
@@ -16,9 +17,9 @@ const AboutUs = () => {
   }, []);
   const email = "mailto:arachnova.id@gmail.com";
   const instagram = "https://www.instagram.com/arachnova.id/";
-  const whatsapp = "https://wa.me/6287882832538";
+  const whatsapp = useWhatsApp(WA_MESSAGES.contact);
   const Description =
-    "ArachnoVa adalah bagian dari PT ARAH INOVASI DIGITALOKA, perusahaan yang berfokus pada penyediaan layanan desain dan pengembangan website profesional. Dengan tim yang memiliki kompetensi teknis mendalam di bidang teknologi informasi, kami berkomitmen untuk menghadirkan solusi web inovatif yang kreatif, responsif, dan sesuai dengan kebutuhan setiap klien.";
+    "ArachnoVa adalah bagian dari PT ARAH INOVASI DIGITALOKA, perusahaan yang berfokus pada pengembangan produk digital: website company profile, sistem ERP, aplikasi berbasis WhatsApp, dan tools SaaS. Dengan tim yang memiliki kompetensi teknis mendalam di bidang teknologi informasi, kami berkomitmen menghadirkan solusi digital yang kreatif, andal, dan sesuai dengan kebutuhan setiap klien.";
   return (
     <section className="relative w-full lg:min-h-[100vh] flex flex-col justify-center items-center bg-white-MainPage lg:py-[5vw] pt-28 pb-14 overflow-hidden">
       <div className="absolute top-[4.3rem] w-full aspect-[1920/458] z-0 lg:flex hidden">
@@ -77,9 +78,9 @@ const AboutUs = () => {
               <h2 className="font-SourceSansProBold lg:text-[1.3rem] text-[clamp(1.75rem,7.5vw,2.75rem)] leading-tight text-neutral-g">Get In Touch</h2>
               <p className="font-SourceSansProSemibold lg:text-[0.8rem] text-[clamp(1.05rem,4.5vw,1.5rem)] text-neutral-e mb-4 lg:mb-0">Let's Connect</p>
               <div className="flex lg:flex-col lg:gap-y-[0.8rem] gap-x-[clamp(2rem,8vw,5.6rem)] lg:items-center lg:mt-[0.5rem]">
-                <SocialMediaIcon Icon={<IoIosMail size="32px" className="text-white" />} href={email} />
-                <SocialMediaIcon Icon={<FaInstagram size="30px" className="text-white" />} href={instagram} />
-                <SocialMediaIcon Icon={<FaWhatsapp size="30px" className="text-white" />} href={whatsapp} />
+                <SocialMediaIcon label="Email ArachnoVa" Icon={<IoIosMail size="32px" className="text-white" />} href={email} />
+                <SocialMediaIcon label="Instagram ArachnoVa" Icon={<FaInstagram size="30px" className="text-white" />} href={instagram} />
+                <SocialMediaIcon label="WhatsApp ArachnoVa" Icon={<FaWhatsapp size="30px" className="text-white" />} href={whatsapp} />
               </div>
             </div>
           </div>

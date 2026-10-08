@@ -4,10 +4,12 @@ import { AiFillInstagram } from "react-icons/ai";
 import { PiWhatsappLogoFill } from "react-icons/pi";
 import { IoIosMail } from "react-icons/io";
 import Image from "@/components/ui/Img";
+import { waLink, formatWaNumber, WA_MESSAGES } from "@/lib/whatsapp";
 
 const Footer = () => {
   const year = new Date().getFullYear();
   const s = useSettings();
+  const wa = waLink(WA_MESSAGES.contact, s.whatsapp);
   return (
     <footer className="w-full bg-LightBlue-c">
       <div className="max-w-[70rem] mx-auto lg:px-[2rem] px-[clamp(1rem,5.581vw,2rem)] lg:py-[2.5rem] py-[clamp(1.25rem,8vw,3rem)]">
@@ -38,8 +40,8 @@ const Footer = () => {
               <a href={s.email} className="block py-1 lg:py-0 font-InterSemibold lg:text-[0.85rem] text-[15px] text-neutral-a hover:text-white/70 transition-colors">
                 {s.email.replace("mailto:", "")}
               </a>
-              <a href={s.whatsapp} className="block py-1 lg:py-0 font-InterSemibold lg:text-[0.85rem] text-[15px] text-neutral-a hover:text-white/70 transition-colors">
-                {s.whatsapp.replace("https://wa.me/", "+")}
+              <a href={wa} className="block py-1 lg:py-0 font-InterSemibold lg:text-[0.85rem] text-[15px] text-neutral-a hover:text-white/70 transition-colors">
+                {formatWaNumber(s.whatsapp)}
               </a>
             </div>
           </div>
@@ -48,13 +50,13 @@ const Footer = () => {
           <div className="text-center lg:text-left">
             <h4 className="font-InterBold lg:text-[0.8rem] text-[12px] text-neutral-a/70 uppercase tracking-wider mb-[0.8rem]">Follow Us</h4>
             <div className="flex justify-center lg:justify-start gap-x-[0.8rem]">
-              <a href={s.linkedin} className="w-10 h-10 lg:w-[2.2rem] lg:h-[2.2rem] rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition-all duration-300">
+              <a href={s.linkedin} aria-label="LinkedIn ArachnoVa" target="_blank" rel="noopener noreferrer" className="w-[44px] h-[44px] lg:w-[2.2rem] lg:h-[2.2rem] rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition-all duration-300">
                 <FaLinkedin size="16px" className="text-neutral-a" />
               </a>
-              <a href={s.instagram} className="w-10 h-10 lg:w-[2.2rem] lg:h-[2.2rem] rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition-all duration-300">
+              <a href={s.instagram} aria-label="Instagram ArachnoVa" target="_blank" rel="noopener noreferrer" className="w-[44px] h-[44px] lg:w-[2.2rem] lg:h-[2.2rem] rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition-all duration-300">
                 <AiFillInstagram size="16px" className="text-neutral-a" />
               </a>
-              <a href={s.whatsapp} className="w-10 h-10 lg:w-[2.2rem] lg:h-[2.2rem] rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition-all duration-300">
+              <a href={wa} aria-label="WhatsApp ArachnoVa" className="w-[44px] h-[44px] lg:w-[2.2rem] lg:h-[2.2rem] rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition-all duration-300">
                 <PiWhatsappLogoFill size="16px" className="text-neutral-a" />
               </a>
             </div>

@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import Seo from "@/components/ui/Seo";
 import { useCollection } from "@/context/DataContext";
 import AboutUs from "@/components/AboutUs/AboutUs";
 import TeamSection from "@/components/AboutUs/TeamSection";
@@ -9,9 +9,7 @@ export default function AboutUsPage() {
 
   return (
     <>
-      <Helmet>
-        <title>About Us | ArachnoVa</title>
-      </Helmet>
+      <Seo path="/aboutus" />
       <AboutUs />
       <TeamSection members={members} projects={projects} />
     </>

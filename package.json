@@ -7,7 +7,7 @@
     "dev": "vite",
     "dev:cms": "node server/index.js",
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:cms\"",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender-meta.mjs",
     "preview": "vite preview",
     "start": "node server/index.js",
     "lint": "eslint src/ --ext .js,.jsx"

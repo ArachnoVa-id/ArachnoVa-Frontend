@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FiLinkedin, FiGlobe } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
@@ -13,7 +14,39 @@ const gradientColors = [
 ];
 
 function shortUrl(url) {
-  return url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "").slice(0, 30);
+  return url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
+}
+
+function initials(name) {
+  const parts = (name || "?").trim().split(/\s+/);
+  return (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] : "")).toUpperCase();
+}
+
+// Photo when one is set and loads; otherwise an initials avatar (never a page-sized tile).
+function Avatar({ member, i }) {
+  const [broken, setBroken] = useState(false);
+  if (member.image && !broken) {
+    return (
+      <img alt={member.name} src={member.image} loading="lazy" draggable="false" onError={() => setBroken(true)}
+        className="w-24 h-24 lg:w-28 lg:h-28 rounded-full object-cover border border-gray-200 shadow-sm" />
+    );
+  }
+  return (
+    <div aria-hidden="true"
+      className={`w-24 h-24 lg:w-28 lg:h-28 rounded-full bg-gradient-to-br ${gradientColors[i % gradientColors.length]} flex items-center justify-center shadow-sm`}>
+      <span className="text-white text-2xl lg:text-3xl font-bold">{initials(member.name)}</span>
+    </div>
+  );
+}
+
+function ProfileLink({ href, icon: Icon, label, hoverClass }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+      className={`flex items-center justify-center gap-1.5 min-h-[44px] max-w-full text-[13px] text-gray-500 ${hoverClass} transition-colors`}>
+      <Icon size={14} className="shrink-0" aria-hidden="true" />
+      <span className="truncate">{shortUrl(href)}</span>
+    </a>
+  );
 }
 
 function MemberCard({ member, i, projects }) {
@@ -21,47 +54,26 @@ function MemberCard({ member, i, projects }) {
     .map((id) => (projects || []).find((p) => p.id === id))
     .filter(Boolean);
   return (
-    <article className="flex flex-col gap-3 group w-72">
-      <figure className="relative overflow-hidden rounded-2xl border border-gray-200/80 bg-gray-50 shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:border-purple-200">
-        {member.image ? (
-          <img alt={member.name} src={member.image}
-            className="object-cover aspect-square w-full h-full transition-transform duration-500 group-hover:scale-110"
-            draggable="false"
-            onError={(e) => { e.target.style.display = "none"; e.target.nextSibling.style.display = "flex"; }} />
-        ) : null}
-        <div className={`aspect-square w-full h-full bg-gradient-to-br ${gradientColors[i % gradientColors.length]} flex items-center justify-center ${member.image ? "hidden" : ""}`}>
-          <span className="text-white lg:text-6xl text-4xl font-bold">{member.name?.charAt(0) || "?"}</span>
+    <article className="flex flex-col items-center text-center gap-1 min-w-0 p-4 rounded-2xl bg-white border border-gray-200/80 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+      <Avatar member={member} i={i} />
+      <h4 className="mt-3 text-[15px] lg:text-base font-bold text-gray-900 leading-snug">{member.name}</h4>
+      <p className="text-[13px] lg:text-sm text-gray-500">{member.role}</p>
+      {(member.linkedin || member.website) && (
+        <div className="flex flex-col items-center w-full min-w-0">
+          {member.linkedin && <ProfileLink href={member.linkedin} icon={FiLinkedin} label={`${member.name} on LinkedIn`} hoverClass="hover:text-blue-600" />}
+          {member.website && <ProfileLink href={member.website} icon={FiGlobe} label={`${member.name}'s website`} hoverClass="hover:text-teal-600" />}
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" />
-      </figure>
-      <div className="flex flex-col gap-1.5">
-        <span className="text-lg font-bold text-gray-900 transition-colors group-hover:text-purple-600">{member.name}</span>
-        <span className="text-sm text-gray-500">{member.role}</span>
-        {member.linkedin && (
-          <a href={member.linkedin} target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-blue-600 transition-colors truncate">
-            <FiLinkedin size={12} className="shrink-0" />
-            <span className="truncate">{shortUrl(member.linkedin)}</span>
-          </a>
-        )}
-        {member.website && (
-          <a href={member.website} target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-teal-600 transition-colors truncate">
-            <FiGlobe size={12} className="shrink-0" />
-            <span className="truncate">{shortUrl(member.website)}</span>
-          </a>
-        )}
-        {memberProjects.length > 0 && (
-          <div className="flex flex-wrap gap-1 mt-0.5">
-            {memberProjects.map((p) => (
-              <Link key={p.id} to={`/projects?projectId=${p.id}`}
-                className="text-[12px] px-2 py-1 rounded-full bg-gray-100 text-gray-500 border border-gray-200 hover:bg-LightBlue-c hover:text-white hover:border-LightBlue-c transition-colors">
-                {p.title}
-              </Link>
-            ))}
-          </div>
-        )}
-      </div>
+      )}
+      {memberProjects.length > 0 && (
+        <div className="flex flex-wrap justify-center gap-1 mt-1">
+          {memberProjects.map((p) => (
+            <Link key={p.id} to={`/projects?projectId=${p.id}`}
+              className="text-[12px] px-2 py-1 rounded-full bg-gray-100 text-gray-500 border border-gray-200 hover:bg-LightBlue-c hover:text-white hover:border-LightBlue-c transition-colors">
+              {p.title}
+            </Link>
+          ))}
+        </div>
+      )}
     </article>
   );
 }
@@ -78,64 +90,22 @@ export default function TeamSection({ members, projects }) {
       {both && (
         <h3 className="text-center font-SourceSansProBold lg:text-2xl text-xl text-neutral-g mb-8">{title}</h3>
       )}
-      <div className="hidden md:flex flex-wrap justify-center gap-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 max-w-[64rem] mx-auto">
         {items.map((member, i) => (
           <MemberCard key={i} member={member} i={i} projects={projects} />
         ))}
-      </div>
-      <div className="md:hidden flex gap-4 overflow-x-auto pb-4 -mx-6 px-6 scroll-px-6 snap-x snap-mandatory">
-        {items.map((member, i) => {
-          const memberProjects = (member.projectIds || [])
-            .map((id) => (projects || []).find((p) => p.id === id))
-            .filter(Boolean);
-          return (
-            <div key={i} className="flex-shrink-0 w-[min(62vw,240px)] snap-start">
-              <div className="rounded-2xl overflow-hidden border border-gray-200/80 bg-gray-50 shadow-sm mb-3">
-                {member.image ? (
-                  <img loading="lazy" alt={member.name} src={member.image} className="object-cover aspect-square w-full" draggable="false" />
-                ) : (
-                  <div className={`aspect-square w-full bg-gradient-to-br ${gradientColors[i % gradientColors.length]} flex items-center justify-center`}>
-                    <span className="text-white text-5xl font-bold">{member.name?.charAt(0) || "?"}</span>
-                  </div>
-                )}
-              </div>
-              <p className="font-bold text-[16px] leading-snug text-gray-900">{member.name}</p>
-              <p className="text-[14px] text-gray-500">{member.role}</p>
-              {member.linkedin && (
-                <a href={member.linkedin} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-[13px] text-gray-500 hover:text-blue-600 py-1.5">
-                  <FiLinkedin size={14} className="shrink-0" /> <span className="truncate">{shortUrl(member.linkedin)}</span>
-                </a>
-              )}
-              {member.website && (
-                <a href={member.website} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-[13px] text-gray-500 hover:text-teal-600 py-1.5">
-                  <FiGlobe size={14} className="shrink-0" /> <span className="truncate">{shortUrl(member.website)}</span>
-                </a>
-              )}
-              {memberProjects.length > 0 && (
-                <div className="flex flex-wrap gap-1 mt-1">
-                  {memberProjects.map((p) => (
-                    <Link key={p.id} to={`/projects?projectId=${p.id}`}
-                      className="text-[12px] px-2 py-1 rounded-full bg-gray-100 text-gray-500 border border-gray-200 hover:bg-LightBlue-c hover:text-white hover:border-LightBlue-c transition-colors">{p.title}</Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          );
-        })}
       </div>
     </div>
   );
 
   return (
-    <section className="w-full bg-white-MainPage lg:py-20 py-16 lg:px-32 px-6">
+    <section className="w-full bg-white-MainPage lg:py-20 py-16 lg:px-32 px-4">
       <div className="text-center mb-12">
         <p className="font-SourceSansProBold lg:text-xl text-[16px] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
           Our Team
         </p>
         <h2 className="font-SourceSansProBold lg:text-3xl text-[28px] text-neutral-g mt-2">
-          Meet the Founders
+          Meet the Team
         </h2>
       </div>
 
