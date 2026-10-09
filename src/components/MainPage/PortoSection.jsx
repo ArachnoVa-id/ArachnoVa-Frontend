@@ -20,12 +20,13 @@ export default function PortoSection({ projects, services }) {
     AOS.init({ duration: 1500 });
   }, []);
 
-  const productTypes = services?.length ? services.map((s) => ({
+  // Only categories that have portfolio projects (our own SaaS, e.g. Task Management, has none).
+  const productTypes = (services?.length ? services.map((s) => ({
     key: s.productTag || s.key,
     label: s.title,
     short: s.title.split(" ")[0] || s.title,
     icon: s.icon,
-  })) : defaultTypes;
+  })) : defaultTypes).filter((pt) => !projects.length || projects.some((p) => p.product === pt.key));
 
   const filtered = projects.filter((p) => p.product === active);
   const totalInCategory = filtered.length;

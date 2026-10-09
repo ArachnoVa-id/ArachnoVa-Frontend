@@ -105,10 +105,12 @@ const ServicesHero = () => {
           </div>
 
           {data?.map((svc) => {
-            const imgs = projects
+            const fromProjects = projects
               .filter((p) => p.product === svc.productTag)
               .flatMap((p) => p.desktopImages || [])
               .filter(Boolean);
+            // Services without portfolio projects (e.g. our own SaaS) show their own screenshots.
+            const imgs = fromProjects.length ? fromProjects : (svc.images || []).filter(Boolean);
             return (
               <ServiceDetails
                 key={svc.key}
@@ -117,6 +119,8 @@ const ServicesHero = () => {
                 title={svc.title}
                 description={svc.description}
                 image={imgs}
+                cta={svc.cta}
+                ctaText={svc.ctaText}
               />
             );
           })}

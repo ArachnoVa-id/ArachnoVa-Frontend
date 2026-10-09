@@ -6,7 +6,7 @@ import { BsFillCaretLeftFill, BsFillCaretRightFill } from "react-icons/bs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 
-const ServiceDetails = ({ _key, selected, title, description, image }) => {
+const ServiceDetails = ({ _key, selected, title, description, image, cta, ctaText }) => {
   const isSelected = (key, selected) => {
     if (key === selected) return "flex";
     return "hidden";
@@ -124,6 +124,16 @@ const ServiceDetails = ({ _key, selected, title, description, image }) => {
         >
           {description}
         </div>
+        {cta && (
+          <a
+            href={cta}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="self-start inline-flex items-center justify-center min-h-[44px] px-6 mt-[clamp(0.5rem,1vw,1rem)] rounded-md bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white text-[clamp(14px,1vw,16px)] hover:translate-y-[-2px] transition-all duration-300"
+          >
+            {ctaText || "Mulai Sekarang"}
+          </a>
+        )}
       </div>
     </div>
   );
