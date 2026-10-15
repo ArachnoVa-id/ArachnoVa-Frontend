@@ -62,7 +62,7 @@ export default function TeamNetwork({ members, projects }) {
           The People Behind Every Project
         </h2>
         <p className="mt-3 text-[15px] text-[#B8D9E0]">
-          Every circle is a teammate or a project we shipped. Each line is a collaboration. Drag to explore, hover for roles, click to jump.
+          Every circle is a teammate or a project we shipped. Each line is a collaboration. Drag to rotate, click into it to zoom with the wheel or pinch, hover for roles, click a circle to jump.
         </p>
         <dl className="mt-6 grid grid-cols-3 gap-3 max-w-[30rem] mx-auto">
           {[["People", stats.people], ["Projects", stats.projects], ["Collaborations", stats.links]].map(([k, v]) => (
@@ -78,7 +78,7 @@ export default function TeamNetwork({ members, projects }) {
         </div>
       </div>
 
-      <div className="relative mt-6 max-w-[80rem] mx-auto" style={{ height }}>
+      <div className="relative mt-6 -mx-4 lg:-mx-24" style={{ height }}>
         {near && webgl ? (
           <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-[#8FC3CE] text-sm">Loading network…</div>}>
             <TeamNetworkGraph members={members} projects={projects} height={height} />

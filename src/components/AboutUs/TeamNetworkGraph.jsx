@@ -57,8 +57,11 @@ function circleSprite(src, label, ring, size) {
     img.onload = () => { paint(img); texture.needsUpdate = true; };
     img.src = src;
   }
-  const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, depthWrite: false }));
+  // depthTest off + a high renderOrder: circles always draw over the lines, never hidden behind them
+  const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, depthWrite: false, depthTest: false }));
+  sprite.renderOrder = 10;
   sprite.scale.set(size, size, 1);
+  sprite.userData.size = size;
   return sprite;
 }
 
@@ -74,10 +77,15 @@ export function buildGraph(members, projects) {
   }));
   const people = (members || []).filter((m) => (m.projectIds || []).some((pid) => byId.has(pid)));
   const nodes = [
-    ...people.map((m) => ({ id: `m:${m.name}`, kind: "member", member: m, label: m.name, sub: m.role })),
+    ...people.map((m) => {
+      const n = (m.projectIds || []).filter((pid) => byId.has(pid)).length;
+      return { id: `m:${m.name}`, kind: "member", member: m, label: m.name, sub: m.role,
+        extra: `Collaborated on ${n} project${n === 1 ? "" : "s"}` };
+    }),
     ...visible.filter((p) => counts.get(p.id)).map((p) => ({
       id: `p:${p.id}`, kind: "project", project: p, label: p.title,
       sub: `${counts.get(p.id)} contributor${counts.get(p.id) > 1 ? "s" : ""}`, weight: counts.get(p.id),
+      extra: "Click to view the project",
     })),
   ];
   return { nodes, links, stats: { people: people.length, projects: nodes.length - people.length, links: links.length } };
@@ -85,6 +93,7 @@ export function buildGraph(members, projects) {
 
 export default function TeamNetworkGraph({ members, projects, height }) {
   const el = useRef(null);
+  const zoomApi = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -94,6 +103,7 @@ export default function TeamNetworkGraph({ members, projects, height }) {
     const { nodes, links } = buildGraph(members, projects);
     let hovered = null;
     let fitted = false;
+    let settled = false;
     let interacting = false;
     const isLinked = (l) => hovered && (l.source.id === hovered.id || l.target.id === hovered.id || l.source === hovered.id || l.target === hovered.id);
 
@@ -104,19 +114,26 @@ export default function TeamNetworkGraph({ members, projects, height }) {
       .height(height)
       .graphData({ nodes, links })
       .nodeThreeObject((n) => n.kind === "member"
-        ? circleSprite(n.member.image, n.label, PERSON_RING, 14)
-        : circleSprite(n.project.imageDesktop || n.project.desktopImages?.[0], n.label, PROJECT_RING, 11 + Math.min(n.weight, 11) * 1.1))
+        ? circleSprite(n.member.image, n.label, PERSON_RING, 19)
+        : circleSprite(n.project.imageDesktop || n.project.desktopImages?.[0], n.label, PROJECT_RING, 14 + Math.min(n.weight, 11) * 1.3))
       .nodeLabel((n) => `<div style="padding:6px 10px;border-radius:10px;background:rgba(0,17,24,.88);color:#fff;font:12px/1.35 Inter,sans-serif;text-align:center">
-          <b>${escapeHtml(n.label)}</b><br/><span style="color:${n.kind === "member" ? PERSON_RING : PROJECT_RING}">${escapeHtml(n.sub)}</span></div>`)
+          <b>${escapeHtml(n.label)}</b><br/><span style="color:${n.kind === "member" ? PERSON_RING : PROJECT_RING}">${escapeHtml(n.sub)}</span>
+          ${n.extra ? `<br/><span style="color:#B8D9E0;font-size:11px">${escapeHtml(n.extra)}</span>` : ""}</div>`)
       .linkLabel((l) => (l.role ? `<div style="padding:4px 8px;border-radius:8px;background:rgba(0,17,24,.88);color:#fff;font:11px Inter,sans-serif">${escapeHtml(l.role)}</div>` : ""))
       .linkColor((l) => (isLinked(l) ? "rgba(132,212,225,0.95)" : "rgba(132,212,225,0.28)"))
-      .linkWidth((l) => (isLinked(l) ? 0.9 : 0.25))
+      .linkWidth((l) => (isLinked(l) ? 0.5 : 0))
       .linkOpacity(0.9)
       .linkDirectionalParticles(reduceMotion ? 0 : 1)
       .linkDirectionalParticleWidth((l) => (isLinked(l) ? 1.6 : 0.8))
       .linkDirectionalParticleSpeed(0.004)
       .linkDirectionalParticleColor(() => "#84D4E1")
       .onNodeHover((n) => {
+        if (hovered?.__threeObj && hovered !== n) {
+          const o = hovered.__threeObj; o.renderOrder = 10; o.scale.setScalar(o.userData.size); o.scale.z = 1;
+        }
+        if (n?.__threeObj) {
+          const o = n.__threeObj; o.renderOrder = 20; o.scale.set(o.userData.size * 1.25, o.userData.size * 1.25, 1);
+        }
         hovered = n || null;
         host.style.cursor = n ? "pointer" : "grab";
         graph.linkColor(graph.linkColor()).linkWidth(graph.linkWidth()).linkDirectionalParticleWidth(graph.linkDirectionalParticleWidth());
@@ -132,27 +149,95 @@ export default function TeamNetworkGraph({ members, projects, height }) {
           }
         }
       })
-      .cooldownTicks(160)
+      .onNodeDrag(() => { interacting = true; })
+      .onNodeDragEnd((n) => {
+        n.fx = n.x; n.fy = n.y; n.fz = n.z; // stay where dropped
+        interacting = false;
+        idleUntil = performance.now() + 3000;
+      })
+      .warmupTicks(120) // lay the network out before the first frame
+      .cooldownTicks(60)
+      .onEngineTick(() => {
+        if (!fitted) { fitted = true; fit(0); } // warm-up already laid it out: frame it on the first frame
+      })
       .onEngineStop(() => {
-        if (!fitted) { fitted = true; graph.zoomToFit(reduceMotion ? 0 : 800, 30); }
+        if (!settled) { settled = true; fit(reduceMotion ? 0 : 700); }
       });
 
     graph.d3Force("charge").strength(-60);
     graph.d3Force("link").distance(34);
     const controls = graph.controls();
-    controls.enableZoom = false; // don't hijack page scrolling
+    controls.minDistance = 40;
+    controls.maxDistance = 1200;
+    controls.zoomSpeed = 0.8;
+    // Wheel zoom only after the visitor clicks/taps into the graph, so scrolling the page never gets trapped.
+    controls.enableZoom = false;
+    const arm = () => { controls.enableZoom = true; };
+    const disarm = () => { controls.enableZoom = false; };
+    host.addEventListener("pointerdown", arm);
+    host.addEventListener("touchstart", arm, { passive: true });
+    host.addEventListener("pointerleave", disarm);
+    controls.enableDamping = true; // glide to a stop instead of halting abruptly
+    controls.dampingFactor = 0.08;
+    controls.rotateSpeed = 0.7;
+    let idleUntil = 0; // auto-rotate waits a few seconds after the visitor lets go
     controls.addEventListener("start", () => { interacting = true; });
-    controls.addEventListener("end", () => { interacting = false; });
-    graph.cameraPosition({ z: 220 });
+    controls.addEventListener("end", () => { interacting = false; idleUntil = performance.now() + 3000; });
 
-    let angle = 0;
+    // Frame the whole network: a sphere around every node, sized for the narrower field of view,
+    // so nothing is cut off at any rotation angle.
+    graph.cameraPosition({ z: 320 });
+    const center = new THREE.Vector3();
+    let fitDist = 300;
+    function fit(ms = 600) {
+      const ns = graph.graphData().nodes.filter((n) => Number.isFinite(n.x));
+      if (!ns.length) return;
+      center.set(0, 0, 0);
+      ns.forEach((n) => center.add(new THREE.Vector3(n.x, n.y, n.z)));
+      center.divideScalar(ns.length);
+      const cam = graph.camera();
+      const dir = new THREE.Vector3().subVectors(cam.position, controls.target).normalize();
+      if (!Number.isFinite(dir.x) || dir.lengthSq() === 0) dir.set(0, 0, 1);
+      // Fit by where nodes actually land on screen: move the camera until every node sits inside
+      // 88% of the frame, measured from this viewing angle.
+      const probe = cam.clone();
+      const pts = ns.map((n) => new THREE.Vector3(n.x, n.y, n.z));
+      let dist = fitDist;
+      for (let i = 0; i < 4; i++) {
+        probe.position.copy(center).addScaledVector(dir, dist);
+        probe.lookAt(center);
+        probe.updateMatrixWorld();
+        const ext = pts.map((v) => { const q = v.clone().project(probe); return Math.max(Math.abs(q.x), Math.abs(q.y)); })
+          .sort((x, y) => x - y);
+        const e = ext[ext.length - 1];
+        if (!Number.isFinite(e) || e <= 0) break;
+        dist = THREE.MathUtils.clamp(dist * (e / 0.88), controls.minDistance, controls.maxDistance);
+      }
+      fitDist = dist;
+      const pos = center.clone().add(dir.multiplyScalar(fitDist));
+      graph.cameraPosition({ x: pos.x, y: pos.y, z: pos.z }, { x: center.x, y: center.y, z: center.z }, ms);
+    }
+    zoomApi.current = {
+      zoom: (factor) => {
+        const cam = graph.camera();
+        const offset = new THREE.Vector3().subVectors(cam.position, controls.target);
+        const len = THREE.MathUtils.clamp(offset.length() * factor, controls.minDistance, controls.maxDistance);
+        offset.setLength(len);
+        const pos = controls.target.clone().add(offset);
+        graph.cameraPosition({ x: pos.x, y: pos.y, z: pos.z }, controls.target, 300);
+      },
+      reset: () => fit(600),
+    };
+
     let raf = 0;
+    const yAxis = new THREE.Vector3(0, 1, 0);
     const spin = () => {
-      if (!interacting && !hovered) {
-        angle += 0.0016;
-        const { x, z } = graph.cameraPosition();
-        const dist = Math.hypot(x, z) || 260;
-        graph.cameraPosition({ x: dist * Math.sin(angle), z: dist * Math.cos(angle) });
+      if (fitted && !interacting && !hovered && performance.now() > idleUntil) {
+        // Orbit around the network's centre at the current distance (respects the visitor's zoom).
+        const cam = graph.camera();
+        const offset = new THREE.Vector3().subVectors(cam.position, controls.target).applyAxisAngle(yAxis, 0.0016);
+        cam.position.copy(controls.target).add(offset);
+        cam.lookAt(controls.target);
       }
       raf = requestAnimationFrame(spin);
     };
@@ -161,11 +246,14 @@ export default function TeamNetworkGraph({ members, projects, height }) {
     // Pause rendering while off-screen.
     const io = new IntersectionObserver(([e]) => (e.isIntersecting ? graph.resumeAnimation() : graph.pauseAnimation()));
     io.observe(host);
-    const ro = new ResizeObserver(() => graph.width(host.clientWidth));
+    const ro = new ResizeObserver(() => { graph.width(host.clientWidth); if (fitted) fit(0); });
     ro.observe(host);
 
     return () => {
       cancelAnimationFrame(raf);
+      host.removeEventListener("pointerdown", arm);
+      host.removeEventListener("touchstart", arm);
+      host.removeEventListener("pointerleave", disarm);
       io.disconnect();
       ro.disconnect();
       graph._destructor?.();
@@ -173,5 +261,15 @@ export default function TeamNetworkGraph({ members, projects, height }) {
     };
   }, [members, projects, height, navigate]);
 
-  return <div ref={el} aria-hidden="true" className="w-full" style={{ height, cursor: "grab" }} />;
+  const btn = "w-[40px] h-[40px] rounded-full bg-white/10 border border-white/20 text-white text-lg leading-none hover:bg-white/20 backdrop-blur flex items-center justify-center";
+  return (
+    <div className="relative w-full" style={{ height }}>
+      <div ref={el} aria-hidden="true" className="w-full h-full overflow-hidden" style={{ cursor: "grab" }} />
+      <div className="absolute right-3 bottom-3 flex flex-col gap-2">
+        <button type="button" className={btn} aria-label="Zoom in" onClick={() => zoomApi.current?.zoom(0.75)}>+</button>
+        <button type="button" className={btn} aria-label="Zoom out" onClick={() => zoomApi.current?.zoom(1.33)}>−</button>
+        <button type="button" className={`${btn} text-[11px] font-semibold`} aria-label="Reset view" onClick={() => zoomApi.current?.reset()}>Fit</button>
+      </div>
+    </div>
+  );
 }
