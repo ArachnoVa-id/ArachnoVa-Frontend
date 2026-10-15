@@ -42,15 +42,17 @@ export default function ProjectsPage() {
     }
   }, [projects, location]);
 
-  const imageData = shuffle(
-    projects.flatMap((p) =>
-      (p.desktopImages || []).filter(Boolean).map((src) => ({
-        src,
-        projectId: p.id,
-        projectTitle: p.title,
-      }))
-    )
+  // Mix desktop shots, phone shots (their own tall ratio) and each project's logo (as a circle)
+  // so the wall has varied shapes; logos are spread evenly rather than clumped.
+  const shots = shuffle(
+    projects.flatMap((p) => [
+      ...(p.desktopImages || []).filter(Boolean).map((src) => ({ src, kind: "desktop", projectId: p.id, projectTitle: p.title })),
+      ...(p.mobileImages || []).filter(Boolean).map((src) => ({ src, kind: "mobile", projectId: p.id, projectTitle: p.title })),
+    ])
   );
+  const logos = shuffle(projects.filter((p) => p.logo).map((p) => ({ src: p.logo, kind: "logo", projectId: p.id, projectTitle: p.title })));
+  const imageData = [...shots];
+  logos.forEach((l, i) => imageData.splice(Math.round(((i + 0.5) * shots.length) / logos.length) + i, 0, l));
 
   const rowCount = 6;
   const chunkSize = Math.ceil(imageData.length / rowCount);
