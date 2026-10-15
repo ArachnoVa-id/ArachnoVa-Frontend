@@ -41,6 +41,19 @@ function EditModal({ form, setForm, onSave, onCancel }) {
   const toast = useToast();
   const update = (key, val) => setForm((prev) => ({ ...prev, [key]: val }));
 
+  const uploadLogo = () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.onchange = async () => {
+      const file = input.files?.[0];
+      if (!file) return;
+      try { const { url } = await uploadFile(file); update("logo", url); }
+      catch (e) { toast("Upload failed: " + e.message, "error"); }
+    };
+    input.click();
+  };
+
   const handleUpload = async (field) => {
     const input = document.createElement("input");
     input.type = "file";
@@ -101,6 +114,18 @@ function EditModal({ form, setForm, onSave, onCancel }) {
           <ImageRow label="Mobile Images (first = cover)" images={form.mobileImages || []}
             onAdd={() => handleUpload("mobileImages")} onRemove={(idx) => removeImg("mobileImages", idx)} onMove={(idx, dir) => moveImg("mobileImages", idx, dir)} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="md:col-span-2 flex items-center gap-3">
+              <div className="w-16 h-16 rounded-xl border border-gray-200 bg-white flex items-center justify-center overflow-hidden shrink-0">
+                {form.logo ? <img src={form.logo} alt="" className="w-full h-full object-contain p-1" /> : <span className="text-[10px] text-gray-400">No logo</span>}
+              </div>
+              <div className="flex-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Logo <span className="font-normal text-gray-400">(square works best; used as the project's icon)</span></label>
+                <div className="flex gap-2">
+                  <input value={form.logo || ""} onChange={(e) => update("logo", e.target.value)} placeholder="/uploads/… or https://…" className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono" />
+                  <button type="button" onClick={uploadLogo} className="px-3 py-2 bg-blue-50 text-blue-600 rounded-lg text-sm hover:bg-blue-100">Upload</button>
+                </div>
+              </div>
+            </div>
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
               <input value={form.title || ""} onChange={(e) => update("title", e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" />

@@ -15,7 +15,7 @@ function escapeHtml(s) {
 }
 
 // A round sprite: the photo/screenshot cropped into a circle with a coloured ring; initials until the image loads.
-function circleSprite(src, label, ring, size) {
+function circleSprite(src, label, ring, size, contain = false) {
   const canvas = document.createElement("canvas");
   canvas.width = canvas.height = TEX;
   const ctx = canvas.getContext("2d");
@@ -26,7 +26,15 @@ function circleSprite(src, label, ring, size) {
     ctx.beginPath();
     ctx.arc(r, r, r - 6, 0, Math.PI * 2);
     ctx.clip();
-    if (img) {
+    if (img && contain) {
+      // logo: white disc, whole mark fitted inside with breathing room
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(0, 0, TEX, TEX);
+      const box = TEX * 0.62;
+      const k = Math.min(box / img.width, box / img.height);
+      const w = img.width * k, h = img.height * k;
+      ctx.drawImage(img, (TEX - w) / 2, (TEX - h) / 2, w, h);
+    } else if (img) {
       const s = Math.min(img.width, img.height);
       // cover-crop; screenshots keep their top (header/hero), portraits their centre
       const sy = img.height > img.width ? (img.height - s) / 2 : 0;
@@ -140,7 +148,7 @@ export default function TeamNetworkGraph({ members, projects, height }) {
       .graphData({ nodes, links })
       .nodeThreeObject((n) => n.kind === "member"
         ? circleSprite(n.member.image, n.label, PERSON_RING, 19)
-        : circleSprite(n.project.imageDesktop || n.project.desktopImages?.[0], n.label, PROJECT_RING, 14 + Math.min(n.weight, 11) * 1.3))
+        : circleSprite(n.project.logo || n.project.imageDesktop || n.project.desktopImages?.[0], n.label, PROJECT_RING, 14 + Math.min(n.weight, 11) * 1.3, !!n.project.logo))
       .nodeLabel((n) => `<div style="padding:6px 10px;border-radius:10px;background:rgba(0,17,24,.88);color:#fff;font:12px/1.35 Inter,sans-serif;text-align:center">
           <b>${escapeHtml(n.label)}</b><br/><span style="color:${n.kind === "member" ? PERSON_RING : PROJECT_RING}">${escapeHtml(n.sub)}</span>
           ${n.extra ? `<br/><span style="color:#B8D9E0;font-size:11px">${escapeHtml(n.extra)}</span>` : ""}</div>`)

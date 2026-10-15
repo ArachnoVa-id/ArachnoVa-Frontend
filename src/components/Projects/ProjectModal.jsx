@@ -234,9 +234,13 @@ export default function ProjectModal({ project, onClose, originEl }) {
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-border shrink-0">
             <div className="flex items-center gap-2.5 min-w-0">
-              <div aria-hidden="true" className="w-8 h-8 rounded-full bg-gradient-to-br from-LightBlue-c to-LightBlue-d flex items-center justify-center text-white text-[0.6rem] font-bold shrink-0">
-                {project.title?.charAt(0)?.toUpperCase() || "P"}
-              </div>
+              {project.logo ? (
+                <img src={project.logo} alt="" aria-hidden="true" className="w-[36px] h-[36px] rounded-full object-contain bg-white border border-gray-200 p-[3px] shrink-0" />
+              ) : (
+                <div aria-hidden="true" className="w-8 h-8 rounded-full bg-gradient-to-br from-LightBlue-c to-LightBlue-d flex items-center justify-center text-white text-[0.6rem] font-bold shrink-0">
+                  {project.title?.charAt(0)?.toUpperCase() || "P"}
+                </div>
+              )}
               <div className="min-w-0">
                 <h2 id={titleId} className="text-sm font-semibold text-neutral-g leading-tight truncate">{project.title}</h2>
                 {domain && (
