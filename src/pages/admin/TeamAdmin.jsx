@@ -20,22 +20,32 @@ function uploadFile(file) {
   });
 }
 
-function ProjectPicker({ selected, onChange, projects }) {
+function ProjectPicker({ selected, roles = {}, onChange, onRolesChange, projects }) {
   const [search, setSearch] = useState("");
   const [open, setOpen] = useState(false);
   const filtered = (projects || []).filter((p) =>
     p.title.toLowerCase().includes(search.toLowerCase())
   );
+  const remove = (id) => {
+    onChange(selected.filter((x) => x !== id));
+    if (roles[String(id)] !== undefined) {
+      const { [String(id)]: _drop, ...rest } = roles;
+      onRolesChange(rest);
+    }
+  };
   return (
     <div className="relative">
-      <div className="flex flex-wrap gap-1 mb-1">
+      <div className="flex flex-col gap-1 mb-1">
         {selected.map((id) => {
           const p = (projects || []).find((x) => x.id === id);
           return p ? (
-            <span key={id} className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-[10px] px-1.5 py-0.5 rounded-full">
-              {p.title}
-              <button onClick={() => onChange(selected.filter((x) => x !== id))} className="hover:text-red-500"><FiX size={10} /></button>
-            </span>
+            <div key={id} className="flex items-center gap-1 bg-blue-50 rounded-lg pl-2 pr-1 py-0.5">
+              <span className="text-[10px] text-blue-700 truncate flex-1 min-w-0" title={p.title}>{p.title}</span>
+              <input defaultValue={roles[String(id)] || ""} placeholder="Role (e.g. Frontend)"
+                onBlur={(e) => onRolesChange({ ...roles, [String(id)]: e.target.value.trim() })}
+                className="w-[45%] px-1.5 py-0.5 border border-blue-100 rounded text-[10px] bg-white" />
+              <button onClick={() => remove(id)} aria-label={`Remove ${p.title}`} className="text-blue-400 hover:text-red-500 p-0.5"><FiX size={10} /></button>
+            </div>
           ) : null;
         })}
       </div>
@@ -103,7 +113,7 @@ const MemberCard = memo(({ member, idx, onUpdate, onUpload, onFetchLinkedIn, onR
           placeholder="GitHub profile URL" className="w-full px-2 py-1 border border-gray-200 rounded-lg text-[10px] font-mono" />
         <input defaultValue={member.website || ""} onBlur={(e) => change("website", e.target.value)}
           placeholder="Personal website URL" className="w-full px-2 py-1 border border-gray-200 rounded-lg text-[10px] font-mono" />
-        <ProjectPicker selected={member.projectIds || []} onChange={(ids) => change("projectIds", ids)} projects={projects} />
+        <ProjectPicker selected={member.projectIds || []} roles={member.projectRoles || {}} onChange={(ids) => change("projectIds", ids)} onRolesChange={(r) => change("projectRoles", r)} projects={projects} />
         <button onClick={() => onRemove(idx)} className="w-full text-xs text-red-500 hover:bg-red-50 py-1.5 rounded-lg flex items-center justify-center gap-1"><FiX size={12} /> Remove</button>
       </div>
     </div>
@@ -125,7 +135,7 @@ export default function TeamAdmin() {
 
   const save = () => { setMembers(local); setDirty(false); toast("Team saved", "success"); };
   const update = (fn) => { setLocal((prev) => { setDirty(true); return fn(prev); }); };
-  const add = (type) => update((prev) => [...prev, { name: "", role: "", image: "", linkedin: "", github: "", type, projectIds: [], website: "" }]);
+  const add = (type) => update((prev) => [...prev, { name: "", role: "", image: "", linkedin: "", github: "", type, projectIds: [], projectRoles: {}, website: "" }]);
   const remove = (i) => update((prev) => prev.filter((_, idx) => idx !== i));
   const change = (i, field, value) => update((prev) => {
     const next = [...prev]; next[i] = { ...next[i], [field]: value }; return next;

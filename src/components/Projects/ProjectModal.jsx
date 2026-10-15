@@ -84,17 +84,20 @@ function ProjectTeam({ projectId }) {
   return (
     <div className="mt-2">
       <span className="text-[0.6rem] uppercase tracking-[0.1em] text-gray-400 font-medium">Team</span>
-      <ul className="flex flex-wrap gap-1.5 mt-1 max-h-24 overflow-y-auto">
+      <ul className="flex flex-wrap gap-1.5 mt-1 max-h-[104px] overflow-y-auto">
         {team.map((m) => (
-          <li key={m.name} title={m.role} className="flex items-center gap-1.5 pl-0.5 pr-2 py-0.5 rounded-full bg-gray-100 border border-gray-200 text-[12px] text-gray-600">
+          <li key={m.name} className="flex items-center gap-1.5 pl-0.5 pr-2.5 py-0.5 rounded-full bg-gray-100 border border-gray-200 text-[12px] text-gray-600">
             {m.image ? (
-              <img src={m.image} alt="" loading="lazy" className="w-5 h-5 rounded-full object-cover" />
+              <img src={m.image} alt="" loading="lazy" className="w-[26px] h-[26px] rounded-full object-cover" />
             ) : (
-              <span aria-hidden="true" className="w-5 h-5 rounded-full bg-gradient-to-br from-LightBlue-c to-LightBlue-d flex items-center justify-center text-white text-[9px] font-bold">
+              <span aria-hidden="true" className="w-[26px] h-[26px] rounded-full bg-gradient-to-br from-LightBlue-c to-LightBlue-d flex items-center justify-center text-white text-[9px] font-bold">
                 {initials(m.name)}
               </span>
             )}
-            <span>{m.name}<span className="sr-only">, {m.role}</span></span>
+            <span className="leading-tight">
+              <span className="block">{m.name}</span>
+              <span className="block text-[11px] text-LightBlue-d">{m.projectRoles?.[String(projectId)] || m.role}</span>
+            </span>
           </li>
         ))}
       </ul>
