@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FiLinkedin, FiGlobe } from "react-icons/fi";
+import { FiLinkedin, FiGlobe, FiGithub } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const gradientColors = [
@@ -58,9 +58,10 @@ function MemberCard({ member, i, projects }) {
       <Avatar member={member} i={i} />
       <h4 className="mt-3 text-[15px] lg:text-base font-bold text-gray-900 leading-snug">{member.name}</h4>
       <p className="text-[13px] lg:text-sm text-gray-500">{member.role}</p>
-      {(member.linkedin || member.website) && (
+      {(member.linkedin || member.github || member.website) && (
         <div className="flex flex-col items-center w-full min-w-0">
           {member.linkedin && <ProfileLink href={member.linkedin} icon={FiLinkedin} label={`${member.name} on LinkedIn`} hoverClass="hover:text-blue-600" />}
+          {member.github && <ProfileLink href={member.github} icon={FiGithub} label={`${member.name} on GitHub`} hoverClass="hover:text-gray-900" />}
           {member.website && <ProfileLink href={member.website} icon={FiGlobe} label={`${member.name}'s website`} hoverClass="hover:text-teal-600" />}
         </div>
       )}
