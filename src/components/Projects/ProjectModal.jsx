@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { IoMdClose, IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
+import { useCollection } from "@/context/DataContext";
 
 const productLabels = {
   compro: "Company Profile",
@@ -66,6 +67,37 @@ function SlideTrack({ images, idx, goTo, className, style, vertical }) {
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+function initials(name) {
+  const parts = (name || "?").trim().split(/\s+/);
+  return (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] : "")).toUpperCase();
+}
+
+// The project's contributors: team members who list this project (same data as the team page's project chips).
+function ProjectTeam({ projectId }) {
+  const [members] = useCollection("team");
+  const team = (members || []).filter((m) => (m.projectIds || []).includes(projectId));
+  if (!team.length) return null;
+  return (
+    <div className="mt-2">
+      <span className="text-[0.6rem] uppercase tracking-[0.1em] text-gray-400 font-medium">Team</span>
+      <ul className="flex flex-wrap gap-1.5 mt-1 max-h-24 overflow-y-auto">
+        {team.map((m) => (
+          <li key={m.name} title={m.role} className="flex items-center gap-1.5 pl-0.5 pr-2 py-0.5 rounded-full bg-gray-100 border border-gray-200 text-[12px] text-gray-600">
+            {m.image ? (
+              <img src={m.image} alt="" loading="lazy" className="w-5 h-5 rounded-full object-cover" />
+            ) : (
+              <span aria-hidden="true" className="w-5 h-5 rounded-full bg-gradient-to-br from-LightBlue-c to-LightBlue-d flex items-center justify-center text-white text-[9px] font-bold">
+                {initials(m.name)}
+              </span>
+            )}
+            <span>{m.name}<span className="sr-only">, {m.role}</span></span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -301,6 +333,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
             {project.description && (
               <p className="text-sm text-neutral-e leading-relaxed mt-1 whitespace-pre-line">{project.description}</p>
             )}
+            <ProjectTeam projectId={project.id} />
           </div>
         </div>
       </div>
