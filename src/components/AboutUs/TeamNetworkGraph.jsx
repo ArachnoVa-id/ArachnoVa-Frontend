@@ -192,15 +192,17 @@ export default function TeamNetworkGraph({ members, projects, height }) {
     function fit(ms = 600) {
       const ns = graph.graphData().nodes.filter((n) => Number.isFinite(n.x));
       if (!ns.length) return;
-      center.set(0, 0, 0);
-      ns.forEach((n) => center.add(new THREE.Vector3(n.x, n.y, n.z)));
-      center.divideScalar(ns.length);
+      // centre of the bounding box (an average would sit off-centre for a lopsided layout)
+      const box = new THREE.Box3().setFromPoints(ns.map((n) => new THREE.Vector3(n.x, n.y, n.z)));
+      box.getCenter(center);
       const cam = graph.camera();
       const dir = new THREE.Vector3().subVectors(cam.position, controls.target).normalize();
       if (!Number.isFinite(dir.x) || dir.lengthSq() === 0) dir.set(0, 0, 1);
       // Fit by where nodes actually land on screen: move the camera until every node sits inside
-      // 88% of the frame, measured from this viewing angle.
+      // 80% of the frame (room for circles and rotation), measured from this viewing angle.
       const probe = cam.clone();
+      probe.aspect = host.clientWidth / height; // the live camera's aspect can lag a resize
+      probe.updateProjectionMatrix();
       const pts = ns.map((n) => new THREE.Vector3(n.x, n.y, n.z));
       let dist = fitDist;
       for (let i = 0; i < 4; i++) {
@@ -211,7 +213,7 @@ export default function TeamNetworkGraph({ members, projects, height }) {
           .sort((x, y) => x - y);
         const e = ext[ext.length - 1];
         if (!Number.isFinite(e) || e <= 0) break;
-        dist = THREE.MathUtils.clamp(dist * (e / 0.88), controls.minDistance, controls.maxDistance);
+        dist = THREE.MathUtils.clamp(dist * (e / 0.8), controls.minDistance, controls.maxDistance);
       }
       fitDist = dist;
       const pos = center.clone().add(dir.multiplyScalar(fitDist));
@@ -246,7 +248,7 @@ export default function TeamNetworkGraph({ members, projects, height }) {
     // Pause rendering while off-screen.
     const io = new IntersectionObserver(([e]) => (e.isIntersecting ? graph.resumeAnimation() : graph.pauseAnimation()));
     io.observe(host);
-    const ro = new ResizeObserver(() => { graph.width(host.clientWidth); if (fitted) fit(0); });
+    const ro = new ResizeObserver(() => { graph.width(host.clientWidth); if (fitted) requestAnimationFrame(() => fit(0)); });
     ro.observe(host);
 
     return () => {
