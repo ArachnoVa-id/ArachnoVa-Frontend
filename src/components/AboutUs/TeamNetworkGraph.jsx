@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import ForceGraph3D from "3d-force-graph";
 import * as THREE from "three";
+import { FiPlus, FiMinus, FiMaximize } from "react-icons/fi";
 import { initials, memberAnchor, projectRole } from "./TeamSection";
 
 const TEX = 128;
@@ -153,7 +154,7 @@ export default function TeamNetworkGraph({ members, projects, height }) {
       .onNodeDragEnd((n) => {
         n.fx = n.x; n.fy = n.y; n.fz = n.z; // stay where dropped
         interacting = false;
-        idleUntil = performance.now() + 3000;
+        idleUntil = performance.now() + IDLE_MS;
       })
       .warmupTicks(120) // lay the network out before the first frame
       .cooldownTicks(60)
@@ -177,12 +178,19 @@ export default function TeamNetworkGraph({ members, projects, height }) {
     host.addEventListener("pointerdown", arm);
     host.addEventListener("touchstart", arm, { passive: true });
     host.addEventListener("pointerleave", disarm);
+    host.addEventListener("pointerleave", () => { hovered = null; });
     controls.enableDamping = true; // glide to a stop instead of halting abruptly
     controls.dampingFactor = 0.08;
     controls.rotateSpeed = 0.7;
-    let idleUntil = 0; // auto-rotate waits a few seconds after the visitor lets go
+    const IDLE_MS = 2500;
+    let idleUntil = 0; // auto-rotate waits a moment after the visitor lets go
+    let lastInput = -IDLE_MS;
+    const markInput = () => { lastInput = performance.now(); };
+    host.addEventListener("pointermove", markInput);
+    host.addEventListener("pointerdown", markInput);
+    host.addEventListener("wheel", markInput, { passive: true });
     controls.addEventListener("start", () => { interacting = true; });
-    controls.addEventListener("end", () => { interacting = false; idleUntil = performance.now() + 3000; });
+    controls.addEventListener("end", () => { interacting = false; idleUntil = performance.now() + IDLE_MS; });
 
     // Frame the whole network: a sphere around every node, sized for the narrower field of view,
     // so nothing is cut off at any rotation angle.
@@ -234,10 +242,15 @@ export default function TeamNetworkGraph({ members, projects, height }) {
     let raf = 0;
     const yAxis = new THREE.Vector3(0, 1, 0);
     const spin = () => {
-      if (fitted && !interacting && !hovered && performance.now() > idleUntil) {
+      const now = performance.now();
+      // A resting pointer (or a tap that left a circle "hovered") only pauses briefly; after
+      // IDLE_MS of no input the rotation resumes, easing back up to speed.
+      const pausedByHover = hovered && now - lastInput < IDLE_MS;
+      if (fitted && !interacting && !pausedByHover && now > idleUntil) {
+        const ramp = Math.min(1, (now - Math.max(idleUntil, lastInput + IDLE_MS)) / 1500);
         // Orbit around the network's centre at the current distance (respects the visitor's zoom).
         const cam = graph.camera();
-        const offset = new THREE.Vector3().subVectors(cam.position, controls.target).applyAxisAngle(yAxis, 0.0016);
+        const offset = new THREE.Vector3().subVectors(cam.position, controls.target).applyAxisAngle(yAxis, 0.0016 * Math.max(0, ramp));
         cam.position.copy(controls.target).add(offset);
         cam.lookAt(controls.target);
       }
@@ -256,6 +269,9 @@ export default function TeamNetworkGraph({ members, projects, height }) {
       host.removeEventListener("pointerdown", arm);
       host.removeEventListener("touchstart", arm);
       host.removeEventListener("pointerleave", disarm);
+      host.removeEventListener("pointermove", markInput);
+      host.removeEventListener("pointerdown", markInput);
+      host.removeEventListener("wheel", markInput);
       io.disconnect();
       ro.disconnect();
       graph._destructor?.();
@@ -268,9 +284,9 @@ export default function TeamNetworkGraph({ members, projects, height }) {
     <div className="relative w-full" style={{ height }}>
       <div ref={el} aria-hidden="true" className="w-full h-full overflow-hidden" style={{ cursor: "grab" }} />
       <div className="absolute right-3 bottom-3 flex flex-col gap-2">
-        <button type="button" className={btn} aria-label="Zoom in" onClick={() => zoomApi.current?.zoom(0.75)}>+</button>
-        <button type="button" className={btn} aria-label="Zoom out" onClick={() => zoomApi.current?.zoom(1.33)}>−</button>
-        <button type="button" className={`${btn} text-[11px] font-semibold`} aria-label="Reset view" onClick={() => zoomApi.current?.reset()}>Fit</button>
+        <button type="button" className={btn} aria-label="Zoom in" onClick={() => zoomApi.current?.zoom(0.75)} title="Zoom in"><FiPlus size={18} aria-hidden="true" /></button>
+        <button type="button" className={btn} aria-label="Zoom out" onClick={() => zoomApi.current?.zoom(1.33)} title="Zoom out"><FiMinus size={18} aria-hidden="true" /></button>
+        <button type="button" className={btn} aria-label="Reset view" title="Reset view" onClick={() => zoomApi.current?.reset()}><FiMaximize size={16} aria-hidden="true" /></button>
       </div>
     </div>
   );
