@@ -66,6 +66,30 @@ function circleSprite(src, label, ring, size) {
   return sprite;
 }
 
+// Eased scroll to a team card (native smooth scrolling is abrupt over long distances and gets cut
+// short by focus()), then focus it without another jump and pulse a highlight ring.
+function glideTo(card, reduceMotion) {
+  const start = window.scrollY;
+  const rect = card.getBoundingClientRect();
+  const target = Math.max(0, start + rect.top - (window.innerHeight - rect.height) / 2);
+  const finish = () => {
+    card.focus({ preventScroll: true });
+    card.classList.add("ring-4", "ring-LightBlue-c");
+    setTimeout(() => card.classList.remove("ring-4", "ring-LightBlue-c"), 1800);
+  };
+  if (reduceMotion) { window.scrollTo({ top: target, behavior: "instant" }); finish(); return; }
+  const dist = target - start;
+  const duration = Math.min(1400, 500 + Math.abs(dist) * 0.35);
+  const t0 = performance.now();
+  const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  const step = (now) => {
+    const t = Math.min(1, (now - t0) / duration);
+    window.scrollTo({ top: start + dist * ease(t), behavior: "instant" });
+    if (t < 1) requestAnimationFrame(step); else finish();
+  };
+  requestAnimationFrame(step);
+}
+
 export function buildGraph(members, projects) {
   const visible = (projects || []).filter((p) => !p.hidden);
   const byId = new Map(visible.map((p) => [p.id, p]));
@@ -144,8 +168,7 @@ export default function TeamNetworkGraph({ members, projects, height }) {
         else {
           const card = document.getElementById(memberAnchor(n.member));
           if (card) {
-            card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
-            card.focus?.();
+            glideTo(card, reduceMotion);
             window.history.replaceState(null, "", `#${memberAnchor(n.member)}`);
           }
         }

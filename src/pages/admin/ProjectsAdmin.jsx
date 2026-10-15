@@ -134,11 +134,52 @@ function EditModal({ form, setForm, onSave, onCancel }) {
               </label>
             </div>
           </div>
+          <ArchitectureEditor value={form.architecture} onChange={(v) => update("architecture", v)} />
           <div className="flex gap-3">
             <button onClick={save} className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700">{form.id ? "Update" : "Create"}</button>
             <button onClick={onCancel} className="px-4 py-2 bg-gray-100 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-200">Cancel</button>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+const ARCH_LAYERS = ["Frontend", "Backend", "Database", "Integrations", "Infrastructure"];
+const toList = (v) => v.split(",").map((x) => x.trim()).filter(Boolean);
+
+// Architecture: one comma-separated line per layer, plus summary, highlights (one per line) and card tags.
+function ArchitectureEditor({ value, onChange }) {
+  const a = value || {};
+  const layers = a.layers || {};
+  const set = (patch) => onChange({ ...a, ...patch });
+  const setLayer = (name, text) => {
+    const next = { ...layers, [name]: toList(text) };
+    if (!next[name].length) delete next[name];
+    set({ layers: next });
+  };
+  const cls = "w-full px-3 py-2 border border-gray-300 rounded-lg text-sm";
+  return (
+    <div className="mb-4 rounded-xl border border-gray-200 p-3 space-y-3">
+      <p className="text-sm font-semibold text-gray-800">Architecture <span className="font-normal text-gray-400">(shown as a tab in the project popup)</span></p>
+      <div>
+        <label className="block text-xs font-medium text-gray-600 mb-1">Summary</label>
+        <textarea defaultValue={a.summary || ""} rows={2} onBlur={(e) => set({ summary: e.target.value.trim() })} className={cls} />
+      </div>
+      {ARCH_LAYERS.map((name) => (
+        <div key={name}>
+          <label className="block text-xs font-medium text-gray-600 mb-1">{name} <span className="text-gray-400">(comma-separated)</span></label>
+          <input defaultValue={(layers[name] || []).join(", ")} onBlur={(e) => setLayer(name, e.target.value)} className={cls} />
+        </div>
+      ))}
+      <div>
+        <label className="block text-xs font-medium text-gray-600 mb-1">Highlights <span className="text-gray-400">(one per line)</span></label>
+        <textarea defaultValue={(a.highlights || []).join("\n")} rows={3}
+          onBlur={(e) => set({ highlights: e.target.value.split("\n").map((x) => x.trim()).filter(Boolean) })} className={cls} />
+      </div>
+      <div>
+        <label className="block text-xs font-medium text-gray-600 mb-1">Card tags <span className="text-gray-400">(comma-separated, up to 4, e.g. IoT, AI, Payments)</span></label>
+        <input defaultValue={(a.tags || []).join(", ")} onBlur={(e) => set({ tags: toList(e.target.value).slice(0, 4) })} className={cls} />
       </div>
     </div>
   );
