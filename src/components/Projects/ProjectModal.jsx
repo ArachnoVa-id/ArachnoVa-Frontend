@@ -336,7 +336,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
           </div>
 
           {/* Description */}
-          <div className="shrink-0 px-4 py-3 border-t border-border">
+          <div className={`shrink-0 px-4 py-3 border-t border-border ${view === "architecture" ? "hidden" : ""}`}>
             {productLabel && (
               <span className="text-[0.6rem] uppercase tracking-[0.1em] text-gray-400 font-medium">{productLabel}</span>
             )}
