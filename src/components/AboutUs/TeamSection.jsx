@@ -56,12 +56,14 @@ function ProfileIcon({ href, icon: Icon, label }) {
 }
 
 function ProjectTile({ project, role }) {
-  const thumb = project.imageDesktop || project.desktopImages?.[0] || project.imageMobile || "";
+  // the project's logo when it has one; otherwise a crop of its screenshot
+  const thumb = project.logo || project.imageDesktop || project.desktopImages?.[0] || project.imageMobile || "";
   const body = (
     <>
-      <span className="w-[36px] h-[36px] shrink-0 rounded-lg overflow-hidden bg-gradient-to-br from-LightBlue-a to-LightBlue-d flex items-center justify-center">
+      <span className={`w-[36px] h-[36px] shrink-0 rounded-lg overflow-hidden flex items-center justify-center ${project.logo ? "bg-white border border-gray-200" : "bg-gradient-to-br from-LightBlue-a to-LightBlue-d"}`}>
         {thumb ? (
-          <img src={thumb} alt="" loading="lazy" draggable="false" className="w-full h-full object-cover object-top" />
+          <img src={thumb} alt="" loading="lazy" draggable="false"
+            className={project.logo ? "w-full h-full object-contain p-[3px]" : "w-full h-full object-cover object-top"} />
         ) : (
           <span aria-hidden="true" className="text-white text-[11px] font-bold">{initials(project.title)}</span>
         )}

@@ -146,9 +146,15 @@ export default function ProjectCardGrid({ projects, services, autoOpenId, onAuto
                 </div>
               ) : null}
               <div className="p-[clamp(0.3rem,2vw,1rem)] pt-[clamp(0.5rem,2.5vw,1.5rem)]">
-                <h3 className="font-SourceSansProBold lg:text-[0.94rem] text-[clamp(1rem,5vw,3.5rem)] text-neutral-g group-hover:text-LightBlue-d transition-colors truncate">
-                  {project.title}
-                </h3>
+                <div className="flex items-center gap-2 min-w-0">
+                  {project.logo && (
+                    <img src={project.logo} alt="" aria-hidden="true" loading="lazy"
+                      className="w-[28px] h-[28px] shrink-0 rounded-md object-contain bg-white border border-gray-200 p-[2px]" />
+                  )}
+                  <h3 className="font-SourceSansProBold lg:text-[0.94rem] text-[clamp(1rem,5vw,3.5rem)] text-neutral-g group-hover:text-LightBlue-d transition-colors truncate">
+                    {project.title}
+                  </h3>
+                </div>
                 <p className="font-SourceSansProSemibold lg:text-[0.73rem] text-[clamp(0.8rem,4vw,2.8rem)] text-neutral-e mt-[0.3rem] line-clamp-2 lg:leading-[1.2rem] leading-[clamp(1.2rem,5vw,4rem)]">
                   {project.description}
                 </p>
