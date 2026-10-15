@@ -7,7 +7,8 @@ import CTA from "@/components/MainPage/CTA";
 
 export default function Home() {
   const [pricing] = useCollection("pricing");
-  const [projects] = useCollection("projects");
+  const [allProjects] = useCollection("projects");
+  const projects = allProjects.filter((p) => !p.hidden); // "team only" projects show just on team cards
   const [services] = useCollection("services");
 
   return (

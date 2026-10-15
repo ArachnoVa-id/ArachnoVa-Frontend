@@ -127,6 +127,11 @@ function EditModal({ form, setForm, onSave, onCancel }) {
                 <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-500"></div>
                 <span className="ms-2 text-sm font-medium text-gray-700">Preview / Demo</span>
               </label>
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" className="sr-only peer" checked={!!form.hidden} onChange={(e) => update("hidden", e.target.checked)} />
+                <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-gray-600"></div>
+                <span className="ms-2 text-sm font-medium text-gray-700">Team cards only (hidden from project lists)</span>
+              </label>
             </div>
           </div>
           <div className="flex gap-3">
@@ -248,6 +253,9 @@ export default function ProjectsAdmin() {
                   <div className="absolute top-0 left-0 z-10">
                     <div className="bg-amber-500 text-white text-[9px] font-bold uppercase tracking-wider px-6 py-0.5 -ml-2 -mt-1 rotate-[-45deg] origin-top-right shadow-sm">Preview</div>
                   </div>
+                )}
+                {p.hidden && (
+                  <div className="absolute top-1 right-1 z-10 bg-gray-700/80 text-white text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded">Team only</div>
                 )}
                 {/* Drag indicator */}
                 <div className="absolute top-1 left-1 text-gray-300 text-xs bg-white/70 rounded px-1">⠿</div>

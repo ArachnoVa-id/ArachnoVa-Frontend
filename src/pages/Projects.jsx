@@ -16,7 +16,8 @@ function shuffle(arr) {
 
 export default function ProjectsPage() {
   const { loading } = useData();
-  const [projects] = useCollection("projects");
+  const [allProjects] = useCollection("projects");
+  const projects = allProjects.filter((p) => !p.hidden); // "team only" projects show just on team cards
   const [services] = useCollection("services");
   const gridRef = useRef(null);
   const cardRefs = useRef({});
