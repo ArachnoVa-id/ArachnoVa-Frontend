@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { IoMdClose, IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 import { useCollection } from "@/context/DataContext";
+import ArchitectureView, { hasArchitecture } from "./ArchitectureView";
 
 const productLabels = {
   compro: "Company Profile",
@@ -122,6 +123,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
   const views = [];
   if (hasDesktop) views.push("desktop");
   if (hasMobile) views.push("mobile");
+  if (hasArchitecture(project)) views.push("architecture");
 
   const smallScreen = typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
   const [view, setView] = useState(smallScreen && hasMobile ? "mobile" : views[0] || null);
@@ -130,7 +132,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
   const [desktopIdx, setDesktopIdx] = useState(0);
   const [mobileIdx, setMobileIdx] = useState(0);
   const activeIdx = view === "desktop" ? desktopIdx : mobileIdx;
-  const activeImages = view === "desktop" ? desktopImages : mobileImages;
+  const activeImages = view === "desktop" ? desktopImages : view === "mobile" ? mobileImages : [];
 
   const productLabel = productLabels[project?.product] || project?.product || "";
   const domain = project?.link ? project.link.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "") : "";
@@ -188,6 +190,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === "Escape") handleClose();
+      if (view === "architecture") return;
       if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); goTo(activeIdx - 1); }
       if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); goTo(activeIdx + 1); }
     };
@@ -268,8 +271,10 @@ export default function ProjectModal({ project, onClose, originEl }) {
                         ? "bg-LightBlue-c text-white shadow-sm"
                         : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
                     }`}>
-                    {v === "desktop" ? "Desktop" : "Mobile"}
-                    <span className="ml-1 text-[0.5rem] opacity-60">({(v === "desktop" ? desktopImages : mobileImages).length})</span>
+                    {v === "desktop" ? "Desktop" : v === "mobile" ? "Mobile" : "Architecture"}
+                    {v !== "architecture" && (
+                      <span className="ml-1 text-[0.5rem] opacity-60">({(v === "desktop" ? desktopImages : mobileImages).length})</span>
+                    )}
                   </button>
                 ))}
               </div>
@@ -277,7 +282,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
           )}
 
           {/* Image area */}
-          <div className="flex-1 overflow-hidden select-none relative bg-gray-50">
+          <div className={`flex-1 overflow-hidden relative bg-gray-50 ${view === "architecture" ? "" : "select-none"}`}>
             {view === "desktop" ? (
               <div className="w-full h-full flex items-center justify-center p-[1%]">
                 <SlideTrack images={desktopImages} idx={desktopIdx} goTo={(n) => {
@@ -296,6 +301,8 @@ export default function ProjectModal({ project, onClose, originEl }) {
                   setMobileIdx(n);
                 }} className="h-full w-auto aspect-[245/485] rounded-[0.8rem] shadow-xl" vertical />
               </div>
+            ) : view === "architecture" ? (
+              <ArchitectureView architecture={project.architecture} />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm italic">No images</div>
             )}

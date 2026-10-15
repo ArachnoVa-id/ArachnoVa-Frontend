@@ -152,6 +152,13 @@ export default function ProjectCardGrid({ projects, services, autoOpenId, onAuto
                 <p className="font-SourceSansProSemibold lg:text-[0.73rem] text-[clamp(0.8rem,4vw,2.8rem)] text-neutral-e mt-[0.3rem] line-clamp-2 lg:leading-[1.2rem] leading-[clamp(1.2rem,5vw,4rem)]">
                   {project.description}
                 </p>
+                {project.architecture?.tags?.length > 0 && (
+                  <ul className="flex flex-wrap gap-1 mt-2" aria-label="Built with">
+                    {project.architecture.tags.slice(0, 4).map((t) => (
+                      <li key={t} className="text-[11px] leading-none px-2 py-1 rounded-full bg-[#EEF9FB] text-LightBlue-e border border-[#CBEFF5]">{t}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
           );
