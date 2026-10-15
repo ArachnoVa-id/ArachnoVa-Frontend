@@ -66,7 +66,11 @@ function MemberCard({ member, i, projects }) {
       )}
       {memberProjects.length > 0 && (
         <div className="flex flex-wrap justify-center gap-1 mt-1">
-          {memberProjects.map((p) => (
+          {memberProjects.map((p) => p.hidden ? (
+            <span key={p.id} className="text-[12px] px-2 py-1 rounded-full bg-gray-100 text-gray-500 border border-gray-200">
+              {p.title}
+            </span>
+          ) : (
             <Link key={p.id} to={`/projects?projectId=${p.id}`}
               className="text-[12px] px-2 py-1 rounded-full bg-gray-100 text-gray-500 border border-gray-200 hover:bg-LightBlue-c hover:text-white hover:border-LightBlue-c transition-colors">
               {p.title}

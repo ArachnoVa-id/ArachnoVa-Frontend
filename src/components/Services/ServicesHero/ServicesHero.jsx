@@ -11,7 +11,8 @@ import ServiceDetails from "./ServiceDetails";
 
 const ServicesHero = () => {
   const [data] = useCollection("services");
-  const [projects] = useCollection("projects");
+  const [allProjects] = useCollection("projects");
+  const projects = allProjects.filter((p) => !p.hidden); // "team only" projects show just on team cards
   const [state, setState] = useState(1);
   useEffect(() => {
     AOS.init({
