@@ -99,6 +99,8 @@ const MemberCard = memo(({ member, idx, onUpdate, onUpload, onFetchLinkedIn, onR
             {fetchingLi === idx ? <span className="text-[10px]">...</span> : <FiLinkedin size={12} />}
           </button>
         </div>
+        <input defaultValue={member.github || ""} onBlur={(e) => change("github", e.target.value)}
+          placeholder="GitHub profile URL" className="w-full px-2 py-1 border border-gray-200 rounded-lg text-[10px] font-mono" />
         <input defaultValue={member.website || ""} onBlur={(e) => change("website", e.target.value)}
           placeholder="Personal website URL" className="w-full px-2 py-1 border border-gray-200 rounded-lg text-[10px] font-mono" />
         <ProjectPicker selected={member.projectIds || []} onChange={(ids) => change("projectIds", ids)} projects={projects} />
@@ -123,7 +125,7 @@ export default function TeamAdmin() {
 
   const save = () => { setMembers(local); setDirty(false); toast("Team saved", "success"); };
   const update = (fn) => { setLocal((prev) => { setDirty(true); return fn(prev); }); };
-  const add = (type) => update((prev) => [...prev, { name: "", role: "", image: "", linkedin: "", type, projectIds: [], website: "" }]);
+  const add = (type) => update((prev) => [...prev, { name: "", role: "", image: "", linkedin: "", github: "", type, projectIds: [], website: "" }]);
   const remove = (i) => update((prev) => prev.filter((_, idx) => idx !== i));
   const change = (i, field, value) => update((prev) => {
     const next = [...prev]; next[i] = { ...next[i], [field]: value }; return next;
