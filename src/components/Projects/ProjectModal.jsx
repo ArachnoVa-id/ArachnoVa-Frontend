@@ -83,11 +83,11 @@ function ProjectTeam({ projectId }) {
   const team = (members || []).filter((m) => (m.projectIds || []).includes(projectId));
   if (!team.length) return null;
   return (
-    <div className="mt-2">
-      <span className="text-[0.6rem] uppercase tracking-[0.1em] text-gray-400 font-medium">Team</span>
-      <ul className="flex flex-wrap gap-1.5 mt-1 max-h-[104px] overflow-y-auto">
+    <div className="mt-2 lg:mt-5">
+      <span className="text-[0.6rem] uppercase tracking-[0.1em] text-gray-400 font-medium">Team ({team.length})</span>
+      <ul className="flex flex-wrap lg:flex-col lg:flex-nowrap gap-1.5 mt-1 max-h-[104px] lg:max-h-none overflow-y-auto">
         {team.map((m) => (
-          <li key={m.name} className="flex items-center gap-1.5 pl-0.5 pr-2.5 py-0.5 rounded-full bg-gray-100 border border-gray-200 text-[12px] text-gray-600">
+          <li key={m.name} className="flex items-center gap-1.5 pl-0.5 pr-2.5 py-0.5 rounded-full lg:rounded-xl lg:py-1 bg-gray-100 border border-gray-200 text-[12px] text-gray-600">
             {m.image ? (
               <img src={m.image} alt="" loading="lazy" className="w-[26px] h-[26px] rounded-full object-cover" />
             ) : (
@@ -147,9 +147,10 @@ export default function ProjectModal({ project, onClose, originEl }) {
 
   useEffect(() => {
     if (!originRect.current) { setPhase("open"); closeRef.current?.focus({ preventScroll: true }); return; }
-    const maxW = Math.min(window.innerWidth * 0.9, 680);
+    const wide = window.innerWidth >= 1024; // side-by-side layout: screenshots left, notes + team right
+    const maxW = wide ? Math.min(window.innerWidth * 0.92, 1200) : Math.min(window.innerWidth * 0.9, 680);
     const finalLeft = (window.innerWidth - maxW) / 2;
-    const finalHeight = Math.min(window.innerHeight * 0.78, 680);
+    const finalHeight = wide ? Math.min(window.innerHeight * 0.86, 780) : Math.min(window.innerHeight * 0.78, 680);
     const finalTop = Math.max((window.innerHeight - finalHeight) / 2, 10);
 
     requestAnimationFrame(() => {
@@ -214,7 +215,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
       }
     : {
         position: "fixed", zIndex: 200, top: "2.5%", left: "50%",
-        width: "min(90vw, 680px)", height: "95%", borderRadius: "16px",
+        width: window.innerWidth >= 1024 ? "min(92vw, 1200px)" : "min(90vw, 680px)", height: "95%", borderRadius: "16px",
         overflow: "hidden", background: "white",
         boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
         transform: "translateX(-50%)",
@@ -264,6 +265,8 @@ export default function ProjectModal({ project, onClose, originEl }) {
             </div>
           </div>
 
+          <div className="flex-1 min-h-0 flex flex-col lg:flex-row">
+          <div className="flex-1 min-w-0 min-h-0 flex flex-col">
           {/* View toggle */}
           {views.length > 1 && (
             <div className="flex justify-center shrink-0 bg-gray-50 border-b border-border">
@@ -339,15 +342,18 @@ export default function ProjectModal({ project, onClose, originEl }) {
             )}
           </div>
 
-          {/* Description */}
-          <div className={`shrink-0 px-4 py-3 border-t border-border ${view === "architecture" ? "hidden" : ""}`}>
+          </div>
+
+          {/* Notes + team: right column on desktop, below the screenshots on phones */}
+          <div className={`shrink-0 px-4 py-3 border-t border-border lg:border-t-0 lg:border-l lg:w-[340px] lg:py-5 lg:overflow-y-auto ${view === "architecture" ? "hidden lg:block" : ""}`}>
             {productLabel && (
               <span className="text-[0.6rem] uppercase tracking-[0.1em] text-gray-400 font-medium">{productLabel}</span>
             )}
             {project.description && (
-              <p className="text-sm text-neutral-e leading-relaxed mt-1 whitespace-pre-line">{project.description}</p>
+              <p className="text-sm lg:text-[15px] text-neutral-e leading-relaxed mt-1 whitespace-pre-line">{project.description}</p>
             )}
             <ProjectTeam projectId={project.id} />
+          </div>
           </div>
         </div>
       </div>

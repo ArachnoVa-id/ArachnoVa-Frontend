@@ -31,26 +31,35 @@ export default function MarqueeCarousel({ items, direction = "left", onItemClick
 
   return (
     <div className="overflow-hidden w-full">
-      <div ref={containerRef} className="flex gap-[0.5rem] will-change-transform" style={{ width: "max-content" }}>
-        {doubled.map((item, i) => (
-          <div
-            key={i}
-            onClick={() => onItemClick?.(item.projectId)}
-            className="relative group flex-shrink-0 lg:w-[14.0rem] w-[clamp(12rem,60vw,45rem)] aspect-[4/3] rounded-lg overflow-hidden border border-border shadow-sm cursor-pointer"
-          >
-            <img
-              src={item.src}
-              alt=""
-              className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-40"
-              draggable="false"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/10">
-              <span className="text-white text-[13px] md:text-sm font-bold text-center px-2 drop-shadow-lg [text-shadow:_0_1px_4px_rgba(0,0,0,0.6)]">
-                {item.projectTitle}
-              </span>
+      <div ref={containerRef} className="flex items-center gap-[0.5rem] will-change-transform" style={{ width: "max-content" }}>
+        {doubled.map((item, i) => {
+          // one row height; each kind keeps its own shape
+          const shape = item.kind === "logo"
+            ? "aspect-square rounded-full bg-white shadow-md self-center lg:!h-[6.5rem] !h-[clamp(5.5rem,28vw,21rem)] mx-[0.6rem]"
+            : item.kind === "mobile"
+              ? "aspect-[245/485] rounded-[0.9rem] border border-border shadow-sm"
+              : "aspect-[4/3] rounded-lg border border-border shadow-sm";
+          return (
+            <div
+              key={i}
+              onClick={() => onItemClick?.(item.projectId)}
+              className={`relative group flex-shrink-0 lg:h-[10.5rem] h-[clamp(9rem,45vw,33.75rem)] overflow-hidden cursor-pointer ${shape}`}
+            >
+              <img
+                src={item.src}
+                alt=""
+                className={`w-full h-full transition-opacity duration-300 group-hover:opacity-40 ${item.kind === "logo" ? "object-contain p-[14%]" : "object-cover object-top"}`}
+                draggable="false"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/10">
+                <span className={`text-white font-bold text-center px-2 drop-shadow-lg [text-shadow:_0_1px_4px_rgba(0,0,0,0.6)] ${item.kind === "desktop" ? "text-[13px] md:text-sm" : "text-[11px]"}`}>
+                  {item.projectTitle}
+                </span>
+              </div>
             </div>
-          </div>
+          );
+        })}
         ))}
       </div>
     </div>
