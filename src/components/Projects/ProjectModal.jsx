@@ -259,7 +259,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
                   Visit
                 </a>
               )}
-              <button ref={closeRef} type="button" onClick={handleClose} aria-label="Close project" className="text-gray-400 hover:text-gray-600 p-2 -m-1.5 transition-colors">
+              <button ref={closeRef} type="button" onClick={handleClose} aria-label="Close project" className="text-gray-400 hover:text-gray-600 p-2 -m-1.5 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-LightBlue-c">
                 <IoMdClose size={20} />
               </button>
             </div>
