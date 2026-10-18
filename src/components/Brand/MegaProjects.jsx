@@ -3,7 +3,7 @@ import { useField } from "@/lib/i18n";
 import { Link } from "react-router-dom";
 import { FiArrowUpRight, FiCalendar } from "react-icons/fi";
 import { useCollection } from "@/context/DataContext";
-import { formatPeriod, isOngoing } from "@/lib/period";
+import { formatPeriod, isOngoing, byRecent } from "@/lib/period";
 
 function Avatars({ projectId }) {
   const t = useT();
@@ -29,7 +29,7 @@ export default function MegaProjects({ projects, onOpen, cardRefs }) {
   const { lang } = useLang();
   const t = useT();
   const field = useField();
-  const mega = (projects || []).filter((p) => p.mega && !p.hidden);
+  const mega = (projects || []).filter((p) => p.mega && !p.hidden).sort(byRecent);
   if (!mega.length) return null;
   return (
     <section aria-labelledby="mega-title" className="w-full bg-white-MainPage lg:px-24 px-4 lg:py-14 py-10">

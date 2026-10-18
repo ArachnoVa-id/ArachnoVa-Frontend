@@ -26,3 +26,10 @@ export function formatPeriod(period, lang = "en") {
   if (!e || (s.getFullYear() === e.getFullYear() && s.getMonth() === e.getMonth())) return label(s, lang);
   return `${label(s, lang)} – ${label(e, lang)}`;
 }
+
+// Newest first: still-running projects, then by last commit, then by start date.
+export function byRecent(a, b) {
+  const end = (p) => (isOngoing(p.period) ? Infinity : parseDay(p.period?.end)?.getTime() ?? -Infinity);
+  const start = (p) => parseDay(p.period?.start)?.getTime() ?? -Infinity;
+  return end(b) - end(a) || start(b) - start(a);
+}

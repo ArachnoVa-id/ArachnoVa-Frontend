@@ -12,6 +12,10 @@ import CodeTyper from "@/components/ui/CodeTyper";
 import TerminalTyper from "@/components/ui/TerminalTyper";
 import WebPattern from "@/components/ui/WebPattern";
 
+// Each word gets a slot taller than the glyphs, so descenders/ascenders of the
+// neighbouring words never peek into view while the list slides.
+const SLOT = 1.3;
+
 function Words({ words, className }) {
   const [idx, setIdx] = useState(0);
   const [cw, setCw] = useState(null);
@@ -33,15 +37,15 @@ function Words({ words, className }) {
   }, [idx]);
   return (
     <span className={`inline-flex overflow-hidden leading-none align-middle text-left ${className || ""}`}
-      style={{ height: '1em', width: cw || 'auto' }}>
+      style={{ height: `${SLOT}em`, width: cw || 'auto' }}>
       <span className="block transition-transform duration-500 ease-in-out"
-        style={{ transform: `translateY(-${idx}em)` }}>
+        style={{ transform: `translateY(-${idx * SLOT}em)` }}>
         {words.map((w, i) => (
-          <span key={i} className="block whitespace-nowrap" style={{ height: '1em', lineHeight: 1 }}>{w}</span>
+          <span key={i} className="block whitespace-nowrap" style={{ height: `${SLOT}em`, lineHeight: SLOT }}>{w}</span>
         ))}
       </span>
       <span ref={measureRef} className="invisible absolute whitespace-nowrap" aria-hidden="true"
-        style={{ height: '1em', lineHeight: 1, top: 0, left: 0 }}>{words[idx]}</span>
+        style={{ height: `${SLOT}em`, lineHeight: SLOT, top: 0, left: 0 }}>{words[idx]}</span>
     </span>
   );
 }
