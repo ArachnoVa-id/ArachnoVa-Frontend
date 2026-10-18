@@ -75,14 +75,14 @@ export default function Hero() {
         <div className="flex flex-col justify-center xl:scale-[1.2]">
           <h1 className="text-neutral-g font-SourceSansProBold">
             <span className="block text-[1.6rem] font-CoolveticaCondReg font-normal">ArachnoVa</span>
-            <span className="block text-[1.8rem]">Your Digital Product Partner</span>
+            <span className="block text-[1.8rem]">Real Problems, Lasting Solutions</span>
             <span className="flex items-baseline gap-[0.4rem] mt-[0.1rem]">
-              <span className="text-[2.6rem]">Always</span>
-              <Words words={["Delivered", "Distinctive", "Dependable"]} className="text-[2.6rem]" />
+              <span className="text-[2.6rem]">Built</span>
+              <Words words={["Sustainable", "Problem-First", "AI-Ready"]} className="text-[2.6rem]" />
             </span>
           </h1>
           <div className="text-[1.0rem] text-neutral-e pt-[1.1rem] font-SourceSansProSemibold ">
-            Crafting Digital Presence in Every Strand of Code
+            Riding the AI wave on solid engineering fundamentals
           </div>
           <div className="py-[2vh] flex gap-[1.0rem]">
             <a
@@ -142,16 +142,16 @@ export default function Hero() {
       >
         <h1 className="text-neutral-g font-SourceSansProBold text-center px-4 max-w-full">
           <span className="block text-[clamp(2rem,10vw,6rem)] font-CoolveticaCondReg font-normal">ArachnoVa</span>
-          <span className="block text-[clamp(1.2rem,6.5vw,5rem)]">Your Digital Product Partner</span>
+          <span className="block text-[clamp(1.2rem,6.5vw,5rem)]">Real Problems, Lasting Solutions</span>
           <span className="flex flex-wrap items-baseline justify-center gap-x-[0.5rem] mt-[0.2rem]">
-            <span className="text-[clamp(1.4rem,8vw,6rem)]">Always</span>
-            <Words words={["Delivered", "Distinctive", "Dependable"]} className="text-[clamp(1.4rem,8vw,6rem)]" />
+            <span className="text-[clamp(1.4rem,8vw,6rem)]">Built</span>
+            <Words words={["Sustainable", "Problem-First", "AI-Ready"]} className="text-[clamp(1.4rem,8vw,6rem)]" />
           </span>
         </h1>
 
         <div className="flex flex-col justify-center items-center text-center px-4 text-[clamp(1.25rem,5vw,2.4rem)]/[1.2] pt-[clamp(1rem,4vw,3rem)] text-neutral-e font-SourceSansProSemibold ">
-          <div className="">Crafting Digital Presence in Every</div>
-          <div className="">Strand of Code</div>
+          <div className="">Riding the AI wave on solid</div>
+          <div className="">engineering fundamentals</div>
         </div>
 
         <a

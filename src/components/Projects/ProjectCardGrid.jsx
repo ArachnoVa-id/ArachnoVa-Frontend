@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ProjectModal from "./ProjectModal";
+import MegaProjects from "@/components/Brand/MegaProjects";
+import ProjectTimeline from "@/components/Brand/ProjectTimeline";
+import { formatPeriod, isOngoing } from "@/lib/period";
 
 const defaultCategories = [
   { key: "compro", label: "Company Profile" },
@@ -66,12 +69,16 @@ export default function ProjectCardGrid({ projects, services, autoOpenId, onAuto
 
   const known = new Set(categories.map((c) => c.key));
   const activeCategory = category === "all" || known.has(category) ? category : "all";
-  const visible = activeCategory === "all" ? projects : projects.filter((p) => p.product === activeCategory);
-  const chips = [{ key: "all", label: "All", count: projects.length }].concat(
-    categories.map((c) => ({ ...c, count: projects.filter((p) => p.product === c.key).length })).filter((c) => c.count > 0)
+  // mega projects get their own showcase above; the grid lists the rest
+  const regular = projects.filter((p) => !p.mega);
+  const visible = activeCategory === "all" ? regular : regular.filter((p) => p.product === activeCategory);
+  const chips = [{ key: "all", label: "All", count: regular.length }].concat(
+    categories.map((c) => ({ ...c, count: regular.filter((p) => p.product === c.key).length })).filter((c) => c.count > 0)
   );
 
   return (
+    <>
+    <MegaProjects projects={projects} onOpen={(p) => openProject(p)} cardRefs={cardRefs} />
     <section className="w-full bg-white-MainPage lg:py-[5.2rem] py-[clamp(3rem,18vw,14rem)] lg:px-[10.0rem] px-[clamp(1.2rem,8vw,5.6rem)]" id="project-cards">
       <div data-aos="fade-down" className="text-center mb-[3.0rem]">
         <p className="font-SourceSansProBold lg:text-[1.56rem] text-[clamp(1rem,6vw,4.2rem)] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Our Projects</p>
@@ -114,7 +121,7 @@ export default function ProjectCardGrid({ projects, services, autoOpenId, onAuto
               aria-label={`Open project ${project.title}`}
               data-aos="fade-up"
               data-aos-delay={(i % 4) * 100}
-              className="group bg-white rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-[0.3rem] cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-LightBlue-c"
+              className="group bg-white rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-[0_10px_30px_-8px_rgba(26,176,200,0.35)] hover:border-LightBlue-a transition-all duration-500 hover:-translate-y-[0.3rem] cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-LightBlue-c"
             >
               {(hasDesktop || hasMobile) ? (
                 <div className="relative w-full aspect-[824.28/426.9] bg-gray-50">
@@ -155,8 +162,14 @@ export default function ProjectCardGrid({ projects, services, autoOpenId, onAuto
                     {project.title}
                   </h3>
                 </div>
-                <p className="font-SourceSansProSemibold lg:text-[0.73rem] text-[clamp(0.8rem,4vw,2.8rem)] text-neutral-e mt-[0.3rem] line-clamp-2 lg:leading-[1.2rem] leading-[clamp(1.2rem,5vw,4rem)]">
-                  {project.description}
+                {project.period && (
+                  <p className="text-[11px] text-gray-500 mt-[0.3rem] flex items-center gap-1.5">
+                    {formatPeriod(project.period)}
+                    {isOngoing(project.period) && <span className="px-1.5 py-[1px] rounded-full bg-emerald-50 text-emerald-700 text-[9px] font-bold">LIVE</span>}
+                  </p>
+                )}
+                <p className="font-SourceSansProSemibold lg:text-[0.73rem] text-[clamp(0.8rem,4vw,2.8rem)] text-neutral-e mt-[0.3rem] line-clamp-3 lg:leading-[1.2rem] leading-[clamp(1.2rem,5vw,4rem)]">
+                  {project.goal || project.description}
                 </p>
                 {project.architecture?.tags?.length > 0 && (
                   <ul className="flex flex-wrap gap-1 mt-2" aria-label="Built with">
@@ -179,5 +192,7 @@ export default function ProjectCardGrid({ projects, services, autoOpenId, onAuto
         />
       )}
     </section>
+    <ProjectTimeline projects={projects} onOpen={(p) => openProject(p)} />
+    </>
   );
 }

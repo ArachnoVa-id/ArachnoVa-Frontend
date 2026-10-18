@@ -4,22 +4,34 @@ import Hero from "@/components/MainPage/Hero/Hero";
 import PortoSection from "@/components/MainPage/PortoSection";
 import ServicesOption from "@/components/Services/ServicesOption/ServicesOption";
 import CTA from "@/components/MainPage/CTA";
+import TrustBar from "@/components/Brand/TrustBar";
+import MegaProjects from "@/components/Brand/MegaProjects";
+import Process from "@/components/Brand/Process";
+import FAQ from "@/components/Brand/FAQ";
+import BriefForm from "@/components/Brand/BriefForm";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [pricing] = useCollection("pricing");
   const [allProjects] = useCollection("projects");
   const projects = allProjects.filter((p) => !p.hidden); // "team only" projects show just on team cards
   const [services] = useCollection("services");
+  const navigate = useNavigate();
+  const divider = <div className="w-full lg:h-[0.06rem] h-[0.23rem] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />;
 
   return (
     <>
       <Seo path="/" />
       <Hero />
-      <div className="w-full lg:h-[0.06rem] h-[0.23rem] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />
-      <PortoSection projects={projects} services={services} />
-      <div className="w-full lg:h-[0.06rem] h-[0.23rem] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />
+      <TrustBar />
+      <MegaProjects projects={projects} onOpen={(p) => navigate(`/projects?projectId=${p.id}`)} />
+      {divider}
+      <PortoSection projects={projects.filter((p) => !p.mega)} services={services} />
+      <Process />
+      {divider}
       <ServicesOption data={pricing} />
-      <div className="w-full lg:h-[0.06rem] h-[0.23rem] bg-gradient-to-r from-[#F1F5F9] via-[#CBD5E1] to-[#F1F5F9]" />
+      <FAQ />
+      <BriefForm />
       <CTA />
     </>
   );
