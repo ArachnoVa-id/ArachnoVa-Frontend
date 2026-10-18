@@ -8,8 +8,7 @@ import Image from "@/components/ui/Img";
 import { useEffect, useState, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import CodeTyper from "@/components/ui/CodeTyper";
-import TerminalTyper from "@/components/ui/TerminalTyper";
+import { useStory, StoryCard, Triad } from "./ProblemToSolution";
 import WebPattern from "@/components/ui/WebPattern";
 
 // Each word gets a slot taller than the glyphs, so descenders/ascenders of the
@@ -52,7 +51,7 @@ function Words({ words, className }) {
 
 export default function Hero() {
   const t = useT();
-  const [codeDone, setCodeDone] = useState(false);
+  const story = useStory();
 
 
   const heroWa = useWhatsApp(WA_MESSAGES.hero);
@@ -113,35 +112,16 @@ export default function Hero() {
         </div>
 
         <div className="relative">
-          <div className="aspect-[537/366] w-[28.0rem] border-2 border-[#E2E8F0] rounded-[0.62rem] font-ConsolasRegular overflow-hidden">
-            <div className="bg-white/50 backdrop-blur-xl w-full h-full absolute rounded-[0.62rem]"></div>
-            <div className="px-[1.2rem] py-[2.0rem] text-[1.05rem]/[1.15rem] relative">
-              <Image
-                alt=""
-                src="/image/Hero/3ColorButton.png"
-                className="w-[3.0rem] h-[1.0rem] top-[0.5rem] left-[0.7rem] absolute"
-                draggable="false"
-                width={100}
-                height={100}
-              />
-              <CodeTyper speed={70} className="min-h-[13.0rem]" onDone={() => setCodeDone(true)} />
-            </div>
-          </div>
-          {codeDone && (
-            <div className="absolute w-max max-w-[26rem] bg-white/90 backdrop-blur-md rounded-[0.62rem] -bottom-[1.5rem] -right-[1.0rem] text-[1.0rem] border-2 border-[#E2E8F0] font-ConsolasBold shadow-md animate-fade-in-left">
-              <Image
-                alt=""
-                src="/image/Hero/3ColorButton.png"
-                className="w-[3.0rem] h-[1.0rem] top-[0.4rem] left-[0.7rem] absolute"
-                draggable="false"
-                width={100}
-                height={100}
-              />
-               <div className="flex gap-x-[0.1rem] pt-[2.0rem] pb-[0.9rem] whitespace-nowrap px-[1.0rem]">
-                <TerminalTyper speed={60} startDelay={300} />
+          <div className="w-[28.0rem] border-2 border-[#E2E8F0] rounded-[0.62rem] overflow-hidden relative">
+            <div className="bg-white/60 backdrop-blur-xl w-full h-full absolute rounded-[0.62rem]"></div>
+            <div className="px-[1.2rem] pt-[2.2rem] pb-[1.0rem] relative">
+              <Image alt="" src="/image/Hero/3ColorButton.png" className="w-[3.0rem] h-[1.0rem] top-[0.5rem] left-[0.7rem] absolute" draggable="false" width={100} height={100} />
+              <StoryCard c={story.c} phase={story.phase} className="min-h-[14rem]" />
+              <div className="mt-[0.9rem] pt-[0.9rem] border-t border-dashed border-gray-200">
+                <Triad phase={story.phase} />
               </div>
             </div>
-          )}
+          </div>
         </div>
       </div>
 
@@ -175,35 +155,14 @@ export default function Hero() {
           </div>
         </a>
 
-        <div className="relative">
-          <div className="bg-white w-[clamp(18rem,85vw,80rem)] min-h-[clamp(25rem,60vw,60rem)] rounded-lg font-ConsolasRegular overflow-hidden">
-            <div className="px-[clamp(0.8rem,2.5vw,1.5rem)] pt-[clamp(2.25rem,7vw,4rem)] pb-[clamp(4.5rem,15vw,7rem)] text-[clamp(1.1rem,3.6vw,2.4rem)]/[1.35] relative ">
-              <Image
-                alt=""
-                src="/image/Hero/3ColorButton.png"
-                className="w-[clamp(3.5rem,11vw,6rem)] h-auto top-[clamp(0.6rem,2vw,1.2rem)] left-[clamp(0.8rem,2.5vw,1.5rem)] absolute object-contain"
-                draggable="false"
-                width={100}
-                height={100}
-              />
-              <CodeTyper speed={100} className="min-h-[clamp(15rem,40vw,40rem)]" onDone={() => setCodeDone(true)} />
-            </div>
+        <div className="w-[clamp(18rem,90vw,40rem)] flex flex-col gap-3">
+          <div className="bg-white rounded-lg border-2 border-[#E2E8F0] px-4 pt-[2.4rem] pb-4 relative text-[13px]">
+            <Image alt="" src="/image/Hero/3ColorButton.png" className="w-[3.2rem] h-auto top-[0.7rem] left-[0.9rem] absolute object-contain" draggable="false" width={100} height={100} />
+            <StoryCard c={story.c} phase={story.phase} />
           </div>
-          {codeDone && (
-            <div className="absolute w-[80vw] max-w-[40rem] bg-white/70 backdrop-blur-md rounded-md -bottom-[clamp(1rem,4vw,3rem)] -right-[2vw] border-2 border-[#E2E8F0] font-ConsolasBold shadow-md animate-fade-in-left">
-              <Image
-                alt=""
-                src="/image/Hero/3ColorButton.png"
-                className="w-[clamp(3rem,9vw,5rem)] h-auto top-[clamp(0.4rem,1.5vw,0.9rem)] left-[clamp(0.6rem,2.5vw,1.5rem)] absolute object-contain"
-                draggable="false"
-                width={100}
-                height={100}
-              />
-               <div className="flex items-center text-[clamp(10px,3.1vw,1.6rem)] gap-x-[0.06rem] pt-[clamp(1.6rem,6vw,3.5rem)] pb-[clamp(0.6rem,2vw,1.2rem)] whitespace-nowrap overflow-hidden px-[clamp(0.6rem,2.5vw,1.5rem)]">
-                <TerminalTyper speed={80} startDelay={300} />
-              </div>
-            </div>
-          )}
+          <div className="bg-white/90 rounded-lg border-2 border-[#E2E8F0] shadow-md px-4 py-3 text-[13px]">
+            <Triad phase={story.phase} />
+          </div>
         </div>
       </div>
     </section>
