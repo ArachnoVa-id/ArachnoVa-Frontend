@@ -27,8 +27,8 @@ export default function CTA() {
 					data-aos="fade-up"
 					className="text-neutral-g font-SourceSansProBold text-[2.4rem]/[2.4rem] flex flex-col justify-center items-center"
 				>
-					<p>Ready to Transform Your Digital Presence ? </p>
-					<p>Let&apos;s Start Building Your Digital Product Today</p>
+					<p>Got a problem worth solving?</p>
+					<p>Let&apos;s build a solution that lasts.</p>
 				</div>
 				<a
 					href={ctaWa}
@@ -45,8 +45,8 @@ export default function CTA() {
 					data-aos="fade-up"
 					className="text-neutral-g font-SourceSansProBold text-[clamp(1.8rem,6.5vw,4.5rem)]/[clamp(2.2rem,7vw,5.0rem)] flex flex-col justify-center items-center text-center px-5"
 				>
-					<p>Ready to Transform Your Digital Presence ? </p>
-					<p>Let&apos;s Start Building Your Digital Product Today</p>
+					<p>Got a problem worth solving?</p>
+					<p>Let&apos;s build a solution that lasts.</p>
 				</div>
 				<a
 					href={ctaWa}

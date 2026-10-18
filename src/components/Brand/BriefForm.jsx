@@ -42,14 +42,14 @@ export default function BriefForm() {
     when && `Target waktu: ${when}`,
   ].filter(Boolean).join("\n");
 
-  const input = "w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-[14px] focus:outline-none focus:border-LightBlue-c focus:ring-2 focus:ring-[#CBEFF5]";
+  const input = "w-full px-4 py-3 rounded-xl border border-gray-400 bg-white text-neutral-g placeholder:text-gray-500 text-[14px] focus:outline-none focus:border-LightBlue-c focus:ring-2 focus:ring-[#CBEFF5]";
   return (
-    <section aria-labelledby="brief-title" className="w-full bg-white lg:px-24 px-4 lg:py-16 py-12">
-      <div className="max-w-[60rem] mx-auto rounded-3xl border border-gray-200 bg-white-MainPage p-6 lg:p-10 shadow-sm">
+    <section aria-labelledby="brief-title" className="w-full bg-gradient-to-b from-[#E3F5F8] to-[#F1FAFC] lg:px-24 px-4 lg:py-16 py-12">
+      <div className="max-w-[60rem] mx-auto rounded-3xl border border-[#B9E6EE] bg-white p-6 lg:p-10 shadow-[0_12px_40px_-12px_rgba(21,139,158,0.25)]">
         <div className="mb-6">
           <p className="font-SourceSansProBold lg:text-xl text-[16px] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Start With the Problem</p>
           <h2 id="brief-title" className="font-SourceSansProBold lg:text-3xl text-[26px] text-neutral-g mt-1">Ceritakan Masalah Anda, Kami Bantu Carikan Solusinya</h2>
-          <p className="text-[14px] text-neutral-e mt-2">Isi singkat di bawah; pesan WhatsApp akan tersusun otomatis.</p>
+          <p className="text-[15px] text-neutral-f mt-2">Isi singkat di bawah; pesan WhatsApp akan tersusun otomatis.</p>
         </div>
         <form onSubmit={(e) => { e.preventDefault(); if (ready) window.open(waLink(message, settings?.whatsapp), "_blank", "noopener"); }} className="space-y-5">
           <div className="grid sm:grid-cols-2 gap-3">
@@ -64,10 +64,10 @@ export default function BriefForm() {
           <div><span className="block text-[13px] font-semibold text-neutral-f mb-2">Perkiraan kebutuhan</span><Chips options={NEEDS} value={needs} onChange={setNeeds} multi /></div>
           <div><span className="block text-[13px] font-semibold text-neutral-f mb-2">Target waktu</span><Chips options={WHEN} value={when} onChange={setWhen} /></div>
           <button type="submit" disabled={!ready}
-            className="inline-flex items-center gap-2 px-6 py-3 min-h-[48px] rounded-xl bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white font-InterBold text-[14px] hover:brightness-110 disabled:opacity-40 disabled:cursor-not-allowed">
+            className="inline-flex items-center gap-2 px-6 py-3 min-h-[48px] rounded-xl bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white font-InterBold text-[14px] hover:brightness-110 disabled:bg-none disabled:bg-gray-300 disabled:text-gray-600 disabled:cursor-not-allowed">
             <FaWhatsapp size={18} aria-hidden="true" /> Kirim lewat WhatsApp
           </button>
-          {!ready && <p className="text-[12px] text-gray-500">Ceritakan masalahnya minimal satu kalimat.</p>}
+          {!ready && <p className="text-[13px] text-neutral-e">Ceritakan masalahnya minimal satu kalimat.</p>}
         </form>
       </div>
     </section>

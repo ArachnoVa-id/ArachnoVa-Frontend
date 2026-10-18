@@ -1,8 +1,59 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useCollection } from "@/context/DataContext";
 import { parseDay } from "@/lib/period";
 
-// Numbers counted from the CMS, never typed in by hand: they move as the portfolio grows.
+// Counts up once when the number scrolls into view.
+function CountUp({ to, suffix = "" }) {
+  const ref = useRef(null);
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !to) return undefined;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { setN(to); return undefined; }
+    let raf = 0;
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      const t0 = performance.now();
+      const step = (t) => {
+        const k = Math.min(1, (t - t0) / 1400);
+        setN(Math.round(to * (1 - Math.pow(1 - k, 3))));
+        if (k < 1) raf = requestAnimationFrame(step);
+      };
+      raf = requestAnimationFrame(step);
+    }, { threshold: 0.6 });
+    io.observe(el);
+    return () => { io.disconnect(); cancelAnimationFrame(raf); };
+  }, [to]);
+  return <span ref={ref} className="tabular-nums">{n}{suffix}</span>;
+}
+
+// Endless strip of the clients' own logos; hover pauses it, click opens the project.
+function LogoStrip({ projects }) {
+  const navigate = useNavigate();
+  const logos = projects.filter((p) => p.logo && !p.hidden);
+  if (!logos.length) return null;
+  const row = [...logos, ...logos];
+  return (
+    <div className="relative overflow-hidden mt-10 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+      <ul className="flex gap-4 w-max animate-[logo-scroll_60s_linear_infinite] hover:[animation-play-state:paused] motion-reduce:animate-none" aria-label="Clients we have worked with">
+        {row.map((p, i) => (
+          <li key={`${p.id}-${i}`} aria-hidden={i >= logos.length}>
+            <button type="button" onClick={() => navigate(`/projects?projectId=${p.id}`)} title={p.title}
+              tabIndex={i >= logos.length ? -1 : 0}
+              className="group flex items-center gap-2.5 h-[56px] pl-2 pr-4 rounded-full bg-white border border-gray-200 shadow-sm transition hover:border-LightBlue-c hover:shadow-md">
+              <img src={p.logo} alt="" loading="lazy" className="w-[40px] h-[40px] rounded-full object-contain bg-white grayscale opacity-70 transition group-hover:grayscale-0 group-hover:opacity-100" />
+              <span className="text-[13px] font-semibold text-neutral-e whitespace-nowrap group-hover:text-neutral-g">{p.title}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+      <style>{"@keyframes logo-scroll { from { transform: translateX(0) } to { transform: translateX(-50%) } }"}</style>
+    </div>
+  );
+}
+
 export default function TrustBar() {
   const [projects] = useCollection("projects");
   const [team] = useCollection("team");
@@ -10,29 +61,40 @@ export default function TrustBar() {
   const stats = useMemo(() => {
     const all = projects || [];
     const starts = all.map((p) => parseDay(p.period?.start)).filter(Boolean);
-    const since = starts.length ? Math.min(...starts.map((d) => d.getFullYear())) : null;
+    const since = starts.length ? Math.min(...starts.map((d) => d.getFullYear())) : new Date().getFullYear();
     const people = (team || []).filter((m) => (m.projectIds || []).length).length;
-    const links = (team || []).reduce((n, m) => n + (m.projectIds || []).length, 0);
     return [
-      { value: all.length, label: "Problems solved", sub: "projects shipped" },
-      { value: people, label: "Builders", sub: "who shipped them" },
-      { value: links, label: "Collaborations", sub: "person × project" },
-      { value: since ? `${since}` : "—", label: "Building since", sub: "first commit" },
+      { to: all.length, suffix: "", label: "projects delivered" },
+      { to: people, suffix: "", label: "people we've built with" },
+      { to: Math.max(1, new Date().getFullYear() - since), suffix: "+", label: "years of real-world work" },
     ];
   }, [projects, team]);
 
   if (!projects?.length) return null;
   return (
-    <section aria-label="ArachnoVa in numbers" className="w-full bg-white-MainPage lg:px-24 px-4 lg:py-10 py-8">
-      <dl className="max-w-[72rem] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-5">
-        {stats.map((s) => (
-          <div key={s.label} className="rounded-2xl bg-white border border-gray-200/80 shadow-sm px-5 py-4 text-center transition hover:shadow-md hover:-translate-y-0.5 hover:border-LightBlue-a">
-            <dd className="font-SourceSansProBold text-neutral-g lg:text-[2.4rem] text-[2rem] leading-none tabular-nums">{s.value}</dd>
-            <dt className="mt-2 text-[14px] font-semibold text-neutral-f">{s.label}</dt>
-            <p className="text-[12px] text-gray-500">{s.sub}</p>
+    <section aria-labelledby="about-strip-title" className="w-full bg-white-MainPage lg:px-24 px-4 lg:py-16 py-12">
+      <div className="max-w-[72rem] mx-auto">
+        <div className="grid lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-12 items-center rounded-3xl bg-white border border-gray-200 shadow-sm p-6 lg:p-10">
+          <div>
+            <p className="text-[13px] font-semibold text-LightBlue-e">ArachnoVa</p>
+            <h2 id="about-strip-title" className="font-SourceSansProBold text-neutral-g lg:text-[2rem] text-[26px] leading-tight mt-1">
+              We solve real problems, then make sure they stay solved.
+            </h2>
+            <p className="text-[15px] leading-relaxed text-neutral-e mt-3 max-w-[34rem]">
+              From ticketing that survives a sell-out to a waste bank that runs on one system, we start with what is broken and build something your team can keep using for years.
+            </p>
           </div>
-        ))}
-      </dl>
+          <dl className="grid grid-cols-3 gap-3">
+            {stats.map((s) => (
+              <div key={s.label} className="rounded-2xl bg-[#EEF9FB] px-3 py-5 text-center">
+                <dd className="font-SourceSansProBold text-LightBlue-e lg:text-[2.6rem] text-[2rem] leading-none"><CountUp to={s.to} suffix={s.suffix} /></dd>
+                <dt className="mt-2 text-[13px] leading-snug text-neutral-f">{s.label}</dt>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <LogoStrip projects={projects} />
+      </div>
     </section>
   );
 }
