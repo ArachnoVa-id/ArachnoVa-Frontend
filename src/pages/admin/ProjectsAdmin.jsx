@@ -180,6 +180,9 @@ function EditModal({ form, setForm, onSave, onCancel }) {
                 <input type="date" value={form.period?.end || ""} onChange={(e) => update("period", { ...(form.period || {}), end: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" /></label>
             </div>
             <label className="flex items-center gap-2 text-sm text-gray-700">
+              <input type="checkbox" checked={!!form.period?.ongoing} onChange={(e) => update("period", { ...(form.period || {}), ongoing: e.target.checked })} /> Still running (shows "Present" and LIVE)
+            </label>
+            <label className="flex items-center gap-2 text-sm text-gray-700">
               <input type="checkbox" checked={!!form.mega} onChange={(e) => update("mega", e.target.checked)} /> Mega project (shown in its own section)
             </label>
             {form.mega && (
