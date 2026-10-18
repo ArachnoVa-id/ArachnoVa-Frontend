@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { FiArrowLeft, FiArrowRight, FiArrowUpRight, FiCalendar } from "react-icons/fi";
 import { useCollection } from "@/context/DataContext";
 import { useT, useField, useLang } from "@/lib/i18n";
+import { Parallax } from "@/lib/parallax";
 import { formatPeriod, isOngoing, byRecent } from "@/lib/period";
 
 function Builders({ projectId }) {
@@ -107,8 +108,8 @@ export default function MegaCarousel({ projects, onOpen, cardRefs }) {
               {/* screenshot on a soft panel, with the phone view floating over it */}
               <button type="button" onClick={() => onOpen?.(p)} aria-label={p.title} className="relative min-h-[240px] lg:min-h-[420px] bg-gradient-to-br from-[#1AB0C8]/15 to-[#179FB5]/5 overflow-hidden">
                 <span aria-hidden="true" className="absolute -right-16 -top-16 w-[320px] h-[320px] rounded-full bg-[#1AB0C8]/20" />
-                {shot && <img src={shot} alt="" loading="lazy" className="absolute left-[8%] top-[12%] w-[86%] rounded-xl shadow-2xl border border-white/60 object-cover object-top aspect-[16/10]" />}
-                {phone && <img src={phone} alt="" loading="lazy" className="absolute right-[6%] bottom-[6%] w-[24%] aspect-[9/19] object-cover object-top rounded-[18px] shadow-2xl border-4 border-white" />}
+                {shot && <Parallax speed={-0.06} className="absolute inset-0"><img src={shot} alt="" loading="lazy" className="absolute left-[8%] top-[12%] w-[86%] rounded-xl shadow-2xl border border-white/60 object-cover object-top aspect-[16/10]" /></Parallax>}
+                {phone && <Parallax speed={0.1} className="absolute inset-0"><img src={phone} alt="" loading="lazy" className="absolute right-[6%] bottom-[6%] w-[24%] aspect-[9/19] object-cover object-top rounded-[18px] shadow-2xl border-4 border-white" /></Parallax>}
               </button>
             </article>
           );

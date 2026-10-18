@@ -1,6 +1,7 @@
 import { FiArrowUpRight } from "react-icons/fi";
 import { useCollection } from "@/context/DataContext";
 import { useT } from "@/lib/i18n";
+import { Parallax } from "@/lib/parallax";
 
 // Our own ready-made products, separate from client work.
 export default function Products() {
@@ -51,7 +52,7 @@ export default function Products() {
               <a href={it.href} target={it.external ? "_blank" : undefined} rel={it.external ? "noopener noreferrer" : undefined}
                 className="group flex flex-col h-full rounded-3xl border border-gray-200 bg-white-MainPage overflow-hidden transition hover:-translate-y-1 hover:shadow-xl hover:border-LightBlue-a">
                 <div className="relative aspect-[16/10] bg-gradient-to-br from-[#E6F6F9] to-[#EEF2FF] overflow-hidden">
-                  {it.image && <img src={it.image} alt="" loading="lazy" className="absolute left-[8%] top-[10%] w-[92%] h-[100%] object-cover object-left-top rounded-tl-xl shadow-lg transition duration-500 group-hover:scale-[1.04]" />}
+                  {it.image && <Parallax speed={-0.07} className="absolute inset-0"><img src={it.image} alt="" loading="lazy" className="absolute left-[8%] top-[10%] w-[92%] h-[100%] object-cover object-left-top rounded-tl-xl shadow-lg transition duration-500 group-hover:scale-[1.04]" /></Parallax>}
                   <span className="absolute left-3 top-3 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-white/90 text-LightBlue-e shadow-sm">{t(it.tag)}</span>
                 </div>
                 <div className="p-5 flex-1 flex flex-col">

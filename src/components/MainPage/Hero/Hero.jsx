@@ -8,7 +8,8 @@ import Image from "@/components/ui/Img";
 import { useEffect, useState, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useStory, StoryCard, Triad } from "./ProblemToSolution";
+import ProblemToSolution from "./ProblemToSolution";
+import { Parallax } from "@/lib/parallax";
 import WebPattern from "@/components/ui/WebPattern";
 
 // Each word gets a slot taller than the glyphs, so descenders/ascenders of the
@@ -51,7 +52,6 @@ function Words({ words, className }) {
 
 export default function Hero() {
   const t = useT();
-  const story = useStory();
 
 
   const heroWa = useWhatsApp(WA_MESSAGES.hero);
@@ -64,6 +64,7 @@ export default function Hero() {
     <section className="w-full lg:min-h-[90vh] min-h-[70vh] relative bg-white-MainPage overflow-hidden flex flex-row justify-center items-center">
       <style>{`@keyframes fade-in-left { from { opacity: 0; transform: translateX(-1.5rem); } to { opacity: 1; transform: translateX(0); } } .animate-fade-in-left { animation: fade-in-left 0.5s ease-out; }`}</style>
       <WebPattern opacity={0.04} />
+      <Parallax speed={-0.15} className="absolute inset-x-0 -top-[20%] -bottom-[20%] z-[1]">
       <Image
         alt="Background"
         src="/image/Hero/HeroBG.webp"
@@ -78,6 +79,7 @@ export default function Hero() {
         fill
         draggable="false"
       />
+      </Parallax>
 
       {/* Dekstop */}
       <div className="text-black flex gap-x-[4.5rem] xl:gap-x-[8.0rem] max-lg:hidden z-[2]">
@@ -111,18 +113,15 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="relative">
+        <Parallax speed={0.08} className="relative">
           <div className="w-[28.0rem] border-2 border-[#E2E8F0] rounded-[0.62rem] overflow-hidden relative">
             <div className="bg-white/60 backdrop-blur-xl w-full h-full absolute rounded-[0.62rem]"></div>
             <div className="px-[1.2rem] pt-[2.2rem] pb-[1.0rem] relative">
               <Image alt="" src="/image/Hero/3ColorButton.png" className="w-[3.0rem] h-[1.0rem] top-[0.5rem] left-[0.7rem] absolute" draggable="false" width={100} height={100} />
-              <StoryCard c={story.c} phase={story.phase} className="min-h-[14rem]" />
-              <div className="mt-[0.9rem] pt-[0.9rem] border-t border-dashed border-gray-200">
-                <Triad phase={story.phase} />
-              </div>
+              <ProblemToSolution />
             </div>
           </div>
-        </div>
+        </Parallax>
       </div>
 
       {/* Mobile */}
@@ -158,10 +157,7 @@ export default function Hero() {
         <div className="w-[clamp(18rem,90vw,40rem)] flex flex-col gap-3">
           <div className="bg-white rounded-lg border-2 border-[#E2E8F0] px-4 pt-[2.4rem] pb-4 relative text-[13px]">
             <Image alt="" src="/image/Hero/3ColorButton.png" className="w-[3.2rem] h-auto top-[0.7rem] left-[0.9rem] absolute object-contain" draggable="false" width={100} height={100} />
-            <StoryCard c={story.c} phase={story.phase} />
-          </div>
-          <div className="bg-white/90 rounded-lg border-2 border-[#E2E8F0] shadow-md px-4 py-3 text-[13px]">
-            <Triad phase={story.phase} />
+            <ProblemToSolution />
           </div>
         </div>
       </div>
