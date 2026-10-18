@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
 
 const codeData = [
-  [{ c: "#0151EC", t: "import " }, { c: "#1E293B", t: "{ " }, { c: "#1CA7BD", t: "fundamentals" }, { c: "#1E293B", t: " } from " }, { c: "#8131B2", t: '"./experience";' }],
-  [{ c: "#0151EC", t: "import " }, { c: "#1E293B", t: "{ " }, { c: "#1CA7BD", t: "ai" }, { c: "#1E293B", t: " } from " }, { c: "#8131B2", t: '"./the-wave";' }],
+  [{ c: "#94A3B8", t: "// fundamentals first" }],
+  [{ c: "#0151EC", t: "import " }, { c: "#1CA7BD", t: "core" }, { c: "#0151EC", t: " from " }, { c: "#8131B2", t: '"./xp";' }],
+  [{ c: "#0151EC", t: "import " }, { c: "#1CA7BD", t: "ai" }, { c: "#0151EC", t: " from " }, { c: "#8131B2", t: '"./wave";' }],
   [{ c: "#1E293B", t: "\u00A0" }],
-  [{ c: "#0151EC", t: "export const " }, { c: "#1CA7BD", t: "solve" }, { c: "#1E293B", t: " = (" }, { c: "#B45309", t: "problem" }, { c: "#1E293B", t: ") =>" }],
+  [{ c: "#0151EC", t: "const " }, { c: "#1CA7BD", t: "solve" }, { c: "#1E293B", t: " = (" }, { c: "#B45309", t: "problem" }, { c: "#1E293B", t: ") =>" }],
   [{ c: "#1E293B", t: "\u00A0 " }, { c: "#0151EC", t: "sustainable" }, { c: "#1E293B", t: "(" }],
-  [{ c: "#1E293B", t: "\u00A0\u00A0 " }, { c: "#1CA7BD", t: "fundamentals" }],
-  [{ c: "#1E293B", t: "\u00A0\u00A0\u00A0 ." }, { c: "#0151EC", t: "understand" }, { c: "#1E293B", t: "(" }, { c: "#B45309", t: "problem" }, { c: "#1E293B", t: ")" }],
-  [{ c: "#1E293B", t: "\u00A0\u00A0\u00A0 ." }, { c: "#0151EC", t: "build" }, { c: "#1E293B", t: "({ " }, { c: "#1CA7BD", t: "ai" }, { c: "#1E293B", t: " })" }],
+  [{ c: "#1E293B", t: "\u00A0\u00A0\u00A0 " }, { c: "#1CA7BD", t: "core" }],
+  [{ c: "#1E293B", t: "\u00A0\u00A0\u00A0\u00A0\u00A0 ." }, { c: "#0151EC", t: "understand" }, { c: "#1E293B", t: "(" }, { c: "#B45309", t: "problem" }, { c: "#1E293B", t: ")" }],
+  [{ c: "#1E293B", t: "\u00A0\u00A0\u00A0\u00A0\u00A0 ." }, { c: "#0151EC", t: "build" }, { c: "#1E293B", t: "({ " }, { c: "#1CA7BD", t: "ai" }, { c: "#1E293B", t: " })" }],
   [{ c: "#1E293B", t: "\u00A0 );" }],
-  [{ c: "#1E293B", t: "\u00A0" }],
-  [{ c: "#94A3B8", t: "// a real problem in, a lasting solution out" }],
 ];
 
 export default function CodeTyper({ speed = 70, className, onDone }) {
