@@ -3,7 +3,6 @@ const MONTHS = {
   en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
   id: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
 };
-const ONGOING_DAYS = 45; // a commit this recent means the project is still being worked on
 
 export function parseDay(s) {
   if (!s) return null;
@@ -11,9 +10,9 @@ export function parseDay(s) {
   return new Date(y, m - 1, d || 1);
 }
 
-export function isOngoing(period, now = new Date()) {
-  const end = parseDay(period?.end);
-  return !!end && (now - end) / 86400000 <= ONGOING_DAYS;
+// Only projects we still run are marked ongoing (set in Admin); everything else ends at its last commit.
+export function isOngoing(period) {
+  return !!period?.ongoing;
 }
 
 const label = (d, lang) => `${(MONTHS[lang] || MONTHS.en)[d.getMonth()]} ${d.getFullYear()}`;
