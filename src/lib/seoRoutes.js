@@ -7,10 +7,10 @@ export const OG_IMAGE = `${SITE_URL}/image/og-image.png`;
 
 export const SEO_ROUTES = {
   "/": {
-    title: "ArachnoVa | Your Digital Product Partner",
+    title: "ArachnoVa | Real Problems, Lasting Solutions",
     description:
-      "ArachnoVa (PT Arah Inovasi Digitaloka) membangun website company profile, sistem ERP, aplikasi WhatsApp, dan tools SaaS untuk bisnis dan organisasi di Indonesia.",
-    h1: "ArachnoVa, Your Digital Product Partner",
+      "ArachnoVa (PT Arah Inovasi Digitaloka) menyelesaikan masalah nyata bisnis dan organisasi dengan solusi digital yang berkelanjutan, menggabungkan fondasi engineering yang kuat dengan AI.",
+    h1: "ArachnoVa, Real Problems, Lasting Solutions",
   },
   "/projects": {
     title: "Our Projects | ArachnoVa",

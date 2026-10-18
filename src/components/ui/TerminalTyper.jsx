@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-const prompt = ".\\arachnova-official-site > ";
-const cmd = "npm run dev";
+const prompt = ".\\arachnova > ";
+const cmd = "solve(yourProblem)";
 const full = prompt + cmd;
 
 export default function TerminalTyper({ speed = 50, startDelay = 0 }) {

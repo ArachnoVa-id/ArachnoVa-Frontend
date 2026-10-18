@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { IoMdClose, IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 import { useCollection } from "@/context/DataContext";
 import ArchitectureView, { hasArchitecture } from "./ArchitectureView";
+import { formatPeriod, isOngoing } from "@/lib/period";
 
 const productLabels = {
   compro: "Company Profile",
@@ -349,8 +350,27 @@ export default function ProjectModal({ project, onClose, originEl }) {
             {productLabel && (
               <span className="text-[0.6rem] uppercase tracking-[0.1em] text-gray-400 font-medium">{productLabel}</span>
             )}
+            {project.period && (
+              <p className="text-[12px] text-gray-500 mt-1 flex items-center gap-1.5">
+                {formatPeriod(project.period)}
+                {isOngoing(project.period) && <span className="px-1.5 py-[1px] rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold">LIVE</span>}
+              </p>
+            )}
+            {project.goal && (
+              <div className="mt-3 rounded-xl bg-[#EEF9FB] border border-[#CBEFF5] px-3 py-2.5">
+                <span className="text-[0.6rem] uppercase tracking-[0.1em] text-LightBlue-e font-semibold">Goal</span>
+                <p className="text-sm lg:text-[15px] text-neutral-f leading-relaxed mt-0.5">{project.goal}</p>
+              </div>
+            )}
+            {project.partner?.name && (
+              <a href={project.partner.link} target="_blank" rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center gap-2 pl-1 pr-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-[12px] text-amber-900 hover:bg-amber-100">
+                {project.partner.logo && <img src={project.partner.logo} alt="" className="w-[24px] h-[24px] rounded-full object-contain bg-white" />}
+                With <b className="font-semibold">{project.partner.name}</b>
+              </a>
+            )}
             {project.description && (
-              <p className="text-sm lg:text-[15px] text-neutral-e leading-relaxed mt-1 whitespace-pre-line">{project.description}</p>
+              <p className="text-[13px] text-neutral-e leading-relaxed mt-3 whitespace-pre-line">{project.description}</p>
             )}
             <ProjectTeam projectId={project.id} />
           </div>

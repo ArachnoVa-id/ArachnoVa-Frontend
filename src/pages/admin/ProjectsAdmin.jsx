@@ -159,6 +159,29 @@ function EditModal({ form, setForm, onSave, onCancel }) {
               </label>
             </div>
           </div>
+          <div className="mb-4 rounded-xl border border-gray-200 p-3 space-y-3">
+            <p className="text-sm font-semibold text-gray-800">Goal &amp; period</p>
+            <label className="block">
+              <span className="block text-xs font-medium text-gray-600 mb-1">Goal (one line: the problem and how we solved it)</span>
+              <textarea value={form.goal || ""} rows={2} onChange={(e) => update("goal", e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" />
+            </label>
+            <div className="grid grid-cols-2 gap-3">
+              <label className="block"><span className="block text-xs font-medium text-gray-600 mb-1">Start (first commit)</span>
+                <input type="date" value={form.period?.start || ""} onChange={(e) => update("period", { ...(form.period || {}), start: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" /></label>
+              <label className="block"><span className="block text-xs font-medium text-gray-600 mb-1">Last commit</span>
+                <input type="date" value={form.period?.end || ""} onChange={(e) => update("period", { ...(form.period || {}), end: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" /></label>
+            </div>
+            <label className="flex items-center gap-2 text-sm text-gray-700">
+              <input type="checkbox" checked={!!form.mega} onChange={(e) => update("mega", e.target.checked)} /> Mega project (shown in its own section)
+            </label>
+            {form.mega && (
+              <div className="grid md:grid-cols-3 gap-3">
+                <input value={form.partner?.name || ""} onChange={(e) => update("partner", { ...(form.partner || {}), name: e.target.value })} placeholder="Partner name" className="px-3 py-2 border border-gray-300 rounded-lg text-sm" />
+                <input value={form.partner?.link || ""} onChange={(e) => update("partner", { ...(form.partner || {}), link: e.target.value })} placeholder="Partner link" className="px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono" />
+                <input value={form.partner?.logo || ""} onChange={(e) => update("partner", { ...(form.partner || {}), logo: e.target.value })} placeholder="Partner logo URL" className="px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono" />
+              </div>
+            )}
+          </div>
           <ArchitectureEditor value={form.architecture} onChange={(v) => update("architecture", v)} />
           <div className="flex gap-3">
             <button onClick={save} className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700">{form.id ? "Update" : "Create"}</button>
