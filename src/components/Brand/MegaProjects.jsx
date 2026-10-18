@@ -33,7 +33,7 @@ export default function MegaProjects({ projects, onOpen, cardRefs }) {
           <h2 id="mega-title" className="font-SourceSansProBold lg:text-3xl text-[26px] text-neutral-g mt-1">Systems We Run, Not Just Ship</h2>
           <p className="text-[15px] text-neutral-e mt-2 max-w-[40rem] mx-auto">Long-running platforms that real operations depend on every day.</p>
         </div>
-        <div className="grid lg:grid-cols-2 gap-5">
+        <div className={`grid gap-5 ${mega.length >= 3 ? "md:grid-cols-2 xl:grid-cols-3" : "lg:grid-cols-2"}`}>
           {mega.map((p) => {
             const shot = p.imageDesktop || p.desktopImages?.[0];
             const open = () => (onOpen ? onOpen(p) : null);
