@@ -1,3 +1,4 @@
+import { useT } from "@/lib/i18n";
 import { useState } from "react";
 import { FiLinkedin, FiGlobe, FiGithub } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -87,6 +88,7 @@ function ProjectTile({ project, role }) {
 }
 
 function MemberCard({ member, i, projects }) {
+  const t = useT();
   const [expanded, setExpanded] = useState(false);
   const memberProjects = (member.projectIds || [])
     .map((id) => (projects || []).find((p) => p.id === id))
@@ -114,19 +116,19 @@ function MemberCard({ member, i, projects }) {
 
       <div className="flex-1 flex flex-col px-3 pt-3 pb-4 mt-3 border-t border-gray-100">
         <p className="text-[11px] uppercase tracking-[0.1em] text-gray-400 font-semibold mb-2 px-1">
-          {memberProjects.length ? `${memberProjects.length} project${memberProjects.length > 1 ? "s" : ""}` : "Projects"}
+          {memberProjects.length ? t({ en: `${memberProjects.length} project${memberProjects.length > 1 ? "s" : ""}`, id: `${memberProjects.length} proyek` }) : t({ en: "Projects", id: "Proyek" })}
         </p>
         {memberProjects.length ? (
           <ul className="grid grid-cols-1 gap-1.5 content-start min-h-[222px]">
             {shown.map((p) => <ProjectTile key={p.id} project={p} role={projectRole(member, p.id)} />)}
           </ul>
         ) : (
-          <p className="min-h-[222px] text-[12px] text-gray-400 px-1">Projects coming soon.</p>
+          <p className="min-h-[222px] text-[12px] text-gray-400 px-1">{t({ en: "Projects coming soon.", id: "Proyek segera hadir." })}</p>
         )}
         {memberProjects.length > VISIBLE_PROJECTS && (
           <button type="button" onClick={() => setExpanded((v) => !v)} aria-expanded={expanded}
             className="mt-2 min-h-[44px] text-[12px] font-semibold text-LightBlue-d hover:text-LightBlue-e">
-            {expanded ? "Show less" : `+${more} more project${more > 1 ? "s" : ""}`}
+            {expanded ? t({ en: "Show less", id: "Tampilkan lebih sedikit" }) : t({ en: `+${more} more project${more > 1 ? "s" : ""}`, id: `+${more} proyek lainnya` })}
           </button>
         )}
       </div>
@@ -135,6 +137,7 @@ function MemberCard({ member, i, projects }) {
 }
 
 export default function TeamSection({ members, projects }) {
+  const t = useT();
   if (!members?.length) return null;
 
   const internal = members.filter((m) => m.type === "internal");
@@ -158,15 +161,15 @@ export default function TeamSection({ members, projects }) {
     <section id="team" className="w-full bg-white-MainPage lg:py-20 py-16 lg:px-24 px-4">
       <div className="text-center mb-12">
         <p className="font-SourceSansProBold lg:text-xl text-[16px] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">
-          Our Team
+          {t({ en: "Our Team", id: "Tim Kami" })}
         </p>
         <h2 className="font-SourceSansProBold lg:text-3xl text-[28px] text-neutral-g mt-2">
-          Meet the Team
+          {t({ en: "Meet the Team", id: "Kenali Tim Kami" })}
         </h2>
       </div>
 
-      {internal.length > 0 && renderGroup("Internal Team", internal)}
-      {collaborator.length > 0 && renderGroup("Collaborator Team", collaborator)}
+      {internal.length > 0 && renderGroup(t({ en: "Internal Team", id: "Tim Internal" }), internal)}
+      {collaborator.length > 0 && renderGroup(t({ en: "Collaborator Team", id: "Tim Kolaborator" }), collaborator)}
     </section>
   );
 }

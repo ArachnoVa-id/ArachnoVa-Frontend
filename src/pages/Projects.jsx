@@ -1,3 +1,4 @@
+import { useT } from "@/lib/i18n";
 import { useRef, useCallback, useState, useEffect } from "react";
 import Seo from "@/components/ui/Seo";
 import { useCollection, useData } from "@/context/DataContext";
@@ -15,6 +16,7 @@ function shuffle(arr) {
 }
 
 export default function ProjectsPage() {
+  const t = useT();
   const { loading } = useData();
   const [allProjects] = useCollection("projects");
   const projects = allProjects.filter((p) => !p.hidden); // "team only" projects show just on team cards
@@ -101,8 +103,8 @@ export default function ProjectsPage() {
 
         <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none lg:mt-[-32px]">
           <div className="text-center bg-white/90 lg:py-[1.0rem] py-[clamp(0.8rem,5vw,3rem)] lg:px-[3.0rem] px-[clamp(1.5rem,8vw,6rem)] rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-md">
-            <p className="font-SourceSansProBold lg:text-[1.3rem] text-[clamp(1rem,6vw,4.2rem)] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Our Projects</p>
-            <h2 className="font-SourceSansProBold lg:text-[2.0rem] text-[clamp(1.8rem,10vw,7rem)] text-neutral-g lg:leading-[2.8rem] leading-[clamp(2.2rem,11vw,7.5rem)] mt-[0.3rem]">Explore Our Work</h2>
+            <p className="font-SourceSansProBold lg:text-[1.3rem] text-[clamp(1rem,6vw,4.2rem)] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">{t({ en: "Our Projects", id: "Proyek Kami" })}</p>
+            <h2 className="font-SourceSansProBold lg:text-[2.0rem] text-[clamp(1.8rem,10vw,7rem)] text-neutral-g lg:leading-[2.8rem] leading-[clamp(2.2rem,11vw,7.5rem)] mt-[0.3rem]">{t({ en: "Explore Our Work", id: "Jelajahi Karya Kami" })}</h2>
           </div>
         </div>
 

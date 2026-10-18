@@ -1,3 +1,4 @@
+import { useT } from "@/lib/i18n";
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 
 // three.js is heavy, so the graph is only fetched when the section scrolls near the viewport.
@@ -24,6 +25,7 @@ function webglAvailable() {
 }
 
 export default function TeamNetwork({ members, projects }) {
+  const t = useT();
   const ref = useRef(null);
   const near = useNearViewport(ref, !!members?.length);
   const [height, setHeight] = useState(560);
@@ -60,27 +62,27 @@ export default function TeamNetwork({ members, projects }) {
         {/* Graph: left on desktop, below the text on phones */}
         <div className="relative order-2 lg:order-1 flex-1 min-w-0 -mx-4 lg:mx-0 lg:-ml-24" style={{ height }}>
           {near && webgl ? (
-            <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-[#8FC3CE] text-sm">Loading network…</div>}>
+            <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-[#8FC3CE] text-sm">{t({ en: "Loading network…", id: "Memuat jaringan…" })}</div>}>
               <TeamNetworkGraph members={members} projects={projects} height={height} />
             </Suspense>
           ) : (
             <div className="w-full h-full flex items-center justify-center text-[#8FC3CE] text-sm">
-              {near && !webgl ? "Your browser can't show the 3D network, see the team below." : null}
+              {near && !webgl ? t({ en: "Your browser can't show the 3D network, see the team below.", id: "Browser Anda tidak dapat menampilkan jaringan 3D, lihat tim di bawah." }) : null}
             </div>
           )}
         </div>
 
         {/* Text: right on desktop */}
         <div className="order-1 lg:order-2 lg:w-[30rem] shrink-0 text-center lg:text-left">
-          <p className="font-SourceSansProBold lg:text-xl text-[16px] text-LightBlue-a">Our Network</p>
+          <p className="font-SourceSansProBold lg:text-xl text-[16px] text-LightBlue-a">{t({ en: "Our Network", id: "Jaringan Kami" })}</p>
           <h2 id="network-title" className="font-SourceSansProBold lg:text-4xl text-[28px] text-white mt-2 leading-tight">
-            The People Behind Every Project
+            {t({ en: "The People Behind Every Project", id: "Orang-orang di Balik Setiap Proyek" })}
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-[#B8D9E0]">
-            Every circle is a teammate or a project we shipped. Each line is a collaboration.
+            {t({ en: "Every circle is a teammate or a project we shipped. Each line is a collaboration.", id: "Setiap lingkaran adalah anggota tim atau proyek yang kami selesaikan. Setiap garis adalah kolaborasi." })}
           </p>
           <dl className="mt-6 grid grid-cols-3 gap-3 max-w-[30rem] mx-auto lg:mx-0">
-            {[["People", stats.people], ["Projects", stats.projects], ["Collaborations", stats.links]].map(([k, v]) => (
+            {[[t({ en: "People", id: "Orang" }), stats.people], [t({ en: "Projects", id: "Proyek" }), stats.projects], [t({ en: "Collaborations", id: "Kolaborasi" }), stats.links]].map(([k, v]) => (
               <div key={k} className="rounded-2xl bg-white/5 border border-white/10 py-3 px-2 text-center">
                 <dt className="text-[10px] sm:text-[11px] uppercase tracking-[0.04em] sm:tracking-[0.1em] text-[#8FC3CE] truncate">{k}</dt>
                 <dd className="text-white text-2xl font-bold tabular-nums">{v}</dd>
@@ -88,14 +90,14 @@ export default function TeamNetwork({ members, projects }) {
             ))}
           </dl>
           <div className="mt-5 flex justify-center lg:justify-start gap-5 text-[13px] text-[#B8D9E0]">
-            <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-full border-2 border-[#2EC1D9]" aria-hidden="true" />Teammate</span>
-            <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-full border-2 border-[#F5B942]" aria-hidden="true" />Project</span>
+            <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-full border-2 border-[#2EC1D9]" aria-hidden="true" />{t({ en: "Teammate", id: "Anggota tim" })}</span>
+            <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-full border-2 border-[#F5B942]" aria-hidden="true" />{t({ en: "Project", id: "Proyek" })}</span>
           </div>
           <ul className="mt-6 hidden lg:block space-y-2 text-[13px] text-[#8FC3CE]">
-            <li><b className="text-white font-semibold">Drag</b> to rotate</li>
-            <li><b className="text-white font-semibold">Click into it</b>, then scroll or pinch to zoom</li>
-            <li><b className="text-white font-semibold">Hover</b> a circle for roles and project counts</li>
-            <li><b className="text-white font-semibold">Click</b> a project to open it, or a teammate to jump to their card</li>
+            <li><b className="text-white font-semibold">{t({ en: "Drag", id: "Seret" })}</b> {t({ en: "to rotate", id: "untuk memutar" })}</li>
+            <li><b className="text-white font-semibold">{t({ en: "Click into it", id: "Klik di dalamnya" })}</b>{t({ en: ", then scroll or pinch to zoom", id: ", lalu gulir atau cubit untuk zoom" })}</li>
+            <li><b className="text-white font-semibold">{t({ en: "Hover", id: "Arahkan" })}</b> {t({ en: "a circle for roles and project counts", id: "ke lingkaran untuk melihat peran dan jumlah proyek" })}</li>
+            <li><b className="text-white font-semibold">{t({ en: "Click", id: "Klik" })}</b> {t({ en: "a project to open it, or a teammate to jump to their card", id: "proyek untuk membukanya, atau anggota tim untuk menuju kartunya" })}</li>
           </ul>
         </div>
       </div>

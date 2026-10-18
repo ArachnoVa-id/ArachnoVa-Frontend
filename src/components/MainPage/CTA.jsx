@@ -1,3 +1,4 @@
+import { useT } from "@/lib/i18n";
 import { useWhatsApp, WA_MESSAGES } from "@/lib/whatsapp";
 import Image from "@/components/ui/Img";
 import AOS from "aos";
@@ -5,6 +6,7 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 
 export default function CTA() {
+  const t = useT();
   const ctaWa = useWhatsApp(WA_MESSAGES.cta);
   useEffect(() => {
 		AOS.init({
@@ -27,15 +29,15 @@ export default function CTA() {
 					data-aos="fade-up"
 					className="text-neutral-g font-SourceSansProBold text-[2.4rem]/[2.4rem] flex flex-col justify-center items-center"
 				>
-					<p>Got a problem worth solving?</p>
-					<p>Let&apos;s build a solution that lasts.</p>
+					<p>{t({ en: "Got a problem worth solving?", id: "Punya masalah yang perlu diselesaikan?" })}</p>
+					<p>{t({ en: "Let's build a solution that lasts.", id: "Mari bangun solusi yang bertahan lama." })}</p>
 				</div>
 				<a
 					href={ctaWa}
 					data-aos="fade-up"
 					className="bg-black w-[13.6rem] text-white aspect-[262/54] flex justify-center items-center rounded-[0.26rem] font-SourceSansProSemibold mt-[3.0rem] text-[1.04rem] hover:bg-neutral-e duration-500"
 				>
-					Start Your Project
+					{t({ en: "Start Your Project", id: "Mulai Proyek Anda" })}
 				</a>
 			</div>
 
@@ -45,15 +47,15 @@ export default function CTA() {
 					data-aos="fade-up"
 					className="text-neutral-g font-SourceSansProBold text-[clamp(1.8rem,6.5vw,4.5rem)]/[clamp(2.2rem,7vw,5.0rem)] flex flex-col justify-center items-center text-center px-5"
 				>
-					<p>Got a problem worth solving?</p>
-					<p>Let&apos;s build a solution that lasts.</p>
+					<p>{t({ en: "Got a problem worth solving?", id: "Punya masalah yang perlu diselesaikan?" })}</p>
+					<p>{t({ en: "Let's build a solution that lasts.", id: "Mari bangun solusi yang bertahan lama." })}</p>
 				</div>
 				<a
 					href={ctaWa}
 					data-aos="fade-up"
 					className="bg-black w-[clamp(20rem,70vw,53.3rem)] aspect-[229/49] text-white rounded-lg flex justify-center items-center font-SourceSansProSemibold mt-[clamp(2rem,10vw,8.0rem)] text-[clamp(1.6rem,6vw,4.5rem)] hover:bg-neutral-e duration-500"
 				>
-					Start Your Project
+					{t({ en: "Start Your Project", id: "Mulai Proyek Anda" })}
 				</a>
 			</div>
 		</section>

@@ -1,3 +1,4 @@
+import { useT, useField, useLang } from "@/lib/i18n";
 import { useState, useEffect, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -25,6 +26,9 @@ function updateQuery(changes) {
 }
 
 export default function ProjectCardGrid({ projects, services, autoOpenId, onAutoOpenDone, cardRefs: externalRefs }) {
+  const { lang } = useLang();
+  const t = useT();
+  const field = useField();
   const categories = services?.length
     ? services.map((s) => ({ key: s.productTag || s.key, label: s.title }))
     : defaultCategories;
@@ -72,7 +76,7 @@ export default function ProjectCardGrid({ projects, services, autoOpenId, onAuto
   // mega projects get their own showcase above; the grid lists the rest
   const regular = projects.filter((p) => !p.mega);
   const visible = activeCategory === "all" ? regular : regular.filter((p) => p.product === activeCategory);
-  const chips = [{ key: "all", label: "All", count: regular.length }].concat(
+  const chips = [{ key: "all", label: t({ en: "All", id: "Semua" }), count: regular.length }].concat(
     categories.map((c) => ({ ...c, count: regular.filter((p) => p.product === c.key).length })).filter((c) => c.count > 0)
   );
 
@@ -81,11 +85,11 @@ export default function ProjectCardGrid({ projects, services, autoOpenId, onAuto
     <MegaProjects projects={projects} onOpen={(p) => openProject(p)} cardRefs={cardRefs} />
     <section className="w-full bg-white-MainPage lg:py-[5.2rem] py-[clamp(3rem,18vw,14rem)] lg:px-[10.0rem] px-[clamp(1.2rem,8vw,5.6rem)]" id="project-cards">
       <div data-aos="fade-down" className="text-center mb-[3.0rem]">
-        <p className="font-SourceSansProBold lg:text-[1.56rem] text-[clamp(1rem,6vw,4.2rem)] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Our Projects</p>
-        <h2 className="font-SourceSansProBold lg:text-[2.4rem] text-[clamp(1.8rem,10vw,7rem)] text-neutral-g lg:leading-[2.8rem] leading-[clamp(2.2rem,11vw,7.5rem)] mt-[0.5rem]">Explore Our Work</h2>
+        <p className="font-SourceSansProBold lg:text-[1.56rem] text-[clamp(1rem,6vw,4.2rem)] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">{t({ en: "Our Projects", id: "Proyek Kami" })}</p>
+        <h2 className="font-SourceSansProBold lg:text-[2.4rem] text-[clamp(1.8rem,10vw,7rem)] text-neutral-g lg:leading-[2.8rem] leading-[clamp(2.2rem,11vw,7.5rem)] mt-[0.5rem]">{t({ en: "Explore Our Work", id: "Jelajahi Karya Kami" })}</h2>
       </div>
 
-      <div role="group" aria-label="Filter projects by category" className="flex flex-wrap justify-center gap-2 mb-[2.0rem]">
+      <div role="group" aria-label={t({ en: "Filter projects by category", id: "Saring proyek per kategori" })} className="flex flex-wrap justify-center gap-2 mb-[2.0rem]">
         {chips.map((c) => (
           <button
             type="button"
@@ -164,12 +168,12 @@ export default function ProjectCardGrid({ projects, services, autoOpenId, onAuto
                 </div>
                 {project.period && (
                   <p className="text-[11px] text-gray-500 mt-[0.3rem] flex items-center gap-1.5">
-                    {formatPeriod(project.period)}
+                    {formatPeriod(project.period, lang)}
                     {isOngoing(project.period) && <span className="px-1.5 py-[1px] rounded-full bg-emerald-50 text-emerald-700 text-[9px] font-bold">LIVE</span>}
                   </p>
                 )}
                 <p className="font-SourceSansProSemibold lg:text-[0.73rem] text-[clamp(0.8rem,4vw,2.8rem)] text-neutral-e mt-[0.3rem] line-clamp-3 lg:leading-[1.2rem] leading-[clamp(1.2rem,5vw,4rem)]">
-                  {project.goal || project.description}
+                  {field(project, "goal") || field(project, "description")}
                 </p>
                 {project.architecture?.tags?.length > 0 && (
                   <ul className="flex flex-wrap gap-1 mt-2" aria-label="Built with">

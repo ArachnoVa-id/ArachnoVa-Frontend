@@ -1,9 +1,12 @@
+import { useT } from "@/lib/i18n";
+import { NAV } from "./Navbar";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
 // Rendered on <body>: the navbar's backdrop-filter makes it the containing block for fixed
 // children, which shrank the "full-screen" backdrop to the navbar's height.
 const NavItemMobile = ({ href, isOpen, onClose }) => {
+  const t = useT();
   useEffect(() => {
     if (!isOpen) return;
     const prev = document.body.style.overflow;
@@ -51,16 +54,16 @@ const NavItemMobile = ({ href, isOpen, onClose }) => {
 
           {/* Nav links */}
           <ul className="flex flex-col items-center gap-y-[3vw] mb-[6vw]">
-            <li><a href="/projects" onClick={onClose} className="inline-block py-2 font-InterBold text-[clamp(18px,5vw,26px)] text-neutral-g hover:text-LightBlue-d transition-colors">Projects</a></li>
-            <li><a href="/services" onClick={onClose} className="inline-block py-2 font-InterBold text-[clamp(18px,5vw,26px)] text-neutral-g hover:text-LightBlue-d transition-colors">Services</a></li>
-            <li><a href="/aboutus" onClick={onClose} className="inline-block py-2 font-InterBold text-[clamp(18px,5vw,26px)] text-neutral-g hover:text-LightBlue-d transition-colors">About</a></li>
+            <li><a href="/projects" onClick={onClose} className="inline-block py-2 font-InterBold text-[clamp(18px,5vw,26px)] text-neutral-g hover:text-LightBlue-d transition-colors">{t(NAV.projects)}</a></li>
+            <li><a href="/services" onClick={onClose} className="inline-block py-2 font-InterBold text-[clamp(18px,5vw,26px)] text-neutral-g hover:text-LightBlue-d transition-colors">{t(NAV.services)}</a></li>
+            <li><a href="/aboutus" onClick={onClose} className="inline-block py-2 font-InterBold text-[clamp(18px,5vw,26px)] text-neutral-g hover:text-LightBlue-d transition-colors">{t(NAV.about)}</a></li>
           </ul>
 
           {/* CTA */}
           <a href={href} onClick={onClose}
             className="w-[60vw] min-h-[44px] py-[3vw] rounded-[2vw] flex items-center justify-center bg-gradient-to-br from-[#1AB0C8] to-[#179FB5]"
           >
-            <p className="font-InterBold text-[4vw] text-white">Contact Us</p>
+            <p className="font-InterBold text-[4vw] text-white">{t(NAV.contact)}</p>
           </a>
         </div>
       </div>

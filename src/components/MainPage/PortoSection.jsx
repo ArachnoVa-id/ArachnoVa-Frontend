@@ -1,3 +1,4 @@
+import { useT } from "@/lib/i18n";
 import { useState, useEffect, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -10,6 +11,7 @@ const defaultTypes = [
 ];
 
 export default function PortoSection({ projects, services }) {
+  const t = useT();
   const [active, setActive] = useState("compro");
   const [projectIndex, setProjectIndex] = useState(0);
   const drag = useRef({ active: false, startX: 0, offset: 0, containerW: 1 });
@@ -98,9 +100,9 @@ export default function PortoSection({ projects, services }) {
           {/* Left: Title + Product type cards + More Projects */}
           <div className="flex flex-col">
             <div className="mb-[1.5vw]">
-              <p className="font-SourceSansProBold text-[1.6rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">Our Tractions</p>
+              <p className="font-SourceSansProBold text-[1.6rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">{t({ en: "Our Work", id: "Karya Kami" })}</p>
               <p className="text-neutral-e text-[0.9rem] font-SourceSansProSemibold mt-[0.3rem] leading-snug">
-                ArachnoVa berpengalaman membangun website, sistem ERP, dan aplikasi WhatsApp, mulai dari desain UI hingga Frontend dan Backend.
+                {t({ en: "Real problems we have solved for businesses and organisations, from websites to full systems.", id: "Masalah nyata yang telah kami selesaikan untuk bisnis dan organisasi, dari website hingga sistem utuh." })}
               </p>
             </div>
 
@@ -139,7 +141,7 @@ export default function PortoSection({ projects, services }) {
             </div>
 
             <a href="/projects" className="flex items-center gap-x-[0.3rem] mt-[1.2vw] hover:scale-[102%] transition-all duration-300 self-start">
-              <p className="font-InterBold text-[0.75rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">More Projects</p>
+              <p className="font-InterBold text-[0.75rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">{t({ en: "More Projects", id: "Proyek Lainnya" })}</p>
               <FaArrowRightIcon className="text-[#24AAA7] w-[0.8rem]" />
             </a>
           </div>
@@ -207,9 +209,9 @@ export default function PortoSection({ projects, services }) {
 
       {/* Mobile */}
       <div className="lg:hidden flex flex-col items-center w-full px-[5.581vw]">
-        <p className="font-SourceSansProBold text-[6.977vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5] text-center">Our Tractions</p>
+        <p className="font-SourceSansProBold text-[6.977vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5] text-center">{t({ en: "Our Work", id: "Karya Kami" })}</p>
         <p className="text-neutral-e text-[3.5vw] text-center font-SourceSansProSemibold mt-[2vw] mb-[5vw]">
-          ArachnoVa berpengalaman membangun website, sistem ERP, dan aplikasi WhatsApp, mulai dari desain UI hingga Frontend dan Backend.
+          {t({ en: "Real problems we have solved for businesses and organisations, from websites to full systems.", id: "Masalah nyata yang telah kami selesaikan untuk bisnis dan organisasi, dari website hingga sistem utuh." })}
         </p>
 
         <div className="flex gap-[3vw] mb-[5vw] justify-center w-full overflow-x-auto no-scrollbar">
@@ -249,9 +251,9 @@ export default function PortoSection({ projects, services }) {
                   ))}
                 </div>
                 <div className="flex justify-between items-center">
-                  <button type="button" onClick={goPrev} aria-label="Previous project" className="min-h-[44px] min-w-[44px] text-[14px] text-LightBlue-c font-InterSemibold pr-3">← Prev</button>
+                  <button type="button" onClick={goPrev} aria-label="Previous project" className="min-h-[44px] min-w-[44px] text-[14px] text-LightBlue-c font-InterSemibold pr-3">{t({ en: "← Prev", id: "← Sebelumnya" })}</button>
                   <span className="text-[13px] text-gray-500" aria-live="polite">{projectIndex + 1}/{totalInCategory}</span>
-                  <button type="button" onClick={goNext} aria-label="Next project" className="min-h-[44px] min-w-[44px] text-[14px] text-LightBlue-c font-InterSemibold pl-3">Next →</button>
+                  <button type="button" onClick={goNext} aria-label="Next project" className="min-h-[44px] min-w-[44px] text-[14px] text-LightBlue-c font-InterSemibold pl-3">{t({ en: "Next →", id: "Berikutnya →" })}</button>
                 </div>
               </>
             )}
@@ -259,7 +261,7 @@ export default function PortoSection({ projects, services }) {
         )}
 
         <a href="/projects" className="flex items-center gap-x-[3vw] mt-[8vw]">
-          <p className="font-InterBold text-[4vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">More Projects</p>
+          <p className="font-InterBold text-[4vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">{t({ en: "More Projects", id: "Proyek Lainnya" })}</p>
           <FaArrowRightIcon className="text-[#24AAA7] w-[4.5vw]" />
         </a>
       </div>

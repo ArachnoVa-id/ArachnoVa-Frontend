@@ -162,8 +162,16 @@ function EditModal({ form, setForm, onSave, onCancel }) {
           <div className="mb-4 rounded-xl border border-gray-200 p-3 space-y-3">
             <p className="text-sm font-semibold text-gray-800">Goal &amp; period</p>
             <label className="block">
-              <span className="block text-xs font-medium text-gray-600 mb-1">Goal (one line: the problem and how we solved it)</span>
+              <span className="block text-xs font-medium text-gray-600 mb-1">Goal (Indonesian, one line: the problem and how we solved it)</span>
               <textarea value={form.goal || ""} rows={2} onChange={(e) => update("goal", e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" />
+            </label>
+            <label className="block">
+              <span className="block text-xs font-medium text-gray-600 mb-1">Goal (English)</span>
+              <textarea value={form.goalEn || ""} rows={2} onChange={(e) => update("goalEn", e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" />
+            </label>
+            <label className="block">
+              <span className="block text-xs font-medium text-gray-600 mb-1">Description (English)</span>
+              <textarea value={form.descriptionEn || ""} rows={3} onChange={(e) => update("descriptionEn", e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" />
             </label>
             <div className="grid grid-cols-2 gap-3">
               <label className="block"><span className="block text-xs font-medium text-gray-600 mb-1">Start (first commit)</span>

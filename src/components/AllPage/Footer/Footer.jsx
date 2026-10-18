@@ -1,3 +1,5 @@
+import { useT } from "@/lib/i18n";
+import { NAV } from "@/components/AllPage/NavBar/Navbar";
 import { useSettings } from "@/context/DataContext";
 import { FaLinkedin } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
@@ -7,6 +9,7 @@ import Image from "@/components/ui/Img";
 import { waLink, formatWaNumber, WA_MESSAGES } from "@/lib/whatsapp";
 
 const Footer = () => {
+  const t = useT();
   const year = new Date().getFullYear();
   const s = useSettings();
   const wa = waLink(WA_MESSAGES.contact, s.whatsapp);
@@ -25,17 +28,17 @@ const Footer = () => {
 
           {/* Navigation */}
           <div className="text-center lg:text-left lg:mb-0 mb-[clamp(1rem,5vw,2.5rem)]">
-            <h4 className="font-InterBold lg:text-[0.8rem] text-[12px] text-neutral-a/70 uppercase tracking-wider mb-[0.8rem]">Navigation</h4>
+            <h4 className="font-InterBold lg:text-[0.8rem] text-[12px] text-neutral-a/70 uppercase tracking-wider mb-[0.8rem]">{t({ en: "Navigation", id: "Navigasi" })}</h4>
             <ul className="lg:space-y-[0.4rem]">
-              <li><a href="/projects" className="inline-block py-1 lg:py-0 font-InterSemibold lg:text-[0.85rem] text-[15px] text-neutral-a hover:text-white/70 transition-colors">Projects</a></li>
-              <li><a href="/services" className="inline-block py-1 lg:py-0 font-InterSemibold lg:text-[0.85rem] text-[15px] text-neutral-a hover:text-white/70 transition-colors">Services</a></li>
-              <li><a href="/aboutus" className="inline-block py-1 lg:py-0 font-InterSemibold lg:text-[0.85rem] text-[15px] text-neutral-a hover:text-white/70 transition-colors">About</a></li>
+              <li><a href="/projects" className="inline-block py-1 lg:py-0 font-InterSemibold lg:text-[0.85rem] text-[15px] text-neutral-a hover:text-white/70 transition-colors">{t(NAV.projects)}</a></li>
+              <li><a href="/services" className="inline-block py-1 lg:py-0 font-InterSemibold lg:text-[0.85rem] text-[15px] text-neutral-a hover:text-white/70 transition-colors">{t(NAV.services)}</a></li>
+              <li><a href="/aboutus" className="inline-block py-1 lg:py-0 font-InterSemibold lg:text-[0.85rem] text-[15px] text-neutral-a hover:text-white/70 transition-colors">{t(NAV.about)}</a></li>
             </ul>
           </div>
 
           {/* Contact */}
           <div className="text-center lg:text-left lg:mb-0 mb-[clamp(1rem,5vw,2.5rem)]">
-            <h4 className="font-InterBold lg:text-[0.8rem] text-[12px] text-neutral-a/70 uppercase tracking-wider mb-[0.8rem]">Contact</h4>
+            <h4 className="font-InterBold lg:text-[0.8rem] text-[12px] text-neutral-a/70 uppercase tracking-wider mb-[0.8rem]">{t({ en: "Contact", id: "Kontak" })}</h4>
             <div className="lg:space-y-[0.4rem]">
               <a href={s.email} className="block py-1 lg:py-0 font-InterSemibold lg:text-[0.85rem] text-[15px] text-neutral-a hover:text-white/70 transition-colors">
                 {s.email.replace("mailto:", "")}
@@ -48,7 +51,7 @@ const Footer = () => {
 
           {/* Social */}
           <div className="text-center lg:text-left">
-            <h4 className="font-InterBold lg:text-[0.8rem] text-[12px] text-neutral-a/70 uppercase tracking-wider mb-[0.8rem]">Follow Us</h4>
+            <h4 className="font-InterBold lg:text-[0.8rem] text-[12px] text-neutral-a/70 uppercase tracking-wider mb-[0.8rem]">{t({ en: "Follow Us", id: "Ikuti Kami" })}</h4>
             <div className="flex justify-center lg:justify-start gap-x-[0.8rem]">
               <a href={s.linkedin} aria-label="LinkedIn ArachnoVa" target="_blank" rel="noopener noreferrer" className="w-[44px] h-[44px] lg:w-[2.2rem] lg:h-[2.2rem] rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition-all duration-300">
                 <FaLinkedin size="16px" className="text-neutral-a" />
@@ -70,16 +73,16 @@ const Footer = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-y-[clamp(0.25rem,1vw,0.75rem)]">
           <div className="text-center lg:text-left">
             <p className="font-InterSemibold lg:text-[0.75rem] text-[12px] text-neutral-a/70">
-              &copy; {year} ArachnoVa. All rights reserved.
+              &copy; {year} ArachnoVa. {t({ en: "All rights reserved.", id: "Hak cipta dilindungi." })}
             </p>
             <p className="font-InterSemibold lg:text-[0.65rem] text-[11px] text-neutral-a/60 mt-1">
               PT ARAH INOVASI DIGITALOKA
             </p>
           </div>
           <div className="flex gap-x-[1.2rem]">
-            <a href="/projects" className="py-2 lg:py-0 font-InterSemibold lg:text-[0.7rem] text-[13px] text-neutral-a/70 hover:text-neutral-a/80 transition-colors">Projects</a>
-            <a href="/services" className="py-2 lg:py-0 font-InterSemibold lg:text-[0.7rem] text-[13px] text-neutral-a/70 hover:text-neutral-a/80 transition-colors">Services</a>
-            <a href="/aboutus" className="py-2 lg:py-0 font-InterSemibold lg:text-[0.7rem] text-[13px] text-neutral-a/70 hover:text-neutral-a/80 transition-colors">About</a>
+            <a href="/projects" className="py-2 lg:py-0 font-InterSemibold lg:text-[0.7rem] text-[13px] text-neutral-a/70 hover:text-neutral-a/80 transition-colors">{t(NAV.projects)}</a>
+            <a href="/services" className="py-2 lg:py-0 font-InterSemibold lg:text-[0.7rem] text-[13px] text-neutral-a/70 hover:text-neutral-a/80 transition-colors">{t(NAV.services)}</a>
+            <a href="/aboutus" className="py-2 lg:py-0 font-InterSemibold lg:text-[0.7rem] text-[13px] text-neutral-a/70 hover:text-neutral-a/80 transition-colors">{t(NAV.about)}</a>
           </div>
         </div>
       </div>
