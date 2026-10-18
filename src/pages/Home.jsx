@@ -5,7 +5,11 @@ import PortoSection from "@/components/MainPage/PortoSection";
 import ServicesOption from "@/components/Services/ServicesOption/ServicesOption";
 import CTA from "@/components/MainPage/CTA";
 import TrustBar from "@/components/Brand/TrustBar";
-import MegaProjects from "@/components/Brand/MegaProjects";
+import MegaCarousel from "@/components/Brand/MegaCarousel";
+import LogoStrip from "@/components/Brand/LogoStrip";
+import WeAre from "@/components/Brand/WeAre";
+import Products from "@/components/Brand/Products";
+import TeamCluster from "@/components/Brand/TeamCluster";
 import Process from "@/components/Brand/Process";
 import FAQ from "@/components/Brand/FAQ";
 import BriefForm from "@/components/Brand/BriefForm";
@@ -24,11 +28,15 @@ export default function Home() {
     <>
       <Seo path="/" />
       <Hero />
+      <LogoStrip />
+      <WeAre />
       <TrustBar />
-      <MegaProjects projects={projects} onOpen={(p) => navigate(`/projects?projectId=${p.id}`)} />
+      <MegaCarousel projects={projects} onOpen={(p) => navigate(`/projects?projectId=${p.id}`)} />
       {divider}
       <PortoSection projects={projects.filter((p) => !p.mega).sort(byRecent)} services={services} />
+      <Products />
       <Process />
+      <TeamCluster />
       {divider}
       <ServicesOption data={pricing} />
       <FAQ />
