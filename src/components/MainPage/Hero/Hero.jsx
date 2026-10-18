@@ -1,5 +1,5 @@
 import { useT } from "@/lib/i18n";
-const WORDS = { en: ["Sustainable", "Problem-First", "AI-Ready"], id: ["Berkelanjutan", "Fokus Masalah", "Siap AI"] };
+const WORDS = { en: ["Sustainable", "Problem-First", "AI-Ready"], id: ["Berkelanjutan", "Tepat Sasaran", "Siap AI"] };
 const TAGLINE = { en: "Helping you ride the AI wave, on fundamentals that last", id: "Membantu Anda menunggangi gelombang AI, di atas fondasi yang kokoh" };
 const START = { en: "Start Your Project", id: "Mulai Proyek Anda" };
 const DISCOVER = { en: "Discover Our Services", id: "Lihat Layanan Kami" };
@@ -83,7 +83,7 @@ export default function Hero() {
             <span className="block text-[1.6rem] font-CoolveticaCondReg font-normal">ArachnoVa</span>
             <span className="block text-[1.8rem]">{t({ en: "Real Problems, Lasting Solutions", id: "Masalah Nyata, Solusi Berkelanjutan" })}</span>
             <span className="flex items-baseline gap-[0.4rem] mt-[0.1rem]">
-              <span className="text-[2.6rem]">{t({ en: "Built", id: "Dibangun" })}</span>
+              <span className="text-[2.6rem]">{t({ en: "Built", id: "Selalu" })}</span>
               <Words key={t({ en: "en", id: "id" })} words={t(WORDS)} className="text-[2.6rem]" />
             </span>
           </h1>
@@ -150,7 +150,7 @@ export default function Hero() {
           <span className="block text-[clamp(2rem,10vw,6rem)] font-CoolveticaCondReg font-normal">ArachnoVa</span>
           <span className="block text-[clamp(1.2rem,6.5vw,5rem)]">{t({ en: "Real Problems, Lasting Solutions", id: "Masalah Nyata, Solusi Berkelanjutan" })}</span>
           <span className="flex flex-wrap items-baseline justify-center gap-x-[0.5rem] mt-[0.2rem]">
-            <span className="text-[clamp(1.4rem,8vw,6rem)]">{t({ en: "Built", id: "Dibangun" })}</span>
+            <span className="text-[clamp(1.4rem,8vw,6rem)]">{t({ en: "Built", id: "Selalu" })}</span>
             <Words key={t({ en: "en", id: "id" })} words={t(WORDS)} className="text-[clamp(1.4rem,8vw,6rem)]" />
           </span>
         </h1>
