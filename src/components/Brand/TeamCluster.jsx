@@ -1,48 +1,50 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 import { useCollection } from "@/context/DataContext";
 import { useT } from "@/lib/i18n";
 import { Parallax } from "@/lib/parallax";
 
-// Two rings orbiting the most involved person, in opposite directions; faces stay upright.
-const RINGS = [
-  { count: 4, radius: 22, size: 52, secs: 40, dir: 1 },
-  { count: 7, radius: 38, size: 62, secs: 70, dir: -1 },
-];
-const MAX = 1 + RINGS.reduce((n, r) => n + r.count, 0);
+// Everyone at the same size, nobody in the middle. Faces swap one at a time so the
+// whole team takes turns being on the wall.
+const COLS = 4;
+const ROWS = 3;
+const TILES = COLS * ROWS;
+const SWAP_MS = 1800;
 
-function Ring({ people, radius, size, secs, dir }) {
-  const spin = dir > 0 ? "orbit-cw" : "orbit-ccw";
-  const counter = dir > 0 ? "orbit-ccw" : "orbit-cw";
-  return (
-    <div className="absolute inset-0 orbit" style={{ animation: `${spin} ${secs}s linear infinite` }}>
-      <span className="absolute rounded-full border border-white/20" style={{ inset: `${50 - radius}%` }} />
-      {people.map((m, i) => {
-        const a = (i / people.length) * 2 * Math.PI;
-        return (
-          <div key={m.name} className="absolute" style={{ left: `${50 + radius * Math.cos(a)}%`, top: `${50 + radius * Math.sin(a)}%`, width: size, height: size, transform: "translate(-50%, -50%)" }}>
-            <div className="orbit w-full h-full" style={{ animation: `${counter} ${secs}s linear infinite` }}>
-              <img src={m.image} alt="" loading="lazy" title={m.name}
-                className="w-full h-full rounded-full object-cover ring-4 ring-white/90 shadow-xl transition hover:scale-110" />
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
+function shuffle(a) {
+  const b = [...a];
+  for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; }
+  return b;
 }
 
 export default function TeamCluster() {
   const t = useT();
   const [team] = useCollection("team");
-  const people = useMemo(() => (team || [])
-    .filter((m) => m.image)
-    .sort((a, b) => (b.projectIds || []).length - (a.projectIds || []).length)
-    .slice(0, MAX), [team]);
-  if (people.length < 4) return null;
+  const pool = useMemo(() => (team || []).filter((m) => m.image), [team]);
+  const [wall, setWall] = useState([]);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => { setWall(shuffle(pool).slice(0, TILES)); }, [pool]);
+  useEffect(() => {
+    if (paused || pool.length <= TILES || window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const id = setInterval(() => {
+      setWall((w) => {
+        const shown = new Set(w.map((m) => m.name));
+        const off = pool.filter((m) => !shown.has(m.name));
+        if (!off.length) return w;
+        const next = [...w];
+        next[Math.floor(Math.random() * next.length)] = off[Math.floor(Math.random() * off.length)];
+        return next;
+      });
+    }, SWAP_MS);
+    return () => clearInterval(id);
+  }, [paused, pool]);
+
+  if (wall.length < 4) return null;
   return (
     <section aria-labelledby="cluster-title" className="w-full bg-white-MainPage lg:px-24 px-4 lg:py-16 py-12">
+      <style>{`@keyframes tile-in{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}`}</style>
       <div className="max-w-[72rem] mx-auto grid lg:grid-cols-2 gap-10 items-center">
         <div>
           <p className="text-[13px] font-semibold text-LightBlue-e">{t({ en: "Our team", id: "Tim kami" })}</p>
@@ -56,20 +58,18 @@ export default function TeamCluster() {
             {t({ en: "Meet the team", id: "Kenali tim kami" })} <FiArrowRight aria-hidden="true" />
           </Link>
         </div>
-        <Parallax speed={0.07} className="w-full">
-        <div className="group relative mx-auto w-full max-w-[460px] aspect-square rounded-[40px] bg-gradient-to-br from-[#1AB0C8] to-[#0F3B47] overflow-hidden" aria-hidden="true">
-          <style>{`@keyframes orbit-cw{to{transform:rotate(360deg)}}@keyframes orbit-ccw{to{transform:rotate(-360deg)}}
-            .group:hover .orbit{animation-play-state:paused!important}
-            @media (prefers-reduced-motion: reduce){.orbit{animation:none!important}}`}</style>
-          {RINGS.map((r, k) => {
-            const from = 1 + RINGS.slice(0, k).reduce((n, x) => n + x.count, 0);
-            const ring = people.slice(from, from + r.count);
-            return ring.length ? <Ring key={k} people={ring} {...r} /> : null;
-          })}
-          <img src={people[0].image} alt="" title={people[0].name}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[96px] h-[96px] rounded-full object-cover ring-4 ring-white shadow-2xl" />
-          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[96px] h-[96px] rounded-full ring-2 ring-white/60 animate-ping opacity-40" />
-        </div>
+        <Parallax speed={0.06} className="w-full">
+          <ul onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}
+            className="mx-auto w-full max-w-[460px] rounded-[32px] bg-gradient-to-br from-[#1AB0C8] to-[#0F3B47] p-5 grid gap-3"
+            style={{ gridTemplateColumns: `repeat(${COLS}, minmax(0, 1fr))` }}>
+            {wall.map((m, i) => (
+              <li key={i} className="relative aspect-square">
+                <img key={m.name} src={m.image} alt={m.name} title={m.name} loading="lazy"
+                  className="w-full h-full rounded-full object-cover ring-[3px] ring-white/85 shadow-lg"
+                  style={{ animation: "tile-in .6s ease-out" }} />
+              </li>
+            ))}
+          </ul>
         </Parallax>
       </div>
     </section>
