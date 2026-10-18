@@ -1,5 +1,6 @@
 import { FiTarget, FiCpu, FiLifeBuoy } from "react-icons/fi";
 import { useT } from "@/lib/i18n";
+import { Parallax } from "@/lib/parallax";
 
 // Three ways clients work with us, so a visitor can find themselves quickly.
 const ROLES = [
@@ -27,7 +28,7 @@ export default function WeAre() {
   const t = useT();
   return (
     <section aria-labelledby="weare-title" className="relative w-full overflow-hidden bg-[radial-gradient(ellipse_at_top,#0F3B47_0%,#06212A_55%,#001118_100%)] lg:px-24 px-4 lg:py-20 py-14">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-25 bg-[radial-gradient(#84D4E1_1px,transparent_1px)] [background-size:28px_28px]" />
+      <Parallax speed={-0.25} className="pointer-events-none absolute inset-x-0 -inset-y-[30%] opacity-25 bg-[radial-gradient(#84D4E1_1px,transparent_1px)] [background-size:28px_28px]"><span aria-hidden="true" /></Parallax>
       <div className="relative max-w-[72rem] mx-auto">
         <p className="text-[13px] font-semibold text-LightBlue-a">{t({ en: "We are…", id: "Kami adalah…" })}</p>
         <h2 id="weare-title" className="font-SourceSansProBold text-white lg:text-[2rem] text-[26px] leading-tight mt-1 max-w-[36rem]">

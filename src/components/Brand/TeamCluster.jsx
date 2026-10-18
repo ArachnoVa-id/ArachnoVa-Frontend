@@ -3,12 +3,35 @@ import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 import { useCollection } from "@/context/DataContext";
 import { useT } from "@/lib/i18n";
+import { Parallax } from "@/lib/parallax";
 
-// Photos scattered in a loose orbit; the people with the most projects sit closest to the centre.
-const SPOTS = [
-  [50, 50, 92], [24, 30, 72], [77, 26, 70], [80, 72, 68], [22, 74, 66],
-  [50, 14, 56], [50, 88, 54], [8, 52, 50], [92, 50, 50], [36, 58, 46], [65, 40, 46],
+// Two rings orbiting the most involved person, in opposite directions; faces stay upright.
+const RINGS = [
+  { count: 4, radius: 22, size: 52, secs: 40, dir: 1 },
+  { count: 7, radius: 38, size: 62, secs: 70, dir: -1 },
 ];
+const MAX = 1 + RINGS.reduce((n, r) => n + r.count, 0);
+
+function Ring({ people, radius, size, secs, dir }) {
+  const spin = dir > 0 ? "orbit-cw" : "orbit-ccw";
+  const counter = dir > 0 ? "orbit-ccw" : "orbit-cw";
+  return (
+    <div className="absolute inset-0 orbit" style={{ animation: `${spin} ${secs}s linear infinite` }}>
+      <span className="absolute rounded-full border border-white/20" style={{ inset: `${50 - radius}%` }} />
+      {people.map((m, i) => {
+        const a = (i / people.length) * 2 * Math.PI;
+        return (
+          <div key={m.name} className="absolute" style={{ left: `${50 + radius * Math.cos(a)}%`, top: `${50 + radius * Math.sin(a)}%`, width: size, height: size, transform: "translate(-50%, -50%)" }}>
+            <div className="orbit w-full h-full" style={{ animation: `${counter} ${secs}s linear infinite` }}>
+              <img src={m.image} alt="" loading="lazy" title={m.name}
+                className="w-full h-full rounded-full object-cover ring-4 ring-white/90 shadow-xl transition hover:scale-110" />
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function TeamCluster() {
   const t = useT();
@@ -16,7 +39,7 @@ export default function TeamCluster() {
   const people = useMemo(() => (team || [])
     .filter((m) => m.image)
     .sort((a, b) => (b.projectIds || []).length - (a.projectIds || []).length)
-    .slice(0, SPOTS.length), [team]);
+    .slice(0, MAX), [team]);
   if (people.length < 4) return null;
   return (
     <section aria-labelledby="cluster-title" className="w-full bg-white-MainPage lg:px-24 px-4 lg:py-16 py-12">
@@ -33,18 +56,21 @@ export default function TeamCluster() {
             {t({ en: "Meet the team", id: "Kenali tim kami" })} <FiArrowRight aria-hidden="true" />
           </Link>
         </div>
-        <div className="relative mx-auto w-full max-w-[460px] aspect-square rounded-[40px] bg-gradient-to-br from-[#1AB0C8] to-[#0F3B47] overflow-hidden" aria-hidden="true">
-          <span className="absolute inset-[18%] rounded-full border border-white/25" />
-          <span className="absolute inset-[34%] rounded-full border border-white/20" />
-          {people.map((m, k) => {
-            const [x, y, size] = SPOTS[k];
-            return (
-              <img key={m.name} src={m.image} alt="" loading="lazy" title={m.name}
-                className="absolute rounded-full object-cover ring-4 ring-white/90 shadow-xl transition hover:scale-110"
-                style={{ left: `${x}%`, top: `${y}%`, width: size, height: size, transform: "translate(-50%, -50%)" }} />
-            );
+        <Parallax speed={0.07} className="w-full">
+        <div className="group relative mx-auto w-full max-w-[460px] aspect-square rounded-[40px] bg-gradient-to-br from-[#1AB0C8] to-[#0F3B47] overflow-hidden" aria-hidden="true">
+          <style>{`@keyframes orbit-cw{to{transform:rotate(360deg)}}@keyframes orbit-ccw{to{transform:rotate(-360deg)}}
+            .group:hover .orbit{animation-play-state:paused!important}
+            @media (prefers-reduced-motion: reduce){.orbit{animation:none!important}}`}</style>
+          {RINGS.map((r, k) => {
+            const from = 1 + RINGS.slice(0, k).reduce((n, x) => n + x.count, 0);
+            const ring = people.slice(from, from + r.count);
+            return ring.length ? <Ring key={k} people={ring} {...r} /> : null;
           })}
+          <img src={people[0].image} alt="" title={people[0].name}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[96px] h-[96px] rounded-full object-cover ring-4 ring-white shadow-2xl" />
+          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[96px] h-[96px] rounded-full ring-2 ring-white/60 animate-ping opacity-40" />
         </div>
+        </Parallax>
       </div>
     </section>
   );
