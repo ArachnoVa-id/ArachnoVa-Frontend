@@ -102,7 +102,7 @@ export default function PortoSection({ projects, services }) {
             <div className="mb-[1.5vw]">
               <p className="font-SourceSansProBold text-[1.6rem] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">{t({ en: "Our Work", id: "Karya Kami" })}</p>
               <p className="text-neutral-e text-[0.9rem] font-SourceSansProSemibold mt-[0.3rem] leading-snug">
-                {t({ en: "Real problems we have solved for businesses and organisations, from websites to full systems.", id: "Masalah nyata yang telah kami selesaikan untuk bisnis dan organisasi, dari website hingga sistem utuh." })}
+                {t({ en: "Real problems we have solved for businesses and organisations, from websites to full systems.", id: "Masalah nyata yang telah kami selesaikan untuk bisnis dan organisasi, dari website hingga sistem yang utuh." })}
               </p>
             </div>
 
@@ -211,7 +211,7 @@ export default function PortoSection({ projects, services }) {
       <div className="lg:hidden flex flex-col items-center w-full px-[5.581vw]">
         <p className="font-SourceSansProBold text-[6.977vw] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5] text-center">{t({ en: "Our Work", id: "Karya Kami" })}</p>
         <p className="text-neutral-e text-[3.5vw] text-center font-SourceSansProSemibold mt-[2vw] mb-[5vw]">
-          {t({ en: "Real problems we have solved for businesses and organisations, from websites to full systems.", id: "Masalah nyata yang telah kami selesaikan untuk bisnis dan organisasi, dari website hingga sistem utuh." })}
+          {t({ en: "Real problems we have solved for businesses and organisations, from websites to full systems.", id: "Masalah nyata yang telah kami selesaikan untuk bisnis dan organisasi, dari website hingga sistem yang utuh." })}
         </p>
 
         <div className="flex gap-[3vw] mb-[5vw] justify-center w-full overflow-x-auto no-scrollbar">

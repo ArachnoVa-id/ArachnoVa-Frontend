@@ -67,9 +67,9 @@ export default function TrustBar() {
     const since = starts.length ? Math.min(...starts.map((d) => d.getFullYear())) : new Date().getFullYear();
     const people = (team || []).filter((m) => (m.projectIds || []).length).length;
     return [
-      { to: all.length, suffix: "", label: t({ en: "projects delivered", id: "proyek terselesaikan" }) },
+      { to: all.length, suffix: "", label: t({ en: "projects delivered", id: "proyek selesai" }) },
       { to: people, suffix: "", label: t({ en: "people we've built with", id: "orang yang membangun bersama kami" }) },
-      { to: Math.max(1, new Date().getFullYear() - since), suffix: "+", label: t({ en: "years of real-world work", id: "tahun pengalaman nyata" }) },
+      { to: Math.max(1, new Date().getFullYear() - since), suffix: "+", label: t({ en: "years of real-world work", id: "tahun pengalaman" }) },
     ];
   }, [projects, team, t]);
 
@@ -81,10 +81,10 @@ export default function TrustBar() {
           <div>
             <p className="text-[13px] font-semibold text-LightBlue-e">ArachnoVa</p>
             <h2 id="about-strip-title" className="font-SourceSansProBold text-neutral-g lg:text-[2rem] text-[26px] leading-tight mt-1">
-              {t({ en: "We solve real problems, then make sure they stay solved.", id: "Kami menyelesaikan masalah nyata, lalu memastikannya tetap terselesaikan." })}
+              {t({ en: "We solve real problems, then make sure they stay solved.", id: "Kami menyelesaikan masalah nyata, lalu memastikan masalah itu tidak kembali." })}
             </h2>
             <p className="text-[15px] leading-relaxed text-neutral-e mt-3 max-w-[34rem]">
-              {t({ en: "From ticketing that survives a sell-out to a waste bank that runs on one system, we start with what is broken and build something your team can keep using for years.", id: "Dari sistem tiket yang tetap kuat saat sold-out hingga bank sampah yang berjalan dalam satu sistem, kami mulai dari yang bermasalah dan membangun sesuatu yang bisa dipakai tim Anda bertahun-tahun." })}
+              {t({ en: "From ticketing that survives a sell-out to a waste bank that runs on one system, we start with what is broken and build something your team can keep using for years.", id: "Dari sistem tiket yang tetap andal saat tiket habis terjual hingga bank sampah yang kini berjalan dalam satu sistem, kami selalu memulai dari akar masalahnya dan membangun solusi yang bisa dipakai tim Anda selama bertahun-tahun." })}
             </p>
           </div>
           <dl className="grid grid-cols-3 gap-3">

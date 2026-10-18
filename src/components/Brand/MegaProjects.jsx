@@ -19,7 +19,7 @@ function Avatars({ projectId }) {
             : <span key={m.name} title={m.name} className="w-[30px] h-[30px] rounded-full ring-2 ring-white bg-LightBlue-c text-white text-[11px] font-bold flex items-center justify-center">{m.name[0]}</span>
         ))}
       </div>
-      <span className="text-[12px] text-gray-500">{people.length} {t({ en: people.length > 1 ? "builders" : "builder", id: "pembangun" })}</span>
+      <span className="text-[12px] text-gray-500">{people.length} {t({ en: people.length > 1 ? "builders" : "builder", id: "kontributor" })}</span>
     </div>
   );
 }
@@ -36,8 +36,8 @@ export default function MegaProjects({ projects, onOpen, cardRefs }) {
       <div className="max-w-[72rem] mx-auto">
         <div className="text-center mb-8">
           <p className="font-SourceSansProBold lg:text-xl text-[16px] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">{t({ en: "Mega Projects", id: "Proyek Besar" })}</p>
-          <h2 id="mega-title" className="font-SourceSansProBold lg:text-3xl text-[26px] text-neutral-g mt-1">{t({ en: "Systems We Run, Not Just Ship", id: "Sistem yang Kami Jalankan, Bukan Sekadar Kirim" })}</h2>
-          <p className="text-[15px] text-neutral-e mt-2 max-w-[40rem] mx-auto">{t({ en: "Long-running platforms that real operations depend on every day.", id: "Platform jangka panjang yang diandalkan operasional nyata setiap hari." })}</p>
+          <h2 id="mega-title" className="font-SourceSansProBold lg:text-3xl text-[26px] text-neutral-g mt-1">{t({ en: "Systems We Run, Not Just Ship", id: "Sistem yang Terus Kami Kelola, Bukan Sekadar Diserahkan" })}</h2>
+          <p className="text-[15px] text-neutral-e mt-2 max-w-[40rem] mx-auto">{t({ en: "Long-running platforms that real operations depend on every day.", id: "Platform jangka panjang yang diandalkan untuk operasional setiap hari." })}</p>
         </div>
         <div className={`grid gap-5 ${mega.length >= 3 ? "md:grid-cols-2 xl:grid-cols-3" : "lg:grid-cols-2"}`}>
           {mega.map((p) => {
@@ -83,8 +83,8 @@ export default function MegaProjects({ projects, onOpen, cardRefs }) {
                     </div>
                     <div className="mt-4 flex gap-2">
                       {onOpen
-                        ? <button type="button" onClick={open} className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white text-[13px] font-semibold hover:brightness-110">{t({ en: "See the work", id: "Lihat karyanya" })}</button>
-                        : <Link to={`/projects?projectId=${p.id}`} className="flex-1 text-center px-4 py-2.5 rounded-lg bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white text-[13px] font-semibold hover:brightness-110">{t({ en: "See the work", id: "Lihat karyanya" })}</Link>}
+                        ? <button type="button" onClick={open} className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white text-[13px] font-semibold hover:brightness-110">{t({ en: "See the work", id: "Lihat Proyek" })}</button>
+                        : <Link to={`/projects?projectId=${p.id}`} className="flex-1 text-center px-4 py-2.5 rounded-lg bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white text-[13px] font-semibold hover:brightness-110">{t({ en: "See the work", id: "Lihat Proyek" })}</Link>}
                       {p.link && <a href={p.link} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-lg border border-gray-300 text-[13px] font-semibold text-neutral-f hover:bg-gray-50">{t({ en: "Visit", id: "Kunjungi" })}</a>}
                     </div>
                   </div>
