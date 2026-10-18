@@ -60,9 +60,9 @@ export default function MegaProjects({ projects, onOpen, cardRefs }) {
                   </div>
                   {p.partner?.name && (
                     <a href={p.partner.link} target="_blank" rel="noopener noreferrer"
-                      className="mt-4 inline-flex items-center gap-2 pl-1 pr-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-[12px] text-amber-900 hover:bg-amber-100 transition">
+                      className="mt-4 inline-flex items-center gap-2 pl-1 pr-3 py-1 rounded-full max-w-full bg-amber-50 border border-amber-200 text-[12px] text-amber-900 hover:bg-amber-100 transition">
                       {p.partner.logo && <img src={p.partner.logo} alt="" className="w-[26px] h-[26px] rounded-full object-contain bg-white" />}
-                      In collaboration with <b className="font-semibold">{p.partner.name}</b>
+                      <span className="leading-tight">In collaboration with <b className="font-semibold whitespace-nowrap">{p.partner.name}</b></span>
                       <FiArrowUpRight size={12} aria-hidden="true" />
                     </a>
                   )}
