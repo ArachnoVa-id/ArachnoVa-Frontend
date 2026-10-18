@@ -1,3 +1,8 @@
+import { useT } from "@/lib/i18n";
+const WORDS = { en: ["Sustainable", "Problem-First", "AI-Ready"], id: ["Berkelanjutan", "Fokus Masalah", "Siap AI"] };
+const TAGLINE = { en: "Helping you ride the AI wave, on fundamentals that last", id: "Membantu Anda menunggangi gelombang AI, di atas fondasi yang kokoh" };
+const START = { en: "Start Your Project", id: "Mulai Proyek Anda" };
+const DISCOVER = { en: "Discover Our Services", id: "Lihat Layanan Kami" };
 import { useWhatsApp, WA_MESSAGES } from "@/lib/whatsapp";
 import Image from "@/components/ui/Img";
 import { useEffect, useState, useRef } from "react";
@@ -42,6 +47,7 @@ function Words({ words, className }) {
 }
 
 export default function Hero() {
+  const t = useT();
   const [codeDone, setCodeDone] = useState(false);
 
 
@@ -75,28 +81,28 @@ export default function Hero() {
         <div className="flex flex-col justify-center xl:scale-[1.2]">
           <h1 className="text-neutral-g font-SourceSansProBold">
             <span className="block text-[1.6rem] font-CoolveticaCondReg font-normal">ArachnoVa</span>
-            <span className="block text-[1.8rem]">Real Problems, Lasting Solutions</span>
+            <span className="block text-[1.8rem]">{t({ en: "Real Problems, Lasting Solutions", id: "Masalah Nyata, Solusi Berkelanjutan" })}</span>
             <span className="flex items-baseline gap-[0.4rem] mt-[0.1rem]">
-              <span className="text-[2.6rem]">Built</span>
-              <Words words={["Sustainable", "Problem-First", "AI-Ready"]} className="text-[2.6rem]" />
+              <span className="text-[2.6rem]">{t({ en: "Built", id: "Dibangun" })}</span>
+              <Words key={t({ en: "en", id: "id" })} words={t(WORDS)} className="text-[2.6rem]" />
             </span>
           </h1>
           <div className="text-[1.0rem] text-neutral-e pt-[1.1rem] font-SourceSansProSemibold ">
-            Riding the AI wave on solid engineering fundamentals
+            {t(TAGLINE)}
           </div>
           <div className="py-[2vh] flex gap-[1.0rem]">
             <a
               href={heroWa}
               className="aspect-[167/46] w-[8.7rem] rounded-[0.4rem] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white text-[0.8rem] flex justify-center items-center hover:translate-y-[-3px] transition-all duration-500 ease-in-out "
             >
-              Start Your Project
+              {t(START)}
             </a>
             <a
               href="/services"
               className="aspect-[197/48] w-[10.3rem] rounded-[0.4rem] bg-transparent text-[0.8rem] flex justify-center items-center hover:translate-y-[-3px] transition-all duration-500 ease-in-out hover:bg-[#cae8ee] "
             >
               <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold">
-                Discover Our Services
+                {t(DISCOVER)}
               </div>
             </a>
           </div>
@@ -142,27 +148,26 @@ export default function Hero() {
       >
         <h1 className="text-neutral-g font-SourceSansProBold text-center px-4 max-w-full">
           <span className="block text-[clamp(2rem,10vw,6rem)] font-CoolveticaCondReg font-normal">ArachnoVa</span>
-          <span className="block text-[clamp(1.2rem,6.5vw,5rem)]">Real Problems, Lasting Solutions</span>
+          <span className="block text-[clamp(1.2rem,6.5vw,5rem)]">{t({ en: "Real Problems, Lasting Solutions", id: "Masalah Nyata, Solusi Berkelanjutan" })}</span>
           <span className="flex flex-wrap items-baseline justify-center gap-x-[0.5rem] mt-[0.2rem]">
-            <span className="text-[clamp(1.4rem,8vw,6rem)]">Built</span>
-            <Words words={["Sustainable", "Problem-First", "AI-Ready"]} className="text-[clamp(1.4rem,8vw,6rem)]" />
+            <span className="text-[clamp(1.4rem,8vw,6rem)]">{t({ en: "Built", id: "Dibangun" })}</span>
+            <Words key={t({ en: "en", id: "id" })} words={t(WORDS)} className="text-[clamp(1.4rem,8vw,6rem)]" />
           </span>
         </h1>
 
         <div className="flex flex-col justify-center items-center text-center px-4 text-[clamp(1.25rem,5vw,2.4rem)]/[1.2] pt-[clamp(1rem,4vw,3rem)] text-neutral-e font-SourceSansProSemibold ">
-          <div className="">Riding the AI wave on solid</div>
-          <div className="">engineering fundamentals</div>
+          <div className="max-w-[22em]">{t(TAGLINE)}</div>
         </div>
 
         <a
           href={heroWa}
           className="w-[clamp(18rem,80vw,80rem)] h-[clamp(3.5rem,10vw,8rem)] mt-[clamp(1.5rem,5vw,4rem)] my-[clamp(1rem,3vw,2.5rem)] bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold text-white rounded-md text-[clamp(1.2rem,4vw,3rem)] flex justify-center items-center hover:translate-y-[-3px] transition-all duration-500 ease-in-out "
         >
-          Start Your Project
+          {t(START)}
         </a>
         <a href="/services" className="w-[clamp(18rem,80vw,80rem)] h-[clamp(3.5rem,10vw,8rem)] bg-transparent mb-[clamp(1rem,3vw,2.5rem)] rounded-md text-[clamp(1.2rem,4vw,3rem)] flex justify-center items-center hover:translate-y-[-3px] transition-all duration-500 ease-in-out hover:bg-[#cae8ee] ">
           <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] font-InterBold">
-            Discover Our Services
+            {t(DISCOVER)}
           </div>
         </a>
 

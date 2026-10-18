@@ -1,5 +1,13 @@
 "use client";
 
+import { useT, LanguageToggle } from "@/lib/i18n";
+export const NAV = {
+  projects: { en: "Projects", id: "Proyek" },
+  services: { en: "Services", id: "Layanan" },
+  about: { en: "About", id: "Tentang" },
+  contact: { en: "Contact Us", id: "Hubungi Kami" },
+};
+
 import { useWhatsApp, WA_MESSAGES } from "@/lib/whatsapp";
 import { useLocation } from "react-router-dom";
 import Image from "@/components/ui/Img";
@@ -10,6 +18,7 @@ import { useState } from "react";
 import NavItemMobile from "./NavItemMobile";
 
 const Navbar = () => {
+	const t = useT();
 	const contactWa = useWhatsApp(WA_MESSAGES.contact);
 	const path = useLocation().pathname;
 	const [isOpen, setIsOpen] = useState(false);
@@ -30,9 +39,9 @@ const Navbar = () => {
 							</div>
 						</a>
 
-						<NavItem Menu="Projects" href="/projects" path={path} />
-						<NavItem Menu="Services" href="/services" path={path} />
-						<NavItem Menu="About" href="/aboutus" path={path} />
+						<NavItem Menu={t(NAV.projects)} href="/projects" path={path} />
+						<NavItem Menu={t(NAV.services)} href="/services" path={path} />
+						<NavItem Menu={t(NAV.about)} href="/aboutus" path={path} />
 					</ul>
 					<a href="/" aria-label="ArachnoVa home">
 						<div className="relative lg:hidden w-[clamp(4rem,9vw,7rem)] aspect-[45/33] hover:scale-110 transition-all duration-300 ease-in-out">
@@ -46,7 +55,8 @@ const Navbar = () => {
 						</div>
 					</a>
 				</div>
-				<div className="w-fit h-fit lg:hidden">
+				<div className="flex items-center gap-2 lg:hidden">
+					<LanguageToggle />
 					<Hamburger
 						toggled={isOpen}
 						toggle={setIsOpen}
@@ -60,7 +70,10 @@ const Navbar = () => {
 					isOpen={isOpen}
 					onClose={() => setIsOpen(false)}
 				/>
-				<Button Text="Contact Us" href={contactWa} />
+				<div className="hidden lg:flex items-center gap-3">
+					<LanguageToggle />
+					<Button Text={t(NAV.contact)} href={contactWa} />
+				</div>
 			</nav>
 		</>
 	);

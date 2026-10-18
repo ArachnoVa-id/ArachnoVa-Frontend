@@ -1,3 +1,4 @@
+import { useT } from "@/lib/i18n";
 import { useSettings } from "@/context/DataContext";
 import PlanCta from "@/components/ui/PlanCta";
 import { useEffect } from "react";
@@ -23,6 +24,7 @@ const cell = "px-3 py-2.5 border-b border-r border-[#E2E8F0] last:border-r-0 tex
 const headCell = "px-3 py-3 border-b border-r border-[#E2E8F0] text-center";
 
 export default function ServicesOption({ data }) {
+  const t = useT();
   const { title, subtitle, featureRows, plans } = data || {};
 
   const settings = useSettings();
@@ -35,7 +37,7 @@ export default function ServicesOption({ data }) {
       <div className="w-full max-w-5xl px-4">
         <div data-aos="fade-down" className="text-center mb-8">
           <h2 className="text-[26px] md:text-2xl lg:text-3xl font-SourceSansProBold text-neutral-g">
-            {title || "Choose Your Services"}
+            {title || t({ en: "Choose Your Services", id: "Pilih Layanan Anda" })}
           </h2>
           <p className="mt-2 text-[14px] md:text-sm lg:text-base text-neutral-e max-w-xl mx-auto">
             {subtitle || ""}
@@ -47,7 +49,7 @@ export default function ServicesOption({ data }) {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-[#E2E8F0]">
-                <th className={`${headCell} text-left text-neutral-g font-SourceSansProBold bg-gray-50/50`}>Spesifikasi Layanan</th>
+                <th className={`${headCell} text-left text-neutral-g font-SourceSansProBold bg-gray-50/50`}>{t({ en: "Service details", id: "Spesifikasi Layanan" })}</th>
                 {plans.map((plan, pi) => (
                   <th key={pi} className={`${headCell} font-SourceSansProBold text-neutral-g bg-gray-50/50`}>
                     {plan.name}
@@ -57,7 +59,7 @@ export default function ServicesOption({ data }) {
               </tr>
               <tr className="border-b border-[#E2E8F0]">
                 <td className={`${cell} text-left font-semibold`}>
-                  <span className="font-InterBold text-transparent bg-clip-text bg-gradient-to-r from-[#0893D4] via-[#44C4D9] to-[#159E8D]">Harga</span>
+                  <span className="font-InterBold text-transparent bg-clip-text bg-gradient-to-r from-[#0893D4] via-[#44C4D9] to-[#159E8D]">{t({ en: "Price", id: "Harga" })}</span>
                 </td>
                 {plans.map((plan, pi) => (
                   <td key={pi} className={cell}>

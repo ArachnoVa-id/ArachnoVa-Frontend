@@ -1,5 +1,6 @@
 "use client";
 
+import { useT } from "@/lib/i18n";
 import { useSettings } from "@/context/DataContext";
 import { useWhatsApp, WA_MESSAGES } from "@/lib/whatsapp";
 import { IoIosMail } from "react-icons/io";
@@ -12,14 +13,17 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const AboutUs = () => {
+  const t = useT();
   useEffect(() => {
     AOS.init({ duration: 1500 });
   }, []);
   const email = "mailto:arachnova.id@gmail.com";
   const instagram = "https://www.instagram.com/arachnova.id/";
   const whatsapp = useWhatsApp(WA_MESSAGES.contact);
-  const Description =
-    "ArachnoVa adalah bagian dari PT ARAH INOVASI DIGITALOKA, perusahaan yang berfokus pada pengembangan produk digital: website company profile, sistem ERP, aplikasi berbasis WhatsApp, dan tools SaaS. Dengan tim yang memiliki kompetensi teknis mendalam di bidang teknologi informasi, kami berkomitmen menghadirkan solusi digital yang kreatif, andal, dan sesuai dengan kebutuhan setiap klien.";
+  const Description = t({
+    en: "ArachnoVa is part of PT Arah Inovasi Digitaloka. We solve real problems for businesses and organisations with digital solutions built to last: websites, operational systems, WhatsApp-based apps and AI where it truly helps. Our team pairs solid engineering fundamentals with practical use of AI, so every solution keeps working long after launch.",
+    id: "ArachnoVa adalah bagian dari PT Arah Inovasi Digitaloka. Kami menyelesaikan masalah nyata bisnis dan organisasi dengan solusi digital yang dibangun untuk bertahan: website, sistem operasional, aplikasi berbasis WhatsApp, dan AI di tempat yang benar-benar membantu. Tim kami memadukan fondasi engineering yang kuat dengan pemanfaatan AI yang praktis, sehingga setiap solusi tetap berjalan jauh setelah diluncurkan.",
+  });
   return (
     <section className="relative w-full lg:min-h-[100vh] flex flex-col justify-center items-center bg-white-MainPage lg:py-[5vw] pt-28 pb-14 overflow-hidden">
       <div className="absolute top-[4.3rem] w-full aspect-[1920/458] z-0 lg:flex hidden">
@@ -75,8 +79,8 @@ const AboutUs = () => {
           {/* Right sidebar: Get In Touch - minimal */}
           <div className="lg:col-span-4 lg:flex lg:flex-col lg:items-center lg:justify-center lg:gap-y-[1.5rem]">
             <div data-aos="fade-left" className="mt-12 lg:mt-0 lg:flex lg:flex-col lg:items-center lg:gap-y-[1.2rem]">
-              <h2 className="font-SourceSansProBold lg:text-[1.3rem] text-[clamp(1.75rem,7.5vw,2.75rem)] leading-tight text-neutral-g">Get In Touch</h2>
-              <p className="font-SourceSansProSemibold lg:text-[0.8rem] text-[clamp(1.05rem,4.5vw,1.5rem)] text-neutral-e mb-4 lg:mb-0">Let's Connect</p>
+              <h2 className="font-SourceSansProBold lg:text-[1.3rem] text-[clamp(1.75rem,7.5vw,2.75rem)] leading-tight text-neutral-g">{t({ en: "Get In Touch", id: "Hubungi Kami" })}</h2>
+              <p className="font-SourceSansProSemibold lg:text-[0.8rem] text-[clamp(1.05rem,4.5vw,1.5rem)] text-neutral-e mb-4 lg:mb-0">{t({ en: "Let's Connect", id: "Mari Terhubung" })}</p>
               <div className="flex lg:flex-col lg:gap-y-[0.8rem] gap-x-[clamp(2rem,8vw,5.6rem)] lg:items-center lg:mt-[0.5rem]">
                 <SocialMediaIcon label="Email ArachnoVa" Icon={<IoIosMail size="32px" className="text-white" />} href={email} />
                 <SocialMediaIcon label="Instagram ArachnoVa" Icon={<FaInstagram size="30px" className="text-white" />} href={instagram} />

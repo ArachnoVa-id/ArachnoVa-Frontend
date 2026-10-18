@@ -1,3 +1,4 @@
+import { useT } from "@/lib/i18n";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCollection } from "@/context/DataContext";
@@ -31,13 +32,14 @@ function CountUp({ to, suffix = "" }) {
 
 // Endless strip of the clients' own logos; hover pauses it, click opens the project.
 function LogoStrip({ projects }) {
+  const t = useT();
   const navigate = useNavigate();
   const logos = projects.filter((p) => p.logo && !p.hidden);
   if (!logos.length) return null;
   const row = [...logos, ...logos];
   return (
     <div className="relative overflow-hidden mt-10 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-      <ul className="flex gap-4 w-max animate-[logo-scroll_60s_linear_infinite] hover:[animation-play-state:paused] motion-reduce:animate-none" aria-label="Clients we have worked with">
+      <ul className="flex gap-4 w-max animate-[logo-scroll_60s_linear_infinite] hover:[animation-play-state:paused] motion-reduce:animate-none" aria-label={t({ en: "Clients we have worked with", id: "Klien yang pernah bekerja sama dengan kami" })}>
         {row.map((p, i) => (
           <li key={`${p.id}-${i}`} aria-hidden={i >= logos.length}>
             <button type="button" onClick={() => navigate(`/projects?projectId=${p.id}`)} title={p.title}
@@ -55,6 +57,7 @@ function LogoStrip({ projects }) {
 }
 
 export default function TrustBar() {
+  const t = useT();
   const [projects] = useCollection("projects");
   const [team] = useCollection("team");
 
@@ -64,11 +67,11 @@ export default function TrustBar() {
     const since = starts.length ? Math.min(...starts.map((d) => d.getFullYear())) : new Date().getFullYear();
     const people = (team || []).filter((m) => (m.projectIds || []).length).length;
     return [
-      { to: all.length, suffix: "", label: "projects delivered" },
-      { to: people, suffix: "", label: "people we've built with" },
-      { to: Math.max(1, new Date().getFullYear() - since), suffix: "+", label: "years of real-world work" },
+      { to: all.length, suffix: "", label: t({ en: "projects delivered", id: "proyek terselesaikan" }) },
+      { to: people, suffix: "", label: t({ en: "people we've built with", id: "orang yang membangun bersama kami" }) },
+      { to: Math.max(1, new Date().getFullYear() - since), suffix: "+", label: t({ en: "years of real-world work", id: "tahun pengalaman nyata" }) },
     ];
-  }, [projects, team]);
+  }, [projects, team, t]);
 
   if (!projects?.length) return null;
   return (
@@ -78,10 +81,10 @@ export default function TrustBar() {
           <div>
             <p className="text-[13px] font-semibold text-LightBlue-e">ArachnoVa</p>
             <h2 id="about-strip-title" className="font-SourceSansProBold text-neutral-g lg:text-[2rem] text-[26px] leading-tight mt-1">
-              We solve real problems, then make sure they stay solved.
+              {t({ en: "We solve real problems, then make sure they stay solved.", id: "Kami menyelesaikan masalah nyata, lalu memastikannya tetap terselesaikan." })}
             </h2>
             <p className="text-[15px] leading-relaxed text-neutral-e mt-3 max-w-[34rem]">
-              From ticketing that survives a sell-out to a waste bank that runs on one system, we start with what is broken and build something your team can keep using for years.
+              {t({ en: "From ticketing that survives a sell-out to a waste bank that runs on one system, we start with what is broken and build something your team can keep using for years.", id: "Dari sistem tiket yang tetap kuat saat sold-out hingga bank sampah yang berjalan dalam satu sistem, kami mulai dari yang bermasalah dan membangun sesuatu yang bisa dipakai tim Anda bertahun-tahun." })}
             </p>
           </div>
           <dl className="grid grid-cols-3 gap-3">

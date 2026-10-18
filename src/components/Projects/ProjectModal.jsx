@@ -1,3 +1,4 @@
+import { useT, useField, useLang } from "@/lib/i18n";
 import { useState, useEffect, useRef } from "react";
 import { IoMdClose, IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 import { useCollection } from "@/context/DataContext";
@@ -80,12 +81,13 @@ function initials(name) {
 
 // The project's contributors: team members who list this project (same data as the team page's project chips).
 function ProjectTeam({ projectId }) {
+  const t = useT();
   const [members] = useCollection("team");
   const team = (members || []).filter((m) => (m.projectIds || []).includes(projectId));
   if (!team.length) return null;
   return (
     <div className="mt-2 lg:mt-5">
-      <span className="text-[0.6rem] uppercase tracking-[0.1em] text-gray-400 font-medium">Team ({team.length})</span>
+      <span className="text-[0.6rem] uppercase tracking-[0.1em] text-gray-400 font-medium">{t({ en: "Team", id: "Tim" })} ({team.length})</span>
       <ul className="flex flex-wrap lg:flex-col lg:flex-nowrap gap-1.5 mt-1 max-h-[104px] lg:max-h-none overflow-y-auto">
         {team.map((m) => (
           <li key={m.name} className="flex items-center gap-1.5 pl-0.5 pr-2.5 py-0.5 rounded-full lg:rounded-xl lg:py-1 bg-gray-100 border border-gray-200 text-[12px] text-gray-600">
@@ -108,6 +110,9 @@ function ProjectTeam({ projectId }) {
 }
 
 export default function ProjectModal({ project, onClose, originEl }) {
+  const { lang } = useLang();
+  const t = useT();
+  const field = useField();
   const [phase, setPhase] = useState("start");
   const cardRef = useRef(null);
   const originRect = useRef(null);
@@ -257,10 +262,10 @@ export default function ProjectModal({ project, onClose, originEl }) {
               {project.link && (
                 <a href={project.link} target="_blank" rel="noopener noreferrer"
                   className="px-3 py-1 bg-gradient-to-r from-LightBlue-c to-LightBlue-d text-white text-xs font-InterBold rounded-lg hover:brightness-110 transition-all">
-                  Visit
+                  {t({ en: "Visit", id: "Kunjungi" })}
                 </a>
               )}
-              <button ref={closeRef} type="button" onClick={handleClose} aria-label="Close project" className="text-gray-400 hover:text-gray-600 p-2 -m-1.5 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-LightBlue-c">
+              <button ref={closeRef} type="button" onClick={handleClose} aria-label={t({ en: "Close project", id: "Tutup proyek" })} className="text-gray-400 hover:text-gray-600 p-2 -m-1.5 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-LightBlue-c">
                 <IoMdClose size={20} />
               </button>
             </div>
@@ -279,7 +284,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
                         ? "bg-LightBlue-c text-white shadow-sm"
                         : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
                     }`}>
-                    {v === "desktop" ? "Desktop" : v === "mobile" ? "Mobile" : "Architecture"}
+                    {v === "desktop" ? "Desktop" : v === "mobile" ? t({ en: "Mobile", id: "Ponsel" }) : t({ en: "Architecture", id: "Arsitektur" })}
                     {v !== "architecture" && (
                       <span className="ml-1 text-[0.5rem] opacity-60">({(v === "desktop" ? desktopImages : mobileImages).length})</span>
                     )}
@@ -312,7 +317,7 @@ export default function ProjectModal({ project, onClose, originEl }) {
             ) : view === "architecture" ? (
               <ArchitectureView architecture={project.architecture} />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm italic">No images</div>
+              <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm italic">{t({ en: "No images", id: "Tidak ada gambar" })}</div>
             )}
 
             {/* Arrows */}
@@ -352,25 +357,25 @@ export default function ProjectModal({ project, onClose, originEl }) {
             )}
             {project.period && (
               <p className="text-[12px] text-gray-500 mt-1 flex items-center gap-1.5">
-                {formatPeriod(project.period)}
+                {formatPeriod(project.period, lang)}
                 {isOngoing(project.period) && <span className="px-1.5 py-[1px] rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold">LIVE</span>}
               </p>
             )}
-            {project.goal && (
+            {field(project, "goal") && (
               <div className="mt-3 rounded-xl bg-[#EEF9FB] border border-[#CBEFF5] px-3 py-2.5">
-                <span className="text-[0.6rem] uppercase tracking-[0.1em] text-LightBlue-e font-semibold">Goal</span>
-                <p className="text-sm lg:text-[15px] text-neutral-f leading-relaxed mt-0.5">{project.goal}</p>
+                <span className="text-[0.6rem] uppercase tracking-[0.1em] text-LightBlue-e font-semibold">{t({ en: "Goal", id: "Tujuan" })}</span>
+                <p className="text-sm lg:text-[15px] text-neutral-f leading-relaxed mt-0.5">{field(project, "goal")}</p>
               </div>
             )}
             {project.partner?.name && (
               <a href={project.partner.link} target="_blank" rel="noopener noreferrer"
                 className="mt-3 inline-flex items-center gap-2 pl-1 pr-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-[12px] text-amber-900 hover:bg-amber-100">
                 {project.partner.logo && <img src={project.partner.logo} alt="" className="w-[24px] h-[24px] rounded-full object-contain bg-white" />}
-                With <b className="font-semibold">{project.partner.name}</b>
+                {t({ en: "With", id: "Bersama" })} <b className="font-semibold">{project.partner.name}</b>
               </a>
             )}
-            {project.description && (
-              <p className="text-[13px] text-neutral-e leading-relaxed mt-3 whitespace-pre-line">{project.description}</p>
+            {field(project, "description") && (
+              <p className="text-[13px] text-neutral-e leading-relaxed mt-3 whitespace-pre-line">{field(project, "description")}</p>
             )}
             <ProjectTeam projectId={project.id} />
           </div>
