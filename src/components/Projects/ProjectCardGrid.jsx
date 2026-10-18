@@ -5,7 +5,7 @@ import "aos/dist/aos.css";
 import ProjectModal from "./ProjectModal";
 import MegaProjects from "@/components/Brand/MegaProjects";
 import ProjectTimeline from "@/components/Brand/ProjectTimeline";
-import { formatPeriod, isOngoing } from "@/lib/period";
+import { formatPeriod, isOngoing, byRecent } from "@/lib/period";
 
 const defaultCategories = [
   { key: "compro", label: "Company Profile" },
@@ -74,7 +74,7 @@ export default function ProjectCardGrid({ projects, services, autoOpenId, onAuto
   const known = new Set(categories.map((c) => c.key));
   const activeCategory = category === "all" || known.has(category) ? category : "all";
   // mega projects get their own showcase above; the grid lists the rest
-  const regular = projects.filter((p) => !p.mega);
+  const regular = projects.filter((p) => !p.mega).sort(byRecent);
   const visible = activeCategory === "all" ? regular : regular.filter((p) => p.product === activeCategory);
   const chips = [{ key: "all", label: t({ en: "All", id: "Semua" }), count: regular.length }].concat(
     categories.map((c) => ({ ...c, count: regular.filter((p) => p.product === c.key).length })).filter((c) => c.count > 0)

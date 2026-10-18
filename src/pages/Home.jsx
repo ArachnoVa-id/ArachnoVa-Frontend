@@ -10,6 +10,7 @@ import Process from "@/components/Brand/Process";
 import FAQ from "@/components/Brand/FAQ";
 import BriefForm from "@/components/Brand/BriefForm";
 import { useNavigate } from "react-router-dom";
+import { byRecent } from "@/lib/period";
 
 export default function Home() {
   const [pricing] = useCollection("pricing");
@@ -26,7 +27,7 @@ export default function Home() {
       <TrustBar />
       <MegaProjects projects={projects} onOpen={(p) => navigate(`/projects?projectId=${p.id}`)} />
       {divider}
-      <PortoSection projects={projects.filter((p) => !p.mega)} services={services} />
+      <PortoSection projects={projects.filter((p) => !p.mega).sort(byRecent)} services={services} />
       <Process />
       {divider}
       <ServicesOption data={pricing} />
