@@ -1,6 +1,6 @@
 import { useT } from "@/lib/i18n";
 const WORDS = { en: ["Sustainable", "Problem-First", "AI-Ready"], id: ["Berkelanjutan", "Tepat Sasaran", "Siap AI"] };
-const TAGLINE = { en: "Helping you ride the AI wave, on fundamentals that last", id: "Membantu Anda menunggangi gelombang AI, di atas fondasi yang kokoh" };
+const TAGLINE = { en: "Helping you ride the AI wave, on fundamentals that last", id: "Membantu Anda memanfaatkan gelombang AI, dengan fondasi yang kokoh" };
 const START = { en: "Start Your Project", id: "Mulai Proyek Anda" };
 const DISCOVER = { en: "Discover Our Services", id: "Lihat Layanan Kami" };
 import { useWhatsApp, WA_MESSAGES } from "@/lib/whatsapp";

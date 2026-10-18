@@ -5,7 +5,7 @@ import { useSettings } from "@/context/DataContext";
 import { waLink } from "@/lib/whatsapp";
 
 const NEEDS = { en: ["Website", "System / ERP", "WhatsApp app", "AI solution", "Not sure yet"], id: ["Website", "Sistem / ERP", "Aplikasi WhatsApp", "Solusi AI", "Belum yakin"] };
-const WHEN = { en: ["As soon as possible", "1–3 months", "3–6 months", "Just exploring"], id: ["Secepatnya", "1–3 bulan", "3–6 bulan", "Masih eksplorasi"] };
+const WHEN = { en: ["As soon as possible", "1–3 months", "3–6 months", "Just exploring"], id: ["Secepatnya", "1–3 bulan", "3–6 bulan", "Masih menjajaki"] };
 
 function Chips({ options, value, onChange, multi }) {
   const toggle = (o) => (multi ? onChange(value.includes(o) ? value.filter((x) => x !== o) : [...value, o]) : onChange(o));
@@ -49,9 +49,9 @@ export default function BriefForm() {
     <section aria-labelledby="brief-title" className="w-full bg-gradient-to-b from-[#E3F5F8] to-[#F1FAFC] lg:px-24 px-4 lg:py-16 py-12">
       <div className="max-w-[60rem] mx-auto rounded-3xl border border-[#B9E6EE] bg-white p-6 lg:p-10 shadow-[0_12px_40px_-12px_rgba(21,139,158,0.25)]">
         <div className="mb-6">
-          <p className="font-SourceSansProBold lg:text-xl text-[16px] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">{t({ en: "Start With the Problem", id: "Mulai dari Masalahnya" })}</p>
+          <p className="font-SourceSansProBold lg:text-xl text-[16px] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">{t({ en: "Start With the Problem", id: "Mulai dari Masalah Anda" })}</p>
           <h2 id="brief-title" className="font-SourceSansProBold lg:text-3xl text-[26px] text-neutral-g mt-1">{t({ en: "Tell Us the Problem, We'll Help Find the Solution", id: "Ceritakan Masalah Anda, Kami Bantu Carikan Solusinya" })}</h2>
-          <p className="text-[15px] text-neutral-f mt-2">{t({ en: "Fill in the short form below and your WhatsApp message is written for you.", id: "Isi singkat di bawah; pesan WhatsApp akan tersusun otomatis." })}</p>
+          <p className="text-[15px] text-neutral-f mt-2">{t({ en: "Fill in the short form below and your WhatsApp message is written for you.", id: "Isi formulir singkat di bawah ini, dan pesan WhatsApp Anda akan tersusun otomatis." })}</p>
         </div>
         <form onSubmit={(e) => { e.preventDefault(); if (ready) window.open(waLink(message, settings?.whatsapp), "_blank", "noopener"); }} className="space-y-5">
           <div className="grid sm:grid-cols-2 gap-3">
@@ -69,7 +69,7 @@ export default function BriefForm() {
             className="inline-flex items-center gap-2 px-6 py-3 min-h-[48px] rounded-xl bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white font-InterBold text-[14px] hover:brightness-110 disabled:bg-none disabled:bg-gray-300 disabled:text-gray-600 disabled:cursor-not-allowed">
             <FaWhatsapp size={18} aria-hidden="true" /> {t({ en: "Send via WhatsApp", id: "Kirim lewat WhatsApp" })}
           </button>
-          {!ready && <p className="text-[13px] text-neutral-e">{t({ en: "Describe the problem in at least one sentence.", id: "Ceritakan masalahnya minimal satu kalimat." })}</p>}
+          {!ready && <p className="text-[13px] text-neutral-e">{t({ en: "Describe the problem in at least one sentence.", id: "Ceritakan masalah Anda minimal dalam satu kalimat." })}</p>}
         </form>
       </div>
     </section>

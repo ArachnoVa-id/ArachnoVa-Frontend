@@ -24,7 +24,7 @@ export default function ProjectTimeline({ projects, onOpen }) {
       <div className="max-w-[72rem] mx-auto">
         <div className="text-center mb-8">
           <p className="font-SourceSansProBold lg:text-xl text-[16px] bg-clip-text text-transparent bg-gradient-to-r from-[#1AB0C8] via-[#84D4E1] to-[#179FB5]">{t({ en: "Timeline", id: "Linimasa" })}</p>
-          <h2 id="timeline-title" className="font-SourceSansProBold lg:text-3xl text-[26px] text-neutral-g mt-1">{t({ en: "What We Built, When", id: "Apa yang Kami Bangun, dan Kapan" })}</h2>
+          <h2 id="timeline-title" className="font-SourceSansProBold lg:text-3xl text-[26px] text-neutral-g mt-1">{t({ en: "What We Built, When", id: "Perjalanan Proyek Kami dari Waktu ke Waktu" })}</h2>
           <p className="text-[13px] text-gray-500 mt-2">{t({ en: "From each project's first to last commit.", id: "Dari commit pertama hingga terakhir tiap proyek." })}</p>
         </div>
         <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">

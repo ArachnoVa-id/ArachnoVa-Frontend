@@ -22,7 +22,7 @@ const AboutUs = () => {
   const whatsapp = useWhatsApp(WA_MESSAGES.contact);
   const Description = t({
     en: "ArachnoVa is part of PT Arah Inovasi Digitaloka. We solve real problems for businesses and organisations with digital solutions built to last: websites, operational systems, WhatsApp-based apps and AI where it truly helps. Our team pairs solid engineering fundamentals with practical use of AI, so every solution keeps working long after launch.",
-    id: "ArachnoVa adalah bagian dari PT Arah Inovasi Digitaloka. Kami menyelesaikan masalah nyata bisnis dan organisasi dengan solusi digital yang dibangun untuk bertahan: website, sistem operasional, aplikasi berbasis WhatsApp, dan AI di tempat yang benar-benar membantu. Tim kami memadukan fondasi engineering yang kuat dengan pemanfaatan AI yang praktis, sehingga setiap solusi tetap berjalan jauh setelah diluncurkan.",
+    id: "ArachnoVa adalah bagian dari PT Arah Inovasi Digitaloka. Kami menyelesaikan masalah nyata bisnis dan organisasi dengan solusi digital yang dibangun untuk bertahan lama: website, sistem operasional, aplikasi berbasis WhatsApp, serta AI di bagian yang benar-benar membantu. Tim kami memadukan fondasi engineering yang kuat dengan pemanfaatan AI yang praktis, sehingga setiap solusi tetap berjalan jauh setelah diluncurkan.",
   });
   return (
     <section className="relative w-full lg:min-h-[100vh] flex flex-col justify-center items-center bg-white-MainPage lg:py-[5vw] pt-28 pb-14 overflow-hidden">

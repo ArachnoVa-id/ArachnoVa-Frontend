@@ -9,7 +9,7 @@ export const SEO_ROUTES = {
   "/": {
     title: "ArachnoVa | Real Problems, Lasting Solutions",
     description:
-      "ArachnoVa (PT Arah Inovasi Digitaloka) menyelesaikan masalah nyata bisnis dan organisasi dengan solusi digital yang berkelanjutan, membantu Anda menunggangi gelombang AI di atas fondasi yang kokoh.",
+      "ArachnoVa (PT Arah Inovasi Digitaloka) menyelesaikan masalah nyata bisnis dan organisasi dengan solusi digital yang berkelanjutan, membantu Anda memanfaatkan gelombang AI dengan fondasi yang kokoh.",
     h1: "ArachnoVa, Real Problems, Lasting Solutions",
   },
   "/projects": {

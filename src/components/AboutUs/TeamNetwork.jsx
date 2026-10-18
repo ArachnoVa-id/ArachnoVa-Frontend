@@ -95,9 +95,9 @@ export default function TeamNetwork({ members, projects }) {
           </div>
           <ul className="mt-6 hidden lg:block space-y-2 text-[13px] text-[#8FC3CE]">
             <li><b className="text-white font-semibold">{t({ en: "Drag", id: "Seret" })}</b> {t({ en: "to rotate", id: "untuk memutar" })}</li>
-            <li><b className="text-white font-semibold">{t({ en: "Click into it", id: "Klik di dalamnya" })}</b>{t({ en: ", then scroll or pinch to zoom", id: ", lalu gulir atau cubit untuk zoom" })}</li>
-            <li><b className="text-white font-semibold">{t({ en: "Hover", id: "Arahkan" })}</b> {t({ en: "a circle for roles and project counts", id: "ke lingkaran untuk melihat peran dan jumlah proyek" })}</li>
-            <li><b className="text-white font-semibold">{t({ en: "Click", id: "Klik" })}</b> {t({ en: "a project to open it, or a teammate to jump to their card", id: "proyek untuk membukanya, atau anggota tim untuk menuju kartunya" })}</li>
+            <li><b className="text-white font-semibold">{t({ en: "Click into it", id: "Klik area jaringan" })}</b>{t({ en: ", then scroll or pinch to zoom", id: ", lalu gulir atau cubit untuk memperbesar" })}</li>
+            <li><b className="text-white font-semibold">{t({ en: "Hover", id: "Arahkan kursor" })}</b> {t({ en: "a circle for roles and project counts", id: "ke lingkaran untuk melihat peran dan jumlah proyek" })}</li>
+            <li><b className="text-white font-semibold">{t({ en: "Click", id: "Klik" })}</b> {t({ en: "a project to open it, or a teammate to jump to their card", id: "proyek untuk membukanya, atau anggota tim untuk melihat kartunya" })}</li>
           </ul>
         </div>
       </div>
