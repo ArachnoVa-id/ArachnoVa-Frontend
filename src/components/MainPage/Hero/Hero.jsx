@@ -118,7 +118,7 @@ export default function Hero() {
             </div>
           </div>
           {codeDone && (
-            <div className="absolute aspect-[419/96] w-[24rem] bg-white/70 backdrop-blur-md rounded-[0.62rem] -bottom-[1.5rem] -right-[1.0rem] text-[1.0rem] flex items-center border-2 border-[#E2E8F0] font-ConsolasBold shadow-md animate-fade-in-left">
+            <div className="absolute w-max max-w-[26rem] bg-white/90 backdrop-blur-md rounded-[0.62rem] -bottom-[1.5rem] -right-[1.0rem] text-[1.0rem] border-2 border-[#E2E8F0] font-ConsolasBold shadow-md animate-fade-in-left">
               <Image
                 alt=""
                 src="/image/Hero/3ColorButton.png"
@@ -127,7 +127,7 @@ export default function Hero() {
                 width={100}
                 height={100}
               />
-               <div className="flex gap-x-[0.1rem] pt-[1.0rem] whitespace-nowrap ml-[0.8rem] pr-[1.5rem]">
+               <div className="flex gap-x-[0.1rem] pt-[2.0rem] pb-[0.9rem] whitespace-nowrap px-[1.0rem]">
                 <TerminalTyper speed={60} startDelay={300} />
               </div>
             </div>

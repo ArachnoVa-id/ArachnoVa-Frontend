@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const prompt = ".\\arachnova > ";
+const prompt = "~/arachnova $ ";
 const cmd = "solve(yourProblem)";
 const full = prompt + cmd;
 
@@ -32,9 +32,8 @@ export default function TerminalTyper({ speed = 50, startDelay = 0 }) {
     <>
       {phase !== "waiting" && (
         <>
-          <span className="text-[#8131B2]">{".\\arachnova-"}</span>
-          <span className="text-[#0151EC]">{"official-site"}</span>
-          <span className="text-[#1CA7BD]">{" > "}</span>
+          <span className="text-[#8131B2]">{"~/arachnova"}</span>
+          <span className="text-[#1CA7BD]">{" $ "}</span>
         </>
       )}
       {phase === "cmd" && (

@@ -38,14 +38,14 @@ export default function MegaProjects({ projects, onOpen, cardRefs }) {
             const shot = p.imageDesktop || p.desktopImages?.[0];
             const open = () => (onOpen ? onOpen(p) : null);
             return (
-              <article key={p.id} ref={(el) => { if (cardRefs) cardRefs.current[p.id] = el; }} className="group relative rounded-3xl overflow-hidden bg-white border border-gray-200 shadow-sm transition hover:shadow-xl hover:-translate-y-1 hover:border-LightBlue-a">
+              <article key={p.id} ref={(el) => { if (cardRefs) cardRefs.current[p.id] = el; }} className="group relative flex flex-col h-full rounded-3xl overflow-hidden bg-white border border-gray-200 shadow-sm transition hover:shadow-xl hover:-translate-y-1 hover:border-LightBlue-a">
                 <div className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(600px_circle_at_50%_0%,rgba(26,176,200,0.12),transparent_60%)]" aria-hidden="true" />
                 {shot && (
                   <button type="button" onClick={open} className="block w-full aspect-[16/8] bg-gray-50 overflow-hidden" aria-label={`Open ${p.title}`}>
                     <img src={shot} alt="" loading="lazy" className="w-full h-full object-cover object-top transition duration-700 group-hover:scale-[1.03]" />
                   </button>
                 )}
-                <div className="p-5 lg:p-6">
+                <div className="p-5 lg:p-6 flex-1 flex flex-col">
                   <div className="flex items-center gap-3">
                     {p.logo && <img src={p.logo} alt="" className="w-[44px] h-[44px] rounded-xl object-contain bg-white border border-gray-200 p-1" />}
                     <div className="min-w-0">
@@ -67,18 +67,19 @@ export default function MegaProjects({ projects, onOpen, cardRefs }) {
                     </a>
                   )}
                   {p.goal && <p className="mt-4 text-[15px] leading-relaxed text-neutral-f">{p.goal}</p>}
-                  {p.architecture?.tags?.length > 0 && (
-                    <ul className="flex flex-wrap gap-1.5 mt-4">
-                      {p.architecture.tags.map((t) => <li key={t} className="text-[11px] px-2 py-1 rounded-full bg-[#EEF9FB] text-LightBlue-e border border-[#CBEFF5]">{t}</li>)}
+                  {/* pinned to the card bottom so tags, people and buttons line up across cards */}
+                  <div className="mt-auto pt-5">
+                    <ul className="flex flex-wrap content-end gap-1.5 min-h-[60px]">
+                      {(p.architecture?.tags || []).map((t) => <li key={t} className="text-[11px] h-fit px-2 py-1 rounded-full bg-[#EEF9FB] text-LightBlue-e border border-[#CBEFF5]">{t}</li>)}
                     </ul>
-                  )}
-                  <div className="mt-5 flex items-center justify-between gap-3 flex-wrap">
-                    <Avatars projectId={p.id} />
-                    <div className="flex gap-2">
+                    <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
+                      <Avatars projectId={p.id} />
+                    </div>
+                    <div className="mt-4 flex gap-2">
                       {onOpen
-                        ? <button type="button" onClick={open} className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white text-[13px] font-semibold hover:brightness-110">See the work</button>
-                        : <Link to={`/projects?projectId=${p.id}`} className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white text-[13px] font-semibold hover:brightness-110">See the work</Link>}
-                      {p.link && <a href={p.link} target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg border border-gray-300 text-[13px] font-semibold text-neutral-f hover:bg-gray-50">Visit</a>}
+                        ? <button type="button" onClick={open} className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white text-[13px] font-semibold hover:brightness-110">See the work</button>
+                        : <Link to={`/projects?projectId=${p.id}`} className="flex-1 text-center px-4 py-2.5 rounded-lg bg-gradient-to-r from-[#1AB0C8] to-[#179FB5] text-white text-[13px] font-semibold hover:brightness-110">See the work</Link>}
+                      {p.link && <a href={p.link} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-lg border border-gray-300 text-[13px] font-semibold text-neutral-f hover:bg-gray-50">Visit</a>}
                     </div>
                   </div>
                 </div>
