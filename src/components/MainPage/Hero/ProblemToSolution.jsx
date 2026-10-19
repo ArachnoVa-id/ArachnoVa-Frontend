@@ -1,98 +1,119 @@
 import { useEffect, useRef, useState } from "react";
-import { LuClock, LuCoins, LuBadgeCheck, LuSparkles, LuCheck } from "react-icons/lu";
+import { LuClock, LuCoins, LuBadgeCheck, LuCheck } from "react-icons/lu";
 import { useT } from "@/lib/i18n";
 
-// The project-management triangle (time, cost, quality) where you usually get to pick two.
-// The sides are the fundamentals; the AI sparkle runs along them and wins each corner in turn,
-// then settles in the middle once all three are won.
-const LOOP = 7600;
-const T0 = 900;
-const LEG = 1100;
-const clamp = (x) => Math.max(0, Math.min(1, x));
-const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
-const mix = (a, b, k) => a + (b - a) * k;
-const W = 400;
-const H = 300;
+// The time / cost / quality triangle (usually "pick two") above a small code window.
+// As the code types out, each `solution.<corner>` line wins that corner of the triangle.
+const CHAR_MS = 34;
+const LINE_PAUSE = 260;
+const START = 500;
+const HOLD = 2600;
+const FADE = 500;
 
+const B = "#0151EC", TEAL = "#1CA7BD", PURPLE = "#8131B2", INK = "#1E293B", AMBER = "#B45309", GREY = "#94A3B8";
+const code = (t) => [
+  { segs: [[B, "const "], [TEAL, "solution"], [INK, " = "], [B, "build"], [INK, "("], [AMBER, "yourProblem"], [INK, ", {"]] },
+  { segs: [[INK, "  on: "], [TEAL, "fundamentals"], [INK, ","]] },
+  { segs: [[INK, "  with: "], [TEAL, "ai"], [INK, ","]] },
+  { segs: [[INK, "});"]] },
+  { segs: [[TEAL, "solution"], [INK, "."], [PURPLE, "time"], [GREY, `     // ${t({ en: "faster", id: "lebih cepat" })}`]], wins: 0 },
+  { segs: [[TEAL, "solution"], [INK, "."], [PURPLE, "cost"], [GREY, `     // ${t({ en: "leaner", id: "lebih hemat" })}`]], wins: 1 },
+  { segs: [[TEAL, "solution"], [INK, "."], [PURPLE, "quality"], [GREY, `  // ${t({ en: "built to last", id: "tahan lama" })}`]], wins: 2 },
+];
+
+const W = 400, H = 220;
 const CORNERS = [
-  { key: "time", at: [200, 70], Icon: LuClock, name: { en: "Time", id: "Waktu" }, win: { en: "faster", id: "lebih cepat" } },
-  { key: "cost", at: [78, 232], Icon: LuCoins, name: { en: "Cost", id: "Biaya" }, win: { en: "leaner", id: "lebih hemat" } },
-  { key: "quality", at: [322, 232], Icon: LuBadgeCheck, name: { en: "Quality", id: "Kualitas" }, win: { en: "built to last", id: "tahan lama" } },
+  { key: "time", at: [200, 46], Icon: LuClock, name: { en: "Time", id: "Waktu" } },
+  { key: "cost", at: [84, 168], Icon: LuCoins, name: { en: "Cost", id: "Biaya" } },
+  { key: "quality", at: [316, 168], Icon: LuBadgeCheck, name: { en: "Quality", id: "Kualitas" } },
 ];
 const pct = ([x, y]) => ({ left: `${(x / W) * 100}%`, top: `${(y / H) * 100}%` });
-function side(a, b, gap = 48) {
+function side(a, b, gap = 40) {
   const dx = b[0] - a[0], dy = b[1] - a[1], len = Math.hypot(dx, dy);
   return [[a[0] + (dx / len) * gap, a[1] + (dy / len) * gap], [b[0] - (dx / len) * gap, b[1] - (dy / len) * gap]];
 }
 
-function useClock() {
+// when each line starts and ends typing
+function schedule(lines) {
+  let at = START;
+  const out = lines.map((l) => {
+    const len = l.segs.reduce((n, [, s]) => n + s.length, 0);
+    const s = at, e = at + len * CHAR_MS;
+    at = e + LINE_PAUSE;
+    return { s, e, len };
+  });
+  return { out, loop: at + HOLD + FADE };
+}
+
+function useClock(loop) {
   const still = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-  const [ms, setMs] = useState(still ? 5600 : 0);
+  const [ms, setMs] = useState(still ? loop - HOLD : 0);
   const raf = useRef(0);
   useEffect(() => {
     if (still) return undefined;
     const t0 = performance.now();
-    const tick = (now) => { setMs((now - t0) % LOOP); raf.current = requestAnimationFrame(tick); };
+    const tick = (now) => { setMs((now - t0) % loop); raf.current = requestAnimationFrame(tick); };
     raf.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf.current);
-  }, [still]);
+  }, [still, loop]);
   return ms;
 }
 
 export default function ProblemToSolution({ className = "" }) {
   const t = useT();
-  const ms = useClock();
-  const won = [0, 1, 2].map((i) => ms > T0 + i * LEG);
-  const legK = [0, 1, 2].map((i) => clamp((ms - T0 - i * LEG) / LEG));
-  const travelling = ms > T0 && ms < T0 + 3 * LEG;
-  const leg = Math.min(2, Math.max(0, Math.floor((ms - T0) / LEG)));
-  const a = CORNERS[leg].at, b = CORNERS[(leg + 1) % 3].at, e = ease(legK[leg]);
-  const spark = [mix(a[0], b[0], e), mix(a[1], b[1], e)];
-  const bloom = ease(clamp((ms - T0 - 3 * LEG) / 600));
-  const fade = 1 - clamp((ms - LOOP + 600) / 600);
-  const centre = [200, 180];
+  const lines = code(t);
+  const { out: times, loop } = schedule(lines);
+  const ms = useClock(loop);
+  const fade = 1 - Math.max(0, Math.min(1, (ms - (loop - FADE)) / FADE));
+
+  const won = [false, false, false];
+  lines.forEach((l, i) => { if (l.wins !== undefined && ms >= times[i].e) won[l.wins] = true; });
+  const active = times.findIndex((x) => ms >= x.s && ms < x.e + LINE_PAUSE);
 
   return (
-    <div className={className} role="img" aria-label={t({ en: "The time, cost and quality triangle: AI on solid fundamentals wins all three corners", id: "Segitiga waktu, biaya, dan kualitas: AI di atas fondasi yang kuat memenangkan ketiga sudutnya" })}>
-      <div className="relative w-full aspect-[4/3]" style={{ opacity: fade }}>
+    <div className={className} style={{ opacity: fade }} role="img" aria-label={t({ en: "Code builds the solution on fundamentals with AI, winning time, cost and quality", id: "Kode membangun solusi di atas fondasi dengan AI, memenangkan waktu, biaya, dan kualitas" })}>
+      {/* triangle */}
+      <div className="relative w-full" style={{ aspectRatio: `${W} / ${H}` }}>
         <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 w-full h-full" aria-hidden="true">
           {CORNERS.map((c, i) => {
-            const [p, q] = side(c.at, CORNERS[(i + 1) % 3].at);
-            return (
-              <g key={c.key}>
-                <line x1={p[0]} y1={p[1]} x2={q[0]} y2={q[1]} stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 5" />
-                {legK[i] > 0 && <line x1={p[0]} y1={p[1]} x2={mix(p[0], q[0], legK[i])} y2={mix(p[1], q[1], legK[i])} stroke="#1AB0C8" strokeWidth="2.5" strokeLinecap="round" />}
-              </g>
-            );
+            const j = (i + 1) % 3;
+            const [p, q] = side(c.at, CORNERS[j].at);
+            const on = won[i] && won[j];
+            return <line key={c.key} x1={p[0]} y1={p[1]} x2={q[0]} y2={q[1]} stroke={on ? "#1AB0C8" : "#CBD5E1"} strokeWidth={on ? 2.5 : 1.5} strokeDasharray={on ? "0" : "4 5"} strokeLinecap="round" style={{ transition: "stroke .4s" }} />;
           })}
         </svg>
-
         {CORNERS.map((c, i) => (
           <div key={c.key} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" style={pct(c.at)}>
-            <span className={`relative w-[3.4rem] h-[3.4rem] rounded-full flex items-center justify-center transition-all duration-500 ${won[i] ? "bg-gradient-to-br from-[#1AB0C8] to-[#0F3B47] text-white shadow-lg scale-105" : "bg-white border-2 border-dashed border-gray-300 text-gray-400"}`}>
-              <c.Icon size={24} aria-hidden="true" />
-              <span className={`absolute -right-[0.2rem] -bottom-[0.2rem] w-[1.25rem] h-[1.25rem] rounded-full bg-emerald-500 text-white flex items-center justify-center ring-2 ring-white transition-all duration-300 ${won[i] ? "opacity-100 scale-100" : "opacity-0 scale-50"}`}>
-                <LuCheck size={12} strokeWidth={3} aria-hidden="true" />
+            <span className={`relative w-[3rem] h-[3rem] rounded-full flex items-center justify-center transition-all duration-500 ${won[i] ? "bg-gradient-to-br from-[#1AB0C8] to-[#0F3B47] text-white shadow-md" : "bg-white border-2 border-dashed border-gray-300 text-gray-400"}`}>
+              <c.Icon size={21} aria-hidden="true" />
+              <span className={`absolute -right-[0.2rem] -bottom-[0.2rem] w-[1.1rem] h-[1.1rem] rounded-full bg-emerald-500 text-white flex items-center justify-center ring-2 ring-white transition-all duration-300 ${won[i] ? "opacity-100 scale-100" : "opacity-0 scale-50"}`}>
+                <LuCheck size={11} strokeWidth={3} aria-hidden="true" />
               </span>
             </span>
-            <span className={`mt-[0.35rem] text-[0.9rem] font-SourceSansProBold transition-colors duration-300 ${won[i] ? "text-neutral-g" : "text-gray-400"}`}>{t(c.name)}</span>
-            <span className={`text-[0.72rem] text-[#178a9c] transition-opacity duration-300 ${won[i] ? "opacity-100" : "opacity-0"}`}>{t(c.win)}</span>
+            <span className={`mt-[0.25rem] text-[0.85rem] font-SourceSansProBold transition-colors duration-300 ${won[i] ? "text-neutral-g" : "text-gray-400"}`}>{t(c.name)}</span>
           </div>
         ))}
-
-        {/* AI sparkle: rides the sides, then settles in the middle */}
-        {travelling && (
-          <LuSparkles aria-hidden="true" className="absolute -translate-x-1/2 -translate-y-1/2 text-violet-500 drop-shadow-[0_0_6px_rgba(139,92,246,0.6)]" size={26} style={pct(spark)} />
-        )}
-        <div className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" style={{ ...pct(centre), opacity: bloom, transform: `translate(-50%, -50%) scale(${0.7 + bloom * 0.3})` }}>
-          <LuSparkles aria-hidden="true" size={34} className="text-violet-500 drop-shadow-[0_0_10px_rgba(139,92,246,0.55)]" />
-          <span className="mt-[0.2rem] text-[0.72rem] font-bold tracking-[0.08em] text-violet-600">{t({ en: "ALL THREE", id: "KETIGANYA" })}</span>
-        </div>
       </div>
-      <p className="mt-[0.2rem] flex items-center justify-center gap-[0.35rem] text-[0.78rem] text-gray-500">
-        <LuSparkles size={14} className="text-violet-500" aria-hidden="true" />
-        {t({ en: "AI on solid fundamentals: all three, not two", id: "AI di atas fondasi kuat: ketiganya, bukan dua" })}
-      </p>
+
+      {/* code */}
+      <div className="mt-[0.6rem] rounded-[0.5rem] bg-white/70 border border-[#E2E8F0] px-[0.8rem] py-[0.6rem] font-ConsolasRegular text-[max(0.8rem,11px)] leading-[1.45] min-h-[10.4rem]">
+        {lines.map((l, i) => {
+          const { s, len } = times[i];
+          const n = Math.max(0, Math.min(len, Math.floor((ms - s) / CHAR_MS)));
+          if (ms < s) return null;
+          let left = n;
+          return (
+            <p key={i} className="whitespace-pre">
+              {l.segs.map(([c, txt], k) => {
+                const part = txt.slice(0, Math.max(0, left));
+                left -= txt.length;
+                return part ? <span key={k} style={{ color: c }}>{part}</span> : null;
+              })}
+              {i === active && <span className="w-[0.06em] h-[1.1em] bg-LightBlue-c animate-pulse inline-block align-text-bottom ml-[0.05em]" />}
+            </p>
+          );
+        })}
+      </div>
     </div>
   );
 }
