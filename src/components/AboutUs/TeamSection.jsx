@@ -1,5 +1,5 @@
 import { useT } from "@/lib/i18n";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiLinkedin, FiGlobe, FiGithub } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
@@ -137,6 +137,21 @@ function MemberCard({ member, i, projects }) {
 }
 
 export default function TeamSection({ members, projects }) {
+  // arriving from a link like /aboutus#member-jane-doe (e.g. the home page team orbit):
+  // once the cards exist, bring that card into view and highlight it for a moment
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id.startsWith("member-") || !members.length) return undefined;
+    const card = document.getElementById(id);
+    if (!card) return undefined;
+    const t = setTimeout(() => {
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+      card.focus({ preventScroll: true });
+      card.classList.add("ring-2", "ring-LightBlue-c");
+    }, 300);
+    const off = setTimeout(() => card.classList.remove("ring-2", "ring-LightBlue-c"), 3000);
+    return () => { clearTimeout(t); clearTimeout(off); };
+  }, [members.length]);
   const t = useT();
   if (!members?.length) return null;
 

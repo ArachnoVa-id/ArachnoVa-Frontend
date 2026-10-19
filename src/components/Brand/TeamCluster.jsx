@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 import { useCollection } from "@/context/DataContext";
+import { memberAnchor } from "@/components/AboutUs/TeamSection";
 import { useT } from "@/lib/i18n";
 import { Parallax } from "@/lib/parallax";
 
@@ -24,16 +25,19 @@ function Ring({ people, radius, secs, dir, sizes }) {
   const spin = dir > 0 ? "orbit-cw" : "orbit-ccw";
   const counter = dir > 0 ? "orbit-ccw" : "orbit-cw";
   return (
-    <div className="absolute inset-0 orbit" style={{ animation: `${spin} ${secs}s linear infinite` }}>
+    <div className="absolute inset-0 orbit pointer-events-none" style={{ animation: `${spin} ${secs}s linear infinite` }}>
       <span className="absolute rounded-full border border-white/20" style={{ inset: `${50 - radius}%` }} />
       {people.map((m, i) => {
         const a = (i / people.length) * 2 * Math.PI;
         return (
-          <div key={i} className="absolute" style={{ left: `${50 + radius * Math.cos(a)}%`, top: `${50 + radius * Math.sin(a)}%`, width: sizes[i], height: sizes[i], transform: "translate(-50%, -50%)" }}>
+          <div key={i} className="absolute pointer-events-auto" style={{ left: `${50 + radius * Math.cos(a)}%`, top: `${50 + radius * Math.sin(a)}%`, width: sizes[i], height: sizes[i], transform: "translate(-50%, -50%)" }}>
             <div className="orbit w-full h-full" style={{ animation: `${counter} ${secs}s linear infinite` }}>
-              <img key={m.name} src={m.image} alt={m.name} title={m.name} loading="lazy"
-                className="w-full h-full rounded-full object-cover ring-[3px] ring-white/90 shadow-lg"
-                style={{ animation: "tile-in .5s ease-out" }} />
+              <Link to={`/aboutus#${memberAnchor(m)}`} aria-label={m.name} title={m.name} className="group/p relative block w-full h-full rounded-full focus:outline-none focus-visible:ring-4 focus-visible:ring-white">
+                <img key={m.name} src={m.image} alt={m.name} loading="lazy"
+                  className="w-full h-full rounded-full object-cover ring-[3px] ring-white/90 shadow-lg transition-transform duration-200 group-hover/p:scale-110"
+                  style={{ animation: "tile-in .5s ease-out" }} />
+                <span className="pointer-events-none absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#0B2530]/90 px-2 py-0.5 text-[11px] font-semibold text-white opacity-0 transition-opacity group-hover/p:opacity-100 group-focus-visible/p:opacity-100">{m.name}</span>
+              </Link>
             </div>
           </div>
         );
