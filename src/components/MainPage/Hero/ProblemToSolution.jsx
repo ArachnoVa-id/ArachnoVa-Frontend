@@ -1,29 +1,57 @@
 import { useEffect, useRef, useState } from "react";
 import { useT } from "@/lib/i18n";
 
-// You (with our web: fundamentals, charged by AI) against the three beasts that usually
-// force a trade-off. Each beast is beaten in turn; none is traded for another.
-const LOOP = 10500;
-const STRIKE0 = 1300;
-const GAP = 2000;
-const clamp = (x) => Math.max(0, Math.min(1, x));
-const ease = (x) => 1 - Math.pow(1 - x, 3);
-const span = (ms, a, b) => clamp((ms - a) / (b - a));
+// Cost, time and quality are different kinds of thing, so each gets its own geometry:
+//   time    is a path   -> the tangled route becomes a short straight one
+//   cost    is weight   -> a wobbly pile sheds what it doesn't need, leaving a small stable base
+//   quality is form     -> a rough, jittery outline settles into a true circle
+// One AI sweep passes over all three, standing on a shared fundamentals baseline.
+const W = 420;
+const BASE = 162;
+const LOOP = 7600;
+const SWEEP_FROM = 1300;
+const SWEEP_MS = 2300;
 
-// stage coordinates: the SVG overlay uses a 160 x 110 box (same 16:11 ratio as the stage)
-const HAND = [56, 38];
-const BEASTS = [
-  { key: "time", img: "/image/Hero/battle/time.webp", box: { left: 46, top: 3, w: 27 }, at: [95, 29],
-    name: { en: "Time", id: "Waktu" }, threat: { en: "the endless loop", id: "lingkaran tanpa akhir" }, win: { en: "a shorter path", id: "jalan lebih pendek" } },
-  { key: "cost", img: "/image/Hero/battle/cost.webp", box: { left: 55, top: 44, w: 29 }, at: [111, 75],
-    name: { en: "Cost", id: "Biaya" }, threat: { en: "the dead weight", id: "beban mati" }, win: { en: "a lighter load", id: "beban lebih ringan" } },
-  { key: "quality", img: "/image/Hero/battle/quality.webp", box: { left: 73, top: 8, w: 27 }, at: [138, 40],
-    name: { en: "Quality", id: "Kualitas" }, threat: { en: "the broken form", id: "bentuk yang retak" }, win: { en: "a truer form", id: "bentuk lebih utuh" } },
+const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+const clamp = (x) => Math.max(0, Math.min(1, x));
+const mix = (a, b, k) => a + (b - a) * k;
+const rgb = (a, b, k) => `rgb(${a.map((v, i) => Math.round(mix(v, b[i], k))).join(",")})`;
+const CHAOS = [148, 163, 184];
+const HUE = { time: [26, 176, 200], cost: [99, 102, 241], quality: [16, 185, 129] };
+
+function smooth(pts) {
+  let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+    d += ` C${p1[0] + (p2[0] - p0[0]) / 6},${p1[1] + (p2[1] - p0[1]) / 6} ${p2[0] - (p3[0] - p1[0]) / 6},${p2[1] - (p3[1] - p1[1]) / 6} ${p2[0]},${p2[1]}`;
+  }
+  return d;
+}
+
+// TIME: a looping route from A to B that straightens and shortens
+const T_TANGLE = [[18, 140], [40, 70], [95, 150], [60, 160], [30, 105], [100, 60], [120, 130], [70, 120], [55, 55], [118, 92]];
+const T_CLEAN = T_TANGLE.map((_, i) => [40 + (60 * i) / (T_TANGLE.length - 1), 120]);
+
+// COST: nine blocks in a tall unsteady pile; three essential ones remain as a base
+const PILE = [
+  { x: 186, y: 142, w: 44, h: 18, r: -4, keep: [181, 138] },
+  { x: 196, y: 126, w: 30, h: 16, r: 7 },
+  { x: 182, y: 110, w: 40, h: 15, r: -9, keep: [211, 138] },
+  { x: 200, y: 95, w: 24, h: 15, r: 12 },
+  { x: 188, y: 80, w: 36, h: 14, r: -6 },
+  { x: 204, y: 66, w: 20, h: 14, r: 15, keep: [196, 116] },
+  { x: 190, y: 52, w: 30, h: 13, r: -12 },
+  { x: 199, y: 39, w: 22, h: 13, r: 8 },
+  { x: 193, y: 27, w: 18, h: 12, r: -14 },
 ];
+
+// QUALITY: an outline whose radius is noisy until it becomes a circle
+const Q = { cx: 352, cy: 104, r: 40, n: 36 };
+const NOISE = Array.from({ length: Q.n }, (_, i) => Math.sin(i * 2.3) * 0.6 + Math.sin(i * 5.1 + 1) * 0.4);
 
 function useClock() {
   const still = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-  const [ms, setMs] = useState(still ? 8500 : 0);
+  const [ms, setMs] = useState(still ? 5600 : 0);
   const raf = useRef(0);
   useEffect(() => {
     if (still) return undefined;
@@ -35,121 +63,104 @@ function useClock() {
   return ms;
 }
 
-// a small spider web, drawn around a beast when the bolt lands
-function Net({ cx, cy, k }) {
-  if (k <= 0) return null;
-  const r = 15 * ease(k);
-  const spokes = [...Array(8)].map((_, i) => (i / 8) * Math.PI * 2);
-  const ring = (f) => spokes.map((a) => `${cx + Math.cos(a) * r * f},${cy + Math.sin(a) * r * f}`).join(" ");
-  return (
-    <g opacity={Math.min(1, k * 2)} style={{ filter: "drop-shadow(0 0 1.5px #5EEAD4)" }}>
-      {spokes.map((a, i) => <line key={i} x1={cx} y1={cy} x2={cx + Math.cos(a) * r} y2={cy + Math.sin(a) * r} stroke="#A5F3FC" strokeWidth="0.45" />)}
-      {[0.35, 0.65, 1].map((f) => <polygon key={f} points={ring(f)} fill="none" stroke="#A5F3FC" strokeWidth="0.45" />)}
-    </g>
-  );
-}
-
 export default function ProblemToSolution({ className = "" }) {
   const t = useT();
   const ms = useClock();
-  const intro = ease(span(ms, 0, 800));
-  const outro = 1 - span(ms, LOOP - 700, LOOP);
-  const victory = span(ms, STRIKE0 + GAP * 3, STRIKE0 + GAP * 3 + 600);
+  const sweep = clamp((ms - SWEEP_FROM) / SWEEP_MS);
+  const sx = mix(-30, W + 30, sweep);
+  // each column turns over as the sweep passes it
+  const at = (x0, x1) => ease(clamp((sx - x0) / (x1 - x0)));
+  const kT = at(10, 130), kC = at(150, 270), kQ = at(295, 410);
+  const fade = 1 - clamp((ms - 6900) / 600);
+  const solved = kQ > 0.99;
+  const wob = (k) => (1 - k);
 
-  const fights = BEASTS.map((b, i) => {
-    const s = STRIKE0 + i * GAP;
-    return {
-      ...b,
-      bolt: span(ms, s, s + 380),
-      net: span(ms, s + 300, s + 900),
-      down: ease(span(ms, s + 750, s + 1450)),
-      boltOn: ms > s && ms < s + 1000,
-      cast: ms > s - 150 && ms < s + 400,
-    };
+  const tPts = T_TANGLE.map((p, i) => [
+    mix(p[0], T_CLEAN[i][0], kT) + Math.sin(ms / 240 + i) * 2.5 * wob(kT),
+    mix(p[1], T_CLEAN[i][1], kT) + Math.cos(ms / 280 + i * 1.6) * 2.5 * wob(kT),
+  ]);
+  const tA = tPts[0], tB = tPts[tPts.length - 1];
+
+  const qPts = NOISE.map((nz, i) => {
+    const a = (i / Q.n) * Math.PI * 2;
+    const jitter = Math.sin(ms / 180 + i * 0.9) * 0.35;
+    const rr = Q.r * (1 + (nz + jitter) * 0.32 * (1 - kQ));
+    return [Q.cx + rr * Math.cos(a), Q.cy + rr * Math.sin(a)];
   });
-  const casting = fights.some((f) => f.cast);
-  const allDown = victory > 0;
+  const qPath = `M${qPts.map((p) => p.map((v) => v.toFixed(1)).join(",")).join(" L")} Z`;
+
+  const cols = [
+    { key: "time", x: 70, k: kT, name: { en: "Time", id: "Waktu" }, line: { en: "a shorter path", id: "jalan lebih pendek" } },
+    { key: "cost", x: 210, k: kC, name: { en: "Cost", id: "Biaya" }, line: { en: "a lighter load", id: "beban lebih ringan" } },
+    { key: "quality", x: 352, k: kQ, name: { en: "Quality", id: "Kualitas" }, line: { en: "a truer form", id: "bentuk lebih utuh" } },
+  ];
 
   return (
-    <div className={className} role="img" aria-label={t({ en: "You, with our web of fundamentals charged by AI, defeat three beasts: Time, Cost and Quality. None is traded for another.", id: "Anda, dengan jaring fondasi yang diperkuat AI, mengalahkan tiga monster: Waktu, Biaya, dan Kualitas. Tak ada yang dikorbankan." })}>
-      <div className="relative w-full aspect-[16/11] rounded-[0.6rem] overflow-hidden bg-[radial-gradient(ellipse_at_30%_20%,#14505E_0%,#0B2530_50%,#04141A_100%)]">
-        {/* web floor: the fundamentals everything stands on */}
-        <svg viewBox="0 0 160 110" preserveAspectRatio="none" className="absolute inset-0 w-full h-full" aria-hidden="true">
-          <defs>
-            <radialGradient id="pts-floor" cx="0.5" cy="1" r="0.8"><stop offset="0" stopColor="#1AB0C8" stopOpacity="0.35" /><stop offset="1" stopColor="#1AB0C8" stopOpacity="0" /></radialGradient>
-          </defs>
-          <rect x="0" y="78" width="160" height="32" fill="url(#pts-floor)" />
-          {[...Array(13)].map((_, i) => <line key={i} x1={80} y1={84} x2={-40 + i * 20} y2={110} stroke="#1AB0C8" strokeOpacity="0.25" strokeWidth="0.3" />)}
-          {[88, 94, 102].map((y) => <line key={y} x1="0" y1={y} x2="160" y2={y} stroke="#1AB0C8" strokeOpacity="0.2" strokeWidth="0.3" />)}
-        </svg>
-        <span className="absolute left-[66%] bottom-[3%] -translate-x-1/2 text-[0.6rem] tracking-[0.3em] font-bold text-[#5EEAD4]/70">{t({ en: "FUNDAMENTALS", id: "FONDASI" })}</span>
-
-        {/* beasts */}
-        {fights.map((f) => (
-          <div key={f.key} className="absolute" style={{ left: `${f.box.left}%`, top: `${f.box.top}%`, width: `${f.box.w}%`, opacity: intro * outro }}>
-            <img src={f.img} alt="" draggable="false" className="w-full h-auto select-none"
-              style={{
-                transform: `translateY(${(1 - intro) * 12 + Math.sin(ms / 420 + f.at[0]) * (1 - f.down) * 1.5}px) scale(${1 - f.down * 0.18}) rotate(${f.net > 0 && f.down < 1 ? Math.sin(ms / 30) * 3 * (1 - f.down) : 0}deg)`,
-                filter: `grayscale(${f.down * 0.85}) brightness(${1 - f.down * 0.3}) drop-shadow(0 6px 10px rgba(0,0,0,0.5))`,
-                opacity: 1 - f.down * 0.35,
-                transformOrigin: "50% 90%",
-              }} />
-          </div>
-        ))}
-
-        {/* hero */}
-        <img src="/image/Hero/battle/hero.webp" alt="" draggable="false" className="absolute left-[3%] bottom-[5%] h-[78%] w-auto select-none"
-          style={{
-            transform: `translateX(${casting ? 6 : 0}px) translateY(${Math.sin(ms / 500) * 2}px)`,
-            transition: "transform .18s ease-out",
-            filter: `drop-shadow(0 0 ${allDown ? 10 + victory * 8 : casting ? 10 : 4}px rgba(26,176,200,${allDown ? 0.9 : 0.6}))`,
-          }} />
-
-        {/* bolts and nets */}
-        <svg viewBox="0 0 160 110" className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
-          {fights.map((f) => {
-            const [x2, y2] = f.at;
-            const mx = (HAND[0] + x2) / 2, my = Math.min(HAND[1], y2) - 10;
-            const d = `M${HAND[0]},${HAND[1]} Q${mx},${my} ${x2},${y2}`;
-            return (
-              <g key={f.key}>
-                {f.boltOn && (
-                  <>
-                    <path d={d} pathLength="1" fill="none" stroke="#1AB0C8" strokeWidth="2.2" strokeOpacity="0.35" strokeLinecap="round" strokeDasharray={`${f.bolt} 1`} />
-                    <path d={d} pathLength="1" fill="none" stroke="#E0FBFF" strokeWidth="0.7" strokeLinecap="round" strokeDasharray={`${f.bolt} 1`} />
-                    {/* the AI charge riding the thread */}
-                    {f.bolt < 1 && (() => {
-                      const u = f.bolt, x = (1 - u) * (1 - u) * HAND[0] + 2 * (1 - u) * u * mx + u * u * x2, y = (1 - u) * (1 - u) * HAND[1] + 2 * (1 - u) * u * my + u * u * y2;
-                      return <circle cx={x} cy={y} r="1.8" fill="#FBBF24" style={{ filter: "drop-shadow(0 0 2px #F59E0B)" }} />;
-                    })()}
-                  </>
-                )}
-                <Net cx={x2} cy={y2} k={f.net * (1 - span(ms, LOOP - 900, LOOP - 300))} />
-              </g>
-            );
-          })}
-        </svg>
-
-        {/* state */}
-        <span className={`absolute left-[3%] top-[4%] rounded-full px-[0.5rem] py-[0.15rem] text-[0.62rem] font-bold tracking-[0.12em] transition-colors duration-500 ${allDown ? "bg-emerald-500 text-white" : "bg-rose-500/90 text-white"}`}>
-          {allDown ? t({ en: "SOLUTION", id: "SOLUSI" }) : t({ en: "PROBLEM", id: "MASALAH" })}
+    <div className={className} role="img" aria-label={t({ en: "Problem to solution: time becomes a shorter path, cost a lighter load, quality a truer form, all on fundamentals and sped up by AI", id: "Dari masalah ke solusi: waktu menjadi jalan lebih pendek, biaya beban lebih ringan, kualitas bentuk lebih utuh, di atas fondasi dan dipercepat AI" })}>
+      <div className="flex items-center justify-between mb-[0.4rem]">
+        <span className={`text-[0.72rem] font-bold uppercase tracking-[0.12em] transition-colors duration-500 ${solved ? "text-emerald-600" : "text-rose-500"}`}>
+          {solved ? t({ en: "Solution", id: "Solusi" }) : t({ en: "Problem", id: "Masalah" })}
         </span>
-        <span className="absolute right-[3%] bottom-[3%] inline-flex items-center gap-1 rounded-full bg-amber-400/90 px-[0.45rem] py-[0.1rem] text-[0.6rem] font-bold text-[#3B2300]">⚡ AI</span>
+        <span className="text-[0.72rem] text-gray-400 italic">{t({ en: "three dimensions, none traded away", id: "tiga dimensi, tak ada yang dikorbankan" })}</span>
       </div>
-      <ul className="mt-[0.6rem] grid grid-cols-3 gap-[0.4rem]">
-        {fights.map((f) => {
-          const won = f.down > 0.5;
-          return (
-            <li key={f.key} className={`rounded-[0.5rem] border px-[0.5rem] py-[0.35rem] transition-colors duration-300 ${won ? "border-[#1AB0C8]/40 bg-[#E6F6F9]" : "border-amber-200 bg-amber-50"}`}>
-              <span className={`block text-[0.8rem] font-SourceSansProBold ${won ? "text-[#0F3B47]" : "text-amber-900"}`}>{won ? "✓ " : ""}{t(f.name)}</span>
-              <span className={`block text-[0.7rem] leading-tight ${won ? "text-[#178a9c]" : "text-amber-800/80"}`}>{won ? t(f.win) : t(f.threat)}</span>
-            </li>
-          );
+      <svg viewBox={`0 0 ${W} 200`} className="w-full h-auto" aria-hidden="true" style={{ opacity: fade }}>
+        <defs>
+          <linearGradient id="pts-sweep" x1="0" x2="1">
+            <stop offset="0" stopColor="#F59E0B" stopOpacity="0" />
+            <stop offset="0.75" stopColor="#F59E0B" stopOpacity="0.18" />
+            <stop offset="1" stopColor="#F59E0B" stopOpacity="0.55" />
+          </linearGradient>
+        </defs>
+
+        {/* column dividers: separate dimensions, not one scale */}
+        <line x1="140" y1="18" x2="140" y2={BASE - 6} stroke="#E2E8F0" strokeDasharray="2 4" />
+        <line x1="280" y1="18" x2="280" y2={BASE - 6} stroke="#E2E8F0" strokeDasharray="2 4" />
+
+        {/* TIME */}
+        <path d={smooth(tPts)} fill="none" stroke={rgb(CHAOS, HUE.time, kT)} strokeWidth="3" strokeLinecap="round" />
+        <circle cx={tA[0]} cy={tA[1]} r="4.5" fill={rgb(CHAOS, HUE.time, kT)} />
+        <path d={`M${tB[0] - 2},${tB[1] - 5} l7,5 l-7,5`} fill="none" stroke={rgb(CHAOS, HUE.time, kT)} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+
+        {/* COST */}
+        {PILE.map((b, i) => {
+          if (b.keep) {
+            const x = mix(b.x, b.keep[0], kC), y = mix(b.y, b.keep[1], kC);
+            const w = mix(b.w, 28, kC), h = mix(b.h, 22, kC), r = mix(b.r, 0, kC);
+            return <rect key={i} x={x} y={y} width={w} height={h} rx="3" fill={rgb(CHAOS, HUE.cost, kC)} transform={`rotate(${r} ${x + w / 2} ${y + h / 2})`} />;
+          }
+          const fall = kC;
+          const x = b.x + (i % 2 ? 1 : -1) * 26 * fall, y = b.y + 70 * fall * fall, r = b.r + (i % 2 ? 50 : -50) * fall;
+          return <rect key={i} x={x} y={y} width={b.w} height={b.h} rx="2" fill="#CBD5E1" opacity={1 - fall} transform={`rotate(${r} ${x + b.w / 2} ${y + b.h / 2})`} />;
         })}
+
+        {/* QUALITY */}
+        <path d={qPath} fill={kQ > 0.5 ? `rgba(16,185,129,${0.1 * kQ})` : "none"} stroke={rgb(CHAOS, HUE.quality, kQ)} strokeWidth="3" strokeLinejoin="round" />
+        <circle cx={Q.cx} cy={Q.cy} r={Q.r * 0.55} fill="none" stroke="#10B981" strokeWidth="1.2" opacity={kQ * 0.6} />
+        <circle cx={Q.cx} cy={Q.cy} r="3" fill="#10B981" opacity={kQ} />
+
+        {/* fundamentals: the one ground all three stand on */}
+        <line x1="10" y1={BASE} x2={W - 10} y2={BASE} stroke="#0F3B47" strokeWidth="2" />
+        {[...Array(21)].map((_, i) => <line key={i} x1={14 + i * 19.6} y1={BASE + 1} x2={6 + i * 19.6} y2={BASE + 8} stroke="#94A3B8" strokeWidth="1" />)}
+        <text x={W / 2} y={BASE + 22} textAnchor="middle" className="text-[10px] font-semibold tracking-[0.18em]" fill="#64748B">{t({ en: "FUNDAMENTALS", id: "FONDASI" })}</text>
+
+        {/* AI sweep */}
+        {sweep > 0 && sweep < 1 && (
+          <g>
+            <rect x={sx - 70} y="12" width="70" height={BASE - 12} fill="url(#pts-sweep)" />
+            <line x1={sx} y1="12" x2={sx} y2={BASE} stroke="#F59E0B" strokeWidth="2" />
+            <rect x={sx - 15} y="2" width="30" height="16" rx="8" fill="#F59E0B" />
+            <text x={sx} y="13.5" textAnchor="middle" className="text-[10px] font-bold" fill="#fff">AI</text>
+          </g>
+        )}
+      </svg>
+      <ul className="grid grid-cols-3 mt-[0.2rem] text-center">
+        {cols.map((c) => (
+          <li key={c.key}>
+            <span className="block font-SourceSansProBold text-[0.95rem]" style={{ color: rgb([100, 116, 139], HUE[c.key], c.k) }}>{t(c.name)}</span>
+            <span className={`block text-[0.75rem] italic text-gray-500 transition-opacity duration-500 ${c.k > 0.95 ? "opacity-100" : "opacity-0"}`}>{t(c.line)}</span>
+          </li>
+        ))}
       </ul>
-      <p className={`mt-[0.45rem] text-center text-[0.78rem] font-SourceSansProSemibold transition-opacity duration-500 ${allDown ? "opacity-100 text-neutral-g" : "opacity-0"}`}>
-        {t({ en: "All three won, none traded away.", id: "Ketiganya menang, tak ada yang dikorbankan." })}
-      </p>
     </div>
   );
 }
